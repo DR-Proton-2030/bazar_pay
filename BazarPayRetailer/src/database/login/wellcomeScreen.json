@@ -1,0 +1,14 @@
+{
+  "texts1": {
+    "header": "welcome to Bazar pay",
+    "subheader": "All in one application",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo",
+    "nextButtonText": "NEXT"
+  },
+  "texts2": {
+    "header": "Fast and responsible delivery by our courier ",
+    "description": "Another description Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo",
+    "btnText1": "LOGIN",
+    "btnText2": "Create An Account"
+  }
+}
