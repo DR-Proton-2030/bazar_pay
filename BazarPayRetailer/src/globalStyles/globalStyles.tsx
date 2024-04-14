@@ -98,4 +98,5 @@ export const globalStyle = StyleSheet.create({
     fontSize: 19,
     fontWeight: "600",
   },
+  bottomRow: { flexDirection: "row", gap: 20 },
 });

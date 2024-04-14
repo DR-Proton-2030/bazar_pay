@@ -166,8 +166,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   allCategoriesText: {
-    fontSize: 20,
-    fontWeight: "700",
+    fontSize: 18,
+    fontWeight: "600",
     textAlign: "center",
     color: Colors.light.orange,
   },

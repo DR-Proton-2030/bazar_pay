@@ -49,7 +49,7 @@ export default function RootLayout() {
   };
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <ThemeProvider value={false === "dark" ? DarkTheme : DefaultTheme}>
+      <ThemeProvider value={DefaultTheme}>
         <View style={{ flex: 1 }}>
           <DrawerLayout
             drawerWidth={300}
@@ -74,7 +74,11 @@ function RootLayoutNav({ toggleDrawer }: any) {
       <Stack.Screen name="wellcomePage" options={{ headerShown: false }} />
       <Stack.Screen name="otpPage" options={{ headerShown: false }} />
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="homePage" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="homePage"
+        independent={true}
+        options={{ headerShown: false }}
+      />
       <Stack.Screen name="QrPage" options={{ headerShown: false }} />
       <Stack.Screen name="profilePage" options={{ headerShown: false }} />
       <Stack.Screen
