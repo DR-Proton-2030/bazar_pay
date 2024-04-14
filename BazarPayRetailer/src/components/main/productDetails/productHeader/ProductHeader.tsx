@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { globalStyle } from "../../../../globalStyles/globalStyles";
 import Colors from "../../../../constants/Colors";
 import { useNavigation } from "expo-router";
-const ProductHeader = () => {
+const ProductHeader = ({ text }: any) => {
   const navigation: any = useNavigation();
 
   const handleNavigate = () => {
@@ -20,7 +20,7 @@ const ProductHeader = () => {
       >
         <Ionicons name="arrow-back" size={24} color={Colors.light.orange} />
       </TouchableOpacity>
-      <Text style={{ fontSize: 20 }}>My QR</Text>
+      <Text style={{ fontSize: 20, fontWeight: "600" }}>{text}</Text>
       <View
         style={{
           display: "flex",

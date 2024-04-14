@@ -8,7 +8,7 @@ import Colors from "../../constants/Colors";
 const QrScreen = () => {
   return (
     <View style={{ flex: 1, backgroundColor: Colors.light.background }}>
-      <ProductHeader />
+      <ProductHeader text="My QR" />
       <View
         style={{
           justifyContent: "center",

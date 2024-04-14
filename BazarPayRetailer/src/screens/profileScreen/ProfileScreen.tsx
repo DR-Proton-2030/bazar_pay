@@ -9,7 +9,7 @@ import OtherLinks from "../../components/main/profile/otherLinks/OtherLinks";
 const ProfileScreen = () => {
   return (
     <View style={{ flex: 1, backgroundColor: Colors.light.background }}>
-      <ProductHeader />
+      <ProductHeader text="Prifile Details" />
       <ProfileView />
       <EditOptions />
       <OtherLinks />

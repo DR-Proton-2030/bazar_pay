@@ -7,6 +7,7 @@ import ImageCard from "../../components/shared/imageCrad/ImageCard";
 import ProductSection from "../../components/shared/productSection/ProductSection";
 import ImageBanner from "../../components/shared/imageBanner/ImageBanner";
 import OfferSection from "../../components/main/offerSection/OfferSection";
+import { DrawerContent } from "../../components/main/drawerContent/DrawerContent";
 
 export default function HomePage() {
   return (

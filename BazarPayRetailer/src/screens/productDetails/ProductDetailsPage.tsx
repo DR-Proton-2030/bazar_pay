@@ -17,7 +17,7 @@ const ProductDetailsScreen = () => {
         width: "100%",
       }}
     >
-      <ProductHeader />
+      <ProductHeader text="" />
       <ProductBlock />
       <ProductDesc />
       <BuyerOptions />
