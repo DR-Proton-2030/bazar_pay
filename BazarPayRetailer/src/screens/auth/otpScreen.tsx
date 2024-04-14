@@ -10,6 +10,7 @@ import OtpBtn from "../../components/shared/otpScreen/button/OtpBtn";
 import SocialLink from "../../components/shared/otpScreen/socialLink/SocialLink";
 import TopImg from "../../components/shared/otpScreen/topImage/TopImg";
 import Colors from "../../constants/Colors";
+import PhoneInput from "react-native-phone-number-input";
 
 const OtpScreen = () => {
   const [value, setValue] = useState("");
@@ -17,14 +18,14 @@ const OtpScreen = () => {
   const [formattedValue, setFormattedValue] = useState("");
   const [valid, setValid] = useState(false);
   const [showMessage, setShowMessage] = useState(false);
-  // const phoneInput = useRef<PhoneInput>(null);
+  const phoneInput = useRef<PhoneInput>(null);
   const handleNavigate = () => {
     navigation.navigate("homePage");
   };
   const handlevarified = () => {
-    // const checkValid = phoneInput.current?.isValidNumber(value);
-    // setShowMessage(true);
-    // setValid(checkValid ? checkValid : false);
+    const checkValid = phoneInput.current?.isValidNumber(value);
+    setShowMessage(true);
+    setValid(checkValid ? checkValid : false);
     handleNavigate();
   };
 
@@ -45,7 +46,7 @@ const OtpScreen = () => {
           Get your groceries with Bazarpay.xyz
         </Text>
         <View style={{ marginLeft: "auto", marginRight: "auto" }}>
-          {/* <PhoneInput
+          <PhoneInput
             ref={phoneInput}
             defaultValue={value}
             defaultCode="DM"
@@ -58,7 +59,7 @@ const OtpScreen = () => {
             }}
             withShadow
             autoFocus
-          /> */}
+          />
           {showMessage && (
             <Text
               style={{
