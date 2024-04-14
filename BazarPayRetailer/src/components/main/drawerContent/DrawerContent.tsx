@@ -37,7 +37,7 @@ export const DrawerContent = () => {
             nomanroni@gmail.com
           </Text>
           <TouchableOpacity
-            onPress={() => console.log("Show Details button clicked")}
+            onPress={() => navigation.navigate("profilePage")}
             style={{
               marginTop: 10,
               borderWidth: 2,
