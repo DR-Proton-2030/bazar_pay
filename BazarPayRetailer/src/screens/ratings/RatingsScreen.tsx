@@ -1,5 +1,5 @@
 import React from "react";
-import { TouchableOpacity, View, Text, ScrollView } from "react-native";
+import { TouchableOpacity, View, Text, ScrollView, Image } from "react-native";
 import { globalStyle } from "../../globalStyles/globalStyles";
 import Colors from "../../constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -7,6 +7,9 @@ import { useNavigation } from "expo-router";
 import RaatingsRenderScreen from "../../components/main/ratings/ratingsRenderScreen/RaatingsRenderScreen";
 import DualBtn from "../../components/shared/dualButton/DualBtn";
 import Qna from "../../components/main/ratings/q&a/Qna";
+import ratingsImg from "../../../assets/images/rating.png";
+import RatingChart from "../../components/main/ratings/ratingChart/RatingChart";
+import RatingBar from "../../components/main/ratings/RatingBar/RatingBar";
 
 const RatingsScreen = () => {
   const navigation: any = useNavigation();
