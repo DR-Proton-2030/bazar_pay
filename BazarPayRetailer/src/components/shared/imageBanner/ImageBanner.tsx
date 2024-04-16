@@ -4,11 +4,7 @@ import { View, Image, StyleSheet } from "react-native";
 const ImageBanner = ({ backgroundColor, imageUri }: any) => {
   return (
     <View style={[styles.container, { backgroundColor: "#FEDE27" }]}>
-      <Image
-        source={{ uri: imageUri }}
-        style={styles.image}
-        resizeMode="cover"
-      />
+      <Image source={imageUri} style={styles.image} resizeMode="cover" />
     </View>
   );
 };
@@ -23,7 +19,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   image: {
-    width: "70%",
+    width: "80%",
     height: 100,
     borderRadius: 10,
   },

@@ -5,13 +5,11 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { useEffect, useState } from "react";
-import { useColorScheme, View, TouchableOpacity, Text } from "react-native";
+import { useEffect } from "react";
+import { useColorScheme, View } from "react-native";
 import { Stack } from "expo-router";
-import DrawerLayout from "react-native-gesture-handler/DrawerLayout";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
 import * as SplashScreen from "expo-splash-screen";
-import { DrawerContent } from "../src/components/main/drawerContent/DrawerContent";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AppHeader from "../src/components/shared/appheader/AppHeader";
 import Colors from "../src/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
@@ -28,8 +26,6 @@ export default function RootLayout() {
     ...FontAwesome.font,
   });
 
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-
   useEffect(() => {
     if (error) throw error;
   }, [error]);
@@ -43,37 +39,26 @@ export default function RootLayout() {
   if (!loaded) {
     return null;
   }
-  const toggleDrawer = () => {
-    console.log("toogles");
-    setIsDrawerOpen((prevState) => !prevState); // Toggle the isDrawerOpen state
-  };
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <ThemeProvider value={DefaultTheme}>
         <View style={{ flex: 1 }}>
-          <DrawerLayout
-            drawerWidth={300}
-            drawerPosition="left"
-            renderNavigationView={() => <DrawerContent />}
-            drawerOpen={isDrawerOpen}
-            drawerClose={() => setIsDrawerOpen(false)}
-          >
-            <RootLayoutNav toggleDrawer={() => toggleDrawer} />
-          </DrawerLayout>
+          <RootLayoutNav />
         </View>
       </ThemeProvider>
     </GestureHandlerRootView>
   );
 }
 
-function RootLayoutNav({ toggleDrawer }: any) {
+function RootLayoutNav() {
   const colorScheme = useColorScheme();
 
   return (
     <Stack>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="wellcomePage" options={{ headerShown: false }} />
       <Stack.Screen name="otpPage" options={{ headerShown: false }} />
-      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen
         name="homePage"
         independent={true}
@@ -86,7 +71,7 @@ function RootLayoutNav({ toggleDrawer }: any) {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="RatingsPage" options={{ headerShown: false }} />
-      <AppHeader toggleDrawer={toggleDrawer} />
+      <AppHeader />
     </Stack>
   );
 }

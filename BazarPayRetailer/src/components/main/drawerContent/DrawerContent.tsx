@@ -8,9 +8,14 @@ import DrawerCards from "./drawerCards/DrawerCards";
 import { useNavigation } from "expo-router";
 import { createDrawerItems } from "../../../database/drawerItems/drawerItems";
 
-export const DrawerContent = () => {
-  const navigation = useNavigation();
+export const DrawerContent = ({ onClose }: any) => {
+  const navigation: any = useNavigation();
   const drawerItems = createDrawerItems(navigation);
+  const handleNavigatetoProfile = ({ route }: any) => {
+    navigation.navigate("profilePage");
+    onClose();
+  };
+
   return (
     <View
       style={{
@@ -37,7 +42,7 @@ export const DrawerContent = () => {
             nomanroni@gmail.com
           </Text>
           <TouchableOpacity
-            onPress={() => navigation.navigate("profilePage")}
+            onPress={handleNavigatetoProfile}
             style={{
               marginTop: 10,
               borderWidth: 2,

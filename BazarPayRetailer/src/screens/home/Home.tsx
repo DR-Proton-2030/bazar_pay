@@ -7,7 +7,7 @@ import ImageCard from "../../components/shared/imageCrad/ImageCard";
 import ProductSection from "../../components/shared/productSection/ProductSection";
 import ImageBanner from "../../components/shared/imageBanner/ImageBanner";
 import OfferSection from "../../components/main/offerSection/OfferSection";
-import { DrawerContent } from "../../components/main/drawerContent/DrawerContent";
+import veg from "../../../assets/images/veg.png";
 
 export default function HomePage() {
   return (
@@ -72,19 +72,10 @@ export default function HomePage() {
 
         <OfferSection />
         <ProductSection />
-        <ScrollView horizontal={true}>
-          <ImageBanner
-            backgroundColor="FEDE27"
-            imageUri="https://s3-alpha-sig.figma.com/img/7239/466d/ad4849785eabfa9fb7ddcd368f7eb0a3?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bWkxYwuGdXJYm~adcU1n0xLziGzvMo2cI~eKShwqp5gkRjH9DMbkxyQSPzi~MymG0-zYw35lLvHxJ4po-PjggicXXfYw7yMyg-~emBFI36TpSyXMHRH0y9i3ZWGfI-AF6BmQe8HpqXYCwfK9x6o0jxUInz~7kkLc2gnJjbCX5PZaK0a7ye5TWYMTZMab1sRAwfnzR0FVlKnsZvxRnrRD2-zG-RLv1fxaUEqmDsHM0GfFzsZJYjMSwzx5vboXEuf~RcOJVaNxoPr~UQvt858w~lpRCplkRxsqGT9EM0EXv~jttWiY7p1J6FfMyOa7kx3HEEOM-OL8UrKJo~jOPQdqBQ__"
-          />
-          <ImageBanner
-            backgroundColor="FEDE27"
-            imageUri="https://s3-alpha-sig.figma.com/img/7239/466d/ad4849785eabfa9fb7ddcd368f7eb0a3?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bWkxYwuGdXJYm~adcU1n0xLziGzvMo2cI~eKShwqp5gkRjH9DMbkxyQSPzi~MymG0-zYw35lLvHxJ4po-PjggicXXfYw7yMyg-~emBFI36TpSyXMHRH0y9i3ZWGfI-AF6BmQe8HpqXYCwfK9x6o0jxUInz~7kkLc2gnJjbCX5PZaK0a7ye5TWYMTZMab1sRAwfnzR0FVlKnsZvxRnrRD2-zG-RLv1fxaUEqmDsHM0GfFzsZJYjMSwzx5vboXEuf~RcOJVaNxoPr~UQvt858w~lpRCplkRxsqGT9EM0EXv~jttWiY7p1J6FfMyOa7kx3HEEOM-OL8UrKJo~jOPQdqBQ__"
-          />
-          <ImageBanner
-            backgroundColor="FEDE27"
-            imageUri="https://s3-alpha-sig.figma.com/img/7239/466d/ad4849785eabfa9fb7ddcd368f7eb0a3?Expires=1713139200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=bWkxYwuGdXJYm~adcU1n0xLziGzvMo2cI~eKShwqp5gkRjH9DMbkxyQSPzi~MymG0-zYw35lLvHxJ4po-PjggicXXfYw7yMyg-~emBFI36TpSyXMHRH0y9i3ZWGfI-AF6BmQe8HpqXYCwfK9x6o0jxUInz~7kkLc2gnJjbCX5PZaK0a7ye5TWYMTZMab1sRAwfnzR0FVlKnsZvxRnrRD2-zG-RLv1fxaUEqmDsHM0GfFzsZJYjMSwzx5vboXEuf~RcOJVaNxoPr~UQvt858w~lpRCplkRxsqGT9EM0EXv~jttWiY7p1J6FfMyOa7kx3HEEOM-OL8UrKJo~jOPQdqBQ__"
-          />
+        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+          <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
+          <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
+          <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
         </ScrollView>
 
         <ProductSection />
