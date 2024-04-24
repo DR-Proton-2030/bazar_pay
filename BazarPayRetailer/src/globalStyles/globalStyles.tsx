@@ -67,7 +67,7 @@ export const globalStyle = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     paddingTop: 50,
-    paddingLeft: 10,
+    paddingLeft: 5,
     backgroundColor: Colors.light.background,
     zIndex: 50,
     width: windowWidth,

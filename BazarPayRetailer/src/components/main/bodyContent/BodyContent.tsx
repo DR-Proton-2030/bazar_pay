@@ -16,6 +16,9 @@ const BodyContent = () => {
   };
   const handleToggle = () => {
     setDisplayText(!displayText);
+    if (displayText) {
+      navigation.navigate("signUp");
+    }
     console.log("first");
     setDisplayImage(displayImage === wellcomeImg ? wellcomeImg2 : wellcomeImg);
   };

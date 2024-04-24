@@ -18,7 +18,7 @@ const ProductHeader = ({ text }: any) => {
         onPress={handleNavigate}
         style={{ display: "flex", flexDirection: "column", paddingLeft: 20 }}
       >
-        <Ionicons name="arrow-back" size={24} color={Colors.light.orange} />
+        <Ionicons name="arrow-back" size={28} color={Colors.light.orange} />
       </TouchableOpacity>
       <Text style={{ fontSize: 20, fontWeight: "600" }}>{text}</Text>
       <View

@@ -3,8 +3,13 @@ import Feather from "@expo/vector-icons/Feather";
 import React from "react";
 import { TouchableOpacity, View, Image, Text } from "react-native";
 import Colors from "../../../../constants/Colors";
+import { useNavigation } from "expo-router";
 
 const SocialLink = () => {
+  const navigation: any = useNavigation();
+  const handleNavigateToEmailLogin = () => {
+    navigation.navigate("signInPage");
+  };
   return (
     <>
       <Text
@@ -18,7 +23,7 @@ const SocialLink = () => {
       >
         Or connect with social media
       </Text>
-      <TouchableOpacity>
+      <TouchableOpacity onPress={handleNavigateToEmailLogin}>
         <Text
           style={{
             fontSize: 18,

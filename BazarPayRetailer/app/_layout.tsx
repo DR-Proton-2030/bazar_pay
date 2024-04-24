@@ -11,8 +11,6 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AppHeader from "../src/components/shared/appheader/AppHeader";
-import Colors from "../src/constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -59,6 +57,8 @@ function RootLayoutNav() {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="wellcomePage" options={{ headerShown: false }} />
       <Stack.Screen name="otpPage" options={{ headerShown: false }} />
+      <Stack.Screen name="signInPage" options={{ headerShown: false }} />
+      <Stack.Screen name="signUp" options={{ headerShown: false }} />
       <Stack.Screen
         name="homePage"
         independent={true}

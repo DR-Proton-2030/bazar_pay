@@ -32,7 +32,7 @@ const RatingsScreen = () => {
             paddingLeft: 20,
           }}
         >
-          <Ionicons name="arrow-back" size={24} color={Colors.light.orange} />
+          <Ionicons name="arrow-back" size={28} color={Colors.light.orange} />
         </TouchableOpacity>
         <Text style={{ textAlign: "center", fontSize: 22, fontWeight: "500" }}>
           Ratings & Reviews
