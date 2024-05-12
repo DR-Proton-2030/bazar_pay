@@ -1,0 +1,30 @@
+.mouse-select__selectable {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  background: gray;
+  cursor: pointer;
+}
+
+.mouse-select__selectable.selected {
+  border: 2px solid red;
+}
+
+.mouse-select__frame {
+  background: red;
+  opacity: 0.5;
+}
+
+.topbar {
+  width: "100%";
+  display: "flex";
+  justify-content: "space-between";
+  align-items: "center";
+  margin-bottom: 20;
+  background: "white";
+  padding-right: 30;
+  padding-left: 30;
+  padding-top: 20;
+  padding-bottom: 20;
+  border-radius: 5;
+}

@@ -1,0 +1,21 @@
+.fields{
+    display: flex;
+    justify-content: space-between;
+    align-items: left;
+    margin-bottom: 20px;
+}
+.input-fields{
+    outline: none !important;
+    border: none;
+}
+.submit-btn{
+    background-color: rgb(73, 187, 67) !important;
+}
+.banner-photo-btn{
+    width: 700px;
+    height: 50px;
+    display: flex;
+    justify-content: right;
+    align-items: right;
+    gap: 10px;
+}

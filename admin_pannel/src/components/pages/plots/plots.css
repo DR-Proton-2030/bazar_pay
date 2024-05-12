@@ -1,0 +1,9 @@
+.add-plots-btn{
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+    align-items: right;
+    margin-bottom: 12px;
+}
+/* Add this CSS to your stylesheet */

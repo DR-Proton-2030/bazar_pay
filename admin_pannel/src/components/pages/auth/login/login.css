@@ -1,0 +1,28 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.login_content {
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+.login_img img {
+  border-radius: 10px;
+}
+.login_heading {
+  text-align: center;
+}
+.form {
+  width: 350px;
+  height: auto;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  margin: 5px;
+}
+.btn {
+  
+  font-family: "Raleway", sans-serif;
+}
