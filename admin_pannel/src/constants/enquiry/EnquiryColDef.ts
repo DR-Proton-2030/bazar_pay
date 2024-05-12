@@ -9,15 +9,15 @@ import ForwardCellRenderer from "./forwardCellRenderer/ForwardCellRenderer";
 export const enquiryColumnDef: ColDef[] = [
   { field: "customer.full_name", headerName: "Customer's Name", cellRenderer: NameCellRenderer },
   { field: "customer.email", headerName: "email", cellRenderer:DateCellRenderer},
-  { field: "createdAt", headerName: "Enquiry Date", cellRenderer:DateCellRenderer},
+  { field: "createdAt", headerName: "Order Placed On", cellRenderer:DateCellRenderer},
   { field: "customer.phone", headerName: "Mobile", cellRenderer: DataCellRenderer},
-  { field: "project.project_name", headerName: "Project Name", cellRenderer:DataCellRenderer },
-  { field: "builder.builder_name", headerName: "Builder's Name",cellRenderer: DataCellRenderer },
-  { field: "builder.builder_name", headerName: "Forwarded to Project Manager", cellRenderer: ForwardCellRenderer    },
+  { field: "project.project_name", headerName: "Product Name", cellRenderer:DataCellRenderer },
+  { field: "builder.builder_name", headerName: "Product price",cellRenderer: DataCellRenderer },
+  // { field: "builder.builder_name", headerName: "Forwarded to Project Manager", cellRenderer: ForwardCellRenderer    },
   { field: "builder.builder_name", headerName: "Already Contact",cellRenderer: CheckboxCellRenderer },
   {
     field: "layout_image",
-    headerName: "Enquired Plot",
+    headerName: "Product Image",
     suppressSizeToFit: true,
     // cellRenderer: LayoutImageCellRenderer,
     cellRenderer: (params: any) =>

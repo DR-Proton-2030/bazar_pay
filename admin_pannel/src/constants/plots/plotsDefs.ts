@@ -5,8 +5,8 @@ import SeeDetailsCellRenderer from "../../components/pages/admin/plots/seeDetail
 
 export const PlotsDefs : ColDef[] = [
   {
-    field: "project_name",
-    headerName: "Project Name",
+    field: "product_title",
+    headerName: "Product Title",
     suppressSizeToFit: true,
   },
   // {
@@ -19,7 +19,8 @@ export const PlotsDefs : ColDef[] = [
   //   headerName: "Builder Object ID",
   //   suppressSizeToFit: true,
   // },
-  { field: "state", headerName: "State", suppressSizeToFit: true },
+  { field: "category", headerName: "Products's Category", suppressSizeToFit: true },
+  { field: "product_image", headerName: "Product Image", suppressSizeToFit: true },
   // {
   //   field: "address_lat",
   //   headerName: "Address Latitude",
@@ -31,8 +32,8 @@ export const PlotsDefs : ColDef[] = [
   //   suppressSizeToFit: true,
   // },
   {
-    field: "formatted_address",
-    headerName: "Formatted Address",
+    field: "Description",
+    headerName: "Description",
     suppressSizeToFit: true,
   },
   // {
@@ -41,40 +42,29 @@ export const PlotsDefs : ColDef[] = [
   //   suppressSizeToFit: true,
   // },
   {
-    field: "number_of_plots",
-    headerName: "Number of Plots",
-    suppressSizeToFit: true,
-  },
-  {
-    field: "price_per_sq",
-    headerName: "Price Per Sq",
-    suppressSizeToFit: true,
-  },
-  {
-    field: "total_sq_feet",
-    headerName: "Total Sq Feet",
-    suppressSizeToFit: true,
-  },
-  { field: "description", headerName: "Description", suppressSizeToFit: true },
-  {
-    field: "average_rating",
-    headerName: "Average Rating",
+    field: "Price",
+    headerName: "Price",
     suppressSizeToFit: true,
   },
   {
     field: "no_of_ratings",
-    headerName: "Number of Ratings",
+    headerName: "Product Ratings",
     suppressSizeToFit: true,
   },
-  { field: "is_active", headerName: "Is Active", suppressSizeToFit: true },
   {
-    field: "layout_image",
-    headerName: "Layout Image",
+    field: "reviews",
+    headerName: "Product Reviews",
     suppressSizeToFit: true,
-    // cellRenderer: LayoutImageCellRenderer,
-    cellRenderer: (params: any) =>
-      LayoutImageCellRenderer({ ...params, projectId: params.data._id,plotId:"", mode:"ALL" }),
   },
+ 
+  // {
+  //   field: "layout_image",
+  //   headerName: "Layout Image",
+  //   suppressSizeToFit: true,
+  //   // cellRenderer: LayoutImageCellRenderer,
+  //   cellRenderer: (params: any) =>
+  //     LayoutImageCellRenderer({ ...params, projectId: params.data._id,plotId:"", mode:"ALL" }),
+  // },
   { field: "createdAt", headerName: "Uploaded On", cellRenderer: DateCellRenderer },
   { field: "updatedAt", headerName: "Last Edited ", cellRenderer: DateCellRenderer },
   { field: "see_details", headerName: "See Details ", cellRenderer: SeeDetailsCellRenderer },

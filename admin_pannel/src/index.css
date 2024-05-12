@@ -12,3 +12,10 @@
     color: #009933 !important;
     border-color: #009933 !important;
 }
+
+body{
+    font-family: "Bitter", serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+}

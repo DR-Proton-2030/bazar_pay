@@ -5,5 +5,7 @@ export const ROLES = {
     builder_admin: "BUILDER_ADMIN",
     project_manager: "PROJECT_MANAGER",
     telecaller: "TELECALLER",
-    channel_partner: "CHANNEL_PARNER"
+    channel_partner: "CHANNEL_PARNER",
+    wholesaler_admin: "WHOLESALER-ADMIN",
+    retailer: "RETAILER",
 }

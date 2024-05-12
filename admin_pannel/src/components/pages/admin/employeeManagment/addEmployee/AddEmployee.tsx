@@ -233,15 +233,13 @@ const AddEmployee: React.FC = () => {
                   onChange={handleChange}
                   disabled={hasSubmitted}
                 >
-                  <MenuItem value={ROLES.project_manager}>
-                    Project Manager
+                  <MenuItem value={ROLES.wholesaler_admin}>
+                   Wholesaler
                   </MenuItem>
-                  <MenuItem value={ROLES.channel_partner}>
-                    Channel Partner
+                  <MenuItem value={ROLES.retailer}>
+                    Retailer
                   </MenuItem>
-                  <MenuItem value={ROLES.telecaller}>
-                    Telecaller Manager
-                  </MenuItem>
+                 
                 </Select>
               </FormControl>
             </Box>

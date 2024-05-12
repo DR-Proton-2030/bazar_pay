@@ -106,12 +106,12 @@ const BuilderForm = () => {
             aria-controls="panel1-content"
             id="panel1-header"
           >
-            Builders Details
+            Wholesaler Details
           </AccordionSummary>
           <AccordionDetails>
             <TextField
               id="outlined-basic"
-              label="Wholesalers Name"
+              label="Name"
               variant="outlined"
               sx={{ width: 400, marginRight: 2, marginBottom: 2 }}
               value={builderDetails.builder_name}
@@ -121,7 +121,7 @@ const BuilderForm = () => {
             />
             <TextField
               id="outlined-basic"
-              label="CIN Number"
+              label="Address"
               variant="outlined"
               sx={{ width: 400, marginRight: 2 }}
               value={builderDetails.cin_number}
@@ -131,7 +131,7 @@ const BuilderForm = () => {
             />
             <TextField
               id="outlined-basic"
-              label="GST Number"
+              label="Phone no."
               variant="outlined"
               sx={{ width: 400, marginRight: 2 }}
               value={builderDetails.GST_number}
@@ -139,17 +139,8 @@ const BuilderForm = () => {
               name="GST_number"
               required
             />
-            <TextField
-              id="outlined-basic"
-              label="PAN No."
-              variant="outlined"
-              sx={{ width: 400, marginRight: 2 }}
-              value={builderDetails.PAN}
-              onChange={handleChange}
-              name="PAN"
-              required
-            />
-            <div
+           
+            {/* <div
               style={{
                 width: "100%",
                 display: "flex",
@@ -191,10 +182,10 @@ const BuilderForm = () => {
                   sx={{ marginTop: 1 }}
                 />
               )}
-            </div>
+            </div> */}
           </AccordionDetails>
         </Accordion>
-        <Accordion defaultExpanded>
+        {/* <Accordion defaultExpanded>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2-content"
@@ -244,7 +235,7 @@ const BuilderForm = () => {
               required
             />
           </AccordionDetails>
-        </Accordion>
+        </Accordion> */}
         <Button
           variant="contained"
           className="btn"

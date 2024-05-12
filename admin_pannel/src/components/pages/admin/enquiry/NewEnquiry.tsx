@@ -24,7 +24,7 @@ const NewEnquiry = () => {
   },[builderDetails])
 
   useEffect(() => {
-    setDashboardHeader("All Customer Enquiry");
+    setDashboardHeader("Orders");
   }, [setDashboardHeader]);
 
   useEffect(() => {

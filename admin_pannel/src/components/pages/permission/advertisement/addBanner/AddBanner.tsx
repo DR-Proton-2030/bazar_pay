@@ -147,7 +147,7 @@ const AddBanner = () => {
               <label>Banner Photo:</label>
              <div className="banner-photo-btn">
              <Button
-                                style={{ marginBottom: "20px" , backgroundColor: "#49BB43"}}
+                                style={{ marginBottom: "20px" , backgroundColor: "#1DC51D"}}
                                 component="label"
                                 role={undefined}
                                 variant="contained"

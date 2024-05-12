@@ -44,7 +44,7 @@ const Builders = () => {
   }, [fetchbuilders]);
 
   useEffect(() => {
-    setDashboardHeader("All Builders");
+    setDashboardHeader("Wholesalers");
   }, []);
   return (
     <div className="builders-container">
@@ -52,10 +52,10 @@ const Builders = () => {
         <Button
           variant="contained"
           className="btn"
-          style={{backgroundColor: "#49BB43", fontFamily: "Railway, sans-serif"}}
+          style={{backgroundColor: "#1DC51D", fontFamily: "Railway, sans-serif"}}
           onClick={() => navigate("/add-builders")}
         >
-          Add Builder
+          Add Wholesaler
         </Button>
       </div>
       <DataGrid colDefs={BuildersColDefs} rowData={rowData} key={0} />

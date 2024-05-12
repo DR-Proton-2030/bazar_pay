@@ -40,7 +40,7 @@ const Topbar: React.FC<TopbarProps> = ({ sidebarOpen, toggleSidebar }) => {
           ? `calc(100% - ${sizeConfigs.sidebar.width})`
           : "100%",
         ml: sidebarOpen ? sizeConfigs.sidebar.width : 0,
-        backgroundColor: "#F8F8FF",
+        backgroundColor: "#F9FCFB",
         color: colorConfigs.topbar.color,
       }}
     >

@@ -105,7 +105,7 @@ const AddPlotsForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <b style={{ fontSize: "20px" }}>Project Details</b>
+        <b style={{ fontSize: "20px" }}>Product Details</b>
         <br />
         <Snackbar
           open={snackbarOpen}
@@ -141,7 +141,7 @@ const AddPlotsForm = () => {
                 }}
               >
                 <label style={{ fontSize: "18px", marginLeft: "40px" }}>
-                  Project Name:
+                  Product Name:
                 </label>
                 <TextField
                   id="outlined-basic"
@@ -200,7 +200,7 @@ const AddPlotsForm = () => {
                 }}
               >
                 <label style={{ fontSize: "18px", marginLeft: "40px" }}>
-                  Number of Plots:
+                  Product Title:
                 </label>
                 <TextField
                   id="outlined-basic"
@@ -231,7 +231,7 @@ const AddPlotsForm = () => {
                 }}
               >
                 <label style={{ fontSize: "18px", marginLeft: "40px" }}>
-                  Price/sq:
+                  Price:
                 </label>
                 <TextField
                   id="outlined-basic"
@@ -254,7 +254,7 @@ const AddPlotsForm = () => {
                   required
                 />
               </div>
-              <div
+              {/* <div
                 style={{
                   display: "flex",
                   alignItems: "left",
@@ -289,7 +289,7 @@ const AddPlotsForm = () => {
                   }}
                   required
                 />
-              </div>
+              </div> */}
             </AccordionDetails>
             <div
               style={{
@@ -305,7 +305,7 @@ const AddPlotsForm = () => {
                   marginTop: 20,
                   marginBottom: 20,
                   marginLeft: 40,
-                  backgroundColor: "#49BB43",
+                  backgroundColor: "#1DC51D",
                   fontFamily: "Railway, sans-serif",
                 }}
                 component="label"
@@ -313,7 +313,7 @@ const AddPlotsForm = () => {
                 variant="contained"
                 tabIndex={-1}
               >
-                Upload Plot Image
+                Upload Product Image
                 <VisuallyHiddenInput
                   type="file"
                   onChange={(event) => {
@@ -337,19 +337,19 @@ const AddPlotsForm = () => {
           </Accordion>
         </div>
         <br />
-        <b style={{ fontSize: "18px" }}>Address Details</b>
+        {/* <b style={{ fontSize: "18px" }}>Address Details</b> */}
         <Accordion
           defaultExpanded
           style={{ display: "block", marginTop: "20px" }}
         >
-          <AccordionSummary
+          {/* <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel2-content"
             id="panel2-header"
-          ></AccordionSummary>
+          ></AccordionSummary> */}
           <AccordionDetails>
             {/* Input fields for address details can be added here */}
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 alignItems: "left",
@@ -380,7 +380,7 @@ const AddPlotsForm = () => {
                 }}
                 required
               />
-            </div>
+            </div> */}
             {/* <div
               style={{
                 display: "flex",
@@ -405,7 +405,7 @@ const AddPlotsForm = () => {
                 required
               />
             </div> */}
-            <div
+            {/* <div
               style={{
                 display: "flex",
                 alignItems: "left",
@@ -414,8 +414,8 @@ const AddPlotsForm = () => {
             >
               <label style={{ fontSize: "18px", marginLeft: "40px" }}>
                 State:
-              </label>
-              {/* <Stack>
+              </label> */}
+            {/* <Stack>
                 <Autocomplete
                   sx={{
                     width: "700px",
@@ -431,7 +431,7 @@ const AddPlotsForm = () => {
                   freeSolo
                 />
               </Stack> */}
-              <Stack>
+            {/* <Stack>
                 <Autocomplete
                   sx={{
                     width: "615px",
@@ -450,17 +450,17 @@ const AddPlotsForm = () => {
                   freeSolo
                 />
               </Stack>
-            </div>
+            </div> */}
           </AccordionDetails>
         </Accordion>
         <Button
           className="button"
           variant="contained"
-          style={{ width: "100px", padding: "5px", backgroundColor: "#49BB43" }}
+          style={{ width: "100px", padding: "5px", backgroundColor: "#1DC51D" }}
           type="submit"
           sx={{
             marginTop: 2,
-            
+
             fontFamily: "Railway, sans-serif",
           }}
         >

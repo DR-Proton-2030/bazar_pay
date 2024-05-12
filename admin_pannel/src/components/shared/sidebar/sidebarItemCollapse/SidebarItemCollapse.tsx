@@ -39,7 +39,7 @@ const SidebarItemCollapse = ({ item, id }: Props) => {
         onClick={() => setOpen(!open)}
         sx={{
           "&: hover": {
-            backgroundColor: colorConfigs.sidebar.hoverBg,
+            backgroundColor: "#5C8374",
           },
           paddingY: "12px",
           paddingX: "24px",
@@ -68,6 +68,7 @@ const SidebarItemCollapse = ({ item, id }: Props) => {
                 <SidebarItem
                   item={{ ...route, path: `${route.path}?cid=${id}` }}
                   key={index}
+                  
                 />
               ) : (
                 <SidebarItem item={route} key={index} />

@@ -49,7 +49,7 @@ const AllCustomersPage = () => {
   }, [currentPage]);
 
   useEffect(()=>{
-    setDashboardHeader("All Customer")
+    setDashboardHeader("All Retailers")
   },[])
 
   return (
