@@ -25,24 +25,24 @@ const AdminPlots = (props: Props) => {
     navigate(`/admin/add-plots?cid=${builderDetails?._id}`);
   };
 
-  const fetchPlots = useCallback(async () => {
-    try {
-      if (!builderDetails || !builderDetails._id) return;
-      const response = await api.project.getAdminPlots(
-        currentPage,
-        builderDetails._id
-      );
-      if (response) {
-        setRowData(response);
-      }
-    } catch (error) {
-      console.error("Error while fetching data:", error);
-    }
-  }, [currentPage, builderDetails]);
+  // const fetchPlots = useCallback(async () => {
+  //   try {
+  //     if (!builderDetails || !builderDetails._id) return;
+  //     const response = await api.project.getAdminPlots(
+  //       currentPage,
+  //       builderDetails._id
+  //     );
+  //     if (response) {
+  //       setRowData(response);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error while fetching data:", error);
+  //   }
+  // }, [currentPage, builderDetails]);
 
-  useEffect(() => {
-    fetchPlots();
-  }, [fetchPlots]);
+  // useEffect(() => {
+  //   fetchPlots();
+  // }, [fetchPlots]);
 
   useEffect(() => {
     setDashboardHeader("All Products");
