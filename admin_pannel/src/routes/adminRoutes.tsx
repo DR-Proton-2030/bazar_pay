@@ -1,12 +1,8 @@
 import HomePage from "../components/pages/home/HomePage";
 import { RouteType } from "./config";
-
 import DashboardIndex from "../components/pages/bookings/DashboardIndex";
-
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
-
 import BookIcon from "@mui/icons-material/Book";
-
 import AllCustomersPage from "../components/pages/allCustomers/AllCustomersPage";
 import BookingPageLayout from "../components/pages/bookings/BookingPageLayout";
 // import NewEnquiryPage from "../components/pages/bookings/newEnquiry/NewEnquiryPage";
@@ -25,7 +21,12 @@ import AdminPlots from "../components/pages/admin/plots/Plots";
 import AddPlotsForm from "../components/pages/admin/plots/addPlots/AddPlotsForm";
 import UploadLayout from "../components/pages/admin/plots/addPlots/UploadLayout";
 import {
+  AccountCircleOutlined,
   AdminPanelSettingsRounded,
+  BookmarkAdd,
+  CategoryOutlined,
+  MoneyOffCsredRounded,
+  People,
   ScatterPlotSharp,
   Settings,
 } from "@mui/icons-material";
@@ -48,8 +49,8 @@ const adminRoutes: RouteType[] = [
     element: <AllCustomersPage />,
     state: "allcustomers",
     sidebarProps: {
-      displayText: "All Customers",
-      icon: <SupervisedUserCircleIcon />,
+      displayText: "All Retailers",
+      icon: <People />,
     },
   },
   {
@@ -57,8 +58,8 @@ const adminRoutes: RouteType[] = [
     element: <NewEnquiry />,
     state: "customerEnquiry",
     sidebarProps: {
-      displayText: "Customer Enquiry",
-      icon: <AdminPanelSettingsRounded />,
+      displayText: "Orders",
+      icon: <BookmarkAdd />,
     },
   },
   {
@@ -67,7 +68,7 @@ const adminRoutes: RouteType[] = [
     state: "employee",
     sidebarProps: {
       displayText: "Employee Management",
-      icon: <AdminPanelSettingsRounded />,
+      icon: <AccountCircleOutlined />,
     },
   },
   
@@ -76,8 +77,8 @@ const adminRoutes: RouteType[] = [
     element: <AdminPlots />,
     state: "allPlots",
     sidebarProps: {
-      displayText: "All Plots",
-      icon: <ScatterPlotSharp />,
+      displayText: "All Categories",
+      icon: <CategoryOutlined />,
     },
   },
   {

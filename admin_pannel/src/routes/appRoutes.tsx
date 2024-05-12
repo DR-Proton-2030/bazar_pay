@@ -1,12 +1,7 @@
 import HomePage from "../components/pages/home/HomePage";
 import { RouteType } from "./config";
-
 import DashboardIndex from "../components/pages/bookings/DashboardIndex";
-
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
-
-
-
 import AllCustomersPage from "../components/pages/allCustomers/AllCustomersPage";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import Builders from "../components/pages/builders/Builders";
@@ -17,7 +12,20 @@ import BuilderManagement from "../components/pages/permission/advertisement/Adve
 import UserManagement from "../components/pages/permission/userManagement/UserManagement";
 import UserForm from "../components/pages/permission/userManagement/userForm/UserForm";
 import PlotsPage from "../components/pages/plots/Plots";
-import { Book, Construction, PermIdentity, ScatterPlotSharp, Settings, SettingsAccessibility, SettingsAccessibilityRounded } from "@mui/icons-material";
+import {
+  AdminPanelSettings,
+  Book,
+  Construction,
+  People,
+  PermIdentity,
+  ScatterPlotSharp,
+  Settings,
+  SettingsAccessibility,
+  SettingsAccessibilityRounded,
+  ShoppingBag,
+  ShoppingCart,
+  WheelchairPickup,
+} from "@mui/icons-material";
 import AddPlotsForm from "../components/pages/admin/plots/addPlots/AddPlotsForm";
 import Reports from "../components/pages/reports/Reports";
 import Advertisement from "../components/pages/permission/advertisement/Advertisement";
@@ -35,17 +43,17 @@ const appRoutes: RouteType[] = [
     element: <AllCustomersPage />,
     state: "allcustomers",
     sidebarProps: {
-      displayText: "All Customers",
-      icon: <SupervisedUserCircleIcon />,
+      displayText: "All Retailers",
+      icon: <People />,
     },
   },
   {
     path: "/builders",
     element: <Builders />,
-    state: "builders",
+    state: "Wholesalers",
     sidebarProps: {
-      displayText: "Builders",
-      icon: <Construction />,
+      displayText: "Wholesalers",
+      icon: <AdminPanelSettings />,
     },
   },
   {
@@ -64,15 +72,15 @@ const appRoutes: RouteType[] = [
     element: <PlotsPage />,
     state: "plots",
     sidebarProps: {
-      displayText: "All Plots",
-      icon: <ScatterPlotSharp />,
+      displayText: "All Products",
+      icon: <ShoppingCart />,
     },
   },
   {
     path: "/reports",
     element: <Reports />,
     state: "reports",
-   
+
     sidebarProps: {
       displayText: "Reports",
       icon: <Book />,
@@ -98,7 +106,7 @@ const appRoutes: RouteType[] = [
         element: <UserManagement />,
         state: "bookings.currentbooking",
         sidebarProps: {
-          displayText: "User Management",
+          displayText: "Admin Management",
         },
       },
       {

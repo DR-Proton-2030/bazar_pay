@@ -13,23 +13,23 @@ const NewEnquiry = () => {
   const {builderDetails} = useContext(BuilderContext);
   const [bookingList,setBookingList] = useState<IBooking[]>([]);
 
-  const getEnquiryData = useCallback(async () => {
-    const filter = {
-      page:1,
-      sortField:"updatedAt",
-      builder_object_id:builderDetails?._id
-    }
-    const response = await api.booking.getBooking(filter);
-    setBookingList(response);
-  },[builderDetails])
+  // const getEnquiryData = useCallback(async () => {
+  //   const filter = {
+  //     page:1,
+  //     sortField:"updatedAt",
+  //     builder_object_id:builderDetails?._id
+  //   }
+  //   const response = await api.booking.getBooking(filter);
+  //   setBookingList(response);
+  // },[builderDetails])
 
   useEffect(() => {
-    setDashboardHeader("All Customer Enquiry");
+    setDashboardHeader("Orders");
   }, [setDashboardHeader]);
 
-  useEffect(() => {
-    getEnquiryData();
-  }, [getEnquiryData]);
+  // useEffect(() => {
+  //   getEnquiryData();
+  // }, [getEnquiryData]);
 
   return (
     //admin enquiry ag-grid starts here

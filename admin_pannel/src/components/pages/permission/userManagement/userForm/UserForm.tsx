@@ -301,7 +301,7 @@ const UserForm = () => {
                   onChange={handleChange}
                   disabled={hasSubmitted}
                 >
-                  <MenuItem value={ROLES.builder_admin}>Builder-Admin</MenuItem>
+                  <MenuItem value={ROLES.wholesaler_admin}>Wholesaler-Admin</MenuItem>
                   <MenuItem value={ROLES.super_admin}>Super-Admin</MenuItem>
                  
                 </Select>
@@ -309,14 +309,14 @@ const UserForm = () => {
             </Box>
           </AccordionDetails>
         </Accordion>
-        {selectedRole.role === ROLES.builder_admin && !hasSubmitted ?
+        {selectedRole.role === ROLES.wholesaler_admin && !hasSubmitted ?
         <Accordion defaultExpanded>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
           aria-controls="panel3-content"
           id="panel3-header"
         >
-          <b>Assign to Builder</b>
+          <b>Assign to Wholesaler</b>
         </AccordionSummary>
         <AccordionDetails>
           <Stack spacing={1} width={"600px"} style={{ marginBottom: "15px" }}>
@@ -324,7 +324,7 @@ const UserForm = () => {
               sx={{ marginBottom: 2 }}
               options={builderOptions.map((option) => option.name)}
               renderInput={(params) => (
-                <TextField {...params} label="Builder Name" />
+                <TextField {...params} label="Wholesaler Name" />
               )}
               value={selectedBuilderName}
               onChange={handleBuilderChange}

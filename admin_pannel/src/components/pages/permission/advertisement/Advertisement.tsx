@@ -18,7 +18,7 @@ const Advertisement = () => {
         <Button
           variant="contained"
           className="btn"
-          style={{backgroundColor: "#49BB43", fontFamily: "Railway, sans-serif"}}
+          style={{backgroundColor: "#1DC51D", fontFamily: "Railway, sans-serif"}}
           onClick={() => navigate("/add-banner")}
         >
           Add Banner

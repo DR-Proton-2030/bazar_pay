@@ -3,17 +3,24 @@ import { useNavigate } from 'react-router-dom'
 import './user.css'
 
 import { Table } from './userTable/Table';
+import { useContext, useEffect } from 'react';
+import UIContext from '../../../../contexts/uiContext/UIContext';
 
 const UserManagement = () => {
+  const { setDashboardHeader} = useContext(UIContext)
   const navigate = useNavigate();
   const handleNavigateToAddUser = () =>{
     navigate("/permission/add-user")
   }
+
+  useEffect(() => {
+    setDashboardHeader("Admin Management")
+  },[setDashboardHeader])
   return (
     <div>
       <div className="add-user-btn">
-        <Button className='button' variant="contained" style={{backgroundColor: "#49BB43", fontFamily: "Railway, sans-serif"}}onClick={handleNavigateToAddUser}>
-          Add User
+        <Button className='button' variant="contained" style={{backgroundColor: "#1DC51D", fontFamily: "Railway, sans-serif"}}onClick={handleNavigateToAddUser}>
+          Add Admin
         </Button>
       </div>
       <Table />

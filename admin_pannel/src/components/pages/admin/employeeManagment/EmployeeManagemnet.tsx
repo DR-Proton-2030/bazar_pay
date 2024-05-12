@@ -51,10 +51,10 @@ const EmployeeManagemnet = () => {
       <div className="employee-container">
         <button
           className="add-employee-btn"
-          style={{ fontSize: "15px" }}
+          style={{ fontSize: "16px" ,backgroundColor: "#1DC51D", width: "180px"}}
           onClick={handleNavigateToAddEmployee}
         >
-          Add employee
+          ADD EMPLOYEE
         </button>
       </div>
       <div className="ag-theme-alpine" style={{ height: 500 }}>

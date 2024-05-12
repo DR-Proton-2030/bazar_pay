@@ -25,27 +25,27 @@ const AdminPlots = (props: Props) => {
     navigate(`/admin/add-plots?cid=${builderDetails?._id}`);
   };
 
-  const fetchPlots = useCallback(async () => {
-    try {
-      if (!builderDetails || !builderDetails._id) return;
-      const response = await api.project.getAdminPlots(
-        currentPage,
-        builderDetails._id
-      );
-      if (response) {
-        setRowData(response);
-      }
-    } catch (error) {
-      console.error("Error while fetching data:", error);
-    }
-  }, [currentPage, builderDetails]);
+  // const fetchPlots = useCallback(async () => {
+  //   try {
+  //     if (!builderDetails || !builderDetails._id) return;
+  //     const response = await api.project.getAdminPlots(
+  //       currentPage,
+  //       builderDetails._id
+  //     );
+  //     if (response) {
+  //       setRowData(response);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error while fetching data:", error);
+  //   }
+  // }, [currentPage, builderDetails]);
+
+  // useEffect(() => {
+  //   fetchPlots();
+  // }, [fetchPlots]);
 
   useEffect(() => {
-    fetchPlots();
-  }, [fetchPlots]);
-
-  useEffect(() => {
-    setDashboardHeader("All Plots");
+    setDashboardHeader("All Products");
   }, [setDashboardHeader]);
 
   return (
@@ -58,12 +58,12 @@ const AdminPlots = (props: Props) => {
             onClick={handleNavigateToAddPlots}
             style={{
               padding: "10px",
-              width: "120px",
-              backgroundColor: "#49BB43",
+              width: "150px",
+              backgroundColor: "#1DC51D",
               fontFamily: "Railway, sans-serif",
             }}
           >
-            Add Plots
+            Add Product
           </Button>
         </div>
       )}

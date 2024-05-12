@@ -105,7 +105,7 @@ const AdminSidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
             width: open ? sizeConfigs.sidebar.width : 0,
             boxSizing: "border-box",
             borderRight: "0px",
-         backgroundColor: "#00224D",
+         backgroundColor: "#1B4242",
             color: colorConfigs.sidebar.color,
             overflowX: "hidden",
           },
@@ -150,8 +150,8 @@ const AdminSidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
             </div>
           </div>
         </Toolbar>
-        <h3 style={{ textAlign: "center",marginTop: 60, marginBottom: 30, letterSpacing:5 }}>
-          {user?.role}
+        <h3 style={{ textAlign: "center",marginTop: 30, marginBottom: 30, letterSpacing:5 }}>
+          Wholesaler Admin
         </h3>
 
         <Avatar

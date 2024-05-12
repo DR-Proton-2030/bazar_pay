@@ -14,23 +14,23 @@ const Builders = () => {
   const [rowData, setRowData] = useState<IBuilder[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
 
-  const fetchbuilders = useCallback(
-    async (filterQuery: any) => {
-      try {
-        const filter = {
-          ...filterQuery,
-          page: currentPage,
-        };
-        const response = await api.builder.getBuilder(filter);
-        if (response) {
-          setRowData(response);
-        }
-      } catch (error) {
-        console.error("Error while fetching data:", error);
-      }
-    },
-    [currentPage]
-  );
+  // const fetchbuilders = useCallback(
+  //   async (filterQuery: any) => {
+  //     try {
+  //       const filter = {
+  //         ...filterQuery,
+  //         page: currentPage,
+  //       };
+  //       const response = await api.builder.getBuilder(filter);
+  //       if (response) {
+  //         setRowData(response);
+  //       }
+  //     } catch (error) {
+  //       console.error("Error while fetching data:", error);
+  //     }
+  //   },
+  //   [currentPage]
+  // );
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -39,12 +39,12 @@ const Builders = () => {
     setCurrentPage(value);
   };
 
-  useEffect(() => {
-    fetchbuilders({});
-  }, [fetchbuilders]);
+  // useEffect(() => {
+  //   fetchbuilders({});
+  // }, [fetchbuilders]);
 
   useEffect(() => {
-    setDashboardHeader("All Builders");
+    setDashboardHeader("Wholesalers");
   }, []);
   return (
     <div className="builders-container">
@@ -52,10 +52,10 @@ const Builders = () => {
         <Button
           variant="contained"
           className="btn"
-          style={{backgroundColor: "#49BB43", fontFamily: "Railway, sans-serif"}}
+          style={{backgroundColor: "#1DC51D", fontFamily: "Railway, sans-serif"}}
           onClick={() => navigate("/add-builders")}
         >
-          Add Builder
+          Add Wholesaler
         </Button>
       </div>
       <DataGrid colDefs={BuildersColDefs} rowData={rowData} key={0} />

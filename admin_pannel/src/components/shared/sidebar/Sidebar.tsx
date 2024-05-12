@@ -77,7 +77,7 @@ const Sidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
                         width: open ? sizeConfigs.sidebar.width : 0,
                         boxSizing: "border-box",
                         borderRight: "0px",
-                        backgroundColor: "#153448",
+                        backgroundColor: "#1B4242",
                         color: colorConfigs.sidebar.color,
                         overflowX: "hidden",
                     },
@@ -113,10 +113,10 @@ const Sidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
                     {...stringAvatar("Naginder Reddy")}
                 />
 
-                <h3 style={{ textAlign: "center", marginBottom: "30px" }}>
+                <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
                     {/* {builderData?.builder_name} */}
-                    Nagender Reddy
-                </h3>
+                    Bazarpay
+                </h1>
 
                 {/* Sidebar content */}
                 <List disablePadding>
