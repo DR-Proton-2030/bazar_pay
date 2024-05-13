@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import CustomerModel from "../../../../models/customer.model";
 import { MESSAGE } from "../../../../constants/message";
+import RetailerrModel from "../../../../models/customer.model";
 
-export const getCustomer = async (req: Request, res: Response) => {
+export const getRetailer = async (req: Request, res: Response) => {
 	try {
 		const filter: any = req.query;
 		const currentPage = parseInt(String(filter.page || "1")); // Parse page as integer
@@ -18,9 +18,9 @@ export const getCustomer = async (req: Request, res: Response) => {
 
 		console.log("===>filter", filter);
 
-		const totalCount = await CustomerModel.countDocuments(filter);
+		const totalCount = await RetailerrModel.countDocuments(filter);
 
-		const customers = await CustomerModel.find(filter).sort({[sortField]:-1}).skip(startIndex).limit(limit);
+		const customers = await RetailerrModel.find(filter).sort({[sortField]:-1}).skip(startIndex).limit(limit);
 
 		res.status(200).json({
 			message: MESSAGE.get.succ,

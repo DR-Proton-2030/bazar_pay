@@ -1,7 +1,7 @@
 import { model } from "mongoose";
-import customerSchema from "./schemaDefinitions/customer.schema";
-import { ICustomer } from "../@types/types/customer.types";
+import retailerSchema from "./schemaDefinitions/retailer.schema";
+import { IRetailer } from "../@types/types/retailer.types";
 
-const CustomerModel = model<ICustomer>("Customer", customerSchema);
+const RetailerrModel = model<IRetailer>("Retailer", retailerSchema);
 
-export default CustomerModel;
+export default RetailerrModel;
