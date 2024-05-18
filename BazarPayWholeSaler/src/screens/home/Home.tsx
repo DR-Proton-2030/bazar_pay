@@ -1,13 +1,12 @@
-import { FontAwesome } from "@expo/vector-icons";
-import { Octicons } from "@expo/vector-icons";
+
 import { ScrollView, View, Text } from "react-native";
 import AppHeader from "../../components/shared/appheader/AppHeader";
 import ImageCard from "../../components/shared/imageCrad/ImageCard";
 import ProductSection from "../../components/shared/productSection/ProductSection";
 import ImageBanner from "../../components/shared/imageBanner/ImageBanner";
 import OfferSection from "../../components/main/offerSection/OfferSection";
-import veg from "../../../assets/images/veg.png";
-import SmallCard from "../../components/shared/smallCard/SmallCard";
+import veg from "../../../assets/images/veg.png";import TopItems from "./topItems/TopItems";
+;
 
 export default function HomePage() {
   return (
@@ -21,27 +20,8 @@ export default function HomePage() {
         }}
       >
         <AppHeader />
-        <ScrollView
-          style={{ paddingLeft: 10 }}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          {/* <Text>hello</Text>
-          <Text>hello</Text>
-          <Text>hello</Text> */}
-          {/* <SmallCard/> */}
-          <SmallCard
-            text={"Grocery"}
-            icon={() => (
-              <FontAwesome
-                name="bell"
-                size={22}
-                color="black"
-              />
-            )}
-          />
-          {/* <Text>Hello</Text> */}
-        </ScrollView>
+        <TopItems/>
+       
         <ScrollView
           style={{ paddingLeft: 10 }}
           horizontal={true}
