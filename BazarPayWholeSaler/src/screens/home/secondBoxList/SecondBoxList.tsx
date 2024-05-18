@@ -51,6 +51,11 @@ const SecondBoxList = () => {
           textColor: "black",
         },
         {
+          title: "ফাইন্যান্স",
+          icon: <FontAwesome6 name="sack-dollar" size={24} color="black" />,
+          textColor: "black",
+        },
+        {
           title: "রিপ্লেস/রিটার্ন",
           icon: <MaterialIcons name="assignment-returned" size={24} color="black" />,
           textColor: "black",
