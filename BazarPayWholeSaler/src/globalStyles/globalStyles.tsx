@@ -61,22 +61,67 @@ export const globalStyle = StyleSheet.create({
     zIndex: 50,
     width: windowWidth,
   },
+  congratsModalContainer: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(0, 0, 0, 0.5)"
+  },
+  congratsModalContent: {
+    width: 300,
+    padding: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+    alignItems: "center",
+  },
+  congratsText: {
+    fontSize: 20,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  closeButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: Colors.light.primary,
+    borderRadius: 5,
+  },
+  closeButtonText: {
+    color: "white",
+    fontWeight: "bold",
+  },
   productHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 50,
+    paddingTop: 20,
     paddingLeft: 5,
     backgroundColor: Colors.light.background,
     zIndex: 50,
     width: windowWidth,
   },
-  sectionContainer: {
-    height: "10%",
-    width: "100%",
-    borderTopRightRadius: 30,
-    borderTopLeftRadius: 30,
-    backgroundColor: Colors.light.background,
+ 
+  modalContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
+  modalContent: {
+    backgroundColor: "white",
+    padding: 10,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  closeModalText: {
+    textAlign: "center",
+    color: Colors.light.primary,
+    marginTop: 20,
   },
   inputContainer: {
     borderWidth: 1,

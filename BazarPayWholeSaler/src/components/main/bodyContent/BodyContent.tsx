@@ -13,7 +13,7 @@ const BodyContent = () => {
   const [displayImage, setDisplayImage] = useState(wellcomeImg);
   const navigation: any = useNavigation();
   const handleNavigate = () => {
-    navigation.navigate("otpPage");
+    navigation.navigate("signInPage");
   };
   const handleToggle = () => {
     setDisplayText(!displayText);
