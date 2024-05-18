@@ -8,5 +8,8 @@ export const smallCardStyle = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 15,
+        borderWidth: 1.5,
+        borderRadius: 10,
+        borderColor: Colors.light.border,
     }
 })
