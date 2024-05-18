@@ -5,4 +5,5 @@ export interface ISmallBoxProps {
     icon : ReactNode | ReactNode[];
     backgroundColor?:string;
     textColor:string;
+    handleNavigate?:()=>void;
 }

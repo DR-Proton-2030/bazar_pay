@@ -3,8 +3,13 @@ import React from "react";
 import { AntDesign, MaterialCommunityIcons, Ionicons, Feather,FontAwesome5, MaterialIcons, FontAwesome6 , Entypo, FontAwesome, Foundation} from "@expo/vector-icons";
 import Colors from "../../../constants/Colors";
 import SmallBoxList from "../../../components/shared/smallBoxList/SmallBoxList";
+import { useNavigation } from "expo-router";
 
 const SecondBoxList = () => {
+  const navigation: any = useNavigation<any>();
+  const handleNavigate = (route:string) => {
+    navigation.navigate(route);
+  }
   return (
     <View style={{padding: 15,}}>
       <SmallBoxList heading="আপনার খাতাপত্র" smallBoxList={[
@@ -24,6 +29,7 @@ const SecondBoxList = () => {
           title: "পণ্যর লিস্ট",
           icon: <FontAwesome5 name="box-open" size={24} color="black" />,
           textColor: "black",
+          handleNavigate: ()=>handleNavigate("productListPage")
         },
         {
           title: "পণ্য মজুদকরণ",
