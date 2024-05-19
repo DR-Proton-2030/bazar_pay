@@ -21,6 +21,7 @@ export default function HomePage() {
           width: "100%",
         }}
       >
+        
         <AppHeader />
         <TopItems/>
         <WorkList/>
