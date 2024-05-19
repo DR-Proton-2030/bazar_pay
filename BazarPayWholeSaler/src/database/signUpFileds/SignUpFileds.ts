@@ -5,12 +5,14 @@ export interface FormField {
   placeholder: string;
 }
 
-const formFields: FormField[] = [
-  { label: "Name", placeholder: "Enter your name" },
-  { label: "Phone Number", placeholder: "Enter your phone number" },
-  { label: "Email", placeholder: "Enter your email" },
-  { label: "NIB", placeholder: "Enter your NIB" },
-  { label: "Trade Licence", placeholder: "Enter your trade licence" },
+const formFields = [
+  { label: "নাম", placeholder: "আপনার নাম লিখুন" },
+  { label: "ফোন নম্বর", placeholder: "আপনার ফোন নম্বর লিখুন" },
+  { label: "ইমেল", placeholder: "আপনার ইমেল লিখুন" },
+  { label: "এনআইবি", placeholder: "আপনার এনআইবি লিখুন" },
+  { label: "বাণিজ্য লাইসেন্স", placeholder: "আপনার বাণিজ্য লাইসেন্স লিখুন" },
 ];
 
 export default formFields;
+
+

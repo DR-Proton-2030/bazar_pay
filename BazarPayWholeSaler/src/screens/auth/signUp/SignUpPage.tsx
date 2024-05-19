@@ -6,6 +6,7 @@ import { ScrollView, TouchableOpacity, View } from "react-native";
 import { globalStyle } from "../../../globalStyles/globalStyles";
 import Colors from "../../../constants/Colors";
 import ImageUpload from "../../../components/shared/ImageUpload/ImageUpload";
+import Chip from "../../../components/shared/chips/Chips";
 
 const SignUpPage = () => {
   const navigation: any = useNavigation();
@@ -13,6 +14,8 @@ const SignUpPage = () => {
   const handleNavigate = () => {
     navigation.goBack();
   };
+
+ 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }}>
       <View style={globalStyle.productHeader}>
@@ -23,6 +26,7 @@ const SignUpPage = () => {
           <Ionicons name="arrow-back" size={28} color={Colors.light.primary} />
         </TouchableOpacity>
       </View>
+      
       <SignUpForm />
       <ImageUpload />
     </ScrollView>

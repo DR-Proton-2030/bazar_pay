@@ -99,7 +99,19 @@ export const globalStyle = StyleSheet.create({
     zIndex: 50,
     width: windowWidth,
   },
- 
+ chipStyle:{
+  flexDirection: "row",
+  paddingHorizontal: 10,
+  paddingVertical: 5,
+  borderRadius: 10,
+  borderColor: Colors.light.primary,
+  marginRight: 10,
+  width: 130,
+  height: 33,
+  marginTop: 4,
+  justifyContent: "center",
+  alignItems: "center",
+ },
   modalContainer: {
     flex: 1,
     justifyContent: "flex-end",

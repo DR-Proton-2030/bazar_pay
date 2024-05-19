@@ -1,21 +1,30 @@
 import React from "react";
-import { View, TextInput, Text, StyleSheet } from "react-native";
+import { View, TextInput, Text, StyleSheet, ScrollView } from "react-native";
 import { FontAwesome } from "@expo/vector-icons"; // Importing FontAwesome from Expo Vector Icons
 import formFields from "../../../../database/signUpFileds/SignUpFileds";
 import Colors from "../../../../constants/Colors";
+import Chip from "../../../../components/shared/chips/Chips";
 
 // Mapping between labels and icons
 const iconMapping = {
-  Name: "user",
-  "Phone Number": "phone",
-  Email: "envelope",
-  NIB: "id-card",
-  "Trade Licence": "briefcase",
+  নাম: "user",
+  "ফোন নম্বর": "phone",
+  ইমেল: "envelope",
+  এনআইবি: "id-card",
+  "বাণিজ্য লাইসেন্স": "briefcase",
 };
 
 const SignUpForm = () => {
+  const chipTexts = ["ইলেকট্রনিক্স", "মুদিখানা", "কাপড়", "খাবার", "এআই"]; // Example chip texts
+
   return (
     <View style={styles.container}>
+      <Text style={styles.label}>আপনার ব্যবসার ধরন নির্বাচন করুন</Text>
+      <ScrollView horizontal style={{ marginBottom: 20 }} showsHorizontalScrollIndicator={false}>
+        {chipTexts.map((text, index) => (
+          <Chip key={index} text={text} />
+        ))}
+      </ScrollView>
       {formFields.map((field, index) => (
         <View style={styles.fieldContainer} key={index}>
           <View style={styles.labelContainer}>

@@ -10,12 +10,14 @@ import {
 import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import Colors from "../../../constants/Colors";
+import { useNavigation } from "expo-router";
 
 export default function ImagePickerExample() {
   const [images, setImages] = useState([]);
   const [hiddenButtons, setHiddenButtons] = useState([]);
   const [showSubmit, setShowSubmit] = useState(false);
-
+  const navigation: any = useNavigation();
+  
   const pickImage = async (buttonName) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -44,6 +46,7 @@ export default function ImagePickerExample() {
 
   const handleSubmit = () => {
     console.log("Selected Images:", images);
+    navigation.navigate("signInPage");
   };
 
   return (
