@@ -6,6 +6,8 @@ import ProductSection from "../../components/shared/productSection/ProductSectio
 import ImageBanner from "../../components/shared/imageBanner/ImageBanner";
 import OfferSection from "../../components/main/offerSection/OfferSection";
 import veg from "../../../assets/images/veg.png";import TopItems from "./topItems/TopItems";
+import WorkList from "./workList/WorkList";
+import SecondBoxList from "./secondBoxList/SecondBoxList";
 ;
 
 export default function HomePage() {
@@ -21,27 +23,8 @@ export default function HomePage() {
       >
         <AppHeader />
         <TopItems/>
-       
-        <ScrollView
-          style={{ paddingLeft: 10 }}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          <ImageCard text={"Fresh, Healthier"} />
-          <ImageCard text={"Fresh, Healthier"} />
-          <ImageCard text={"Fresh, Healthier"} />
-          <ImageCard text={"Fresh, Healthier"} />
-        </ScrollView>
-
-        <OfferSection />
-        <ProductSection />
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
-          <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
-          <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
-        </ScrollView>
-
-        <ProductSection />
+        <WorkList/>
+        <SecondBoxList/>
       </ScrollView>
     </>
   );

@@ -205,4 +205,8 @@ export const globalStyle = StyleSheet.create({
     fontWeight: "600",
   },
   bottomRow: { flexDirection: "row", gap: 20 },
+  iconView:{
+    padding:8,
+    borderRadius:50
+}
 });
