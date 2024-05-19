@@ -130,6 +130,67 @@ export const globalStyle = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
+
+  backButton: {
+    marginRight: 10,
+  },
+  headerTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    flex: 1,
+  },
+  form: {
+  },
+  quickAddButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    backgroundColor: '#f0f0f0',
+    padding: 10,
+    borderRadius: 8,
+    marginBottom: 10,
+  },
+  quickAddText: {
+    fontSize: 16,
+  },
+  infoText: {
+    fontSize: 14,
+    color: '#666',
+    marginBottom: 20,
+  },
+  imageUpload: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f0f0f0',
+    padding: 20,
+    borderRadius: 8,
+    marginBottom: 20,
+    borderWidth:1,
+    borderColor:"gray",
+    borderStyle: 'dashed' 
+  },
+  
+  imageUploadText: {
+    fontSize: 16,
+    marginTop: 10,
+  },
+  input: {
+    backgroundColor: '#fff',
+    padding: 10,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    marginBottom: 10,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  halfInput: {
+    flex: 1,
+    marginHorizontal: 5,
+  },
   closeModalText: {
     textAlign: "center",
     color: Colors.light.primary,
