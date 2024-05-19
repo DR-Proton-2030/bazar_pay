@@ -6,7 +6,7 @@ import FirstScreen from '../../components/main/addProduct/FirsScreen';
 import SecondScreen from '../../components/main/addProduct/SecondScreen';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-const SignUpPage = () => {
+const AddProduct = () => {
   return (
     <SafeAreaView style={styles.container}>
 <View style={styles.header}>
@@ -53,4 +53,4 @@ paddingBottom:20
   
 });
 
-export default SignUpPage;
+export default AddProduct;
