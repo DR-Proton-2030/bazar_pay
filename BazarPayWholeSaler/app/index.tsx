@@ -6,7 +6,7 @@ import SignIn from "../src/screens/auth/signIn/SignIn";
 import SignUpPage from "../src/screens/auth/signUp/SignUpPage";
 
 const index = () => {
-  if (false) {
+  if (true) {
     return <WellcomeScreen />;
   } else {
     return <Dashboard />;
