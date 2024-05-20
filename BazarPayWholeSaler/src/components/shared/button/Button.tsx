@@ -1,51 +1,17 @@
 import React, { useState } from "react";
 import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
 import Colors from "../../../constants/Colors";
+import { IButtonProps } from "../../../@types/props/Button.props";
+import { windowWidth } from "../../../constants/HeightWidth";
 
-const Button = ({ handleToggle, isLoginStyle, content, style }: any) => {
+const Button = ({ handlePress, content, style, textStyle }: IButtonProps) => {
   return (
-    <View style={{ paddingHorizontal: 20, ...style }}>
-      <TouchableOpacity
-        onPress={handleToggle}
-        style={isLoginStyle ? styles.loginButton : styles.nextButton}
-      >
-        <Text
-          style={isLoginStyle ? styles.loginButtonText : styles.nextButtonText}
-        >
-          {isLoginStyle ? "Create an Account" : content}
-        </Text>
+    <View style={[{ paddingHorizontal: 20 }, style]}>
+      <TouchableOpacity onPress={handlePress}>
+        <Text style={textStyle}>{content}</Text>
       </TouchableOpacity>
     </View>
   );
 };
 
 export default Button;
-
-const styles = StyleSheet.create({
-  nextButton: {
-    backgroundColor: Colors.light.primary,
-    marginTop: 30,
-    paddingVertical: 18,
-    paddingHorizontal: 20,
-    borderRadius: 50,
-  },
-  loginButton: {
-    backgroundColor: "white",
-    borderWidth: 2,
-    borderColor: "black",
-    marginTop: 30,
-    paddingVertical: 18,
-    paddingHorizontal: 20,
-    borderRadius: 50,
-  },
-  nextButtonText: {
-    fontSize: 16,
-    textAlign: "center",
-    color: "white",
-  },
-  loginButtonText: {
-    fontSize: 16,
-    color: "black",
-    textAlign: "center",
-  },
-});

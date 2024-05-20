@@ -29,7 +29,7 @@ const SecondBoxList = () => {
           title: "পণ্যর লিস্ট",
           icon: <FontAwesome5 name="box-open" size={24} color="black" />,
           textColor: "black",
-          handleNavigate: ()=>handleNavigate("productListPage")
+          handleNavigate: ()=>handleNavigate("(products)")
         },
         {
           title: "পণ্য মজুদকরণ",

@@ -13,7 +13,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
   sellingPrice,
   stock,
 }) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<any>();
+  
   const handleNavigate = () => {
     navigation.navigate("productDetailsPage");
   };

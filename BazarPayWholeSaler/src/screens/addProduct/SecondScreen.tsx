@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // Importing Ionicons from @expo/vector-icons
-import Colors from '../../../constants/Colors';
+import Colors from '../../constants/Colors';
 
 const SecondScreen = () => {
   return (

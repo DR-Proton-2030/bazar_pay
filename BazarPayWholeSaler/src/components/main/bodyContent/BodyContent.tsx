@@ -7,6 +7,7 @@ import wellcomeImg2 from "../../../../assets/images/welcome2.png";
 import { useNavigation } from "expo-router";
 import { bodyContentStyle } from "./BodyContent.style";
 import { windowWidth } from "../../../constants/HeightWidth";
+import { globalStyle } from "../../../globalStyles/globalStyles";
 
 const BodyContent = () => {
   const [displayText, setDisplayText] = useState(false);
@@ -15,19 +16,18 @@ const BodyContent = () => {
   const handleNavigate = () => {
     navigation.navigate("signInPage");
   };
-  const handleToggle = () => {
+  const handlePress = () => {
     setDisplayText(!displayText);
     if (displayText) {
       navigation.navigate("signUp");
     }
-    console.log("first");
     setDisplayImage(displayImage === wellcomeImg ? wellcomeImg2 : wellcomeImg);
   };
 
   return (
     <ScrollView style={bodyContentStyle.container} contentContainerStyle={bodyContentStyle.contentContainer}>
       <Image
-        style={[bodyContentStyle.image, { marginTop: displayText ? 20 : 50 }]}
+        style={[bodyContentStyle.image]}
         source={displayImage}
       />
       <View style={bodyContentStyle.textContainer}>
@@ -44,15 +44,18 @@ const BodyContent = () => {
       <View style={bodyContentStyle.buttonContainer}>
         {displayText ? (
           <Button
-            handleToggle={handleNavigate}
+            style={globalStyle.loginButton}
+            textStyle={globalStyle.loginButtonText}
+            key={0}
+            handlePress={handleNavigate}
             content={text.texts2.btnText1}
           />
         ) : null}
         <Button
-          handleToggle={handleToggle}
+          style={globalStyle.nextButton}
+          handlePress={handlePress}
           content={text.texts1.nextButtonText}
-          isLoginStyle={displayText}
-          style={{width:windowWidth}}
+          textStyle={globalStyle.nextButtonText}
         />
       </View>
     </ScrollView>

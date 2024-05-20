@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; // Importing Ionicons from @expo/vector-icons
-import Colors from '../../../constants/Colors';
 import * as ImagePicker from 'expo-image-picker';
-import { globalStyle } from '../../../globalStyles/globalStyles';
+import { globalStyle } from '../../globalStyles/globalStyles';
+import Colors from '../../constants/Colors';
 
 const FirstScreen = () => {
     const [image, setImage] = useState(null);

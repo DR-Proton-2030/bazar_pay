@@ -7,6 +7,7 @@ import { globalStyle } from "../../../globalStyles/globalStyles";
 import Colors from "../../../constants/Colors";
 import ImageUpload from "../../../components/shared/ImageUpload/ImageUpload";
 import Chip from "../../../components/shared/chips/Chips";
+import CommonHeader from "../../../components/shared/commonHeader/CommonHeader";
 
 const SignUpPage = () => {
   const navigation: any = useNavigation();
@@ -15,18 +16,9 @@ const SignUpPage = () => {
     navigation.goBack();
   };
 
- 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }}>
-      <View style={globalStyle.productHeader}>
-        <TouchableOpacity
-          onPress={handleNavigate}
-          style={{ display: "flex", flexDirection: "column", paddingLeft: 20 }}
-        >
-          <Ionicons name="arrow-back" size={28} color={Colors.light.primary} />
-        </TouchableOpacity>
-      </View>
-      
+      <CommonHeader text="ব্যবসার তথ্য" />
       <SignUpForm />
       <ImageUpload />
     </ScrollView>

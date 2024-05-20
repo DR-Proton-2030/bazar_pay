@@ -16,10 +16,11 @@ export const globalStyle = StyleSheet.create({
   },
   nextButton: {
     backgroundColor: Colors.light.primary,
+    width: windowWidth-40,
     marginTop: 10,
     paddingVertical: 18,
     paddingHorizontal: 20,
-    borderRadius: 10,
+    borderRadius: 25,
   },
   flagContainer: {
     marginRight: 10,
@@ -54,7 +55,7 @@ export const globalStyle = StyleSheet.create({
   header: {
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems:"center",
+    alignItems: "center",
     paddingTop: 10,
     paddingHorizontal: 10,
     backgroundColor: Colors.light.background,
@@ -65,7 +66,7 @@ export const globalStyle = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)"
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   congratsModalContent: {
     width: 300,
@@ -89,29 +90,29 @@ export const globalStyle = StyleSheet.create({
     color: "white",
     fontWeight: "bold",
   },
-  productHeader: {
+  commonHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 20,
+    paddingVertical: 20,
     paddingLeft: 5,
-    backgroundColor: Colors.light.background,
+    // backgroundColor: Colors.light.background,
     zIndex: 50,
     width: windowWidth,
   },
- chipStyle:{
-  flexDirection: "row",
-  paddingHorizontal: 10,
-  paddingVertical: 5,
-  borderRadius: 10,
-  borderColor: Colors.light.primary,
-  marginRight: 10,
-  width: 130,
-  height: 33,
-  marginTop: 4,
-  justifyContent: "center",
-  alignItems: "center",
- },
+  chipStyle: {
+    flexDirection: "row",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 10,
+    borderColor: Colors.light.primary,
+    marginRight: 10,
+    width: 130,
+    height: 33,
+    marginTop: 4,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   modalContainer: {
     flex: 1,
     justifyContent: "flex-end",
@@ -136,17 +137,16 @@ export const globalStyle = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 18,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     flex: 1,
   },
-  form: {
-  },
+  form: {},
   quickAddButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#f0f0f0',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#f0f0f0",
     padding: 10,
     borderRadius: 8,
     marginBottom: 10,
@@ -156,36 +156,36 @@ export const globalStyle = StyleSheet.create({
   },
   infoText: {
     fontSize: 14,
-    color: '#666',
+    color: "#666",
     marginBottom: 20,
   },
   imageUpload: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#f0f0f0',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#f0f0f0",
     padding: 20,
     borderRadius: 8,
     marginBottom: 20,
-    borderWidth:1,
-    borderColor:"gray",
-    borderStyle: 'dashed' 
+    borderWidth: 1,
+    borderColor: "gray",
+    borderStyle: "dashed",
   },
-  
+
   imageUploadText: {
     fontSize: 16,
     marginTop: 10,
   },
   input: {
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
     padding: 10,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: "#ddd",
     marginBottom: 10,
   },
   row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   halfInput: {
     flex: 1,
@@ -266,8 +266,38 @@ export const globalStyle = StyleSheet.create({
     fontWeight: "600",
   },
   bottomRow: { flexDirection: "row", gap: 20 },
-  iconView:{
-    padding:8,
-    borderRadius:50
-}
+  iconView: {
+    padding: 8,
+    borderRadius: 50,
+  },
+  primaryButton: {
+    padding:20
+  },
+    // nextButton: {
+    //   backgroundColor: Colors.light.primary,
+    //   marginTop: 30,
+    //   paddingVertical: 18,
+    //   paddingHorizontal: 20,
+    //   borderRadius: 50,
+    // },
+    loginButton: {
+      backgroundColor: "white",
+      width: windowWidth-40,
+      borderWidth: 2,
+      borderColor: "black",
+      marginTop: 30,
+      paddingVertical: 18,
+      paddingHorizontal: 20,
+      borderRadius: 50,
+    },
+    nextButtonText: {
+      fontSize: 16,
+      textAlign: "center",
+      color: "white",
+    },
+    loginButtonText: {
+      fontSize: 16,
+      color: "black",
+      textAlign: "center",
+    },
 });

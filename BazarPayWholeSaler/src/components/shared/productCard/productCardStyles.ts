@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { windowWidth } from "../../../constants/HeightWidth";
 
 export const productCardStyles = StyleSheet.create({
   outerContainer: {
@@ -9,7 +10,7 @@ export const productCardStyles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     borderRadius: 10,
-    width: "90%",
+    width: windowWidth-20,
     borderColor: "#ddd",
     borderWidth: 1,
     display: "flex",

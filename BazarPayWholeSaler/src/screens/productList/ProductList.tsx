@@ -1,20 +1,38 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView, SafeAreaView } from "react-native";
 import React from "react";
-import CommonHeader from "../../components/shared/commonHeader/CommonHeader";
 import ProductCard from "../../components/shared/productCard/ProductCard";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
+const Tab = createMaterialTopTabNavigator();
 
 const ProductList = () => {
   return (
-    <View>
-      {/* <Text>ProductList</Text> */}
-      <CommonHeader text="পণ্যের লিস্ট" />
-      <ProductCard
-        title="Chashi Chinigura Chal"
-        buyingPrice={10.99}
-        sellingPrice={15.99}
-        stock={100}
-      />
-    </View>
+    <ScrollView contentContainerStyle={{ marginTop: 5 }}>
+    <ProductCard
+      title="Chashi Chinigura Chal"
+      buyingPrice={10.99}
+      sellingPrice={15.99}
+      stock={100}
+    />
+    <ProductCard
+      title="Chashi Chinigura Chal"
+      buyingPrice={10.99}
+      sellingPrice={15.99}
+      stock={100}
+    />
+    <ProductCard
+      title="Chashi Chinigura Chal"
+      buyingPrice={10.99}
+      sellingPrice={15.99}
+      stock={100}
+    />
+    <ProductCard
+      title="Chashi Chinigura Chal"
+      buyingPrice={10.99}
+      sellingPrice={15.99}
+      stock={100}
+    />
+  </ScrollView>
   );
 };
 
