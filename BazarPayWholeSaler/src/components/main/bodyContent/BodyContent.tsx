@@ -14,8 +14,9 @@ const BodyContent = () => {
   const [displayImage, setDisplayImage] = useState(wellcomeImg);
   const navigation: any = useNavigation();
   const handleNavigate = () => {
-    navigation.navigate("signInPage");
+    navigation.navigate("signInPage", { isSignup: false });
   };
+  
   const handlePress = () => {
     setDisplayText(!displayText);
     if (displayText) {
@@ -54,7 +55,7 @@ const BodyContent = () => {
         <Button
           style={globalStyle.nextButton}
           handlePress={handlePress}
-          content={text.texts1.nextButtonText}
+          content={!displayText ? text.texts1.nextButtonText : text.texts2.btnText2 }
           textStyle={globalStyle.nextButtonText}
         />
       </View>

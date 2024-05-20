@@ -9,6 +9,7 @@ import InputField from "../../../components/shared/inputFields/InputFields";
 import Header from "../../../components/main/auth/header/Header";
 import PasswordToggle from "../../../components/shared/passwordToggle/PasswordToggle";
 import SignInCongratsModal from "../../../components/main/auth/signInCongratsModal/SignInCongratsModal";
+import { useNavigation, useRoute } from "@react-navigation/native";
 
 const SignIn = () => {
   const [email, setEmail] = useState("");
@@ -16,12 +17,21 @@ const SignIn = () => {
   const [isCongratsModalVisible, setIsCongratsModalVisible] = useState(false); // Congrats modal visibility state
   const screenHeight = Dimensions.get("screen").height;
 
+  const route = useRoute();
+  const navigation: any = useNavigation();
+  const { isSignup }:any = route.params || {};
+  
   useEffect(() => {
     setIsModalVisible(true);
+    console.log("is signup",isSignup)
   }, []);
 
   const handleSignIn = () => {
-    setIsCongratsModalVisible(true);
+    if(isSignup){
+      setIsCongratsModalVisible(true);
+    }else{
+      navigation.navigate("homePage");
+    }
   };
 
   return (
