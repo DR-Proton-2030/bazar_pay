@@ -49,7 +49,7 @@ const SignIn = () => {
               />
               <PasswordToggle />
               <Text style={globalStyle.forgotPasswordText}>Forgot Password?</Text>
-              <SignInButton onPress={handleSignIn} />
+              <SignInButton isSignup={isSignup}  onPress={handleSignIn} />
             </View>
           </View>
       </View>

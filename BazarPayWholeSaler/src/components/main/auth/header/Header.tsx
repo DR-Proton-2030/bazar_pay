@@ -14,8 +14,8 @@ const Header = ({isSignup}:any) => {
       }}
     >
       {
-        isSignup?       <Text style={{ fontSize: 25, fontWeight: "700" }}>Sign In</Text> :
-        <Text style={{ fontSize: 25, fontWeight: "700" }}>Sign Up</Text>
+        isSignup?       <Text style={{ fontSize: 25, fontWeight: "700" }}>Sign Up</Text> :
+        <Text style={{ fontSize: 25, fontWeight: "700" }}>Sign In</Text>
       }
 
     </View>
