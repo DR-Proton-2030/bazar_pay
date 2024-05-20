@@ -28,19 +28,8 @@ const SignIn = () => {
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.light.background }}>
       <StatusBar translucent={true} backgroundColor={"transparent"} />
       <View style={{ flexDirection: "column" }}>
-        <Image style={{ width: "100%", height: screenHeight }} source={loginBg} />
-      </View>
-
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={isModalVisible}
-        onRequestClose={() => {
-          setIsModalVisible(!isModalVisible);
-        }}
-      >
-        <View style={globalStyle.modalContainer}>
-          <View style={globalStyle.modalContent}>
+        <Image style={{ width: "100%", height: screenHeight/1.9 }} source={loginBg} />
+          <View style={[globalStyle.modalContent,{marginTop:-screenHeight/15.9}]}>
             <Header />
             <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
               <InputField
@@ -53,8 +42,10 @@ const SignIn = () => {
               <SignInButton onPress={handleSignIn} />
             </View>
           </View>
-        </View>
-      </Modal>
+      </View>
+
+     
+        
 
       <SignInCongratsModal isCongratsModalVisible={isCongratsModalVisible} setIsCongratsModalVisible={setIsCongratsModalVisible}/>
     </SafeAreaView>

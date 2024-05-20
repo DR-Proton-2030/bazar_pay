@@ -14,7 +14,6 @@ const Header = () => {
       }}
     >
       <Text style={{ fontSize: 25, fontWeight: "700" }}>Sign In</Text>
-      <Ionicons name="close-circle-sharp" size={24} color="black" />
     </View>
   );
 };

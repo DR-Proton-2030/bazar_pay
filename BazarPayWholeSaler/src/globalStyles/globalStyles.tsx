@@ -113,23 +113,13 @@ export const globalStyle = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  modalContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
+
   modalContent: {
     backgroundColor: "white",
     padding: 10,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+   
   },
 
   backButton: {
