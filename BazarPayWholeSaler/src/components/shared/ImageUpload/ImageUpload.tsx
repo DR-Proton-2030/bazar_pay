@@ -46,7 +46,7 @@ export default function ImagePickerExample() {
 
   const handleSubmit = () => {
     console.log("Selected Images:", images);
-    navigation.navigate("signInPage");
+    navigation.navigate("signInPage", { isSignup: true });
   };
 
   return (

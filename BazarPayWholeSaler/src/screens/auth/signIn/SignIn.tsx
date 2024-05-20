@@ -40,7 +40,7 @@ const SignIn = () => {
       <View style={{ flexDirection: "column" }}>
         <Image style={{ width: "100%", height: screenHeight/1.9 }} source={loginBg} />
           <View style={[globalStyle.modalContent,{marginTop:-screenHeight/15.9}]}>
-            <Header />
+            <Header isSignup={isSignup} />
             <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
               <InputField
                 placeholder="Email"
