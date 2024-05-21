@@ -1,124 +1,104 @@
-import EvilIcons from "@expo/vector-icons/EvilIcons";
-import Feather from "@expo/vector-icons/Feather";
-import MaterialCommunityIcons from "@expo/vector-icons/build/MaterialCommunityIcons";
-import { useNavigation } from "expo-router";
-import React, { useRef, useState } from "react";
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
-import { SafeAreaView, StatusBar, TouchableOpacity } from "react-native";
-// import PhoneInput from "react-native-phone-number-input";
-import OtpBtn from "../../components/shared/otpScreen/button/OtpBtn";
-import SocialLink from "../../components/shared/otpScreen/socialLink/SocialLink";
-import TopImg from "../../components/shared/otpScreen/topImage/TopImg";
+import React, { useState, useRef, useContext } from "react";
+import { View, Text, Animated, Vibration, TouchableOpacity } from "react-native";
+import { OtpInput } from "react-native-otp-entry";
+import { ScrollView } from "react-native-gesture-handler";
+import { useNavigation, useRoute } from "@react-navigation/native";
 import Colors from "../../constants/Colors";
-import PhoneInput from "react-native-phone-number-input";
+import SignInButton from "../../components/main/auth/signinBtn/SignInBtn";
+import { globalStyle } from "../../globalStyles/globalStyles";
+import { Button } from "react-native-paper";
 
-const OtpScreen = () => {
-  const [value, setValue] = useState("");
-  const navigation: any = useNavigation();
-  const [formattedValue, setFormattedValue] = useState("");
-  const [valid, setValid] = useState(false);
-  const [showMessage, setShowMessage] = useState(false);
-  const phoneInput = useRef<PhoneInput>(null);
-  const handleNavigate = () => {
-    navigation.navigate("homePage");
-  };
-  const handlevarified = () => {
-    const checkValid = phoneInput.current?.isValidNumber(value);
-    setShowMessage(true);
-    setValid(checkValid ? checkValid : false);
-    handleNavigate();
-  };
+const tempUri =
+	"https://img.freepik.com/free-vector/two-factor-authentication-concept-illustration_114360-5488.jpg?t=st=1716275739~exp=1716279339~hmac=b4b4f099e54c5339b627ea860a59e3864803651c9491dc05b6214e86009e46c7&w=740";
 
-  return (
-    <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }}>
-      <TopImg />
-      <View style={{ paddingVertical: 20 }}>
-        <Text
-          style={{
-            textAlign: "center",
-            fontSize: 26,
-            fontWeight: "500",
-            paddingHorizontal: 80,
-            lineHeight: 40,
-            marginBottom: 15,
-          }}
-        >
-          Get your groceries with Bazarpay.xyz
-        </Text>
-        <View style={{ marginLeft: "auto", marginRight: "auto" }}>
-          <PhoneInput
-            ref={phoneInput}
-            defaultValue={value}
-            defaultCode="DM"
-            layout="first"
-            onChangeText={(text) => {
-              setValue(text);
-            }}
-            onChangeFormattedText={(text) => {
-              setFormattedValue(text);
-            }}
-            withShadow
-            autoFocus
-          />
-          {showMessage && (
-            <Text
-              style={{
-                color: "green",
-                marginTop: 1,
-                fontWeight: "500",
-                textAlign: "left",
-              }}
-            >
-              <MaterialCommunityIcons
-                name="check-decagram"
-                size={15}
-                color="green"
-              />{" "}
-              {valid ? "Verified" : "wrong"}
-            </Text>
-          )}
-          <OtpBtn onPress={handlevarified} />
-          <Text
-            style={{
-              fontWeight: "700",
-              textAlign: "center",
-              // paddingLeft: 10,
-              marginTop: 10,
-              marginBottom: 5,
-            }}
-          >
-            Have a Referral Code?
-          </Text>
-          <SocialLink />
-        </View>
-      </View>
-    </ScrollView>
-  );
+const languageTexts: any = {
+	ENGLISH: {
+		headerText: "Enter Verification Code",
+		subheaderText: "We have sent you a Verification code to your phone number",
+		verifyButton: "Verify"
+	},
+	BENGALI: {
+		headerText: "আপনার যাচাইকরণ কোড লিখুন ",
+		subheaderText: "আমরা আপনার ফোন নম্বরে একটি যাচাইকরণ কোড পাঠিয়েছি",
+		verifyButton: "যাচাই করুন"
+	}
 };
 
-const styles = StyleSheet.create({
-  inputContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginBottom: 20,
-  },
+const OtpPage = () => {
+	const navigation = useNavigation();
+	const route = useRoute();
 
-  flagContainer: {
-    marginRight: 10,
-    borderWidth: 1,
-    borderColor: "black",
-    padding: 10,
-  },
-  countryCode: {
-    fontSize: 16,
-  },
-  input: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: "black",
-    padding: 10,
-    fontSize: 16,
-  },
-});
+	const [otp, setOtp] = useState("");
+	const shakeAnimation = useRef(new Animated.Value(0)).current;
+	const [focusColor, setFocusColor] = useState("green");
 
-export default OtpScreen;
+
+
+	const handleSubmit = () => {
+		console.log("===>Otp", otp);
+		if (otp) {
+			console.log("=======>otp matched");
+		} else {
+			shakeImage();
+			Vibration.vibrate(100);
+		}
+	};
+
+	console.log("Data from params:", route.params);
+
+	const shakeImage = () => {
+		Animated.sequence([
+			Animated.timing(shakeAnimation, { toValue: -10, duration: 50, useNativeDriver: true }),
+			Animated.timing(shakeAnimation, { toValue: 10, duration: 50, useNativeDriver: true }),
+			Animated.timing(shakeAnimation, { toValue: -10, duration: 50, useNativeDriver: true }),
+			Animated.timing(shakeAnimation, { toValue: 10, duration: 50, useNativeDriver: true }),
+			Animated.timing(shakeAnimation, { toValue: 0, duration: 50, useNativeDriver: true })
+		]).start();
+		Vibration.vibrate(100);
+	};
+
+	return (
+		<ScrollView style={{ flex: 1, backgroundColor: "white", paddingTop: 50 }}>
+			<Animated.Image
+				style={[ {height:400, width:400},{ transform: [{ translateX: shakeAnimation }] }]}
+				source={{ uri: tempUri }}
+			/>
+			<View style={{ justifyContent: "center", alignItems: "center" }}>
+				<Text style={{ fontWeight: "700", fontSize: 20, color: Colors.light.lightText, textAlign: "center" }}>
+        আপনার যাচাইকরণ কোড লিখুন
+				</Text>
+				<Text style={{ fontWeight: "500", fontSize: 14, color: Colors.light.lightText, textAlign: "center", width: "60%" }}>
+        আমরা আপনার ফোন নম্বরে একটি যাচাইকরণ কোড পাঠিয়েছি
+				</Text>
+			</View>
+			<View style={{ paddingHorizontal: 50, marginTop: 20, gap: 20 }}>
+				<OtpInput
+					numberOfDigits={4}
+					focusColor={focusColor}
+					focusStickBlinkingDuration={400}
+					onTextChange={text => {
+						setFocusColor("green");
+					}}
+					onFilled={text => {
+						setOtp(text);
+						if (text ) {
+							shakeImage();
+							setFocusColor("red");
+						}
+					}}
+					theme={{
+						filledPinCodeContainerStyle: {
+							borderColor: focusColor
+						}
+					}}
+				/>
+          <Button  style={globalStyle.signInButton}>
+         <Text style={globalStyle.signInButtonText}>Verify</Text> 
+
+    </Button>
+			</View>
+		</ScrollView>
+	);
+};
+
+export default OtpPage;

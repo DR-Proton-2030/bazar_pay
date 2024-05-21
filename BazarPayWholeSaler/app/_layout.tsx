@@ -5,6 +5,7 @@ import { Entypo } from "@expo/vector-icons";
 import { PaperProvider } from "react-native-paper";
 import { Text } from "react-native";
 import Colors from "../src/constants/Colors";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -21,9 +22,12 @@ export default function RootLayout() {
     hideSplashScreen();
   }, []);
 
-  return(
+  return( 
     <PaperProvider>
+      <GestureHandlerRootView>
+
       <RootLayoutNav/>
+      </GestureHandlerRootView>
     </PaperProvider>
   );
 }

@@ -42,11 +42,16 @@ const SignIn = () => {
           <View style={[globalStyle.modalContent,{marginTop:-screenHeight/15.9}]}>
             <Header isSignup={isSignup} />
             <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
-              <InputField
+              {
+                !isSignup?
+                <InputField
                 placeholder="Email"
                 onChangeText={setEmail}
                 value={email}
               />
+              :<PasswordToggle />
+              }
+            
               <PasswordToggle />
               <Text style={globalStyle.forgotPasswordText}>Forgot Password?</Text>
               <SignInButton isSignup={isSignup}  onPress={handleSignIn} />

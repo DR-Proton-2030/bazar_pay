@@ -9,6 +9,7 @@ import Chip from "../../../../components/shared/chips/Chips";
 const iconMapping = {
   নাম: "user",
   "ফোন নম্বর": "phone",
+  প্রাতিষ্ঠানিকনাম: "briefcase",
   ইমেল: "envelope",
   এনআইবি: "id-card",
   "বাণিজ্য লাইসেন্স": "briefcase",

@@ -7,6 +7,7 @@ export interface FormField {
 
 const formFields = [
   { label: "নাম", placeholder: "আপনার নাম লিখুন" },
+  { label: "প্রাতিষ্ঠানিকনাম", placeholder: "প্রাতিষ্ঠানিক নাম লিখুন" },
   { label: "ফোন নম্বর", placeholder: "আপনার ফোন নম্বর লিখুন" },
   { label: "ইমেল", placeholder: "আপনার ইমেল লিখুন" },
   { label: "এনআইবি", placeholder: "আপনার এনআইবি লিখুন" },

@@ -14,12 +14,12 @@ import { useNavigation } from "expo-router";
 
 export default function ImagePickerExample() {
   const [images, setImages] = useState([]);
-  const [hiddenButtons, setHiddenButtons] = useState([]);
+  const [hiddenButtons, setHiddenButtons] = useState<any>([]);
   const [showSubmit, setShowSubmit] = useState(false);
   const navigation: any = useNavigation();
   
-  const pickImage = async (buttonName) => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+  const pickImage = async (buttonName:any) => {
+    let result:any = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
@@ -27,11 +27,11 @@ export default function ImagePickerExample() {
     });
 
     if (!result.cancelled) {
-      const newImages = [...images];
+      const newImages:any = [...images];
       newImages.push({ name: buttonName, uri: result.assets[0].uri });
       setImages(newImages);
 
-      setHiddenButtons((prevHiddenButtons) => [
+      setHiddenButtons((prevHiddenButtons: any):any => [
         ...prevHiddenButtons,
         buttonName,
       ]);
@@ -46,7 +46,7 @@ export default function ImagePickerExample() {
 
   const handleSubmit = () => {
     console.log("Selected Images:", images);
-    navigation.navigate("signInPage", { isSignup: true });
+    navigation.navigate("otpPage", { isSignup: true });
   };
 
   return (
@@ -100,7 +100,7 @@ export default function ImagePickerExample() {
       {images ? <Text style={styles.label}>Selected Images</Text> : null}
 
       <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {images.map((image, index) => (
+        {images.map((image:any, index) => (
           <View
             style={{
               flexDirection: "column",
@@ -130,7 +130,7 @@ export default function ImagePickerExample() {
         ))}
       </ScrollView>
       <View style={{ justifyContent: "flex-end", flexDirection: "row" }}>
-        {showSubmit && (
+        {true && (
           <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
             <MaterialIcons name="arrow-forward-ios" size={24} color="white" />
           </TouchableOpacity>
