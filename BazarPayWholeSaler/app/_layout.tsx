@@ -47,6 +47,7 @@ function RootLayoutNav() {
       <Stack.Screen name="productDetailsPage" options={{ headerShown: false, statusBarTranslucent: true }} />
       <Stack.Screen name="ManualAddProduct" options={{ headerShown: false, statusBarTranslucent: true }} />
       <Stack.Screen name="RatingsPage" options={{ headerShown: false, statusBarTranslucent: true }} />
+      <Stack.Screen name="passwordReset" options={{ headerShown: false, statusBarTranslucent: true }} />
     </Stack>
   );
 }

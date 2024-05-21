@@ -25,7 +25,7 @@ const languageTexts: any = {
 };
 
 const OtpPage = () => {
-	const navigation = useNavigation();
+	const navigation:any = useNavigation();
 	const route = useRoute();
 
 	const [otp, setOtp] = useState("");
@@ -36,12 +36,14 @@ const OtpPage = () => {
 
 	const handleSubmit = () => {
 		console.log("===>Otp", otp);
-		if (otp) {
-			console.log("=======>otp matched");
-		} else {
-			shakeImage();
-			Vibration.vibrate(100);
-		}
+		navigation.navigate("passwordReset");
+		// if (otp) {
+		// 	console.log("=======>otp matched");
+		// 	navigation.navigate("passwordReset");
+		// } else {
+		// 	shakeImage();
+		// 	Vibration.vibrate(100);
+		// }
 	};
 
 	console.log("Data from params:", route.params);
@@ -92,7 +94,7 @@ const OtpPage = () => {
 						}
 					}}
 				/>
-          <Button  style={globalStyle.signInButton}>
+          <Button  style={globalStyle.signInButton} onPress={handleSubmit}>
          <Text style={globalStyle.signInButtonText}>Verify</Text> 
 
     </Button>

@@ -207,7 +207,7 @@ export const globalStyle = StyleSheet.create({
     backgroundColor: Colors.light.primary,
     borderRadius: 40,
     alignItems: "center",
-    paddingVertical: 12,
+    paddingVertical: 8,
   },
   signInButtonText: {
     color: "white",
