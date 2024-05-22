@@ -2,8 +2,8 @@ import { Schema, VirtualTypeOptions } from "mongoose";
 import { GENERAL_SCHEMA_OPTIONS } from "../../constants/model/schemaOption";
 import { IAdminAssignedProject } from "../../@types/types/adminAssignedProject.interface";
 import SCHEMA_DEFINITION_PROPERTY from "../../constants/model/model.constant";
-import BuilderModel from "../builder.model";
-import AdminModel from "../admin.model";
+import BuilderModel from "../wholesaler.model";
+import AdminModel from "../wholeSalerEmployee.model";
 
 const adminAssignedProjectSchema: Schema<IAdminAssignedProject> =
   new Schema<IAdminAssignedProject>(

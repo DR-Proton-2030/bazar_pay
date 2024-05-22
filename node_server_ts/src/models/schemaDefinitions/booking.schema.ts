@@ -4,7 +4,7 @@ import SCHEMA_DEFINITION_PROPERTY from "../../constants/model/model.constant";
 import { ILayout } from "../../@types/types/layout.types";
 import { IBook } from "../../@types/types/book.interface";
 import LayoutModel from "../layout.model";
-import BuilderModel from "../builder.model";
+import BuilderModel from "../wholesaler.model";
 
 const bookSchema: Schema<IBook> = new Schema<IBook>(
   {
