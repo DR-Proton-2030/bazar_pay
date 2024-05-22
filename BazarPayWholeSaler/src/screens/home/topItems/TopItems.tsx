@@ -5,8 +5,13 @@ import { FontAwesome, FontAwesome6, Feather } from "@expo/vector-icons";
 import Colors from "../../../constants/Colors";
 import { globalStyle } from "../../../globalStyles/globalStyles";
 import LongCard from "../../../components/shared/longCard/LongCard";
+import { useNavigation } from "expo-router";
 
 const TopItems = () => {
+  const navigation: any = useNavigation<any>();
+  const handleNavigate = () => {
+    navigation.navigate("stockPage");
+  };
   return (
     <>
       <ScrollView
@@ -31,6 +36,7 @@ const TopItems = () => {
               />
             </View>
           }
+          handlePress={handleNavigate}
         />
         <SmallCard
           title={"Balance ৳1450"}
@@ -65,7 +71,7 @@ const TopItems = () => {
           }
         />
       </ScrollView>
-      <View style={{ flex:1,paddingHorizontal:10 }}>
+      <View style={{ flex: 1, paddingHorizontal: 10 }}>
         <LongCard
           title={"Pending Chalan List"}
           subTitle="৳1450"

@@ -22,11 +22,10 @@ export default function RootLayout() {
     hideSplashScreen();
   }, []);
 
-  return( 
+  return (
     <PaperProvider>
       <GestureHandlerRootView>
-
-      <RootLayoutNav/>
+        <RootLayoutNav />
       </GestureHandlerRootView>
     </PaperProvider>
   );
@@ -34,20 +33,78 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   return (
-    <Stack screenOptions={{headerShadowVisible: false}}>
-      <Stack.Screen name="index" options={{ headerShown: false, statusBarStyle: "dark" }} />
-      <Stack.Screen name="wellcomePage" options={{ headerShown: false, statusBarTranslucent: true }} />
-      <Stack.Screen name="otpPage" options={{ headerShown: false, statusBarTranslucent: true }} />
-      <Stack.Screen name="signInPage" options={{ headerShown: false, statusBarTranslucent: true }} />
-      <Stack.Screen name="signUp" options={{ headerShown: false, statusBarTranslucent: true }} />
-      <Stack.Screen name="homePage" options={{ headerShown: false, statusBarStyle: "dark" }} />
-      <Stack.Screen name="QrPage" options={{ headerShown: false, statusBarTranslucent: true }} />
-      <Stack.Screen name="profilePage" options={{ headerShown: false, statusBarTranslucent: true }} />
-      <Stack.Screen name="(products)" options={{ headerShown: true, headerTitleAlign: "center", headerTitle:()=><Text style={{textAlign:"center", fontSize:20}}>পণ্যের লিস্ট</Text> ,headerRight:()=><Entypo name="dots-three-vertical" size={20} color={Colors.light.primary}/> }} />
-      <Stack.Screen name="productDetailsPage" options={{ headerShown: false, statusBarTranslucent: true }} />
-      <Stack.Screen name="ManualAddProduct" options={{ headerShown: false, statusBarTranslucent: true }} />
-      <Stack.Screen name="RatingsPage" options={{ headerShown: false, statusBarTranslucent: true }} />
-      <Stack.Screen name="passwordReset" options={{ headerShown: false, statusBarTranslucent: true }} />
+    <Stack screenOptions={{ headerShadowVisible: false }}>
+      <Stack.Screen
+        name="index"
+        options={{ headerShown: false, statusBarStyle: "dark" }}
+      />
+      <Stack.Screen
+        name="wellcomePage"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="otpPage"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="signInPage"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="signUp"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="homePage"
+        options={{ headerShown: false, statusBarStyle: "dark" }}
+      />
+      <Stack.Screen
+        name="stockPage"
+        options={{ headerShown: true, statusBarStyle: "dark" }}
+      />
+      <Stack.Screen
+        name="QrPage"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="profilePage"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="(products)"
+        options={{
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              পণ্যের লিস্ট
+            </Text>
+          ),
+          headerRight: () => (
+            <Entypo
+              name="dots-three-vertical"
+              size={20}
+              color={Colors.light.primary}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="productDetailsPage"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="ManualAddProduct"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="RatingsPage"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="passwordReset"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
     </Stack>
   );
 }
