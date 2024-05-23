@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
-import AdminModel from "../../../../models/admin.model";
+import AdminModel from "../../../../models/wholeSalerEmployee.model";
 import { MESSAGE } from "../../../../constants/message";
 
 

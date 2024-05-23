@@ -4,7 +4,7 @@ import { s3 } from "../config/aws.config";
 export const uploadImageService = async (key:string, thumbnailBuffer: Buffer): Promise<string> => {
   const params = {
     Bucket: bucketName,
-    Key: `${key}/${Date.now()}logo.png`, // Customize the key as needed
+    Key: `${key}/${Date.now()}.png`, // Customize the key as needed
     Body: thumbnailBuffer,
     ACL: 'public-read', // Set the ACL as needed (e.g., public-read for public access)
   };

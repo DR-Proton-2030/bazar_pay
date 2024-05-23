@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import CustomerModel from "../../../../models/customer.model";
 import { MESSAGE } from "../../../../constants/message";
-import AdminModel from "../../../../models/admin.model";
+import AdminModel from "../../../../models/wholeSalerEmployee.model";
 import { verifyPassword } from "../../../../services/verifyPassword";
 
 export const customerGoogleLogin = async (req: Request, res: Response) => {

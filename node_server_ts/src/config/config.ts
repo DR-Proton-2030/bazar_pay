@@ -1,7 +1,7 @@
 export const NODE_ENV: "PROD" | "DEV" | "LOCAL" = "LOCAL";
 
 export const MONGO_URI ={
-    LOCAL: "mongodb://127.0.0.1:27017/find_my_house",
+    LOCAL: "mongodb+srv://drprotonofficial:Adarsha%40123@cluster0.9ogg6pi.mongodb.net/bazar_pay",
     DEV: "",
     PROD: ""
 }

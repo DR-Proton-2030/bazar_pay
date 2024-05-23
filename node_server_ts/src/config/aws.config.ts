@@ -8,6 +8,6 @@ AWS.config.update({
   // Create an S3 instance
  export const s3 = new AWS.S3();
  
- export const mediaConverter = new AWS.MediaConvert();
+//  export const mediaConverter = new AWS.MediaConvert();
 
- export const bucketName = 'findmyhouse';
+ export const bucketName = 'bazarpay';
