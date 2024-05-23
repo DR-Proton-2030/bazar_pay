@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   Text,
   ScrollView,
-  FlatList,
 } from "react-native";
 import Colors from "../../constants/Colors";
 import { Feather } from "@expo/vector-icons";
@@ -14,6 +13,9 @@ import SmallBoxList from "../../components/shared/smallBoxList/SmallBoxList";
 import { Octicons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import ProductItem from "../../components/shared/productDetail/ProductItem";
+import ProductCard from "../../components/shared/productCard/ProductCard";
 
 // const data = [
 //   { id: "1", title: "লো স্টক" },
@@ -27,6 +29,23 @@ import { FontAwesome } from "@expo/vector-icons";
 //     <SmallBox title={item.title} icon={undefined} textColor={""} />
 //   </View>
 // );
+const products = [
+  {
+    id: "1",
+    icon: <Feather name="share" size={24} color="green" />,
+    title: "Product Headphone",
+    subtitle: "Description of Product",
+    price: "৩৩, ৭৯০",
+  },
+  {
+    id: "2",
+    icon: <Feather name="share" size={24} color="green" />,
+    title: "Product Speaker",
+    subtitle: "Description of Product",
+    price: "৩৩, ৭৯০",
+  },
+  // Add more products as needed
+];
 
 const StockScreen = () => {
   const handleButton1Press = () => {
@@ -60,7 +79,6 @@ const StockScreen = () => {
             </TouchableOpacity>
           </View>
         </View>
-
         {/* Big Card */}
         <View style={styles.bigCard}>
           <View style={[styles.cell, styles.alignStart]}>
@@ -76,9 +94,7 @@ const StockScreen = () => {
             <Text style={[styles.subtitle, styles.middleAlign]}>৭,৫৮,৭৯০</Text>
           </View>
         </View>
-
         {/* Share */}
-
         <View style={styles.shareCard}>
           <View style={styles.sharePart}>
             <Feather name="share" size={24} color="green" style={styles.icon} />
@@ -95,9 +111,7 @@ const StockScreen = () => {
             </View>
           </View>
         </View>
-
         {/* 4SmallCard */}
-
         <View
           style={{
             flexDirection: "row",
@@ -122,7 +136,6 @@ const StockScreen = () => {
             <SmallBox title={"পণ্য কিনুন"} icon={undefined} textColor={""} />
           </View>
         </View>
-
         {/* This is the shortest way to display that 4 boxes */}
         {/* <FlatList
           data={data}
@@ -131,7 +144,6 @@ const StockScreen = () => {
           keyExtractor={(item) => item.id}
           contentContainerStyle={{ marginTop: 20 }}
         /> */}
-
         {/* Two SamllBoxList card*/}
         <View
           style={{
@@ -162,13 +174,81 @@ const StockScreen = () => {
             heading={""}
           />
         </View>
-
         <View style={styles.checkCard}>
           <View style={styles.checkContainer}>
             <FontAwesome name="check" size={24} color={Colors.light.primary} />
             <Text style={styles.checkText}>রেডি সেল</Text>
           </View>
         </View>
+        {/*  */}
+        <View style={styles.fullWidthContainer}>
+          <Text style={styles.fullWidthText}>সাম্প্রতিক লেনদেনসমূহ</Text>
+        </View>
+        <View style={styles.dateCard}>
+          <View style={styles.dateContainer}>
+            <Text>১৬ ডিসেম্বর, ২০২৩</Text>
+          </View>
+        </View>
+        {/* <View style={styles.productDetails}>
+          <View>
+            <View>
+              <Feather
+                name="share"
+                size={24}
+                color="green"
+                style={styles.icon}
+              />
+              <Text>Product</Text>
+            </View>
+
+            <View></View>
+          </View>
+        </View> */}
+        <View style={styles.productsContainer}>
+          {products.map((product) => (
+            <ProductItem
+              key={product.id}
+              icon={product.icon}
+              title={product.title}
+              subtitle={product.subtitle}
+              price={product.price}
+            />
+          ))}
+        </View>
+        <TouchableOpacity style={styles.accountHitory}>
+          <View>
+            <Text style={styles.accountHistoryText}>
+              সকল লেনদেন ইতিহাস দেখুন
+            </Text>
+          </View>
+        </TouchableOpacity>
+        {/*Recent Transaction */}
+        <View style={[styles.shareCard, { marginTop: 18 }]}>
+          <View style={styles.sharePart}>
+            <Text>সাম্প্রতিক লেনদেনসমূহ</Text>
+          </View>
+          <View style={[styles.sharePart, styles.buttonContainer]}>
+            <TouchableOpacity style={styles.button3}>
+              <View style={styles.button3Content}>
+                <Text style={styles.button3Text}>আরো দেখুন</Text>
+                <MaterialCommunityIcons
+                  name="greater-than"
+                  size={15}
+                  color="white"
+                />
+              </View>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Product section  */}
+        <View style={{ marginTop: 10 }}>
+          <ProductCard title={""} buyingPrice={0} sellingPrice={0} stock={0} />
+        </View>
+        {/* See all Product */}
+        <TouchableOpacity style={[styles.accountHitory, { marginBottom: 10 }]}>
+          <Text style={styles.accountHistoryText}>সকল পণ্য দেখুন</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );
@@ -303,6 +383,79 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     fontSize: 16,
     color: Colors.light.primary,
+  },
+
+  fullWidthContainer: {
+    width: "85%",
+    alignItems: "flex-start",
+    marginTop: 25,
+  },
+  fullWidthText: {
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+
+  buttonContainer: {
+    justifyContent: "flex-end",
+  },
+  button3: {
+    backgroundColor: Colors.light.primary,
+    borderRadius: 6,
+    paddingVertical: 9,
+    paddingHorizontal: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  button3Content: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  button3Text: {
+    color: "white",
+    fontSize: 12,
+    marginRight: 4,
+  },
+
+  dateCard: {
+    width: "85%",
+    marginTop: 12,
+    backgroundColor: Colors.light.lightViolet,
+    borderColor: Colors.light.border,
+    borderRadius: 4,
+    paddingVertical: 4,
+    // alignItems: "center",
+    paddingHorizontal: 10,
+    alignItems: "flex-start",
+  },
+  dateContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "flex-start",
+  },
+  productDetails: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  productsContainer: {
+    width: "90%",
+    marginTop: 3,
+  },
+  accountHitory: {
+    width: "85%",
+    marginTop: 15,
+    backgroundColor: Colors.light.primary,
+    color: Colors.dark.text,
+    borderRadius: 4,
+    paddingVertical: 10,
+    alignItems: "center",
+  },
+  accountHistoryText: {
+    color: "white",
+  },
+  productSectionContainer: {
+    flexDirection: "column", // Display children vertically
+    alignItems: "center", // Center children horizontally
+    justifyContent: "flex-start", // Align children to the start vertically
   },
 });
 

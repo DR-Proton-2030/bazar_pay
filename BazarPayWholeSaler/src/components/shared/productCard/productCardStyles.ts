@@ -10,7 +10,7 @@ export const productCardStyles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     borderRadius: 10,
-    width: windowWidth-20,
+    width: windowWidth - 20,
     borderColor: "#ddd",
     borderWidth: 1,
     display: "flex",
