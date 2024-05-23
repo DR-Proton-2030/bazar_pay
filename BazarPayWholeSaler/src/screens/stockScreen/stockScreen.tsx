@@ -189,21 +189,6 @@ const StockScreen = () => {
             <Text>১৬ ডিসেম্বর, ২০২৩</Text>
           </View>
         </View>
-        {/* <View style={styles.productDetails}>
-          <View>
-            <View>
-              <Feather
-                name="share"
-                size={24}
-                color="green"
-                style={styles.icon}
-              />
-              <Text>Product</Text>
-            </View>
-
-            <View></View>
-          </View>
-        </View> */}
         <View style={styles.productsContainer}>
           {products.map((product) => (
             <ProductItem
