@@ -79,10 +79,9 @@ const PasswordResetPage = () => {
         <Text style={styles.errorText}>Passwords do not match</Text>
       )}
 
-       <Button  style={globalStyle.signInButton} onPress={handleSubmit}
-        disabled={!passwordsMatch}>
-         <Text style={globalStyle.signInButtonText}>Save</Text> 
-
+       <Button textColor='white' style={globalStyle.signInButton} onPress={handleSubmit}
+       >
+         Save
     </Button>
     </ScrollView>
   );

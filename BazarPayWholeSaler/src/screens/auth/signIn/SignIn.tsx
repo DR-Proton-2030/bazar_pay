@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Image, Modal, TouchableOpacity, SafeAreaView, Dimensions, StatusBar, StyleSheet } from "react-native";
+import { View, Text, Image, Modal, TouchableOpacity, SafeAreaView, Dimensions, StatusBar, StyleSheet, ScrollView } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { globalStyle } from "../../../globalStyles/globalStyles";
 import Colors from "../../../constants/Colors";
@@ -35,7 +35,8 @@ const SignIn = () => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: Colors.light.background }}>
+    // <SafeAreaView style={{ flex: 1, backgroundColor: Colors.light.background }}>
+      <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }}>
       <StatusBar translucent={true} backgroundColor={"transparent"} />
       <View style={{ flexDirection: "column" }}>
         <Image style={{ width: "100%", height: screenHeight/1.9 }} source={loginBg} />
@@ -63,7 +64,8 @@ const SignIn = () => {
         
 
       <SignInCongratsModal isCongratsModalVisible={isCongratsModalVisible} setIsCongratsModalVisible={setIsCongratsModalVisible}/>
-    </SafeAreaView>
+      </ScrollView>
+    // </SafeAreaView>
   );
 };
 
