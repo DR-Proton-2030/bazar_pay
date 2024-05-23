@@ -453,9 +453,9 @@ const styles = StyleSheet.create({
     color: "white",
   },
   productSectionContainer: {
-    flexDirection: "column", // Display children vertically
-    alignItems: "center", // Center children horizontally
-    justifyContent: "flex-start", // Align children to the start vertically
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "flex-start",
   },
 });
 
