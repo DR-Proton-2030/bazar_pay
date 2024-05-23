@@ -39,17 +39,14 @@ const products = [
     subtitle: "Description of Product",
     price: "৩৩, ৭৯০",
   },
-  // Add more products as needed
 ];
 
 const StockScreen = () => {
   const handleButton1Press = () => {
-    // Add functionality for button 1 here
     console.log("Button 1 pressed");
   };
 
   const handleButton2Press = () => {
-    // Add functionality for button 2 here
     console.log("Button 2 pressed");
   };
 
