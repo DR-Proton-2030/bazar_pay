@@ -73,12 +73,14 @@ export const createWholesaler = async (req: Request, res: Response) => {
       !("owner_photo" in req.files) ||
       !("trade_licensce" in req.files) ||
       !("nid" in req.files) ||
+
       !("visiting_card" in req.files)
     ) {
       return res.status(404).json({
-        message: MESSAGE.post.custom("Logo not found"),
+        message: MESSAGE.post.custom("img not found"),
       });
     }
+    console.log(req.files)
     const logo = req.files["logo"][0];
     const sign_board = req.files["sign_board"][0];
     const owner_photo = req.files["owner_photo"][0];

@@ -24,29 +24,15 @@ const languageTexts: any = {
 	}
 };
 
-const OtpPage = () => {
+const OtpPage = ({verifyOtp}:any) => {
 	const navigation:any = useNavigation();
-	const route = useRoute();
+	// const route = useRoute();
 
 	const [otp, setOtp] = useState("");
 	const shakeAnimation = useRef(new Animated.Value(0)).current;
 	const [focusColor, setFocusColor] = useState("green");
 
-
-
-	const handleSubmit = () => {
-		console.log("===>Otp", otp);
-		navigation.navigate("passwordReset");
-		// if (otp) {
-		// 	console.log("=======>otp matched");
-		// 	navigation.navigate("passwordReset");
-		// } else {
-		// 	shakeImage();
-		// 	Vibration.vibrate(100);
-		// }
-	};
-
-	console.log("Data from params:", route.params);
+	// console.log("Data from params:", route.params);
 
 	const shakeImage = () => {
 		Animated.sequence([
@@ -94,7 +80,7 @@ const OtpPage = () => {
 						}
 					}}
 				/>
-          <Button  style={globalStyle.signInButton} onPress={handleSubmit}>
+          <Button  style={globalStyle.signInButton} onPress={verifyOtp}>
          <Text style={globalStyle.signInButtonText}>Verify</Text> 
 
     </Button>
