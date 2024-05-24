@@ -6,6 +6,7 @@ import { PaperProvider } from "react-native-paper";
 import { Text } from "react-native";
 import Colors from "../src/constants/Colors";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
+import WholesalerContextProvider from "../src/contexts/wholesalerContext/Provider";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -24,9 +25,11 @@ export default function RootLayout() {
 
   return (
     <PaperProvider>
+      <WholesalerContextProvider>
       <GestureHandlerRootView>
         <RootLayoutNav />
       </GestureHandlerRootView>
+      </WholesalerContextProvider>
     </PaperProvider>
   );
 }
