@@ -5,11 +5,11 @@ import { AUTHORIZATION } from "../../../constants/api/auth";
 
 const { post } = request;
 
-const initialRoute = "app";
+const initialRoute = "wholesaler-employee";
 
-export const Login = async (payload: any) => {
+export const createWholesalerEmployee = async (payload: any) => {
 	try {
-		const endpoint = `${initialRoute}/login-user`;
+		const endpoint = `${initialRoute}/create-wholesaler-emloyee`;
 		const response = await post(endpoint, payload, {
 			...headers
 		});
@@ -36,34 +36,6 @@ export const createAdmin = async (payload: any) => {
 		const response = await post(endpoint, payload, {
 			...headers
 		});
-		if (response) {
-			const {
-				data: { message }
-			} = response;
-			if (message === MESSAGE.post.succ) {
-				const {
-					data: { result }
-				} = response;
-				return result;
-			}
-		}
-		throw new Error();
-	} catch (error: any) {
-		console.log(error);
-		throw error;
-	}
-};
-
-export const OtpLogin = async (phone: any) => {
-	try {
-		const endpoint = `${initialRoute}/login-otp`;
-		const response = await post(
-			endpoint,
-			{ phone: phone },
-			{
-				...headers
-			}
-		);
 		if (response) {
 			const {
 				data: { message }

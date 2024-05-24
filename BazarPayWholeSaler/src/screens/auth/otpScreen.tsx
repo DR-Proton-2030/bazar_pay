@@ -24,11 +24,10 @@ const languageTexts: any = {
 	}
 };
 
-const OtpPage = ({verifyOtp}:any) => {
+const OtpPage = ({verifyOtp ,setOtp}:any) => {
 	const navigation:any = useNavigation();
 	// const route = useRoute();
 
-	const [otp, setOtp] = useState("");
 	const shakeAnimation = useRef(new Animated.Value(0)).current;
 	const [focusColor, setFocusColor] = useState("green");
 
@@ -69,7 +68,7 @@ const OtpPage = ({verifyOtp}:any) => {
 					}}
 					onFilled={text => {
 						setOtp(text);
-						if (text ) {
+						if (text !=="1234") {
 							shakeImage();
 							setFocusColor("red");
 						}

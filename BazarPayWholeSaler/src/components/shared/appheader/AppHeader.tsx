@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, Animated } from "react-native";
 
 import Colors from "../../../constants/Colors";
@@ -6,8 +6,10 @@ import { globalStyle } from "../../../globalStyles/globalStyles";
 import MenuButton from "../menuBtn/MenuBtn";
 import SideDrawer from "../sideDrawer/SideDrawer";
 import HeaderIcons from "./headerIcons/HeaderIcons";
+import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerContext";
 
 const AppHeader: React.FC = () => {
+  const {wholesaler} = useContext(WholesalerContext)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [animatedValue] = useState(new Animated.Value(-300));
 
@@ -38,7 +40,7 @@ const AppHeader: React.FC = () => {
           <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
             Hello,
           </Text>
-          <Text style={globalStyle.posttitle}>Rafatul store</Text>
+          <Text style={globalStyle.posttitle}>{wholesaler?.wholesaler_name}</Text>
         </View>
         <SideDrawer
           isOpen={isDrawerOpen}

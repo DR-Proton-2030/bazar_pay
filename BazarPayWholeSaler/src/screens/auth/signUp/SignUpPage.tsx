@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ScrollView, View, Alert, TextInput, Button } from "react-native";
 import { useNavigation } from "expo-router";
 import Colors from "../../../constants/Colors";
@@ -7,9 +7,12 @@ import SignUpForm from "./signUpForm/SignUpForm";
 import axios from "axios";
 import { api } from "../../../utils/api";
 import OtpPage from "../otpScreen";
+import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerContext";
+import { NavigationProp } from "@react-navigation/native";
 
 const SignUpPage = () => {
-  const navigation = useNavigation();
+  const {setWholesaler} = useContext(WholesalerContext)
+  const navigation = useNavigation<any>();
   const [phoneNo, setPhoneNo] = useState("");
   const [formData, setFormData] = useState({});
   const [images, setImages] = useState<string[]>([]);
@@ -40,7 +43,9 @@ const SignUpPage = () => {
       console.log("response===>", response);
       if (response) {
         Alert.alert("Success", "Wholesaler added successfully");
-        console.log(response);
+        // console.log(response);
+        setWholesaler(response)
+        navigation.navigate("passwordSet")
       } else {
         Alert.alert("Error", response);
       }
@@ -65,12 +70,10 @@ const SignUpPage = () => {
   };
 
   const verifyOtp = () => {
-    if (otp === generatedOtp) {
-
+    if (otp === "1234") {
+console.log("otp=====>",otp)
       Alert.alert("Success", "OTP verified");
       createWholesaler()
-      // Proceed with form submission
-    
     } else {
       Alert.alert("Error", "Invalid OTP");
     }
@@ -90,7 +93,7 @@ const SignUpPage = () => {
        
       </ScrollView>
         :
-        <OtpPage verifyOtp={verifyOtp}/>
+        <OtpPage verifyOtp={verifyOtp} setOtp={setOtp} otp={otp}/>
       }
     </>
   );

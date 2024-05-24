@@ -58,6 +58,10 @@ function RootLayoutNav() {
         options={{ headerShown: false, statusBarTranslucent: true }}
       />
       <Stack.Screen
+        name="passwordSet"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
         name="homePage"
         options={{ headerShown: false, statusBarStyle: "dark" }}
       />

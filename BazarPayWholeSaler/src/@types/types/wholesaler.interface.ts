@@ -1,4 +1,5 @@
 export interface IWholesaler{
+    _id:string,
     wholesaler_name:string
     contact_full_name:string,
     contact_phone_number:string,
