@@ -57,9 +57,8 @@ export const getOtp = async (req: Request, res: Response) => {
     }
     const otp = generateOTP();
     const generateMessage = () => {
-      return `your OTP for login in Muslim Matrimony is ${otp} `;
+      return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
     };
-
     const dynamicMessage = generateMessage();
     const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${
       "88" + phone_no
