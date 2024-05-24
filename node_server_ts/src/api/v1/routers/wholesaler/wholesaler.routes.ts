@@ -10,7 +10,6 @@ import {
   createWholesaler,
   getWholeSaler,
 } from "../../controllers/wholesalers/wholesaler.controller";
-import { getOtp } from "../../controllers/auth/wholesellerSignup.controller";
 
 const router = express.Router();
 
@@ -28,7 +27,7 @@ router.route("/add-wholesaler").post(
   createWholesaler
 );
 
-router.route("/getOtp").post(getOtp);
+// router.route("/getOtp").post(getOtp);
 
 // router.route("/get-builder-list").get(getBuilderNameWithID);
 

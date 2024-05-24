@@ -2,6 +2,8 @@ const message = {
 	post: {
 		succ: "Data added successfully",
 		fail: "Failed to add data",
+		succAuth:"Authentication Successful!",
+		failAuth:"Login Unsuccessful!",
 		sameEntry: "Same entry not allowed"
 	},
 	get: {

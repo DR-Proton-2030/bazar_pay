@@ -16,7 +16,7 @@ export const createWholeslaerEmployee = async (req: Request, res: Response) => {
             if (err) {
                 console.error("Error hashing password:", err);
             } else {
-                 const userInstance = await new WholeSalerEmployeeModel({ ...userDetails, "password": hash }).save();
+                 const userInstance = await new WholeSalerEmployeeModel({ ...userDetails, "password": hash, "last_login_date" : new Date()  }).save();
                 if (userInstance) {
                     return res.status(200).send({
                         message: MESSAGE.post.succ,

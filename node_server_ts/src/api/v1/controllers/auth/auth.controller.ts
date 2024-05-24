@@ -4,6 +4,7 @@ import CustomerModel from "../../../../models/customer.model";
 import { MESSAGE } from "../../../../constants/message";
 import AdminModel from "../../../../models/wholeSalerEmployee.model";
 import { verifyPassword } from "../../../../services/verifyPassword";
+import WholeSalerEmployeeModel from "../../../../models/wholeSalerEmployee.model";
 
 export const customerGoogleLogin = async (req: Request, res: Response) => {
   try {
@@ -63,20 +64,20 @@ export const customerMobileSignUp = async (req: Request, res: Response) => {
   }
 }
 
-export const loginCustomer = async (req: Request, res: Response) => {
+export const loginWholesaler = async (req: Request, res: Response) => {
   try {
-    const { phone, password } = req.body;
-    const customerInstance = await CustomerModel.findOne({phone: phone});
-    if (!customerInstance) {
+    const { phone_number, password } = req.body;
+    const employeeInstance = await WholeSalerEmployeeModel.findOne({phone_number});
+    if (!employeeInstance) {
       return res.status(404).json({
         message: MESSAGE.post.failAuth,
       });
     }
-    const verify = await verifyPassword(password, customerInstance.password);
+    const verify = await verifyPassword(password, employeeInstance.password);
     if (verify) {
       return res.status(200).json({
         message: MESSAGE.post.succAuth,
-        result: customerInstance,
+        result: employeeInstance,
       });
     }
     return res.status(404).json({
@@ -90,34 +91,33 @@ export const loginCustomer = async (req: Request, res: Response) => {
   }
 };
 
-
-export const loginAdmin = async (req: Request, res: Response) => {
-  try {
-    const { userId, password } = req.body;
-    const filterQuery = userId.includes("@")
-      ? { email: userId }
-      : { phone_number: userId };
-    console.log("===>filter", filterQuery);
-    const adminInstance = await AdminModel.findOne(filterQuery).populate("builder");
-    if (!adminInstance) {
-      return res.status(404).json({
-        message: MESSAGE.post.failAuth,
-      });
-    }
-    const verify = await verifyPassword(password, adminInstance.password);
-    if (verify) {
-      return res.status(200).json({
-        message: MESSAGE.post.succAuth,
-        result: adminInstance,
-      });
-    }
-    return res.status(404).json({
-      message: MESSAGE.post.failAuth,
-    });
-  } catch (error) {
-    return res.status(400).json({
-      message: MESSAGE.post.fail,
-      error,
-    });
-  }
-};
+// export const loginAdmin = async (req: Request, res: Response) => {
+//   try {
+//     const { userId, password } = req.body;
+//     const filterQuery = userId.includes("@")
+//       ? { email: userId }
+//       : { phone_number: userId };
+//     console.log("===>filter", filterQuery);
+//     const adminInstance = await AdminModel.findOne(filterQuery).populate("builder");
+//     if (!adminInstance) {
+//       return res.status(404).json({
+//         message: MESSAGE.post.failAuth,
+//       });
+//     }
+//     const verify = await verifyPassword(password, adminInstance.password);
+//     if (verify) {
+//       return res.status(200).json({
+//         message: MESSAGE.post.succAuth,
+//         result: adminInstance,
+//       });
+//     }
+//     return res.status(404).json({
+//       message: MESSAGE.post.failAuth,
+//     });
+//   } catch (error) {
+//     return res.status(400).json({
+//       message: MESSAGE.post.fail,
+//       error,
+//     });
+//   }
+// };

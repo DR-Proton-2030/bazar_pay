@@ -32,36 +32,28 @@ import RetailerrModel from "../../../../models/customer.model";
 import axios from "axios";
 import { MESSAGE } from "../../../../constants/message";
 import { generateOTP } from "../../../../services/generateOtp";
+import WholeSalerEmployeeModel from "../../../../models/wholeSalerEmployee.model";
 
 const apiUrl = "https://smsmassdata.massdata.xyz/api/sms/send";
-const apiKey = "01866049600.ab4b8829-0375-4048-bb33-eddfb739c58e";
+const apiKey = "01840404003.a23cb6f2-cc90-4221-aaef-8f6f0aa4d641";
 const type = "text";
-const senderId = "8809612440728";
+const senderId = "8803590005376";
 
 const default_profile_image_url =
   "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg";
 
 export const getOtp = async (req: Request, res: Response) => {
-  const { phone_no } = req.body;
+  const { phone_number } = req.body;
   try {
-    const userInstance = await RetailerrModel.findOne({ mobile: phone_no });
+    const userInstance = await WholeSalerEmployeeModel.findOne({ phone_number});
     console.log("userInstance", userInstance);
-    if (userInstance) {
-      if (userInstance.profilePhoto !== default_profile_image_url) {
-        return res.status(409).json({
-          message: MESSAGE.get.custom("User Exists"),
-        });
-      } else {
-        await RetailerrModel.deleteOne({ mobile: phone_no });
-      }
-    }
     const otp = generateOTP();
     const generateMessage = () => {
       return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
     };
     const dynamicMessage = generateMessage();
     const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${
-      "88" + phone_no
+      "88" + phone_number
     }&senderId=${senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
 
     axios
@@ -80,7 +72,7 @@ export const getOtp = async (req: Request, res: Response) => {
         });
       });
   } catch (error) {
-    console.log(error);
+    console.log("error");
   }
 };
 

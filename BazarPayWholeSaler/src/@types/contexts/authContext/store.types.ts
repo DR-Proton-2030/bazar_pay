@@ -1,4 +1,4 @@
-import { IUserDetails } from "../../types/userDEtails.types";
+import { IUserDetails } from "../../types/user.interface";
 
 export type Store = {
 	user: IUserDetails | null;
