@@ -11,6 +11,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import ProductItem from "../../components/shared/productDetail/ProductItem";
 import ProductCard from "../../components/shared/productCard/ProductCard";
 import { stockScreenStyles } from "./StockScreen.styles";
+import CommonHeader from "../../components/shared/commonHeader/CommonHeader";
 // import { stockScreenstockScreenStyles } from "./StockScreen.stockScreenStyles";
 // const data = [
 //   { id: "1", title: "লো স্টক" },
@@ -52,6 +53,7 @@ const StockScreen = () => {
 
   return (
     <ScrollView>
+      {/* <CommonHeader text="নতুন পণ্য যোগ করুন" /> */}
       <View style={stockScreenStyles.stockContainer}>
         <View style={stockScreenStyles.cardRow}>
           <View style={stockScreenStyles.buttonWrapper}>
@@ -203,12 +205,12 @@ const StockScreen = () => {
             heading={""}
           />
         </View>
-        <View style={stockScreenStyles.checkCard}>
+        <TouchableOpacity style={stockScreenStyles.checkCard}>
           <View style={stockScreenStyles.checkContainer}>
             <FontAwesome name="check" size={24} color={Colors.light.primary} />
             <Text style={stockScreenStyles.checkText}>রেডি সেল</Text>
           </View>
-        </View>
+        </TouchableOpacity>
         {/*  */}
         <View style={stockScreenStyles.fullWidthContainer}>
           <Text style={stockScreenStyles.fullWidthText}>

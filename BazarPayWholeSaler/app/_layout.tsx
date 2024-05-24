@@ -67,7 +67,7 @@ function RootLayoutNav() {
       />
       <Stack.Screen
         name="stockPage"
-        options={{ headerShown: true, statusBarStyle: "dark" }}
+        options={{ headerShown: false, statusBarStyle: "dark" }}
       />
       <Stack.Screen
         name="QrPage"
