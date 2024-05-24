@@ -7,11 +7,11 @@ const { post } = request;
 
 const initialRoute = "auth";
 
-export const loginWholesaler = async (formdata: any) => {
+export const loginWholesaler = async (payload: any) => {
 	try {
 		const endpoint = `${initialRoute}/login-wholesaler-employee`;
 
-		const response = await post(endpoint, formdata, {
+		const response = await post(endpoint, payload, {
 			...headers
 		});
 		if (response) {

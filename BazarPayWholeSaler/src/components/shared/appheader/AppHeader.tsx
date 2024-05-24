@@ -7,9 +7,10 @@ import MenuButton from "../menuBtn/MenuBtn";
 import SideDrawer from "../sideDrawer/SideDrawer";
 import HeaderIcons from "./headerIcons/HeaderIcons";
 import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerContext";
+import AuthContext from "../../../contexts/authContext/authContext";
 
 const AppHeader: React.FC = () => {
-  const {wholesaler} = useContext(WholesalerContext)
+  const {user} = useContext(AuthContext)
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [animatedValue] = useState(new Animated.Value(-300));
 
@@ -40,7 +41,7 @@ const AppHeader: React.FC = () => {
           <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
             Hello,
           </Text>
-          <Text style={globalStyle.posttitle}>{wholesaler?.wholesaler_name}</Text>
+          <Text style={globalStyle.posttitle}>{user?.full_name}</Text>
         </View>
         <SideDrawer
           isOpen={isDrawerOpen}

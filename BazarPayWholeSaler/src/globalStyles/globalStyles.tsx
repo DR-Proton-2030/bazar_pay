@@ -67,12 +67,13 @@ export const globalStyle = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
+    
   },
   congratsModalContent: {
     width: 300,
     padding: 20,
     backgroundColor: "white",
-    borderRadius: 10,
+    borderRadius: 20,
     alignItems: "center",
   },
   congratsText: {
@@ -82,13 +83,15 @@ export const globalStyle = StyleSheet.create({
   },
   closeButton: {
     marginTop: 20,
-    padding: 10,
     backgroundColor: Colors.light.primary,
-    borderRadius: 5,
+    borderRadius: 50,
+    paddingHorizontal:30,
+    paddingVertical:10,
   },
   closeButtonText: {
     color: "white",
     fontWeight: "bold",
+    fontSize:18
   },
   commonHeader: {
     flexDirection: "row",

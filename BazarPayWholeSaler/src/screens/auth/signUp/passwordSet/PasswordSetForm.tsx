@@ -38,7 +38,6 @@ console.log(wholesaler)
       });
       console.log("response===>", response);
       if (response) {
-        Alert.alert("Success", "Wholesaler added successfully");
         navigation.navigate("homePage");
       } else {
         Alert.alert("Error", response);
