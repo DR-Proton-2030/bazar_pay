@@ -69,7 +69,10 @@ const ImageUpload = ({ onImageSelect }:any) => {
             <Text>NID</Text>
           </TouchableOpacity>
         )}
-        {!hiddenButtons.includes("visiting_card") && (
+        
+      </View>
+<View style={styles.buttonRow}>
+{!hiddenButtons.includes("visiting_card") && (
           <TouchableOpacity style={styles.button} onPress={() => pickImage("visiting_card")}>
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>Visiting Card</Text>
@@ -81,8 +84,7 @@ const ImageUpload = ({ onImageSelect }:any) => {
             <Text>Logo</Text>
           </TouchableOpacity>
         )}
-      </View>
-
+</View>
       <Text style={styles.label}>Selected Images</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {images.map((image:any, index) => (
@@ -97,7 +99,7 @@ const ImageUpload = ({ onImageSelect }:any) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, paddingHorizontal: 20 },
+  container: { flex: 1, paddingHorizontal: 0 },
   buttonRow: { flexDirection: "row", justifyContent: "flex-start", marginBottom: 20, gap: 10 },
   button: {
     width: "auto",
@@ -106,7 +108,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     flexDirection: "row",
     gap: 5,
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "black",

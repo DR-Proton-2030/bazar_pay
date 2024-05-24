@@ -42,16 +42,18 @@ const SignUpPage = () => {
       const response = await api.auth.createWholesaler(formDataToSend)
       console.log("response===>", response);
       if (response) {
-        Alert.alert("Success", "Wholesaler added successfully");
-        // console.log(response);
+        // Alert.alert("Success", "Wholesaler added successfully");
+        console.log(response);
         setWholesaler(response)
         navigation.navigate("passwordSet")
       } else {
-        Alert.alert("Error", response);
+        // Alert.alert("Error", response);
+        console.log(response)
       }
     } catch (error:any) {
       console.error("Error adding wholesaler:", error);
-      Alert.alert("Error", error.response?.data?.message || error.message);
+      // Alert.alert("Error", error.response?.data?.message || error.message);
+
     }
   };
 
@@ -72,10 +74,11 @@ const SignUpPage = () => {
   const verifyOtp = () => {
     if (otp === "1234") {
 console.log("otp=====>",otp)
-      Alert.alert("Success", "OTP verified");
+      // Alert.alert("Success", "OTP verified");
       createWholesaler()
     } else {
-      Alert.alert("Error", "Invalid OTP");
+      // Alert.alert("Error", "Invalid OTP");
+      console.log("Otp not valid")
     }
   };
 

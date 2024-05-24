@@ -12,9 +12,11 @@ import SignInCongratsModal from "../../../../components/main/auth/signInCongrats
 import { api } from "../../../../utils/api";
 import WholesalerContext from "../../../../contexts/wholesalerContext/wholesalerContext";
 import { Button } from "react-native-paper";
+import AuthContext from "../../../../contexts/authContext/authContext";
 
 const PasswordSetForm = () => {
   const { wholesaler } = useContext(WholesalerContext);
+  const { setUser } = useContext(AuthContext);
   const [password, setPassword] = useState("");
   const [isCongratsModalVisible, setIsCongratsModalVisible] = useState(false); 
   const screenHeight = Dimensions.get("screen").height;
@@ -38,12 +40,13 @@ console.log(wholesaler)
       });
       console.log("response===>", response);
       if (response) {
-        navigation.navigate("homePage");
+setUser(response)
+        setIsCongratsModalVisible(true)
       } else {
-        Alert.alert("Error", response);
+        console.log(response)
       }
     } catch (error:any) {
-      Alert.alert("Error", error.response?.data?.message || error.message);
+      console.log(error)
     }
   };
 
