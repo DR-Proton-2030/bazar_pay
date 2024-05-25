@@ -90,7 +90,7 @@ const ImageUpload = ({ onImageSelect }:any) => {
         {images.map((image:any, index) => (
           <View key={index} style={{ flexDirection: "column", alignItems: "center" }}>
             <Image source={{ uri: image.uri }} style={styles.image} />
-            <Text style={styles.imageLabel}>{image.name}</Text>
+            {/* <Text style={styles.imageLabel}>{image.name}</Text> */}
           </View>
         ))}
       </ScrollView>
