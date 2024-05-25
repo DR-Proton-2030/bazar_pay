@@ -1,37 +1,17 @@
-import React, { useState, useRef, useContext } from "react";
+import React, { useState, useRef } from "react";
 import { View, Text, Animated, Vibration, TouchableOpacity } from "react-native";
 import { OtpInput } from "react-native-otp-entry";
 import { ScrollView } from "react-native-gesture-handler";
-import { useNavigation, useRoute } from "@react-navigation/native";
 import Colors from "../../constants/Colors";
-import SignInButton from "../../components/main/auth/signinBtn/SignInBtn";
 import { globalStyle } from "../../globalStyles/globalStyles";
-import { Button } from "react-native-paper";
+import { ActivityIndicator, Button } from "react-native-paper";
 
-const tempUri =
-	"https://img.freepik.com/free-vector/two-factor-authentication-concept-illustration_114360-5488.jpg?t=st=1716275739~exp=1716279339~hmac=b4b4f099e54c5339b627ea860a59e3864803651c9491dc05b6214e86009e46c7&w=740";
+const tempUri = "https://img.freepik.com/free-vector/two-factor-authentication-concept-illustration_114360-5488.jpg?t=st=1716275739~exp=1716279339~hmac=b4b4f099e54c5339b627ea860a59e3864803651c9491dc05b6214e86009e46c7&w=740";
 
-const languageTexts: any = {
-	ENGLISH: {
-		headerText: "Enter Verification Code",
-		subheaderText: "We have sent you a Verification code to your phone number",
-		verifyButton: "Verify"
-	},
-	BENGALI: {
-		headerText: "আপনার যাচাইকরণ কোড লিখুন ",
-		subheaderText: "আমরা আপনার ফোন নম্বরে একটি যাচাইকরণ কোড পাঠিয়েছি",
-		verifyButton: "যাচাই করুন"
-	}
-};
-
-const OtpPage = ({verifyOtp ,setOtp}:any) => {
-	const navigation:any = useNavigation();
-	// const route = useRoute();
-
+const OtpPage = ({ verifyOtp, setOtp }: any) => {
 	const shakeAnimation = useRef(new Animated.Value(0)).current;
 	const [focusColor, setFocusColor] = useState("green");
-
-	// console.log("Data from params:", route.params);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const shakeImage = () => {
 		Animated.sequence([
@@ -44,18 +24,23 @@ const OtpPage = ({verifyOtp ,setOtp}:any) => {
 		Vibration.vibrate(100);
 	};
 
+	const handleVerifyOtp = () => {
+		setIsLoading(true);
+		verifyOtp()
+	};
+
 	return (
 		<ScrollView style={{ flex: 1, backgroundColor: "white", paddingTop: 50 }}>
 			<Animated.Image
-				style={[ {height:400, width:400},{ transform: [{ translateX: shakeAnimation }] }]}
+				style={[{ height: 400, width: 400 }, { transform: [{ translateX: shakeAnimation }] }]}
 				source={{ uri: tempUri }}
 			/>
 			<View style={{ justifyContent: "center", alignItems: "center" }}>
 				<Text style={{ fontWeight: "700", fontSize: 20, color: Colors.light.lightText, textAlign: "center" }}>
-        আপনার যাচাইকরণ কোড লিখুন
+					আপনার যাচাইকরণ কোড লিখুন
 				</Text>
 				<Text style={{ fontWeight: "500", fontSize: 14, color: Colors.light.lightText, textAlign: "center", width: "60%" }}>
-        আমরা আপনার ফোন নম্বরে একটি যাচাইকরণ কোড পাঠিয়েছি
+					আমরা আপনার ফোন নম্বরে একটি যাচাইকরণ কোড পাঠিয়েছি
 				</Text>
 			</View>
 			<View style={{ paddingHorizontal: 50, marginTop: 20, gap: 20 }}>
@@ -68,7 +53,7 @@ const OtpPage = ({verifyOtp ,setOtp}:any) => {
 					}}
 					onFilled={text => {
 						setOtp(text);
-						if (text !=="1234") {
+						if (text !== "1234") {
 							shakeImage();
 							setFocusColor("red");
 						}
@@ -79,10 +64,23 @@ const OtpPage = ({verifyOtp ,setOtp}:any) => {
 						}
 					}}
 				/>
-          <Button  style={globalStyle.signInButton} onPress={verifyOtp}>
-         <Text style={globalStyle.signInButtonText}>Verify</Text> 
+				{
+					isLoading ?
+						<Button
+							style={globalStyle.signInButton}
+						>
+							<ActivityIndicator color="white" />
 
-    </Button>
+						</Button>
+						:
+						<Button
+							style={globalStyle.signInButton}
+							onPress={handleVerifyOtp}
+						>
+							<Text style={globalStyle.signInButtonText}>Verify</Text>
+						</Button>
+				}
+
 			</View>
 		</ScrollView>
 	);

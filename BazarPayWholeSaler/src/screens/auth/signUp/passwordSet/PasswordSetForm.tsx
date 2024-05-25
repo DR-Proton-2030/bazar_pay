@@ -56,10 +56,19 @@ setUser(response)
       <View style={{ flexDirection: "column" }}>
         <Image style={{ width: "100%", height: screenHeight / 1.9 }} source={loginBg} />
         <View style={[globalStyle.modalContent, { marginTop: -screenHeight / 15.9 }]}>
-          <Header isSignup={false} />
+        <View
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingHorizontal: 20,
+        paddingTop: 20,
+      }}
+    >
+        <Text style={{ fontSize: 25, fontWeight: "700" }}>Set Passowrd</Text>
+
+    </View>
           <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
             <PasswordToggle password={password} setPassword={setPassword} />
-            <Text style={globalStyle.forgotPasswordText}>{wholesaler?.contact_full_name}Forgot Password?</Text>
             <Button onPress={handleSignIn} style={globalStyle.signInButton}>
         <Text style={globalStyle.signInButtonText}>Save password</Text>
       
