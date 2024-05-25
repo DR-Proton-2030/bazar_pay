@@ -6,7 +6,7 @@ import { Button } from "react-native-paper";
 
 const SignInButton = ({ onPress ,isSignup}: any) => {
   return (
-    <Button onPress={onPress} style={globalStyle.signInButton}>
+    <Button onPress={onPress} style={globalStyle.blueButton}>
        {
         isSignup?       <Text style={globalStyle.signInButtonText}>Sign Up</Text> :
         <Text style={globalStyle.signInButtonText}>Sign In</Text>

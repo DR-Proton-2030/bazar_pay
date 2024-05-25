@@ -7,5 +7,7 @@ export const boxListStyle = StyleSheet.create({
     flexWrap: "wrap",
     gap: 25,
     marginTop: 10,
+    paddingHorizontal:5
+    // backgroundColor: "red",
   },
 });

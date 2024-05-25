@@ -11,7 +11,7 @@ export const smallBoxStyle = StyleSheet.create({
     borderWidth: 1.5,
     borderRadius: 10,
     borderColor: Colors.light.border,
-    width: windowWidth / 2.5,
+    width: windowWidth /2.46,
     gap: 10,
   },
   title: {

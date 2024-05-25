@@ -10,7 +10,8 @@ import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerCon
 import AuthContext from "../../../contexts/authContext/authContext";
 
 const AppHeader: React.FC = () => {
-  const {user} = useContext(AuthContext)
+  const {user} = useContext(AuthContext);
+  const {wholesaler} = useContext(WholesalerContext);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [animatedValue] = useState(new Animated.Value(-300));
 
@@ -39,7 +40,7 @@ const AppHeader: React.FC = () => {
         <MenuButton onPress={openDrawer} />
         <View style={{ display: "flex", flexDirection: "column" }}>
           <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
-            Hello,
+            {wholesaler?.wholesaler_name},
           </Text>
           <Text style={globalStyle.posttitle}>{user?.full_name}</Text>
         </View>

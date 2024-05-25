@@ -6,68 +6,68 @@ import AdminModel from "../../../../models/wholeSalerEmployee.model";
 import { verifyPassword } from "../../../../services/verifyPassword";
 import WholeSalerEmployeeModel from "../../../../models/wholeSalerEmployee.model";
 
-export const customerGoogleLogin = async (req: Request, res: Response) => {
-  try {
-    const payload = req.body;
-    const existingCustomer = await CustomerModel.findOne({email: payload.email});
-    if (existingCustomer){
-      return res.status(200).json({
-        message: MESSAGE.post.succAuth,
-        result: existingCustomer,
-      })
-    }
-    const customerInstance =  await new CustomerModel(payload).save();
+// export const customerGoogleLogin = async (req: Request, res: Response) => {
+//   try {
+//     const payload = req.body;
+//     const existingCustomer = await CustomerModel.findOne({email: payload.email});
+//     if (existingCustomer){
+//       return res.status(200).json({
+//         message: MESSAGE.post.succAuth,
+//         result: existingCustomer,
+//       })
+//     }
+//     const customerInstance =  await new CustomerModel(payload).save();
 
-    return res.status(200).json({
-      message: MESSAGE.post.succAuth,
-      result: customerInstance,
-    })
+//     return res.status(200).json({
+//       message: MESSAGE.post.succAuth,
+//       result: customerInstance,
+//     })
 
-  } catch (error) {
-    console.error(error);
-    return res.status(400).json({
-      message: MESSAGE.post.fail,
-      error,
-    });
-  }
-};
+//   } catch (error) {
+//     console.error(error);
+//     return res.status(400).json({
+//       message: MESSAGE.post.fail,
+//       error,
+//     });
+//   }
+// };
 
-export const customerMobileSignUp = async (req: Request, res: Response) => {
-  try {
-      const userDetails = req.body;
-      const customerInstance = await CustomerModel.findOne({phone: userDetails.phone});
-      if(customerInstance){
-          return res.status(409).json({
-              message:MESSAGE.post.sameEntry,
-          })
-      }
-      bcrypt.hash(userDetails.password, 10, async (err, hash) => {
-          if (err) {
-              console.error("Error hashing password:", err);
-          } else {
-               const userInstance = await new CustomerModel({ ...userDetails, "password": hash }).save();
-              if (userInstance) {
-                  return res.status(200).send({
-                      message: MESSAGE.post.succAuth,
-                      result: userInstance
-                  });
-              }
-          }
-      });
-  }
-  catch (error) {
-      console.log("error", error)
-      res.status(400).json({
-          message: MESSAGE.post.fail,
-          error,
-      });
-  }
-}
+// export const customerMobileSignUp = async (req: Request, res: Response) => {
+//   try {
+//       const userDetails = req.body;
+//       const customerInstance = await CustomerModel.findOne({phone: userDetails.phone});
+//       if(customerInstance){
+//           return res.status(409).json({
+//               message:MESSAGE.post.sameEntry,
+//           })
+//       }
+//       bcrypt.hash(userDetails.password, 10, async (err, hash) => {
+//           if (err) {
+//               console.error("Error hashing password:", err);
+//           } else {
+//                const userInstance = await new CustomerModel({ ...userDetails, "password": hash }).save();
+//               if (userInstance) {
+//                   return res.status(200).send({
+//                       message: MESSAGE.post.succAuth,
+//                       result: userInstance
+//                   });
+//               }
+//           }
+//       });
+//   }
+//   catch (error) {
+//       console.log("error", error)
+//       res.status(400).json({
+//           message: MESSAGE.post.fail,
+//           error,
+//       });
+//   }
+// }
 
 export const loginWholesaler = async (req: Request, res: Response) => {
   try {
     const { phone_number, password } = req.body;
-    const employeeInstance = await WholeSalerEmployeeModel.findOne({phone_number});
+    const employeeInstance: any = await WholeSalerEmployeeModel.findOne({phone_number}).populate("wholesaler");
     if (!employeeInstance) {
       return res.status(404).json({
         message: MESSAGE.post.failAuth,
@@ -75,9 +75,14 @@ export const loginWholesaler = async (req: Request, res: Response) => {
     }
     const verify = await verifyPassword(password, employeeInstance.password);
     if (verify) {
+      const wholesaler = employeeInstance.wholesaler;
+      delete employeeInstance.wholesaler;
       return res.status(200).json({
         message: MESSAGE.post.succAuth,
-        result: employeeInstance,
+        result: {
+          user: employeeInstance,
+          wholesaler
+        },
       });
     }
     return res.status(404).json({

@@ -52,7 +52,7 @@ setUser(response)
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }}>
-      <StatusBar translucent={true} backgroundColor={"transparent"} />
+      {/* <StatusBar translucent={true} backgroundColor={"transparent"} /> */}
       <View style={{ flexDirection: "column" }}>
         <Image style={{ width: "100%", height: screenHeight / 1.9 }} source={loginBg} />
         <View style={[globalStyle.modalContent, { marginTop: -screenHeight / 15.9 }]}>
@@ -69,7 +69,8 @@ setUser(response)
     </View>
           <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
             <PasswordToggle password={password} setPassword={setPassword} />
-            <Button onPress={handleSignIn} style={globalStyle.signInButton}>
+            <Text style={globalStyle.forgotPasswordText}>{wholesaler?.contact_full_name}Forgot Password?</Text>
+            <Button onPress={handleSignIn} style={globalStyle.blueButton}>
         <Text style={globalStyle.signInButtonText}>Save password</Text>
       
 

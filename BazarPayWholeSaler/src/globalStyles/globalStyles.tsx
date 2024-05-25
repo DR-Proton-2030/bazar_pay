@@ -206,10 +206,20 @@ export const globalStyle = StyleSheet.create({
     borderColor: "gray",
     borderRadius: 40,
   },
-  signInButton: {
+  blueButton: {
     backgroundColor: Colors.light.primary,
     borderRadius: 40,
     paddingVertical: 10,
+  },
+  lightVioletButton: {
+    backgroundColor: Colors.light.lightViolet,
+    borderRadius: 40,
+    paddingVertical: 10,
+  },
+  lightVioletButtonText:{
+    color:Colors.light.secondary,
+    fontSize:16,
+    fontWeight:"bold"
   },
   signInButtonText: {
     color: "white",

@@ -74,6 +74,7 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) 
           <TextInput
             style={styles.input}
             placeholder={field.placeholder}
+            value={formData[field.field]}
             onChangeText={(text) => handleInputChange(field.field, text)}
             underlineColorAndroid="transparent"
           />

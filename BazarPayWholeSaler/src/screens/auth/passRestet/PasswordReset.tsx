@@ -79,7 +79,7 @@ const PasswordResetPage = () => {
         <Text style={styles.errorText}>Passwords do not match</Text>
       )}
 
-       <Button textColor='white' style={globalStyle.signInButton} onPress={handleSubmit}
+       <Button textColor='white' style={globalStyle.blueButton} onPress={handleSubmit}
        >
          Save
     </Button>

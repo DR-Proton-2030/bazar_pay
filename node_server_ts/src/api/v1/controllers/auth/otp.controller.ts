@@ -43,10 +43,10 @@ const default_profile_image_url =
   "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg";
 
 export const getOtp = async (req: Request, res: Response) => {
-  const { phone_number } = req.body;
+  const { phone_number } = req.query;
   try {
-    const userInstance = await WholeSalerEmployeeModel.findOne({ phone_number});
-    console.log("userInstance", userInstance);
+    // const userInstance = await WholeSalerEmployeeModel.findOne({ phone_number});
+    // console.log("userInstance", userInstance);
     const otp = generateOTP();
     const generateMessage = () => {
       return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
@@ -55,6 +55,8 @@ export const getOtp = async (req: Request, res: Response) => {
     const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${
       "88" + phone_number
     }&senderId=${senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
+
+    console.log("===>", urlWithDynamicMessage);
 
     axios
       .get(urlWithDynamicMessage)
