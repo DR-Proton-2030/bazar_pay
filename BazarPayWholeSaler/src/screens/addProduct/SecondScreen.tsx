@@ -1,40 +1,51 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons'; // Importing Ionicons from @expo/vector-icons
+import { Ionicons } from '@expo/vector-icons';
 import Colors from '../../constants/Colors';
+import { ProductSecondInput } from '../../constants/form/productInput/ProductInput';
 
 const SecondScreen = () => {
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>পণ্যের বারকোড যুক্ত করুন?</Text>
-      <View style={styles.row}>
-        <TouchableOpacity style={styles.barcodeButton}>
-          <Ionicons name="barcode" size={24} color={Colors.light.primary} />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.barcodeButton}>
-          <Ionicons name="barcode" size={24} color={Colors.light.primary} />
-        </TouchableOpacity>
-        <TextInput style={styles.barcodeInput} placeholder="বারকোড যুক্ত করুন" placeholderTextColor="#999" />
-      </View>
-
-      <TextInput style={styles.input} placeholder="পণ্যের ওয়ারেন্টি (যদি থাকে)" placeholderTextColor="#999" />
-      
-      <View style={styles.row}>
-        <TextInput style={[styles.input, styles.halfInput]} placeholder="পণ্যের ডিস্কাউন্ট (যদি থাকে)" placeholderTextColor="#999" />
-        <TextInput style={[styles.input, styles.halfInput]} placeholder="পণ্যের জিএটি (যদি থাকে)" placeholderTextColor="#999" />
-      </View>
-      
-      <TextInput style={styles.input} placeholder="নোট" placeholderTextColor="#999" />
-      <TextInput style={styles.input} placeholder="চালানের নম্বর (যদি থাকে)" placeholderTextColor="#999" />
+      {ProductSecondInput.map((field, index) => {
+        if (field.half) {
+          if (index % 2 === 0) {
+            return (
+              <View style={styles.row} key={index}>
+                <TextInput
+                  style={[styles.input, styles.halfInput]}
+                  placeholder={field.placeholder}
+                  placeholderTextColor="#999"
+                />
+                {ProductSecondInput[index + 1] && ProductSecondInput[index + 1].half && (
+                  <TextInput
+                    style={[styles.input, styles.halfInput]}
+                    placeholder={ProductSecondInput[index + 1].placeholder}
+                    placeholderTextColor="#999"
+                  />
+                )}
+              </View>
+            );
+          }
+          return null; 
+        } else {
+          return (
+            <TextInput
+              style={styles.input}
+              placeholder={field.placeholder}
+              placeholderTextColor="#999"
+              key={index}
+            />
+          );
+        }
+      })}
 
       <View style={styles.totalRow}>
         <Text style={styles.totalLabel}>সর্বমোট:</Text>
         <Text style={styles.totalAmount}>৳ ২০,০০০</Text>
       </View>
 
-      <TouchableOpacity style={styles.addButton}>
-        <Text style={styles.addButtonText}>পণ্যটি যোগ করুন</Text>
-      </TouchableOpacity>
+   
     </View>
   );
 };
@@ -45,9 +56,7 @@ const styles = StyleSheet.create({
   },
   row: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
   },
   barcodeButton: {
     backgroundColor: '#f0f0f0',

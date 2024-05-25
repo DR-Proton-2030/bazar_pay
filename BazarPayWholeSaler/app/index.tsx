@@ -9,9 +9,10 @@ import WholesalerContext from "../src/contexts/wholesalerContext/wholesalerConte
 import { useNavigation } from "expo-router";
 import SplashScreen from "../src/screens/splashScreen/SplashScreen";
 import Colors from "../src/constants/Colors";
+import AddProduct from "../src/screens/addProduct/AddProduct";
 
 const index = () => {
-  return <SplashScreen />;
+  return <AddProduct />;
 };
 
 export default index;

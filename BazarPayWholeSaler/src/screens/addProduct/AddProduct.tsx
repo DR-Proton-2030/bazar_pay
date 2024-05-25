@@ -13,15 +13,35 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import FirstScreen from "./FirsScreen";
 import SecondScreen from "./SecondScreen";
 import CommonHeader from "../../components/shared/commonHeader/CommonHeader";
+import ImageUploader from "../../components/shared/ImageUploader/ImageUploader";
+import { globalStyle } from "../../globalStyles/globalStyles";
+import { Button } from "react-native-paper";
 
 const AddProduct = () => {
   return (
     <SafeAreaView>
-      <CommonHeader text="নতুন পণ্য যোগ করুন"/>
+      <CommonHeader text="নতুন পণ্য যোগ করুন" />
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.form}>
+          <TouchableOpacity style={globalStyle.quickAddButton}>
+            <Text style={globalStyle.quickAddText}>দ্রুত পণ্য যোগ করুন</Text>
+            <Ionicons name="chevron-forward" size={24} color="black" />
+          </TouchableOpacity>
+
+          <Text style={globalStyle.infoText}>আপনি ব্র্যান্ড অনুমোদিত দ্রুত পণ্য যোগ করতে পারেন</Text>
+
+          <ImageUploader />
           <FirstScreen />
+          <Text style={{
+            fontWeight: '600', fontSize: 16, marginBottom: 10
+          }}>পণ্যের বারকোড যুক্ত করুন</Text>
+          <ImageUploader />
           <SecondScreen />
+          <Button style={{ backgroundColor: "blue" }}  mode="contained" onPress={() => console.log('Pressed')}>
+            <Text style={{ fontSize: 17 }}>
+              Upload Product
+            </Text>
+          </Button>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -50,6 +70,8 @@ const styles = StyleSheet.create({
   },
   form: {
     marginTop: 20,
+    paddingHorizontal: 10,
+    marginBottom: 100
   },
 });
 
