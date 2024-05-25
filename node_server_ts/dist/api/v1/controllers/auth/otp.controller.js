@@ -35,7 +35,7 @@ const getOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         };
         const dynamicMessage = generateMessage();
         const employeeInstance = yield wholeSalerEmployee_model_1.default.findOne({ phone_number });
-        if (!employeeInstance) {
+        if (employeeInstance) {
             return res.status(404).json({
                 message: message_1.MESSAGE.get.fail,
             });
