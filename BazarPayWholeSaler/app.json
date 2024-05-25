@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bazar_pay_wholesaler",
-    "scheme": "bazar_pay_wholesaler",
+    "name": "bazar-pay-wholesaler",
+    "scheme": "bazar-pay-wholesaler",
     "slug": "bazarpay-wholesaler",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -21,7 +21,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#316FF6"
+        "backgroundColor": "#ffffff"
       },
       "package": "com.tuhin08123.bazar_pay_app",
       "permissions": [

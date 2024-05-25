@@ -99,6 +99,7 @@ export const globalStyle = StyleSheet.create({
     justifyContent: "space-between",
     paddingVertical: 20,
     paddingLeft: 5,
+    paddingTop:40,
     backgroundColor: Colors.light.background,
     zIndex: 50,
     width: windowWidth,
