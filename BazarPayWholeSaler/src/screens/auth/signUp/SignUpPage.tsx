@@ -56,8 +56,6 @@ const SignUpPage = () => {
     }
   };
       // Alert.alert("Error", error.response?.data?.message || error.message);
-    }
-  };
 
   const requestOtp = async () => {
     if (formData) {

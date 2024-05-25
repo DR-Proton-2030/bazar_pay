@@ -1,8 +1,8 @@
 {
   "expo": {
     "name": "bazar_pay_wholesaler",
-    "scheme": "bazar_pay_wholesalr",
-    "slug": "bazar_pay_wholesalr",
+    "scheme": "bazar_pay_wholesaler",
+    "slug": "bazarpay-wholesaler",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -10,18 +10,23 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#316FF6"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#316FF6"
       },
-      "package": "com.tuhin08123.bazar_pay_app"
+      "package": "com.tuhin08123.bazar_pay_app",
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -41,8 +46,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "8ff1cdaa-576f-49d4-811a-ac3c81c9bd70"
+        "projectId": "bc687e23-1b10-4941-8e1e-92096669e619"
       }
-    }
+    },
+    "owner": "anik08"
   }
 }

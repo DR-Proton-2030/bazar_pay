@@ -62,7 +62,7 @@ const SignIn = () => {
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }}>
-      <StatusBar translucent={true} backgroundColor={"transparent"} />
+      {/* <StatusBar translucent={true} backgroundColor={"transparent"} /> */}
       <View style={{ flexDirection: "column" }}>
         <Image
           style={{ width: "100%", height: screenHeight / 1.9 }}

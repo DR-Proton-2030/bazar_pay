@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { Entypo } from "@expo/vector-icons";
@@ -8,22 +8,12 @@ import Colors from "../src/constants/Colors";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import WholesalerContextProvider from "../src/contexts/wholesalerContext/Provider";
 import AuthContextProvider from "../src/contexts/authContext/Provider";
+import AuthContext from "../src/contexts/authContext/authContext";
+import WholesalerContext from "../src/contexts/wholesalerContext/wholesalerContext";
 
 export { ErrorBoundary } from "expo-router";
 
-export const unstable_settings = {
-  initialRouteName: "wellcomePage",
-};
-
 export default function RootLayout() {
-  useEffect(() => {
-    const hideSplashScreen = async () => {
-      await SplashScreen.hideAsync();
-    };
-
-    hideSplashScreen();
-  }, []);
-
   return (
     <PaperProvider>
       <WholesalerContextProvider>
@@ -38,8 +28,20 @@ export default function RootLayout() {
 }
 
 function RootLayoutNav() {
+  const { user } = useContext(AuthContext);
+  const { wholesaler } = useContext(WholesalerContext);
+  const [initialRouteName, setInitialRouteName] =
+    useState<string>("wellcomePage");
+  // useEffect(() => {
+  //   if (user && wholesaler) {
+  //     setInitialRouteName("homePage");
+  //   }
+  // }, [user, wholesaler]);
   return (
-    <Stack screenOptions={{ headerShadowVisible: false }}>
+    <Stack
+      initialRouteName={initialRouteName}
+      screenOptions={{ headerShadowVisible: false }}
+    >
       <Stack.Screen
         name="index"
         options={{ headerShown: false, statusBarStyle: "dark" }}

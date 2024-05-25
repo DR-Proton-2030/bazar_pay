@@ -12,12 +12,13 @@ import Colors from "../../constants/Colors";
 import { globalStyle } from "../../globalStyles/globalStyles";
 import { Button } from "react-native-paper";
 import { IOtpProps } from "../../@types/props/otp.props";
+import { useNavigation } from "expo-router";
 
 const tempUri =
   "https://img.freepik.com/free-vector/two-factor-authentication-concept-illustration_114360-5488.jpg?t=st=1716275739~exp=1716279339~hmac=b4b4f099e54c5339b627ea860a59e3864803651c9491dc05b6214e86009e46c7&w=740";
 
-const OtpPage = ({ verifyOtp, originalOtp, setOtp,handleBack}: IOtpProps) => {
-  const navigation: any = useNavigation();
+const OtpPage = ({ verifyOtp, originalOtp, setOtp,handleBack}: IOtpProps | any) => {
+  const navigation = useNavigation<any>();
   const handleSetOtp = (text:string) => {
     setOtp(text);
     if (text !== originalOtp) {
