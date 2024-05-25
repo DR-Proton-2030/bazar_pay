@@ -1,5 +1,12 @@
-import React, { useContext } from "react";
-import { TouchableOpacity, View, Text, Dimensions, Image } from "react-native";
+import React, { useContext, useState } from "react";
+import {
+  TouchableOpacity,
+  View,
+  Text,
+  Dimensions,
+  Image,
+  Modal,
+} from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "../../../constants/Colors";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -16,6 +23,9 @@ export const DrawerContent = ({ onClose }: any) => {
   const { user, setUser } = useContext(AuthContext);
   const navigation: any = useNavigation();
   const drawerItems = createDrawerItems(navigation);
+  const [logoutConfirmationVisible, setLogoutConfirmationVisible] =
+    useState(false);
+
   const handleNavigatetoProfile = ({ route }: any) => {
     navigation.navigate("profilePage");
     onClose();
@@ -28,10 +38,13 @@ export const DrawerContent = ({ onClose }: any) => {
   };
 
   const handleLogout = () => {
-    setUser(null); // Set user to null to simulate logout
+    setLogoutConfirmationVisible(true);
+  };
+
+  const confirmLogout = () => {
+    setUser(null);
     onClose();
-    // Optionally navigate to a login or welcome screen after logout
-    navigation.navigate("signInPage"); // Adjust the route name as needed
+    navigation.navigate("signInPage");
   };
 
   return (
@@ -80,7 +93,6 @@ export const DrawerContent = ({ onClose }: any) => {
       </View>
 
       <TouchableOpacity
-        // onPress= // Assuming you have a logout function in AuthContext
         onPress={handleLogout}
         style={{
           position: "absolute",
@@ -117,6 +129,64 @@ export const DrawerContent = ({ onClose }: any) => {
       >
         <Ionicons name="settings" size={24} color={Colors.light.primary} />
       </TouchableOpacity>
+
+      {/* Logout Confirmation Modal */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={logoutConfirmationVisible}
+        onRequestClose={() => setLogoutConfirmationVisible(false)}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          }}
+        >
+          <View
+            style={{
+              backgroundColor: "white",
+              padding: 20,
+              borderRadius: 10,
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontSize: 18, marginBottom: 20 }}>
+              Are you sure you want to logout?
+            </Text>
+            <View style={{ flexDirection: "row" }}>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: Colors.light.primary,
+                  paddingHorizontal: 20,
+                  paddingVertical: 10,
+                  borderRadius: 5,
+                  marginRight: 10,
+                }}
+                onPress={() => {
+                  setLogoutConfirmationVisible(false);
+                  confirmLogout();
+                }}
+              >
+                <Text style={{ color: "white" }}>Yes</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  backgroundColor: Colors.light.primary,
+                  paddingHorizontal: 20,
+                  paddingVertical: 10,
+                  borderRadius: 5,
+                }}
+                onPress={() => setLogoutConfirmationVisible(false)}
+              >
+                <Text style={{ color: "white" }}>No</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };
