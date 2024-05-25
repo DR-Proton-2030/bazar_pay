@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { TouchableOpacity, View, Text, Dimensions, Image } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import Colors from "../../../constants/Colors";
@@ -7,8 +7,12 @@ import { AntDesign } from "@expo/vector-icons";
 import DrawerCards from "./drawerCards/DrawerCards";
 import { useNavigation } from "expo-router";
 import { createDrawerItems } from "../../../database/drawerItems/drawerItems";
+import AuthContext from "../../../contexts/authContext/authContext";
+import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerContext";
 
 export const DrawerContent = ({ onClose }: any) => {
+  const {wholesaler} = useContext(WholesalerContext);
+  const {user} = useContext(AuthContext);
   const navigation: any = useNavigation();
   const drawerItems = createDrawerItems(navigation);
   const handleNavigatetoProfile = ({ route }: any) => {
@@ -29,17 +33,15 @@ export const DrawerContent = ({ onClose }: any) => {
         style={{ alignItems: "center", marginBottom: 20, flexDirection: "row" }}
       >
         <Image
-          source={{
-            uri: "https://img.icons8.com/?size=512&id=108652&format=png",
-          }}
+          source={{uri: wholesaler?.owner_photo}}
           style={{ width: 80, height: 80, borderRadius: 50 }}
         />
         <View style={{ marginLeft: 10 }}>
           <Text style={{ fontSize: 18, fontWeight: "bold", marginTop: 10 }}>
-            Your Name
+            {user?.full_name}
           </Text>
           <Text style={{ fontSize: 14, marginTop: 5 }}>
-            nomanroni@gmail.com
+            {wholesaler?.contact_email}
           </Text>
           <TouchableOpacity
             onPress={handleNavigatetoProfile}
@@ -50,7 +52,7 @@ export const DrawerContent = ({ onClose }: any) => {
               paddingHorizontal: 5,
               paddingVertical: 7,
               borderRadius: 5,
-              width: 100,
+              width:"fit-content"
             }}
           >
             <Text style={{ color: Colors.light.primary }}>Show Details</Text>

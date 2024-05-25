@@ -12,9 +12,9 @@ const SplashScreen = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       if (user && wholesaler) {
-        navigation.navigate("homePage");
+        navigation.replace("homePage");
       } else {
-        navigation.navigate("wellcomePage");
+        navigation.replace("wellcomePage");
       }
     }, 1000);
 
