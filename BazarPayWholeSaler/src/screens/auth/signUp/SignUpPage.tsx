@@ -47,37 +47,19 @@ const SignUpPage = () => {
         setWholesaler(response)
         navigation.navigate("passwordSet")
       } else {
-        // Alert.alert("Error", response);
         console.log(response)
       }
     } catch (error:any) {
       console.error("Error adding wholesaler:", error);
-      // Alert.alert("Error", error.response?.data?.message || error.message);
 
     }
-  };
-
-  const requestOtp = () => {
-    axios.post(`http://localhost:8989/wholeseller`, { phone_no: phoneNo })
-      .then(response => {
-        console.log(response.data);
-        setGeneratedOtp(response.data.result);
-        setOtpRequested(true);
-        Alert.alert("Success", `OTP sent to ${phoneNo}`);
-      })
-      .catch(error => {
-        console.log(error);
-        Alert.alert("Error", "Failed to send OTP");
-      });
   };
 
   const verifyOtp = () => {
     if (otp === "1234") {
 console.log("otp=====>",otp)
-      // Alert.alert("Success", "OTP verified");
       createWholesaler()
     } else {
-      // Alert.alert("Error", "Invalid OTP");
       console.log("Otp not valid")
     }
   };

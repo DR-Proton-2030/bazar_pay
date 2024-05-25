@@ -51,7 +51,7 @@ const ImageUpload = ({ onImageSelect }:any) => {
         {!hiddenButtons.includes("owner_photo") && (
           <TouchableOpacity style={styles.button} onPress={() => pickImage("owner_photo")}>
             <MaterialIcons name="image" size={20} color="gray" />
-            <Text>Own</Text>
+            <Text>Own Photo</Text>
           </TouchableOpacity>
         )}
       </View>
@@ -66,7 +66,7 @@ const ImageUpload = ({ onImageSelect }:any) => {
         {!hiddenButtons.includes("nid") && (
           <TouchableOpacity style={styles.button} onPress={() => pickImage("nid")}>
             <MaterialIcons name="image" size={20} color="gray" />
-            <Text>NID</Text>
+            <Text>NID Card</Text>
           </TouchableOpacity>
         )}
         
@@ -81,7 +81,7 @@ const ImageUpload = ({ onImageSelect }:any) => {
         {!hiddenButtons.includes("logo") && (
           <TouchableOpacity style={styles.button} onPress={() => pickImage("logo")}>
             <MaterialIcons name="image" size={20} color="gray" />
-            <Text>Logo</Text>
+            <Text>Business Logo</Text>
           </TouchableOpacity>
         )}
 </View>
@@ -104,17 +104,18 @@ const styles = StyleSheet.create({
   button: {
     width: "auto",
     height: 40,
-    backgroundColor: Colors.light.grayBtn,
+    backgroundColor: Colors.light.background,
     borderRadius: 50,
     flexDirection: "row",
     gap: 5,
-    paddingHorizontal: 30,
+    paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "black",
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
+    shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   label: { fontWeight: "bold", marginBottom: 25, marginLeft: 10 },
   image: { width: 90, height: 80, marginHorizontal: 10, borderRadius: 10 },

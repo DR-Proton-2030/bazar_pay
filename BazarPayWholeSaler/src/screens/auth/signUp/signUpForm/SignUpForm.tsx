@@ -6,10 +6,10 @@ import Colors from "../../../../constants/Colors";
 import Chip from "../../../../components/shared/chips/Chips";
 import ImageUpload from "../../../../components/shared/ImageUpload/ImageUpload";
 
-const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }: any) => {
-  const [errors, setErrors] = useState({ contact_phone_number: "", email: "" });
+const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) => {
+  const [errors, setErrors] = useState<any>({ contact_phone_number: "", email: "", emptyFields: {} });
 
-  const handleInputChange = (field: string, value: string) => {
+  const handleInputChange = (field:any, value:any) => {
     if (field === "contact_phone_number") {
       if (value.length > 10) {
         setErrors({ ...errors, contact_phone_number: "Invalid phone number" });
@@ -28,14 +28,33 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }: any)
       }
     }
 
+    setErrors((prevErrors:any) => ({
+      ...prevErrors,
+      emptyFields: { ...prevErrors.emptyFields, [field]: "" },
+    }));
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleImageSelect = (selectedImages: string[]) => {
+  const handleImageSelect = (selectedImages:any) => {
     setImages(selectedImages);
   };
 
   const handleSubmit = () => {
+    let hasEmptyFields = false;
+    let newEmptyFieldsErrors:any = {};
+
+    formFields.forEach((field) => {
+      if (!formData[field.field]) {
+        hasEmptyFields = true;
+        newEmptyFieldsErrors[field.field] = `${field.label} is required`;
+      }
+    });
+
+    if (hasEmptyFields) {
+      setErrors({ ...errors, emptyFields: newEmptyFieldsErrors });
+      return;
+    }
+
     onSubmit();
   };
 
@@ -63,6 +82,9 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }: any)
           ) : null}
           {field.field === "contact_email" && errors.email ? (
             <Text style={styles.errorText}>{errors.email}</Text>
+          ) : null}
+          {errors.emptyFields[field.field] ? (
+            <Text style={styles.errorText}>{errors.emptyFields[field.field]}</Text>
           ) : null}
         </View>
       ))}
