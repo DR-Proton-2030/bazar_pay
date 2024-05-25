@@ -59,7 +59,7 @@ export const getOtp = async (req: Request, res: Response) => {
       });
     }
     const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${
-      "88" + phone_number
+      "880" + phone_number
     }&senderId=${senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
 
     console.log("===>", urlWithDynamicMessage);

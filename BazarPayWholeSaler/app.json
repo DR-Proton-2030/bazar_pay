@@ -16,7 +16,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.anik08.bazarpay-wholesaler"
     },
     "android": {
       "adaptiveIcon": {

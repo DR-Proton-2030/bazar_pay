@@ -18,6 +18,7 @@ const customer_model_1 = __importDefault(require("../../../../models/customer.mo
 const axios_1 = __importDefault(require("axios"));
 const message_1 = require("../../../../constants/message");
 const generateOtp_1 = require("../../../../services/generateOtp");
+const wholeSalerEmployee_model_1 = __importDefault(require("../../../../models/wholeSalerEmployee.model"));
 const apiUrl = "https://smsmassdata.massdata.xyz/api/sms/send";
 const apiKey = "01840404003.a23cb6f2-cc90-4221-aaef-8f6f0aa4d641";
 const type = "text";
@@ -33,7 +34,13 @@ const getOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
         };
         const dynamicMessage = generateMessage();
-        const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${"88" + phone_number}&senderId=${senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
+        const employeeInstance = yield wholeSalerEmployee_model_1.default.findOne({ phone_number });
+        if (!employeeInstance) {
+            return res.status(404).json({
+                message: message_1.MESSAGE.get.fail,
+            });
+        }
+        const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${"880" + phone_number}&senderId=${senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
         console.log("===>", urlWithDynamicMessage);
         axios_1.default
             .get(urlWithDynamicMessage)
