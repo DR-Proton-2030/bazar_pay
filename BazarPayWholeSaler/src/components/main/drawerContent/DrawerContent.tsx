@@ -52,7 +52,6 @@ export const DrawerContent = ({ onClose }: any) => {
               paddingHorizontal: 5,
               paddingVertical: 7,
               borderRadius: 5,
-              width:"fit-content"
             }}
           >
             <Text style={{ color: Colors.light.primary }}>Show Details</Text>
