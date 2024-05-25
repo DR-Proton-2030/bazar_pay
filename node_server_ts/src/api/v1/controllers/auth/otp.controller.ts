@@ -52,6 +52,12 @@ export const getOtp = async (req: Request, res: Response) => {
       return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
     };
     const dynamicMessage = generateMessage();
+    const employeeInstance: any = await WholeSalerEmployeeModel.findOne({phone_number});
+    if (!employeeInstance) {
+      return res.status(404).json({
+        message: MESSAGE.get.fail,
+      });
+    }
     const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${
       "88" + phone_number
     }&senderId=${senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;

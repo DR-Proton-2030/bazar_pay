@@ -59,11 +59,17 @@ const SignUpPage = () => {
 
   const requestOtp = async () => {
     if (formData) {
-      const response = await api.auth.getOtp({
-        phone_number: formData.contact_phone_number,
-      });
-      console.log("===>",response);
-      setOriginalOtp(response);
+      try {
+        const response = await api.auth.getOtp({
+          phone_number: formData.contact_phone_number,
+        });
+        console.log("===>",response);
+        setOriginalOtp(response);
+      } catch (error) {
+        console.log(error)
+        Alert.alert("Error! Phone number already registered");
+      }
+      
     }
   };
 
