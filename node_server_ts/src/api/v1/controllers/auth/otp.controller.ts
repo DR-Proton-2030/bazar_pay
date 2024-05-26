@@ -53,7 +53,7 @@ export const getOtp = async (req: Request, res: Response) => {
     };
     const dynamicMessage = generateMessage();
     const employeeInstance: any = await WholeSalerEmployeeModel.findOne({phone_number});
-    if (!employeeInstance) {
+    if (employeeInstance) {
       return res.status(404).json({
         message: MESSAGE.get.fail,
       });

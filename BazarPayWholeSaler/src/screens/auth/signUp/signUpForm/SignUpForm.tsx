@@ -98,7 +98,7 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) 
 };
 
 const styles = StyleSheet.create({
-  container: { flexDirection: "column", paddingTop: 40, paddingHorizontal: 20, backgroundColor: Colors.light.background },
+  container: { flexDirection: "column", paddingBottom: 40, paddingHorizontal: 20, backgroundColor: Colors.light.background },
   fieldContainer: { marginBottom: 30 },
   labelContainer: { flexDirection: "row", alignItems: "center" },
   label: { fontWeight: "bold", marginBottom: 5, marginLeft: 10 },

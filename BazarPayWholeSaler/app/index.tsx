@@ -12,7 +12,7 @@ import Colors from "../src/constants/Colors";
 import AddProduct from "../src/screens/addProduct/AddProduct";
 
 const index = () => {
-  return <AddProduct />;
+  return <SplashScreen />;
 };
 
 export default index;
