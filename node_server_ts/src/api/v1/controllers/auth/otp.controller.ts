@@ -3,7 +3,7 @@ import axios from "axios";
 import { MESSAGE } from "../../../../constants/message";
 import { generateOTP } from "../../../../services/generateOtp";
 import WholeSalerEmployeeModel from "../../../../models/wholeSalerEmployee.model";
-import { msg_apiKey, msg_senderId, msg_type } from "../../../../config/config";
+import { msg_apiKey, msg_apiUrl, msg_senderId, msg_type } from "../../../../config/config";
 
 export const getOtp = async (req: Request, res: Response) => {
   const { phone_number } = req.query;
@@ -21,7 +21,7 @@ export const getOtp = async (req: Request, res: Response) => {
         message: MESSAGE.get.fail,
       });
     }
-    const urlWithDynamicMessage = `${msg_apiKey}?apiKey=${msg_apiKey}&type=${msg_type}&contactNumbers=${
+    const urlWithDynamicMessage = `${msg_apiUrl}?apiKey=${msg_apiKey}&type=${msg_type}&contactNumbers=${
       "880" + phone_number
     }&senderId=${msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
 
