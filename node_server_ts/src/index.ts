@@ -1,11 +1,9 @@
-import express, { Request, Response } from "express";
-import mongoose from "mongoose";
+import express from "express";
 import cors from "cors";
 import bodyParser, { json } from "body-parser";
-import http from "http";
 import connectDb from "./config/db";
 
-const mongo_url = process.env.NODE_ENV !== "PROD" ? process.env.LOCAL_MONGO_URL : process.env.PROD_MONGO_URL;
+// const mongo_url = process.env.NODE_ENV !== "PROD" ? process.env.LOCAL_MONGO_URL : process.env.PROD_MONGO_URL;
 
 // dotenv.config();
 const app = express();
