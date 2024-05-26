@@ -30,7 +30,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const body_parser_1 = __importStar(require("body-parser"));
 const db_1 = __importDefault(require("./config/db"));
-const mongo_url = process.env.NODE_ENV !== "PROD" ? process.env.LOCAL_MONGO_URL : process.env.PROD_MONGO_URL;
+// const mongo_url = process.env.NODE_ENV !== "PROD" ? process.env.LOCAL_MONGO_URL : process.env.PROD_MONGO_URL;
 // dotenv.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8989;

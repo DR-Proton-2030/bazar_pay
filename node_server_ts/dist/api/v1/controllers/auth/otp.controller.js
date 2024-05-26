@@ -1,5 +1,4 @@
 "use strict";
-// import { Request, Response } from "express";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -13,16 +12,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.forgetPasswordOtp = exports.getOtp = void 0;
-const customer_model_1 = __importDefault(require("../../../../models/customer.model"));
+exports.getOtp = void 0;
 const axios_1 = __importDefault(require("axios"));
 const message_1 = require("../../../../constants/message");
 const generateOtp_1 = require("../../../../services/generateOtp");
-const apiUrl = "https://smsmassdata.massdata.xyz/api/sms/send";
-const apiKey = "01840404003.a23cb6f2-cc90-4221-aaef-8f6f0aa4d641";
-const type = "text";
-const senderId = "8803590005376";
-const default_profile_image_url = "https://t4.ftcdn.net/jpg/02/15/84/43/360_F_215844325_ttX9YiIIyeaR7Ne6EaLLjMAmy4GvPC69.jpg";
+const wholeSalerEmployee_model_1 = __importDefault(require("../../../../models/wholeSalerEmployee.model"));
+const config_1 = require("../../../../config/config");
 const getOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { phone_number } = req.query;
     try {
@@ -33,7 +28,13 @@ const getOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
         };
         const dynamicMessage = generateMessage();
-        const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${"88" + phone_number}&senderId=${senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
+        const employeeInstance = yield wholeSalerEmployee_model_1.default.findOne({ phone_number });
+        if (employeeInstance) {
+            return res.status(404).json({
+                message: message_1.MESSAGE.get.fail,
+            });
+        }
+        const urlWithDynamicMessage = `${config_1.msg_apiKey}?apiKey=${config_1.msg_apiKey}&type=${config_1.msg_type}&contactNumbers=${"880" + phone_number}&senderId=${config_1.msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
         console.log("===>", urlWithDynamicMessage);
         axios_1.default
             .get(urlWithDynamicMessage)
@@ -52,45 +53,45 @@ const getOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
     catch (error) {
-        console.log("error");
+        console.log("error", error);
     }
 });
 exports.getOtp = getOtp;
-const forgetPasswordOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { phone_no } = req.query;
-    try {
-        const isUserExist = yield customer_model_1.default.findOne({ mobile: phone_no });
-        if (!isUserExist) {
-            return res.status(401).json({
-                message: message_1.MESSAGE.get.custom("User Does Not Exists"),
-            });
-        }
-        const otp = (0, generateOtp_1.generateOTP)();
-        // Function to generate a dynamic message
-        const generateMessage = () => {
-            // Your message generation logic goes here
-            return `your OTP for login in Muslim Matrimony is ${otp} `;
-        };
-        const dynamicMessage = generateMessage();
-        const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${"88" + phone_no}&senderId=${senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
-        axios_1.default
-            .get(urlWithDynamicMessage)
-            .then((response) => {
-            console.log(response);
-            return res.status(200).json({
-                message: message_1.MESSAGE.get.succ,
-                result: otp,
-            });
-        })
-            .catch((error) => {
-            return res.status(400).json({
-                message: message_1.MESSAGE.get.fail,
-                result: error,
-            });
-        });
-    }
-    catch (error) {
-        console.log(error);
-    }
-});
-exports.forgetPasswordOtp = forgetPasswordOtp;
+// export const forgetPasswordOtp = async (req: Request, res: Response) => {
+//   const { phone_no } = req.query;
+//   try {
+//     const isUserExist = await RetailerrModel.findOne({ mobile: phone_no });
+//     if (!isUserExist) {
+//       return res.status(401).json({
+//         message: MESSAGE.get.custom("User Does Not Exists"),
+//       });
+//     }
+//     const otp = generateOTP();
+//     // Function to generate a dynamic message
+//     const generateMessage = () => {
+//       // Your message generation logic goes here
+//       return `your OTP for login in Muslim Matrimony is ${otp} `;
+//     };
+//     const dynamicMessage = generateMessage();
+//     const urlWithDynamicMessage = `${apiUrl}?apiKey=${apiKey}&type=${type}&contactNumbers=${
+//       "88" + phone_no
+//     }&senderId=${senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
+//     axios
+//       .get(urlWithDynamicMessage)
+//       .then((response: { data: any }) => {
+//         console.log(response);
+//         return res.status(200).json({
+//           message: MESSAGE.get.succ,
+//           result: otp,
+//         });
+//       })
+//       .catch((error: { message: any }) => {
+//         return res.status(400).json({
+//           message: MESSAGE.get.fail,
+//           result: error,
+//         });
+//       });
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };

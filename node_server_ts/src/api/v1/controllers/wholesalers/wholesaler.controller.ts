@@ -1,7 +1,5 @@
 import { Request, Response } from "express";
-import CustomerModel from "../../../../models/customer.model";
 import { MESSAGE } from "../../../../constants/message";
-import BuilderModel from "../../../../models/wholesaler.model";
 import { uploadImageService } from "../../../../services/uploadImageService";
 import wholesalerModel from "../../../../models/wholesaler.model";
 
