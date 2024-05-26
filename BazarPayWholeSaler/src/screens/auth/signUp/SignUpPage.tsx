@@ -9,7 +9,6 @@ import axios from "axios";
 import { api } from "../../../utils/api";
 import OtpPage from "../otpScreen";
 import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerContext";
-import { NavigationProp } from "@react-navigation/native";
 import { IWholesaler } from "../../../@types/types/wholesaler.interface";
 import { defaultWholesalerState } from "../../../constants/initialState/wholeSalerState";
 
@@ -63,11 +62,13 @@ const SignUpPage = () => {
         });
         console.log("===>", response);
         setOriginalOtp(response);
+   
       } catch (error) {
         console.log(error);
         Alert.alert("Error! Phone number already registered");
       } finally {
         setLoading(false); 
+        setPage(1);
       }
     }
   };
@@ -86,7 +87,6 @@ const SignUpPage = () => {
 
   const changePage = async () => {
     await requestOtp();
-    setPage(1);
   };
 
   return (
