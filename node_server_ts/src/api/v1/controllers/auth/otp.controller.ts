@@ -43,7 +43,7 @@ export const getOtp = async (req: Request, res: Response) => {
         });
       });
   } catch (error) {
-    console.log("error");
+    console.log("error",error);
   }
 };
 
