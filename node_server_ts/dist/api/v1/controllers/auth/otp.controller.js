@@ -34,7 +34,7 @@ const getOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 message: message_1.MESSAGE.get.fail,
             });
         }
-        const urlWithDynamicMessage = `${config_1.msg_apiKey}?apiKey=${config_1.msg_apiKey}&type=${config_1.msg_type}&contactNumbers=${"880" + phone_number}&senderId=${config_1.msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
+        const urlWithDynamicMessage = `${config_1.msg_apiUrl}?apiKey=${config_1.msg_apiKey}&type=${config_1.msg_type}&contactNumbers=${"880" + phone_number}&senderId=${config_1.msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
         console.log("===>", urlWithDynamicMessage);
         axios_1.default
             .get(urlWithDynamicMessage)
