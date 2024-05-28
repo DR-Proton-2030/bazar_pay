@@ -71,13 +71,25 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) 
           <View style={styles.labelContainer}>
             <Text style={styles.label}>{field.label}</Text>
           </View>
-          <TextInput
-            style={styles.input}
-            placeholder={field.placeholder}
-            value={formData[field.field]}
-            onChangeText={(text) => handleInputChange(field.field, text)}
-            underlineColorAndroid="transparent"
-          />
+          {field.field === "contact_phone_number"? (
+            <>
+            <Text style={{color:"black",fontSize:14,marginBottom:-30}}>880</Text>
+           <TextInput
+           style={[styles.input,{paddingLeft:28}]}
+           placeholder={field.placeholder}
+           value={formData[field.field]}
+           onChangeText={(text) => handleInputChange(field.field, text)}
+           underlineColorAndroid="transparent"
+         />
+         </>
+          ) : <TextInput
+          style={styles.input}
+          placeholder={field.placeholder}
+          value={formData[field.field]}
+          onChangeText={(text) => handleInputChange(field.field, text)}
+          underlineColorAndroid="transparent"
+        />}
+          
           {field.field === "contact_phone_number" && errors.contact_phone_number ? (
             <Text style={styles.errorText}>{errors.contact_phone_number}</Text>
           ) : null}
