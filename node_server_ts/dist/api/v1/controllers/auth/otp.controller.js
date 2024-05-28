@@ -23,17 +23,17 @@ const getOtp = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         // const userInstance = await WholeSalerEmployeeModel.findOne({ phone_number});
         // console.log("userInstance", userInstance);
-        const otp = (0, generateOtp_1.generateOTP)();
-        const generateMessage = () => {
-            return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
-        };
-        const dynamicMessage = generateMessage();
         const employeeInstance = yield wholeSalerEmployee_model_1.default.findOne({ phone_number });
         if (employeeInstance) {
             return res.status(404).json({
                 message: message_1.MESSAGE.get.fail,
             });
         }
+        const otp = (0, generateOtp_1.generateOTP)();
+        const generateMessage = () => {
+            return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
+        };
+        const dynamicMessage = generateMessage();
         const urlWithDynamicMessage = `${config_1.msg_apiUrl}?apiKey=${config_1.msg_apiKey}&type=${config_1.msg_type}&contactNumbers=${"880" + phone_number}&senderId=${config_1.msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
         console.log("===>", urlWithDynamicMessage);
         axios_1.default

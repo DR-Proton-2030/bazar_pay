@@ -18,6 +18,7 @@ const SignUpPage = () => {
   const [phoneNo, setPhoneNo] = useState("");
   const [formData, setFormData] = useState<IWholesaler>(defaultWholesalerState);
   const [images, setImages] = useState<string[]>([]);
+  const [hiddenButtons, setHiddenButtons] = useState<string[]>([]);
   const [otp, setOtp] = useState("");
   const [originalOtp, setOriginalOtp] = useState<string>("");
   const [page, setPage] = useState(0);
@@ -102,6 +103,8 @@ const SignUpPage = () => {
               formData={formData}
               setFormData={setFormData}
               images={images}
+              hiddenButtons={hiddenButtons}
+              setHiddenButtons={setHiddenButtons}
               setImages={setImages}
             />
           </ScrollView>

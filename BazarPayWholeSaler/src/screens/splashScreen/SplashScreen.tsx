@@ -31,7 +31,7 @@ const SplashScreen = () => {
           alignItems: "center",
         }}
       >
-        <StatusBar translucent={true} backgroundColor={"red"} />
+        {/* <StatusBar translucent={true} backgroundColor={"red"} /> */}
         <Image
           source={require("../../../assets/adaptive-icon.png")}
           style={{ height: 180, width: 180 }}

@@ -3,7 +3,7 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-const Header = ({isSignup}:any) => {
+const Header = ({ isSignup }: any) => {
   return (
     <View
       style={{
@@ -13,11 +13,11 @@ const Header = ({isSignup}:any) => {
         paddingTop: 20,
       }}
     >
-      {
-        isSignup?       <Text style={{ fontSize: 25, fontWeight: "700" }}>Sign Up</Text> :
+      {isSignup ? (
+        <Text style={{ fontSize: 25, fontWeight: "700" }}>Sign Up</Text>
+      ) : (
         <Text style={{ fontSize: 25, fontWeight: "700" }}>Sign In</Text>
-      }
-
+      )}
     </View>
   );
 };

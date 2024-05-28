@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { MESSAGE } from "../../../../constants/message";
 import { uploadImageService } from "../../../../services/uploadImageService";
 import wholesalerModel from "../../../../models/wholesaler.model";
+import { DEFAULT_IMAGE } from "../../../../constants/image";
 
 export const getWholeSaler = async (req: Request, res: Response) => {
   try {
@@ -66,25 +67,25 @@ export const createWholesaler = async (req: Request, res: Response) => {
   try {
     if (
       !req.files ||
-      !("logo" in req.files) ||
+      // !("logo" in req.files) ||
       !("sign_board" in req.files) ||
       !("owner_photo" in req.files) ||
-      !("trade_licensce" in req.files) ||
-      !("nid" in req.files) ||
+      // !("trade_licensce" in req.files) ||
+      !("nid" in req.files)
 
-      !("visiting_card" in req.files)
+      // !("visiting_card" in req.files)
     ) {
       return res.status(404).json({
         message: MESSAGE.post.custom("img not found"),
       });
     }
     console.log(req.files)
-    const logo = req.files["logo"][0];
+    const logo = req.files["logo"]? req.files["logo"][0] : null;
     const sign_board = req.files["sign_board"][0];
     const owner_photo = req.files["owner_photo"][0];
-    const trade_licensce = req.files["trade_licensce"][0];
+    const trade_licensce = req.files["trade_licensce"]? req.files["trade_licensce"][0] : null;
     const nid = req.files["nid"][0];
-    const visiting_card = req.files["visiting_card"][0];
+    const visiting_card = req.files["visiting_card"]? req.files["visiting_card"][0] : null;
     
     const { wholesalerDetails } = req.body;
     console.log("====>req.files", wholesalerDetails);
@@ -95,12 +96,12 @@ export const createWholesaler = async (req: Request, res: Response) => {
       console.log("wholesalerDetails", error);
     }
     
-    const logoBuffer = logo.buffer;
+    const logoBuffer = logo ? logo.buffer : null;
     const signBoardBuffer = sign_board.buffer;
     const ownerPhotoBuffer = owner_photo.buffer;
-    const tradeLicensceBuffer = trade_licensce.buffer;
+    const tradeLicensceBuffer = trade_licensce ? trade_licensce.buffer : null;
     const nidBuffer = nid.buffer;
-    const visiting_cardBuffer = visiting_card.buffer;
+    const visiting_cardBuffer = visiting_card ? visiting_card.buffer : null;
     
     const existingWholesaler = await wholesalerModel.findOne({trade_licensce_number: _payload.trade_licensce_number});
     if(existingWholesaler){
@@ -117,7 +118,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
     let payload = {};
     console.log("====>before payload", payload);
     try{
-      const logoUrl = await uploadImageService("logo", logoBuffer);
+      const logoUrl = logoBuffer ? await uploadImageService("logo", logoBuffer) : DEFAULT_IMAGE;
       const signBoardUrl = await uploadImageService(
         "sign_board",
         signBoardBuffer
@@ -126,15 +127,15 @@ export const createWholesaler = async (req: Request, res: Response) => {
         "owner_photo",
         ownerPhotoBuffer
       );
-      const tradeLicensceUrl = await uploadImageService(
+      const tradeLicensceUrl = tradeLicensceBuffer ? await uploadImageService(
         "trade_licensce",
         tradeLicensceBuffer
-      );
+      ) : DEFAULT_IMAGE;
       const nidUrl = await uploadImageService("nid", nidBuffer);
-      const visiting_card_url = await uploadImageService(
+      const visiting_card_url = visiting_cardBuffer ? await uploadImageService(
         "visiting_card",
         visiting_cardBuffer
-      );
+      ) : DEFAULT_IMAGE;
       payload = {
         ..._payload,
         // wholesaler_number: totalCount + 1,

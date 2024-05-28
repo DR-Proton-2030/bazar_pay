@@ -1,15 +1,35 @@
 import React, { useState } from "react";
-import { View, TextInput, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import {
+  View,
+  TextInput,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import formFields from "../../../../database/signUpFileds/SignUpFileds";
 import Colors from "../../../../constants/Colors";
 import Chip from "../../../../components/shared/chips/Chips";
 import ImageUpload from "../../../../components/shared/ImageUpload/ImageUpload";
+import * as ImagePicker from "expo-image-picker";
 
-const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) => {
-  const [errors, setErrors] = useState<any>({ contact_phone_number: "", email: "", emptyFields: {} });
+const SignUpForm = ({
+  setFormData,
+  setImages,
+  formData,
+  images,
+  setHiddenButtons,
+  hiddenButtons,
+  onSubmit,
+}: any) => {
+  const [errors, setErrors] = useState<any>({
+    contact_phone_number: "",
+    email: "",
+    emptyFields: {},
+  });
 
-  const handleInputChange = (field:any, value:any) => {
+  const handleInputChange = (field: any, value: any) => {
     if (field === "contact_phone_number") {
       if (value.length > 10) {
         setErrors({ ...errors, contact_phone_number: "Invalid phone number" });
@@ -28,20 +48,43 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) 
       }
     }
 
-    setErrors((prevErrors:any) => ({
+    setErrors((prevErrors: any) => ({
       ...prevErrors,
       emptyFields: { ...prevErrors.emptyFields, [field]: "" },
     }));
     setFormData({ ...formData, [field]: value });
   };
 
-  const handleImageSelect = (selectedImages:any) => {
+  const handleImageSelect = (selectedImages: any) => {
     setImages(selectedImages);
+  };
+
+  const pickImage = async (buttonName: any) => {
+    let result: any = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      const newImages: any = [
+        ...images,
+        { name: buttonName, uri: result.assets[0].uri },
+      ];
+      // setImages(newImages);
+      setHiddenButtons((prevHiddenButtons: any) => [
+        ...prevHiddenButtons,
+        buttonName,
+      ]);
+      // onImageSelect(newImages);
+      setImages(newImages);
+    }
   };
 
   const handleSubmit = () => {
     let hasEmptyFields = false;
-    let newEmptyFieldsErrors:any = {};
+    let newEmptyFieldsErrors: any = {};
 
     formFields.forEach((field) => {
       if (!formData[field.field]) {
@@ -60,11 +103,19 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>আপনার ব্যবসার ধরন নির্বাচন করুন<Text style={{color:"red"}}>*</Text></Text>
-      <ScrollView horizontal style={{ marginBottom: 20 }} showsHorizontalScrollIndicator={false}>
-        {["ইলেকট্রনিক্স", "মুদিখানা", "কাপড়", "খাবার", "এআই","অন্যান্য"].map((text, index) => (
-          <Chip key={index} text={text} />
-        ))}
+      <Text style={styles.label}>
+        আপনার ব্যবসার ধরন নির্বাচন করুন<Text style={{ color: "red" }}>*</Text>
+      </Text>
+      <ScrollView
+        horizontal
+        style={{ marginBottom: 20 }}
+        showsHorizontalScrollIndicator={false}
+      >
+        {["ইলেকট্রনিক্স", "মুদিখানা", "কাপড়", "খাবার", "এআই", "অন্যান্য"].map(
+          (text, index) => (
+            <Chip key={index} text={text} />
+          )
+        )}
       </ScrollView>
       {formFields.map((field, index) => (
         <View style={styles.fieldContainer} key={index}>
@@ -97,11 +148,17 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) 
             <Text style={styles.errorText}>{errors.email}</Text>
           ) : null}
           {errors.emptyFields[field.field] ? (
-            <Text style={styles.errorText}>{errors.emptyFields[field.field]}</Text>
+            <Text style={styles.errorText}>
+              {errors.emptyFields[field.field]}
+            </Text>
           ) : null}
         </View>
       ))}
-      <ImageUpload onImageSelect={handleImageSelect} />
+      <ImageUpload
+        pickImage={pickImage}
+        images={images}
+        hiddenButtons={hiddenButtons}
+      />
       <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
         <Text style={styles.submitText}>Submit</Text>
       </TouchableOpacity>
@@ -110,14 +167,33 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) 
 };
 
 const styles = StyleSheet.create({
-  container: { flexDirection: "column", paddingBottom: 40, paddingHorizontal: 20, backgroundColor: Colors.light.background },
+  container: {
+    flexDirection: "column",
+    paddingBottom: 40,
+    paddingHorizontal: 20,
+    backgroundColor: Colors.light.background,
+  },
   fieldContainer: { marginBottom: 30 },
   labelContainer: { flexDirection: "row", alignItems: "center" },
   label: { fontWeight: "bold", marginBottom: 5, marginLeft: 10 },
   icon: { marginRight: 10 },
-  input: { width: "100%", height: 40, borderBottomWidth: 1, borderColor: "#ccc", paddingHorizontal: 10 },
+  input: {
+    width: "100%",
+    height: 40,
+    borderBottomWidth: 1,
+    borderColor: "#ccc",
+    paddingHorizontal: 10,
+  },
   errorText: { color: "red", marginTop: 5, marginLeft: 10 },
-  submitButton: { backgroundColor: Colors.light.primary, paddingVertical: 10, paddingHorizontal: 20, borderRadius: 50, alignItems: "center", justifyContent: "center", marginTop: 20 },
+  submitButton: {
+    backgroundColor: Colors.light.primary,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 20,
+  },
   submitText: { color: "white", fontWeight: "bold", fontSize: 16 },
 });
 

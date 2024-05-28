@@ -10,17 +10,18 @@ export const getOtp = async (req: Request, res: Response) => {
   try {
     // const userInstance = await WholeSalerEmployeeModel.findOne({ phone_number});
     // console.log("userInstance", userInstance);
-    const otp = generateOTP();
-    const generateMessage = () => {
-      return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
-    };
-    const dynamicMessage = generateMessage();
     const employeeInstance: any = await WholeSalerEmployeeModel.findOne({phone_number});
     if (employeeInstance) {
       return res.status(404).json({
         message: MESSAGE.get.fail,
       });
     }
+    const otp = generateOTP();
+    const generateMessage = () => {
+      return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
+    };
+    const dynamicMessage = generateMessage();
+   
     const urlWithDynamicMessage = `${msg_apiUrl}?apiKey=${msg_apiKey}&type=${msg_type}&contactNumbers=${
       "880" + phone_number
     }&senderId=${msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
