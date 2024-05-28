@@ -3,7 +3,7 @@ export const headers = {
   "Content-Type": "application/json",
 };
 
-export const base_url = "http://192.168.154.155:8989";
-// export const port = "8989";
+export const base_url = "http://3.6.138.106";
+export const port = "8181";
 export const version = "v1";
-export const url = base_url;
+export const url = base_url+':'+port;
