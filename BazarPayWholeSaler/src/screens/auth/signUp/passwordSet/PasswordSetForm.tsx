@@ -54,7 +54,7 @@ setUser(response)
     <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }}>
       {/* <StatusBar translucent={true} backgroundColor={"transparent"} /> */}
       <View style={{ flexDirection: "column" }}>
-        <Image style={{ width: "100%", height: screenHeight / 1.9 }} source={loginBg} />
+        <Image style={{ width: "100%", height: screenHeight / 1.9 }} source={{uri:"https://img.freepik.com/premium-photo/fruits-collection-food-background-portrait-format-apples-oranges-lemons-fresh-fruit_770123-3565.jpg"}} />
         <View style={[globalStyle.modalContent, { marginTop: -screenHeight / 15.9 }]}>
         <View
       style={{

@@ -7,7 +7,7 @@ export const loginWholesaler = async (req: Request, res: Response) => {
   try {
     const { phone_number, password } = req.body;
     const employeeInstance: any = await WholeSalerEmployeeModel.findOne({phone_number}).populate("wholesaler");
-    if (!employeeInstance) {
+    if (employeeInstance) {
       return res.status(404).json({
         message: MESSAGE.post.failAuth,
       });

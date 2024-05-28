@@ -18,11 +18,13 @@ const BodyContent = () => {
   };
   
   const handlePress = () => {
-    setDisplayText(!displayText);
     if (displayText) {
       navigation.navigate("signUp");
+    }else{
+      setDisplayText(!displayText);
+      setDisplayImage(displayImage === wellcomeImg ? wellcomeImg2 : wellcomeImg);
+
     }
-    setDisplayImage(displayImage === wellcomeImg ? wellcomeImg2 : wellcomeImg);
   };
 
   return (

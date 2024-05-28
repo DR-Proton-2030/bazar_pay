@@ -60,9 +60,9 @@ const SignUpForm = ({ setFormData, setImages, formData, images, onSubmit }:any) 
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>আপনার ব্যবসার ধরন নির্বাচন করুন</Text>
+      <Text style={styles.label}>আপনার ব্যবসার ধরন নির্বাচন করুন<Text style={{color:"red"}}>*</Text></Text>
       <ScrollView horizontal style={{ marginBottom: 20 }} showsHorizontalScrollIndicator={false}>
-        {["ইলেকট্রনিক্স", "মুদিখানা", "কাপড়", "খাবার", "এআই"].map((text, index) => (
+        {["ইলেকট্রনিক্স", "মুদিখানা", "কাপড়", "খাবার", "এআই","অন্যান্য"].map((text, index) => (
           <Chip key={index} text={text} />
         ))}
       </ScrollView>

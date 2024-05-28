@@ -3,7 +3,7 @@ export const headers = {
   "Content-Type": "application/json",
 };
 
-export const base_url = "https://bazar-pay.onrender.com";
+export const base_url = "http://192.168.154.155:8989";
 // export const port = "8989";
 export const version = "v1";
 export const url = base_url;

@@ -45,13 +45,13 @@ const ImageUpload = ({ onImageSelect }:any) => {
         {!hiddenButtons.includes("sign_board") && (
           <TouchableOpacity style={styles.button} onPress={() => pickImage("sign_board")}>
             <MaterialIcons name="image" size={20} color="gray" />
-            <Text>Shop SignBoard</Text>
+            <Text>Shop SignBoard<Text style={{color:"red"}}>*</Text></Text>
           </TouchableOpacity>
         )}
         {!hiddenButtons.includes("owner_photo") && (
           <TouchableOpacity style={styles.button} onPress={() => pickImage("owner_photo")}>
             <MaterialIcons name="image" size={20} color="gray" />
-            <Text>Own Photo</Text>
+            <Text>Own Photo<Text style={{color:"red"}}>*</Text></Text>
           </TouchableOpacity>
         )}
       </View>
@@ -66,7 +66,7 @@ const ImageUpload = ({ onImageSelect }:any) => {
         {!hiddenButtons.includes("nid") && (
           <TouchableOpacity style={styles.button} onPress={() => pickImage("nid")}>
             <MaterialIcons name="image" size={20} color="gray" />
-            <Text>NID Card</Text>
+            <Text>NID Card<Text style={{color:"red"}}>*</Text></Text>
           </TouchableOpacity>
         )}
         
@@ -90,7 +90,7 @@ const ImageUpload = ({ onImageSelect }:any) => {
         {images.map((image:any, index) => (
           <View key={index} style={{ flexDirection: "column", alignItems: "center" }}>
             <Image source={{ uri: image.uri }} style={styles.image} />
-            {/* <Text style={styles.imageLabel}>{image.name}</Text> */}
+            <Text style={styles.imageLabel}>{image.name}</Text>
           </View>
         ))}
       </ScrollView>
