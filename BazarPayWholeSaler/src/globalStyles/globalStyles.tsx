@@ -94,15 +94,22 @@ export const globalStyle = StyleSheet.create({
     fontSize:18
   },
   commonHeader: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     paddingVertical: 20,
     paddingLeft: 5,
-    paddingTop:40,
+    paddingTop: 40,
     backgroundColor: Colors.light.background,
     zIndex: 50,
     width: windowWidth,
+    // Shadow for iOS
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    // Shadow for Android
+    elevation: 5,
   },
   chipStyle: {
     flexDirection: "row",

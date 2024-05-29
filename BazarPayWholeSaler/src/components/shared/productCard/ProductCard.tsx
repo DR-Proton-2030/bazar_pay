@@ -12,6 +12,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   buyingPrice,
   sellingPrice,
   stock,
+  uri
 }) => {
   const navigation = useNavigation<any>();
   
@@ -25,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         onPress={handleNavigate}
         style={productCardStyles.container}
       >
-        <Image source={productImg} style={productCardStyles.image} />
+        <Image source={{uri:uri}} style={productCardStyles.image} />
         <View style={productCardStyles.infoContainer}>
           <Text style={productCardStyles.title}>{title}</Text>
           <View style={productCardStyles.priceContainer}>

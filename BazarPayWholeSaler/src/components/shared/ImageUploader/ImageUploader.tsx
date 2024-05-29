@@ -5,9 +5,7 @@ import * as ImagePicker from 'expo-image-picker';
 import { globalStyle } from '../../../globalStyles/globalStyles';
 import Colors from '../../../constants/Colors';
 
-const ImageUploader = () => {
-  const [image, setImage] = useState<any>();
-
+const ImageUploader = ({image,setImage}:any) => {
   const pickImage = async () => {
     let result: any = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
@@ -16,17 +14,16 @@ const ImageUploader = () => {
       quality: 1,
     });
 
-    if (!result.cancelled) {
-      const newImages: any = result.assets[0].uri;
-      setImage(newImages);
-      console.log(newImages);
+    if (!result.canceled) {
+      const newImage: string = result.assets[0].uri;
+      setImage(newImage);
+      console.log(newImage);
     }
   };
 
   const removeImage = () => {
     setImage(null);
   };
-
   return (
     <>
       {image ? (

@@ -14,12 +14,13 @@ export const productCardStyles = StyleSheet.create({
     borderColor: "#ddd",
     borderWidth: 1,
     display: "flex",
+    paddingTop:5,
+    paddingLeft:5
   },
   image: {
     width: 90,
     height: 90,
     borderRadius: 10,
-    marginRight: 7,
   },
   infoContainer: {
     position: "absolute",
