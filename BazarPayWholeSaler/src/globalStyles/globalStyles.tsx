@@ -111,6 +111,15 @@ export const globalStyle = StyleSheet.create({
     // Shadow for Android
     elevation: 5,
   },
+  commonHeader2: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 20,
+    paddingLeft: 5,
+    paddingTop: 10,
+  
+  },
   chipStyle: {
     flexDirection: "row",
     paddingHorizontal: 10,

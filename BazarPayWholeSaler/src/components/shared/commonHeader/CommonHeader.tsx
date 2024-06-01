@@ -13,7 +13,7 @@ const CommonHeader = ({ text }: any) => {
     navigation.goBack();
   };
   return (
-    <View style={globalStyle.commonHeader}>
+    <View style={globalStyle.commonHeader2}>
       <TouchableOpacity
         onPress={handleNavigate}
         style={{ display: "flex", flexDirection: "column", paddingLeft: 20 }}

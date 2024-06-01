@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Image, Text, TouchableOpacity } from "react-native";
-import productImg from "../../../../assets/images/product.png";
 import { Feather } from "@expo/vector-icons";
 import { Entypo } from "@expo/vector-icons";
 import { useNavigation } from "expo-router";
@@ -12,18 +11,19 @@ const ProductCard: React.FC<ProductCardProps> = ({
   buyingPrice,
   sellingPrice,
   stock,
-  uri
+  uri,
+  product
 }) => {
   const navigation = useNavigation<any>();
-  
-  const handleNavigate = () => {
-    navigation.navigate("productDetailsPage");
+
+  const handleNavigate = (product:any) => {
+    navigation.navigate("ManualAddProduct", product);
   };
 
   return (
     <View style={productCardStyles.outerContainer}>
       <TouchableOpacity
-        onPress={handleNavigate}
+        onPress={() =>  navigation.navigate("productDetailsPage")}
         style={productCardStyles.container}
       >
         <Image source={{uri:uri}} style={productCardStyles.image} />
@@ -44,7 +44,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           <TouchableOpacity>
             <Text style={productCardStyles.gridText}>Edit Price</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => handleNavigate(product)}>
             <Text style={productCardStyles.gridText}>Edit Stocks</Text>
           </TouchableOpacity>
           <TouchableOpacity>

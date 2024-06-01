@@ -1,23 +1,22 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, ScrollView, SafeAreaView, Button, ActivityIndicator } from "react-native";
-import axios from "axios";
+import React, { useState, useEffect, useContext } from "react";
+import { View, Text, ScrollView, SafeAreaView, ActivityIndicator } from "react-native";
 import ProductCard from "../../components/shared/productCard/ProductCard";
 import { api } from "../../utils/api";
+import WholesalerContext from "../../contexts/wholesalerContext/wholesalerContext";
 
 const ProductList = () => {
+  const{wholesaler}=useContext(WholesalerContext)
   const [products, setProducts] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [loading, setLoading] = useState(false);
-
+  const userObjectId = wholesaler?._id; 
 
   const fetchProducts = async () => {
     setLoading(true);
     try {
-      const response = await api.product.getBannerList()
-      setProducts(response);
-      console.log(response)
-      // setTotalPages(response);
+      const response = await api.product.getBannerList();
+      const filteredProducts = response.filter((product: any) => product.wholesalerSaler_id === userObjectId);
+      setProducts(filteredProducts);
+      console.log(filteredProducts);
     } catch (error) {
       console.error("Failed to fetch products", error);
     } finally {
@@ -25,17 +24,6 @@ const ProductList = () => {
     }
   };
 
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  const handlePreviousPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
-    }
-  };
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -46,19 +34,19 @@ const ProductList = () => {
         <ActivityIndicator size="large" color="#0000ff" />
       ) : (
         <ScrollView contentContainerStyle={{ marginTop: 5 }}>
-          {products.map((product:any) => (
+          {products.map((product: any) => (
             <ProductCard
               key={product._id}
               title={product.product_name}
               buyingPrice={product.product_buying_price}
               sellingPrice={product.product_saling_price}
               stock={product.current_stock}
-              uri={product?.product_image}
+              uri={product.product_image}
+              product={product}
             />
           ))}
         </ScrollView>
       )}
-
     </SafeAreaView>
   );
 };

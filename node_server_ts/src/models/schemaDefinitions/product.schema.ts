@@ -6,9 +6,10 @@ import { IWholesaler } from "../../@types/types/wholesaler.interface";
 const productSchema: Schema<any> = new Schema<any>(
   {
     product_name: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
+    wholesalerSaler_id:SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     product_buying_price: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     product_saling_price: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-    unit: SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
+    unit: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     discount: SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
     current_stock: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     free: SCHEMA_DEFINITION_PROPERTY.optionalNullString,

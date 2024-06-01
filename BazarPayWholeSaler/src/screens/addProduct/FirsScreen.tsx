@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput,Text } from 'react-native';
 import { globalStyle } from '../../globalStyles/globalStyles';
 import { ProductFirstInput } from '../../constants/form/productInput/ProductInput';
+import SelectDropdown from 'react-native-select-dropdown';
 
 const FirstScreen = ({ formData, handleInputChange }:any) => {
   return (
@@ -33,7 +34,22 @@ const FirstScreen = ({ formData, handleInputChange }:any) => {
           return null; 
         } else {
           return (
-            <TextInput
+            <>
+           {
+            field.name==="unit"?
+            <SelectDropdown
+									defaultButtonText="select"
+									dropdownIconPosition="right"
+									dropdownStyle={{ borderRadius: 20 }}
+									rowTextStyle={{ fontSize: 16 }}
+									data={[
+										"Industrial Waste Dumping",
+										"Public Health",
+										"Environmental Pollution",
+										"Traffic Violations"
+									]}
+								/>:
+<TextInput
               style={globalStyle.input}
               placeholder={field.placeholder}
               placeholderTextColor="#999"
@@ -41,6 +57,9 @@ const FirstScreen = ({ formData, handleInputChange }:any) => {
               onChangeText={(text) => handleInputChange(field.name, text)}
               key={index}
             />
+           }
+            
+             </>
           );
         }
       })}

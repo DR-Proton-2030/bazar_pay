@@ -3,5 +3,6 @@ export interface ProductCardProps {
   buyingPrice: number;
   sellingPrice: number;
   stock: number;
-  uri:string
+  uri:string;
+  product:any
 }

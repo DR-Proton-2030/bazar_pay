@@ -18,7 +18,7 @@ export const createProduct = async (req: Request, res: Response) => {
     const product_image = req.files["product_image"][0];
     const bar_code_photo = req.files["bar_code_photo"][0];
 
-    const { productDetails } = req.body;
+    const { productDetails,wholesalerSaler_id } = req.body;
     const productPayload = JSON.parse(productDetails);
 
     const productImageBuffer = product_image.buffer;
@@ -34,6 +34,7 @@ export const createProduct = async (req: Request, res: Response) => {
         ...productPayload,
         product_image: productImageUrl,
         bar_code_photo: barCodePhotoUrl,
+        wholesalerSaler_id
       };
     } catch (error) {
       return res.status(400).json({

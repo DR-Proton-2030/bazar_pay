@@ -21,12 +21,12 @@
 
 export const ProductFirstInput = [
   { placeholder: "পণ্যের নাম", name: "product_name", half: false },
-  { placeholder: "একক", name: "unit", half: true },
-  { placeholder: "একক", name: "unit", half: true },
+  { placeholder: "একক", name: "unit", half: false },
   { placeholder: "ক্রয় মূল্য", name: "product_buying_price", half: true },
   { placeholder: "বিক্রয় মূল্য", name: "product_saling_price", half: true },
   { placeholder: "ডিসকাউন্ট", name: "discount", half: true },
   { placeholder: "বর্তমান স্টক", name: "current_stock", half: true },
+  
   // Add other fields as needed
 ];
 

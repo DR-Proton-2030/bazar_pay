@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -22,9 +22,17 @@ import axios from "axios"; // For making API requests
 import FirstScreen from "./FirsScreen";
 import { api } from "../../utils/api";
 import { useNavigation } from "expo-router";
+import AuthContext from "../../contexts/authContext/authContext";
+import WholesalerContext from "../../contexts/wholesalerContext/wholesalerContext";
+import { useRoute } from "@react-navigation/native";
 
 const AddProduct = () => {
+  const{wholesaler}=useContext(WholesalerContext)
   const navigation: any = useNavigation();
+  const route = useRoute();
+  const product:any = route.params;
+
+
   const [formData, setFormData] = useState<any>({
     product_name: "",
     unit: "",
@@ -37,6 +45,7 @@ const AddProduct = () => {
     product_warenty: "",
     product_discount: "",
     product_bhat: "",
+    
   });
 
   const [image, setImage] = useState<string | null>(null);
@@ -52,10 +61,15 @@ const AddProduct = () => {
 
   const handleSubmit = async () => {
     setLoading(true); // Show loading modal
-
+  
     const formDataToSend = new FormData();
     formDataToSend.append("productDetails", JSON.stringify(formData));
-
+    if (wholesaler?._id) {
+      formDataToSend.append("wholesalerSaler_id", wholesaler._id);
+    } else {
+      console.error("wholesaler._id is undefined");
+    }
+    
     if (image) {
       const file: any = {
         uri: image,
@@ -85,6 +99,32 @@ const AddProduct = () => {
     }
   };
 
+
+  useEffect(() => {
+ 
+
+    setFormData((prevFormData: any) => ({
+      ...prevFormData,
+      product_name: product?.product_name || "",
+      product_buying_price: product?.product_buying_price || "",
+      product_saling_price: product?.product_saling_price || "",
+      current_stock: product?.current_stock || "",
+      discount: product?.discount || "",
+      free: product?.free || "",
+      product_description: product?.product_description || "",
+      product_warenty: product?.product_warenty || "",
+      product_discount: product?.product_discount || "",
+      product_bhat: product?.product_bhat || "",
+    }));
+
+    if (product?.product_image) {
+      setImage(product?.product_image);
+    }
+    if (product?.bar_code_photo) {
+      setBarcodeImage(product?.bar_code_photo);
+    }
+  }, []);
+
   return (
     <SafeAreaView>
       <CommonHeader text="নতুন পণ্য যোগ করুন" />
@@ -112,7 +152,14 @@ const AddProduct = () => {
           <SecondScreen formData={formData} handleInputChange={handleInputChange} />
 
           <Button style={{ backgroundColor: "blue" }} mode="contained" onPress={handleSubmit}>
-            <Text style={{ fontSize: 17 }}>Upload Product</Text>
+            
+              {
+                !product?.product_name?
+                <Text style={{ fontSize: 17 }}>Upload Product</Text>
+                :
+                <Text style={{ fontSize: 17 }}>Update Product Details</Text>
+              }
+              
           </Button>
         </View>
       </ScrollView>
