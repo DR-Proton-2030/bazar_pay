@@ -2,17 +2,18 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import productImg from "../../../../../assets/images/product.png";
+import { IProduct } from "../../../../@types/types/product.interface";
 
-const ProductBlock = () => {
+const ProductBlock = ({product}:{product:IProduct}) => {
   // const navigation: any = useNavigation();
   const handleNavigate = () => {
     // navigation.navigate("productDetails");
   };
   return (
     <TouchableOpacity onPress={handleNavigate} style={styles.container}>
-      <Image source={productImg} style={styles.image} />
-      <Text style={styles.title}>Chashi Chinigura Chal</Text>
-      <Text style={styles.amount}>1kg packet</Text>
+      <Image source={{uri: product.product_image}} style={styles.image} />
+      <Text style={styles.title}>{product.product_name}</Text>
+      <Text style={styles.amount}>1{product.unit} packet</Text>
     </TouchableOpacity>
   );
 };
@@ -22,12 +23,13 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: "center",
     textAlign: "center",
+    marginTop:20,
   },
   image: {
-    width: 350,
-    height: 280,
+    width: 250,
+    height: 180,
     borderRadius: 10,
-    marginTop: -40,
+    // marginTop: -40,
   },
   title: {
     fontSize: 22,

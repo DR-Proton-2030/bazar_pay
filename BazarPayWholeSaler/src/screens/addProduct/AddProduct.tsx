@@ -32,6 +32,7 @@ const AddProduct = () => {
   const route = useRoute();
   const product:any = route.params;
 
+  // console.log("first",product);
 
   const [formData, setFormData] = useState<any>({
     product_name: "",

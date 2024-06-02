@@ -64,28 +64,71 @@ export const createProduct = async (req: Request, res: Response) => {
 };
 
 
-export const getAllProducts = async (req: Request, res: Response) => {
-  const { page = 1 } = req.query; // Default to page 1 if not provided
-  const limit = 5; // Limit to 5 products per page
+// export const getAllProducts = async (req: Request, res: Response) => {
+//   const { page = 1 } = req.query; // Default to page 1 if not provided
+//   const limit = 5; // Limit to 5 products per page
 
+//   try {
+//     const products = await productModel
+//       .find()
+//       .skip((Number(page) - 1) * limit)
+//       .limit(limit)
+//       .exec();
+
+//     const totalProducts = await productModel.countDocuments().exec();
+//     const totalPages = Math.ceil(totalProducts / limit);
+
+//     return res.status(200).json({
+//       message: MESSAGE.get.succ,
+//       result: products,
+//     });
+//   } catch (error) {
+//     return res.status(400).json({
+//       message: MESSAGE.get.fail,
+//       error,
+//     });
+//   }
+// };
+
+export const getProductList = async (req: Request, res: Response) => {
   try {
-    const products = await productModel
-      .find()
-      .skip((Number(page) - 1) * limit)
-      .limit(limit)
-      .exec();
+    const filter: any = req.query;
 
-    const totalProducts = await productModel.countDocuments().exec();
-    const totalPages = Math.ceil(totalProducts / limit);
+    let currentPage = 0;
 
-    return res.status(200).json({
+    if (filter.page) {
+      currentPage = parseInt(String(filter.page)); // Parse page as integer
+    }
+
+    const sortField = filter.sortField ? filter.sortField : "updatedAt";
+
+    delete filter.page;
+    delete filter.sortField;
+
+    console.log("===>filter", filter);
+
+    const totalCount = await productModel.countDocuments(filter);
+
+    const limit = currentPage > 0 ? 5 : totalCount;
+    const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
+
+    const products = await productModel.find(filter)
+      .sort({ [sortField]: -1 })
+      .skip(startIndex)
+      .limit(limit);
+
+    res.status(200).json({
       message: MESSAGE.get.succ,
+      pagination: {
+        total: totalCount,
+        currentPage: currentPage,
+      },
       result: products,
     });
   } catch (error) {
-    return res.status(400).json({
+    console.error("Error fetching businesses:", error);
+    res.status(400).json({
       message: MESSAGE.get.fail,
-      error,
     });
   }
 };

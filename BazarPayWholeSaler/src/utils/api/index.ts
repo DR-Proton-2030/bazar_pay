@@ -4,7 +4,7 @@ import { loginWholesaler } from "./auth/auth";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 import { getOtp } from "./auth/otp.api";
 import { createProduct } from "./product/addProduct";
-import { getBannerList } from "./product/getProduct";
+import { getProductList } from "./product/getProduct";
 
 export const api = {
 	auth: {
@@ -15,7 +15,7 @@ export const api = {
 	},
 	product:{
 		createProduct,
-		getBannerList
+		getProductList
 	}
 
 };

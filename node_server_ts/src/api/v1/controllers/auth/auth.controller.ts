@@ -6,8 +6,10 @@ import WholeSalerEmployeeModel from "../../../../models/wholeSalerEmployee.model
 export const loginWholesaler = async (req: Request, res: Response) => {
   try {
     const { phone_number, password } = req.body;
+    console.log("==>",phone_number,password);
     const employeeInstance: any = await WholeSalerEmployeeModel.findOne({phone_number}).populate("wholesaler");
-    if (employeeInstance) {
+    // console.log("===>", employeeInstance);
+    if (!employeeInstance) {
       return res.status(404).json({
         message: MESSAGE.post.failAuth,
       });
@@ -24,6 +26,7 @@ export const loginWholesaler = async (req: Request, res: Response) => {
         },
       });
     }
+    console.log("===>not found");
     return res.status(404).json({
       message: MESSAGE.post.failAuth,
     });

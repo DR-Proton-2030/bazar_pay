@@ -19,8 +19,10 @@ const wholeSalerEmployee_model_1 = __importDefault(require("../../../../models/w
 const loginWholesaler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { phone_number, password } = req.body;
+        console.log("==>", phone_number, password);
         const employeeInstance = yield wholeSalerEmployee_model_1.default.findOne({ phone_number }).populate("wholesaler");
-        if (employeeInstance) {
+        // console.log("===>", employeeInstance);
+        if (!employeeInstance) {
             return res.status(404).json({
                 message: message_1.MESSAGE.post.failAuth,
             });
@@ -37,6 +39,7 @@ const loginWholesaler = (req, res) => __awaiter(void 0, void 0, void 0, function
                 },
             });
         }
+        console.log("===>not found");
         return res.status(404).json({
             message: message_1.MESSAGE.post.failAuth,
         });

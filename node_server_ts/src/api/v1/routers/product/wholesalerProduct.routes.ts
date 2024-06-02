@@ -1,7 +1,7 @@
 import express from "express";
 
 import { upload } from "../../../../middleware/multer.middleware";
-import { createProduct, getAllProducts } from "../../controllers/product/wholesalerProduct.controllers";
+import { createProduct, getProductList } from "../../controllers/product/wholesalerProduct.controllers";
 
 const router = express.Router();
 
@@ -14,7 +14,7 @@ router.route("/add_product").post(
   createProduct
 );
 
-router.route("/getAll_product").get(getAllProducts);
+router.route("/get-product-list").get(getProductList);
 
 
 module.exports = router;

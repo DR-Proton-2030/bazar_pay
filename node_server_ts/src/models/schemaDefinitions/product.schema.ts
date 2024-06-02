@@ -2,8 +2,9 @@ import { Schema, SchemaTypeOptions } from "mongoose";
 import SCHEMA_DEFINITION_PROPERTY from "../../constants/model/model.constant";
 import { GENERAL_SCHEMA_OPTIONS } from "../../constants/model/schemaOption";
 import { IWholesaler } from "../../@types/types/wholesaler.interface";
+import { IProduct } from "../../@types/types/product.interface";
 
-const productSchema: Schema<any> = new Schema<any>(
+const productSchema: Schema<IProduct> = new Schema<any>(
   {
     product_name: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     wholesalerSaler_id:SCHEMA_DEFINITION_PROPERTY.optionalNullString,
@@ -19,7 +20,7 @@ const productSchema: Schema<any> = new Schema<any>(
     product_warenty: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     product_discount: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     product_bhat: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-    Total: SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
+    total: SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
   },
   GENERAL_SCHEMA_OPTIONS
 );

@@ -1,8 +1,7 @@
 import { model } from "mongoose";
-import { IWholesaler } from "../@types/types/wholesaler.interface";
-import wholesalerSchema from "./schemaDefinitions/wholesaler.schema";
 import productSchema from "./schemaDefinitions/product.schema";
+import { IProduct } from "../@types/types/product.interface";
 
-const productModel = model<any>("product", productSchema);
+const productModel = model<IProduct>("product", productSchema);
 
 export default productModel;

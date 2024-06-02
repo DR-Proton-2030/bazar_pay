@@ -14,6 +14,7 @@ const FirstScreen = ({ formData, handleInputChange }:any) => {
                 <TextInput
                   style={[globalStyle.input, globalStyle.halfInput]}
                   placeholder={field.placeholder}
+                  keyboardType={field.type}
                   placeholderTextColor="#999"
                   value={formData[field.name]}
                   onChangeText={(text) => handleInputChange(field.name, text)}
@@ -22,6 +23,7 @@ const FirstScreen = ({ formData, handleInputChange }:any) => {
                   <TextInput
                     style={[globalStyle.input, globalStyle.halfInput]}
                     placeholder={ProductSecondInput[index + 1].placeholder}
+                    keyboardType={field.type}
                     placeholderTextColor="#999"
                     value={formData[ProductSecondInput[index + 1].name]}
                     onChangeText={(text) => handleInputChange(ProductSecondInput[index + 1].name, text)}
@@ -37,6 +39,7 @@ const FirstScreen = ({ formData, handleInputChange }:any) => {
               style={globalStyle.input}
               placeholder={field.placeholder}
               placeholderTextColor="#999"
+              keyboardType={field.type}
               value={formData[field.name]}
               onChangeText={(text) => handleInputChange(field.name, text)}
               key={index}

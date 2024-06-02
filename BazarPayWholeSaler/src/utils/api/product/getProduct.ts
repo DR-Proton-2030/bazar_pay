@@ -2,20 +2,22 @@ import { request } from "../api";
 import { headers } from "../../../config/config";
 import { MESSAGE } from "../../../constants/api/message";
 import { AUTHORIZATION } from "../../../constants/api/auth";
+import { Params } from "../../../@types/api/api.types";
 
 const { get } = request;
 
 const initialRoute = "product";
 
 
-export const getBannerList = async () => {
+export const getProductList = async (filterQuery:Params) => {
     try {
-      const endpoint = `${initialRoute}/getAll_product`;
+      const endpoint = `${initialRoute}/get-product-list`;
       const response = await get(
         endpoint,
         {
           ...headers,
         },
+        filterQuery
       );
       if (response) {
         const {
@@ -23,9 +25,9 @@ export const getBannerList = async () => {
         } = response;
         if (message === MESSAGE.get.succ) {
           const {
-            data: { result },
+            data: { result,pagination },
           } = response;
-          return result;
+          return {result,pagination};
         }
       }
       throw new Error();
