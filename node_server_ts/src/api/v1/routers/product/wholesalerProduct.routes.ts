@@ -1,7 +1,7 @@
 import express from "express";
 
 import { upload } from "../../../../middleware/multer.middleware";
-import { createProduct, getProductList, updateProduct } from "../../controllers/product/wholesalerProduct.controllers";
+import { createProduct, getProductList, updateProduct, updateProductStatus } from "../../controllers/product/wholesalerProduct.controllers";
 
 const router = express.Router();
 
@@ -15,6 +15,7 @@ router.route("/add_product").post(
 );
 
 router.route("/get-product-list").get(getProductList);
+router.route("/update-product-status").patch(updateProductStatus);
 
 router.route("/update_product").patch(
   upload.fields([

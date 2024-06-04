@@ -14,4 +14,5 @@ export interface IProduct {
     product_discount: string;
     product_bhat: string;
     total: number;
+    product_status:string;
 }

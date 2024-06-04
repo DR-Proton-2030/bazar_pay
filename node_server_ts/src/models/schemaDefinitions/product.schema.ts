@@ -21,6 +21,7 @@ const productSchema: Schema<IProduct> = new Schema<any>(
     product_discount: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     product_bhat: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     total: SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
+    product_status:SCHEMA_DEFINITION_PROPERTY.optionalNullString
   },
   GENERAL_SCHEMA_OPTIONS
 );

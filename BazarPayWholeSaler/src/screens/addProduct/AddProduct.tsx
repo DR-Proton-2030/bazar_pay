@@ -88,11 +88,22 @@ const AddProduct = () => {
       };
       formDataToSend.append("bar_code_photo", file);
     }
-
+    if(product?.product_name){
+      console.log("product name ====>",product?.product_name)
+      console.log("product id ====>",product?._id)
+      formDataToSend.append("productId", product?._id);
+    }
     try {
-      const response = await api.product.createProduct(formDataToSend);
-      console.log(response.data);
+      if(!product?.product_name){
+        const response = await api.product.createProduct(formDataToSend);
+      console.log(response);
       navigation.navigate("homePage");
+      }else{
+        const response = await api.product.updateProduct(formDataToSend);
+      console.log(response);
+      navigation.navigate("homePage");
+      }
+      
     } catch (error) {
       console.error("Error creating product:", error);
     } finally {
