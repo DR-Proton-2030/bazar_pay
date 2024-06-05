@@ -1,21 +1,64 @@
+body {
+	margin: 0;
+	font-family: "Quicksand", sans-serif !important;
+	-webkit-font-smoothing: antialiased !important;
+	-moz-osx-font-smoothing: grayscale !important;
+	color: #4e4e4e !important;
+}
+.glb-tab-panel {
+	margin-bottom: 1.5rem !important;
+}
+
+.glb-tab-panel .MuiTab-textColorPrimary.Mui-selected{
+	/* color: #28a745 !important; */
+	color: #007427 !important;
+	/* background-color: rgba(40, 167, 69, 0.12549019607843137) !important; */
+	background-color: #d7ffe4 !important;
+}
+
 .green-contained-button{
-    background-color: #ccffdd !important;
+    background-color: #d7ffe4 !important;
     border-width: 0.8px !important;
+    font-weight: 500 !important;
     border-color: #009933 !important;
     border-radius: 20px !important;
-    color: #009933 !important
+    color: #009933 !important;
+    text-transform: capitalize !important;
+    font-family:  "Raleway", sans-serif !important;
 }
 .green-outlined-button{
     padding: 2px 8px !important;
     font-size: small;
-    background-color: #ccffdd !important;
+    font-weight: 500 !important;
+    background-color: #e3f4d9 !important;
     color: #009933 !important;
-    border-color: #009933 !important;
+    border-color: #01882e !important;
+    text-transform: capitalize !important;
+    font-family:  "Raleway", sans-serif !important;
+}
+.btn{
+    background-color: #55912f!important;
+    text-transform: capitalize !important;
+    font-family: "Work Sans", sans-serif !important;
+    color: white !important;
+
+}
+.btn:hover{
+    background-color: rgb(41, 134, 41) !important;
 }
 
-body{
-    font-family: "Bitter", serif;
-    font-size: 16px;
-    font-weight: 400;
-    font-style: normal;
-}
+body {
+    font-family: "Work Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  }
+
+  .download-btn{
+    background-color: #383838 !important;
+    color: white !important;
+    text-transform: capitalize !important;
+  }
+  .download-btn:hover{
+    background-color: #4e4e4e !important;
+  }

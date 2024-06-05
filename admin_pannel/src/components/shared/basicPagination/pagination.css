@@ -1,0 +1,19 @@
+/* .css-lqq3n7-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected:hover {
+    background-color: red;
+} */
+.MuiPagination-root {
+    button {
+      color: darkgreen !important;
+      border: 1px solid darkgreen !important;
+      font-weight: 300;
+      /* background-color: rgb(240, 251, 242) !important; */
+   }
+  }
+
+  /* .MuiPagination-root.Mui-selected {
+           button:active {
+            background-color: rgb(250, 179, 37) !important;
+           }
+           
+            
+  } */

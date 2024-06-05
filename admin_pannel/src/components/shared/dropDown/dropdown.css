@@ -1,0 +1,58 @@
+
+.clickable-user-icon {
+  color: rgb(77, 77, 77) !important;
+  font-size: 30px !important ;
+}
+.muibutton {
+  border: none !important;
+}
+.muibutton:hover {
+  background-color: rgb(223, 246, 223) !important;
+}
+.mui-popper {
+  background-color: white !important;
+}
+.mui-paper {
+  display: block !important;
+  justify-content: left !important;
+  align-items: left !important;
+}
+.mui-paper:hover {
+  background-color: rgba(255, 255, 255, 0.96) !important;
+}
+.profile-view-btn {
+  justify-content: left !important;
+  align-items: left !important;
+  display: flex !important;
+  gap: 10px !important;
+}
+.profile-view-btn:hover {
+  background-color: rgb(231, 253, 231) !important;
+}
+.log-out-btn {
+  justify-content: left !important;
+  align-items: left !important;
+  display: flex !important;
+  gap: 10px !important;
+}
+.log-out-btn:hover {
+  background-color: rgb(231, 253, 231) !important;
+}
+
+.profile-icon {
+  color: gray !important;
+}
+.profile-view-btn a {
+  color: rgb(88, 88, 88) !important;
+  font-size: 14px !important;
+  text-transform: capitalize !important;
+}
+.logout-icon {
+  color: gray !important;
+  font-size: 20px !important;
+}
+.log-out-btn a {
+  color: rgb(88, 88, 88) !important;
+  font-size: 14px !important;
+  text-transform: capitalize !important;
+}

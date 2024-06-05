@@ -19,6 +19,7 @@ import { api } from "../../../../utils/api";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../../../../contexts/authContext/authContext";
 import "./login.css";
+import { ROLES } from "../../../../constants/roles/Roles";
 const paperStyles = {
   width: "390px",
   height: "500px",
@@ -80,10 +81,12 @@ export default function Login() {
 
       console.log("Login response:", response.builder);
       if (response) {
-        localStorage.setItem("@builder-admin", response);
-        setUser(response);
-        // localStorage.setItem("@builder-admin", response.builder)
-        navigate(`/admin?cid=${response.builder_object_id}`);
+        if(response.role === ROLES.super_admin){
+          localStorage.setItem("@admin", response);
+          setUser(response);
+          // localStorage.setItem("@builder-admin", response.builder)
+          navigate(`/`);
+        }
       }
     } catch (error) {
       console.error("Error while login sending payload", error);

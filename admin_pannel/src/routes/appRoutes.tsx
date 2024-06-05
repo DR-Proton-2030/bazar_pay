@@ -11,7 +11,6 @@ import TelecallerManagement from "../components/pages/permission/telecallerManag
 import BuilderManagement from "../components/pages/permission/advertisement/Advertisement";
 import UserManagement from "../components/pages/permission/userManagement/UserManagement";
 import UserForm from "../components/pages/permission/userManagement/userForm/UserForm";
-import PlotsPage from "../components/pages/plots/Plots";
 import {
   AdminPanelSettings,
   Book,
@@ -26,11 +25,11 @@ import {
   ShoppingCart,
   WheelchairPickup,
 } from "@mui/icons-material";
-import AddPlotsForm from "../components/pages/admin/plots/addPlots/AddPlotsForm";
 import Reports from "../components/pages/reports/Reports";
 import Advertisement from "../components/pages/permission/advertisement/Advertisement";
 import AddAdvertisement from "../components/pages/permission/advertisement/addBanner/AddBanner";
 import AddBanner from "../components/pages/permission/advertisement/addBanner/AddBanner";
+import ProductList from "../components/pages/products/Products";
 
 const appRoutes: RouteType[] = [
   {
@@ -68,8 +67,8 @@ const appRoutes: RouteType[] = [
   },
 
   {
-    path: "/plots",
-    element: <PlotsPage />,
+    path: "/products",
+    element: <ProductList />,
     state: "plots",
     sidebarProps: {
       displayText: "All Products",

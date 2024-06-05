@@ -20,6 +20,8 @@ import FormControl from "@mui/material/FormControl";
 import { styled } from "@mui/system";
 import AuthContext from "../../../contexts/authContext/authContext";
 import BuilderContext from "../../../contexts/builderContext/BuilderContext";
+import { ROLES } from "../../../constants/roles/Roles";
+import Dropdown from "../../shared/dropDown/Dropdown";
 
 interface TopbarProps {
   sidebarOpen: boolean;
@@ -40,7 +42,7 @@ const Topbar: React.FC<TopbarProps> = ({ sidebarOpen, toggleSidebar }) => {
           ? `calc(100% - ${sizeConfigs.sidebar.width})`
           : "100%",
         ml: sidebarOpen ? sizeConfigs.sidebar.width : 0,
-        backgroundColor: "#F9FCFB",
+        backgroundColor: "#F8F8FF",
         color: colorConfigs.topbar.color,
       }}
     >
@@ -51,7 +53,7 @@ const Topbar: React.FC<TopbarProps> = ({ sidebarOpen, toggleSidebar }) => {
           alignItems: "center",
         }}
       >
-        <Typography variant="h6">{dashboardHeader}</Typography>
+        <Typography variant="h6" style={{color: "#333333"}}>{dashboardHeader}</Typography>
         {/* Add a toggle button for the sidebar */}
         <IconButton
           edge="start"
@@ -63,47 +65,28 @@ const Topbar: React.FC<TopbarProps> = ({ sidebarOpen, toggleSidebar }) => {
         </IconButton>
 
         {/* <Button variant="contained" sx={{ backgroundColor: "#004d99", fontFamily: "Railway, sans-serif"}}>Builder</Button> */}
-
-        <div
+        {user?.role === ROLES.super_admin  ? <Dropdown/> : (
+          <div
           className="button-group"
           style={{
             display: "flex",
-            gap: "5px",
+           
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <div>
+          
             <Button className="green-contained-button" variant="outlined">
               {builderDetails?.builder_name}
             </Button>
-          </div>
-          <div>
-            <Box sx={{ minWidth: 80 }}>
-              <FormControl fullWidth>
-                <InputLabel style={{ borderWidth: "20px", borderColor: "red" }}>
-                  <AccountCircleIcon style={{ width: "32px" }} />
-                </InputLabel>
-
-                <Select
-                  sx={{ border: "1px", outline: "white", borderColor: "white" }}
-                  label="Age"
-                >
-                  <MenuItem>
-                    <AccountCircleIcon
-                      style={{ width: "48px", fill: "gray" }}
-                    />{" "}
-                    My Profile
-                  </MenuItem>
-                  <MenuItem>
-                    <Logout style={{ width: "48px", fill: "gray" }} />
-                    Log out
-                  </MenuItem>
-                </Select>
-              </FormControl>
-            </Box>
-          </div>
+            <Dropdown/>
+          
+          
         </div>
+        
+        ) }
+       
+        
       </Toolbar>
     </AppBar>
   );

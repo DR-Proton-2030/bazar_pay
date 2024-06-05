@@ -1,6 +1,8 @@
+import { SchemaDefinitionProperty, Types } from "mongoose";
+
 export interface IProduct {
     product_name: string;
-    wholesalerSaler_id: string;
+    wholesaler_object_id: SchemaDefinitionProperty<Types.ObjectId>;
     product_buying_price: string;
     product_saling_price: string;
     unit: string;

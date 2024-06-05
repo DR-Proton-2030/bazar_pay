@@ -1,0 +1,26 @@
+.card-top-section {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* padding: 1rem; */
+}
+.card-top-section .card-icon {
+  background-color: #3caa8c;
+  border-radius: 0.3rem;
+  padding: 0.15rem 0.5rem;
+}
+.card-bottom-section {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+.card-bottom-section .card-value {
+  font-size: 3.5rem;
+}
+.card-bottom-section .card-growth-percent {
+  background-color: #ffaeae;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.5rem;
+  color: red;
+}

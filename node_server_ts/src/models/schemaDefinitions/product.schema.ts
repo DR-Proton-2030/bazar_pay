@@ -1,13 +1,14 @@
-import { Schema, SchemaTypeOptions } from "mongoose";
+import { Schema, SchemaTypeOptions, VirtualTypeOptions } from "mongoose";
 import SCHEMA_DEFINITION_PROPERTY from "../../constants/model/model.constant";
 import { GENERAL_SCHEMA_OPTIONS } from "../../constants/model/schemaOption";
 import { IWholesaler } from "../../@types/types/wholesaler.interface";
 import { IProduct } from "../../@types/types/product.interface";
+import wholesalerModel from "../wholesaler.model";
 
 const productSchema: Schema<IProduct> = new Schema<any>(
   {
     product_name: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-    wholesalerSaler_id:SCHEMA_DEFINITION_PROPERTY.optionalNullString,
+    wholesaler_object_id:SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
     product_buying_price: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     product_saling_price: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     unit: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
@@ -21,9 +22,22 @@ const productSchema: Schema<IProduct> = new Schema<any>(
     product_discount: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     product_bhat: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     total: SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
-    product_status:SCHEMA_DEFINITION_PROPERTY.optionalNullString
+    product_status:{...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default:"PENDING"}
   },
-  GENERAL_SCHEMA_OPTIONS
+  {
+    ...GENERAL_SCHEMA_OPTIONS,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
 );
+
+const wholesalerVirtualReference: VirtualTypeOptions<IProduct> = {
+  ref: wholesalerModel,
+  localField: "wholesaler_object_id",
+  foreignField: "_id",
+  justOne: true,
+};
+
+productSchema.virtual("wholesaler", wholesalerVirtualReference);
 
 export default productSchema;

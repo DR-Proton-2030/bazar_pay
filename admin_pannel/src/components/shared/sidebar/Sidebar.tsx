@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
     Avatar,
     Drawer,
@@ -16,6 +16,7 @@ import appRoutes from "../../../routes/appRoutes";
 import SidebarItem from "./sidebarItem/SidebarItem";
 import SidebarItemCollapse from "./sidebarItemCollapse/SidebarItemCollapse";
 import Topbar from "../../layout/topbar/Topbar";
+import AuthContext from "../../../contexts/authContext/authContext";
 
 interface SideBarProps {
     toggleSidebar: () => void;
@@ -52,6 +53,7 @@ function stringAvatar(name: string) {
 }
 
 const Sidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
+    const {user} = useContext(AuthContext);
     const [open, setOpen] = useState(true);
     const [collapseOpen, setCollapseOpen] = useState(false);
 
@@ -110,12 +112,12 @@ const Sidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
                         width: "80px",
                     }}
                     // src="https://pbs.twimg.com/media/CnBrlSEVIAAsh04.jpg"
-                    {...stringAvatar("Naginder Reddy")}
+                    {...stringAvatar(user?.full_name || "Super Admin")}
                 />
 
                 <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
                     {/* {builderData?.builder_name} */}
-                    Bazarpay
+                    {user?.full_name}
                 </h1>
 
                 {/* Sidebar content */}

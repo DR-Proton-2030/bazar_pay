@@ -5,7 +5,7 @@ import actions from "./actions";
 const reducer = (state: Store, action: AuthAction) => {
 	switch (action.type) {
 		case actions.SET_USER: {
-			localStorage.setItem("@user", JSON.stringify(action.payload.user));
+			localStorage.setItem("@admin", JSON.stringify(action.payload.user));
 			return {
 				...state,
 				isLoggedIn: true,

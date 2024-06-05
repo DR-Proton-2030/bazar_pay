@@ -7,7 +7,7 @@ import reducer from "./reducer";
 import { Store } from "../../@types/contexts/authContext/store.types";
 
 const getUserFromLocalStorage = () => {
-  const user = localStorage.getItem("@user");
+  const user = localStorage.getItem("@admin");
   return user ? JSON.parse(user) : null;
 };
 

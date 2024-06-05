@@ -22,12 +22,14 @@ import MuiAlert from "@mui/material/Alert";
 import UIContext from "../../../../../contexts/uiContext/UIContext";
 import { hover } from "@testing-library/user-event/dist/hover";
 import { IUser } from "../../../../../@types/interface/user.interface";
-// import { SelectRole } from "../../../../../@types/interface/select.interface";
+
 import { ROLES } from "../../../../../constants/roles/Roles";
-import { SelectRole } from "../../../../../@types/interface/select.interface";
+import { getBuilderByID } from "../../../../../utils/api/builders/getBuilderByID";
+
 
 const UserForm = () => {
   const { setDashboardHeader } = useContext(UIContext);
+  
   const [selectedBuilderName, setSelectedBuilderName] = useState<string | null>(
     null
   );
@@ -50,8 +52,8 @@ const UserForm = () => {
   );
   const [snackbarMessage, setSnackbarMessage] = useState("");
   const [otpCheck, setOtpCheck] = useState("");
-  const [selectedRole, setSelectedRole] = useState<SelectRole>({
-    role: "", 
+  const [selectedRole, setSelectedRole] = useState({
+    role: "",
   });
   const [hasSubmitted, setHasSubmitted] = useState(false);
   const states = [
@@ -85,6 +87,7 @@ const UserForm = () => {
           data.map((item: { _id: string; builder_name: string }) => ({
             id: item._id,
             name: item.builder_name,
+           
           }))
         );
       } else {
@@ -104,6 +107,7 @@ const UserForm = () => {
     );
     setSelectedBuilderName(newValue);
     setSelectedBuilderId(selectedBuilder?.id || null);
+    
   };
 
   const handleSubmit = async () => {
@@ -111,22 +115,8 @@ const UserForm = () => {
   };
 
   const handleRequestOTP = async () => {
-    if (
-      !fullName ||
-      !email ||
-      !password ||
-      !phoneNumber ||
-      !selectedBuilderName ||
-      !state
-    ) {
-      console.log(
-        fullName,
-        email,
-        password,
-        phoneNumber,
-        selectedBuilderName,
-        state
-      );
+    if (!fullName || !email || !password || !phoneNumber || !selectedRole) {
+      console.log(fullName, email, password, phoneNumber, selectedRole);
       console.error("All fields are required");
       setSnackbarType("error");
       setSnackbarMessage("All fields are required");
@@ -134,7 +124,7 @@ const UserForm = () => {
       return;
     }
     try {
-      const response = await api.auth.getOtp({ phone_no: phoneNumber });
+      const response = await api.auth.getOtp({ phone_number: phoneNumber });
       if (response) {
         console.log("OTP requested successfully");
         setIsPasswordDialogOpen(true);
@@ -155,11 +145,12 @@ const UserForm = () => {
       try {
         const payload = {
           full_name: fullName,
-          role: "BUILDER_ADMIN",
+          role: selectedRole.role,
           email: email,
           password: enteredPassword,
           phone_number: phoneNumber,
-          builder_object_id: selectedBuilderId,
+          builder_object_id: selectedBuilderId
+          
         };
         const response = await api.admin.createAdmin(payload);
         if (response) {
@@ -175,6 +166,7 @@ const UserForm = () => {
           setPhoneNumber("");
           setState(null);
           setOtp("");
+          
         } else {
           console.error("Failed to create admin");
         }
@@ -228,7 +220,7 @@ const UserForm = () => {
             aria-controls="panel1-content"
             id="panel1-header"
           >
-            <b>User Details</b>
+            User Details
           </AccordionSummary>
           <AccordionDetails>
             <TextField
@@ -274,11 +266,11 @@ const UserForm = () => {
 
                 formattedPhoneNumber = formattedPhoneNumber.replace(/\D/g, "");
 
-                if (formattedPhoneNumber.startsWith("91")) {
-                  formattedPhoneNumber = formattedPhoneNumber.slice(2);
+                if (formattedPhoneNumber.startsWith("880")) {
+                  formattedPhoneNumber = formattedPhoneNumber.slice(3);
                 }
 
-                formattedPhoneNumber = "+91" + formattedPhoneNumber;
+                formattedPhoneNumber = "880" + formattedPhoneNumber;
 
                 setPhoneNumber(formattedPhoneNumber);
               }}
@@ -288,9 +280,7 @@ const UserForm = () => {
 
             <Box sx={{ minWidth: 120 }}>
               <FormControl fullWidth>
-                <InputLabel id="demo-simple-select-label">
-                 Role
-                </InputLabel>
+                <InputLabel id="demo-simple-select-label">Role</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
                   id="demo-simple-select"
@@ -301,62 +291,63 @@ const UserForm = () => {
                   onChange={handleChange}
                   disabled={hasSubmitted}
                 >
-                  <MenuItem value={ROLES.wholesaler_admin}>Wholesaler-Admin</MenuItem>
+                  <MenuItem value={ROLES.builder_admin}>Builder-Admin</MenuItem>
                   <MenuItem value={ROLES.super_admin}>Super-Admin</MenuItem>
-                 
                 </Select>
               </FormControl>
             </Box>
           </AccordionDetails>
         </Accordion>
-        {selectedRole.role === ROLES.wholesaler_admin && !hasSubmitted ?
-        <Accordion defaultExpanded>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls="panel3-content"
-          id="panel3-header"
-        >
-          <b>Assign to Wholesaler</b>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Stack spacing={1} width={"600px"} style={{ marginBottom: "15px" }}>
-            <Autocomplete
-              sx={{ marginBottom: 2 }}
-              options={builderOptions.map((option) => option.name)}
-              renderInput={(params) => (
-                <TextField {...params} label="Wholesaler Name" />
-              )}
-              value={selectedBuilderName}
-              onChange={handleBuilderChange}
-              freeSolo
-            />
-          </Stack>
-          <Stack spacing={1} width={"600px"}>
-            <Autocomplete
-              options={states}
-              renderInput={(params) => (
-                <TextField {...params} label="states" />
-              )}
-              value={state}
-              onChange={(event: any, newValue: string | null) =>
-                setState(newValue)
-              }
-              freeSolo
-            />
-          </Stack>
-        </AccordionDetails>
-      </Accordion>
-      : "" }
-        
+        {selectedRole.role === ROLES.builder_admin && !hasSubmitted ? (
+          <Accordion defaultExpanded>
+            <AccordionSummary
+              expandIcon={<ExpandMoreIcon />}
+              aria-controls="panel3-content"
+              id="panel3-header"
+            >
+              Assign to Builder
+            </AccordionSummary>
+            <AccordionDetails>
+              <Stack
+                spacing={1}
+                width={"600px"}
+                style={{ marginBottom: "15px" }}
+              >
+                <Autocomplete
+                  sx={{ marginBottom: 2 }}
+                  options={builderOptions.map((option) => option.name)}
+                  renderInput={(params) => (
+                    <TextField {...params} label="Builder Name" />
+                  )}
+                  value={selectedBuilderName}
+                  onChange={handleBuilderChange}
+                  freeSolo
+                />
+              </Stack>
+              <Stack spacing={1} width={"600px"}>
+                <Autocomplete
+                  options={states}
+                  renderInput={(params) => (
+                    <TextField {...params} label="states" />
+                  )}
+                  value={state}
+                  onChange={(event: any, newValue: string | null) =>
+                    setState(newValue)
+                  }
+                  freeSolo
+                />
+              </Stack>
+            </AccordionDetails>
+          </Accordion>
+        ) : null}
 
         <Button
           variant="contained"
-          className="button"
+          className="btn"
           onClick={handleRequestOTP}
           style={{
-            marginTop: 2,
-            backgroundColor: "#49BB43",
-            fontFamily: "Railway, sans-serif",
+            marginTop: "20px",
+           
           }}
         >
           Request OTP
@@ -390,11 +381,11 @@ const UserForm = () => {
           />
           <Button
             variant="contained"
+            className="btn"
             onClick={() => handlePasswordSubmit(password)}
             style={{
               width: 300,
-              fontFamily: "Railway, sans-serif",
-              backgroundColor: "#49BB43",
+              
             }}
           >
             Submit

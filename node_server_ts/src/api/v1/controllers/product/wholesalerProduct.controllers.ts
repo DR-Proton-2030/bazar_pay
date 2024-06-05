@@ -93,6 +93,7 @@ export const getProductList = async (req: Request, res: Response) => {
 
     const products = await productModel
       .find(filter)
+      .populate("wholesaler")
       .sort({ [sortField]: -1 })
       .skip(startIndex)
       .limit(limit);
@@ -119,8 +120,8 @@ export const updateProduct = async (req: Request, res: Response) => {
     let bar_code_photo: any = null;
     if (
       req.files &&
-      ("product_image" in req.files) &&
-      ("bar_code_photo" in req.files)
+      "product_image" in req.files &&
+      "bar_code_photo" in req.files
     ) {
       product_image = req.files["product_image"][0];
       bar_code_photo = req.files["bar_code_photo"][0];
@@ -129,24 +130,28 @@ export const updateProduct = async (req: Request, res: Response) => {
     const productImageBuffer = product_image ? product_image.buffer : null;
     const barCodePhotoBuffer = bar_code_photo ? bar_code_photo.buffer : null;
 
-    const productImageUrl = productImageBuffer ? await uploadImageService(
-      "product_image",
-      productImageBuffer
-    ) : "";
-    
-    const barCodePhotoUrl = barCodePhotoBuffer ? await uploadImageService(
-      "bar_code_photo",
-      barCodePhotoBuffer
-    ) : "";
-    
+    const productImageUrl = productImageBuffer
+      ? await uploadImageService("product_image", productImageBuffer)
+      : "";
+
+    const barCodePhotoUrl = barCodePhotoBuffer
+      ? await uploadImageService("bar_code_photo", barCodePhotoBuffer)
+      : "";
+
     const { productDetails, productId } = req.body;
     const _productPayload = JSON.parse(productDetails);
-    let productDetailsPayload = {..._productPayload};
-    if(productImageUrl){
-      productDetailsPayload = {...productDetailsPayload, product_image: productImageUrl};
+    let productDetailsPayload = { ..._productPayload };
+    if (productImageUrl) {
+      productDetailsPayload = {
+        ...productDetailsPayload,
+        product_image: productImageUrl,
+      };
     }
-    if(barCodePhotoUrl){
-      productDetailsPayload = {...productDetailsPayload, bar_code_photo: barCodePhotoUrl};
+    if (barCodePhotoUrl) {
+      productDetailsPayload = {
+        ...productDetailsPayload,
+        bar_code_photo: barCodePhotoUrl,
+      };
     }
 
     const productInstance = await productModel.findByIdAndUpdate(
@@ -171,8 +176,8 @@ export const updateProduct = async (req: Request, res: Response) => {
 
 export const updateProductStatus = async (req: Request, res: Response) => {
   try {
-    const { productStatus ,productId} = req.body;
-    console.log(productId)
+    const { productStatus, productId } = req.body;
+    console.log(productId);
     const updatedProduct = await productModel.findByIdAndUpdate(
       productId,
       { $set: { product_status: productStatus } },
@@ -180,12 +185,13 @@ export const updateProductStatus = async (req: Request, res: Response) => {
     );
 
     if (!updatedProduct) {
-      return res.status(404).json({ message: "Product not found" });
+      return res.status(404).json({ message: MESSAGE.patch.custom("Not Found") });
     }
 
-    return res.status(200).json({ message: "Product status updated", product: updatedProduct });
+    return res
+      .status(200)
+      .json({ message: MESSAGE.patch.succ, result: updatedProduct });
   } catch (error) {
-    return res.status(500).json({ message: "Error updating product status", error });
+    return res.status(500).json({ message: MESSAGE.patch.fail, error });
   }
 };
-

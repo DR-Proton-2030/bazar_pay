@@ -8,11 +8,10 @@ import { getCustomer } from "./customer/getCustomer";
 import { getEmployeeList } from "./employee/getEmployee";
 import { createAdmin } from "./permission/userManagement/createAdmin";
 import { getBuilderList } from "./permission/userManagement/getBuilderList";
-import { addPlot } from "./projects/addProject";
-import { adminAssignProject } from "./projects/assignProject";
-import { getAdminPlots, getAssignedProjectList, getProjectDetails } from "./projects/getAdminProjects";
-import { getAllProjects, getPlots } from "./projects/getProjects";
-import { updatePlotPostion } from "./projects/updatePlotPosition";
+import { adminAssignProject } from "./products/assignProject";
+import { getAdminPlots, getAssignedProjectList, getProjectDetails } from "./products/getAdminProjects";
+import { getProducts, updateProductStatus } from "./products/getProducts";
+import { updatePlotPostion } from "./products/updatePlotPosition";
 
 export const api = {
   customer: {
@@ -35,14 +34,9 @@ export const api = {
   permission: {
     getBuilderList: getBuilderList,
   },
-  project: {
-    addPlot,
-    getPlots,
-    getAdminPlots,
-    getProjectDetails,
-    getAllProjects,
-    getAssignedProjectList,
-    updatePlotPostion
+  product: {
+   getProducts,
+   updateProductStatus
   },
   booking: {
     getBooking,

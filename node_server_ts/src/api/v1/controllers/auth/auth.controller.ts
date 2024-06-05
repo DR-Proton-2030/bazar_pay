@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { MESSAGE } from "../../../../constants/message";
 import { verifyPassword } from "../../../../services/verifyPassword";
 import WholeSalerEmployeeModel from "../../../../models/wholeSalerEmployee.model";
+import AdminModel from "../../../../models/admin.model";
 
 export const loginWholesaler = async (req: Request, res: Response) => {
   try {
@@ -27,6 +28,37 @@ export const loginWholesaler = async (req: Request, res: Response) => {
       });
     }
     console.log("===>not found");
+    return res.status(404).json({
+      message: MESSAGE.post.failAuth,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      message: MESSAGE.post.fail,
+      error,
+    });
+  }
+};
+
+export const loginAdmin = async (req: Request, res: Response) => {
+  try {
+    const { userId, password } = req.body;
+    const filterQuery = userId.includes("@")
+      ? { email: userId }
+      : { phone_number: userId };
+    console.log("===>filter", filterQuery);
+    const adminInstance = await AdminModel.findOne(filterQuery);
+    if (!adminInstance) {
+      return res.status(404).json({
+        message: MESSAGE.post.failAuth,
+      });
+    }
+    const verify = await verifyPassword(password, adminInstance.password);
+    if (verify) {
+      return res.status(200).json({
+        message: MESSAGE.post.succAuth,
+        result: adminInstance,
+      });
+    }
     return res.status(404).json({
       message: MESSAGE.post.failAuth,
     });
