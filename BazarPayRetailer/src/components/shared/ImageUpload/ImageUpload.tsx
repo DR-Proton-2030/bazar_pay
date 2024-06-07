@@ -118,7 +118,7 @@ export default function ImagePickerExample() {
                 marginTop: 5,
                 justifyContent: "center",
                 width: "auto",
-                paddingHorizontal: 20,
+                paddingHorizontal: 10,
               }}
             >
               {image?.name}
@@ -140,7 +140,7 @@ export default function ImagePickerExample() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   buttonRow: {
     flexDirection: "row",
@@ -155,7 +155,7 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     flexDirection: "row",
     gap: 5,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "black",
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
   submitButton: {
     backgroundColor: Colors.light.orange,
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     borderRadius: 50,
     alignItems: "center",
     justifyContent: "center",

@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.light.orange,
     marginTop: 30,
     paddingVertical: 18,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     borderRadius: 50,
   },
   nextButtonText: {

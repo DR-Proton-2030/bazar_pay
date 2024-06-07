@@ -32,7 +32,7 @@ const SideDrawer: React.FC<SideDrawerProps> = ({
             style={{ width: "77%", backgroundColor: "white", flex: 1 }}
             activeOpacity={1}
           >
-            <DrawerContent onClose={onClose} />
+            <DrawerContent />
           </TouchableOpacity>
         </Animated.View>
       </TouchableOpacity>

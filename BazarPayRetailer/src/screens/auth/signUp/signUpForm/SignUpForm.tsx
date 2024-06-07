@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: "column",
     paddingTop: 40,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     backgroundColor: Colors.light.background,
   },
   fieldContainer: {

@@ -18,7 +18,7 @@ const SignIn = () => {
         <Image style={{ width: "100%", height: "73%" }} source={loginBg} />
         <View style={globalStyle.sectionContainer}>
           <Header />
-          <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+          <View style={{ paddingHorizontal: 10, paddingTop: 20 }}>
             <InputField
               placeholder="Email"
               onChangeText={setEmail}

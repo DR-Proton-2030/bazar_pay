@@ -81,7 +81,7 @@ const OfferSection = ({ backgroundColor }: any) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
   },
   row: {
     flexDirection: "row",

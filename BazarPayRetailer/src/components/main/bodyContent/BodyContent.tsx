@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 40,
   },
   textContainer: {
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     flexDirection: "column",
     justifyContent: "space-between",
     gap: 28,

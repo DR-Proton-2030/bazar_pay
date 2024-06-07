@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { useRef, useState } from "react";
+import { View, TouchableOpacity, Text, StyleSheet, DrawerLayoutAndroid } from "react-native";
 import {
   Feather,
   MaterialCommunityIcons,
@@ -9,9 +9,20 @@ import {
 import HomePage from "../home/Home";
 import Colors from "../../constants/Colors";
 import { BottomRow } from "../../components/main/buttomNavigation/bottomRowList/BottomRowList";
+import Drawer from "../../components/shared/sideDrawer/Drawer";
 
 const Dashboard: React.FC = () => {
   const [activeScreen, setActiveScreen] = useState<string>("Home");
+  const drawerRef = useRef<DrawerLayoutAndroid>(null);
+
+  const openDrawer = () => {
+    if (drawerRef.current) {
+      console.log("Opening drawer");
+      drawerRef.current.openDrawer();
+    } else {
+      console.warn("Drawer reference is null. Unable to open drawer.");
+    }
+  };
 
   const renderScreen = () => {
     switch (activeScreen) {
@@ -27,6 +38,12 @@ const Dashboard: React.FC = () => {
   };
 
   return (
+    <DrawerLayoutAndroid
+      ref={drawerRef}
+      drawerWidth={300} // Hard-coding drawer width temporarily
+      drawerPosition="left"
+      renderNavigationView={Drawer}
+    >
     <View style={styles.container}>
       <View style={styles.screen}>{renderScreen()}</View>
       <View style={styles.bottomBar}>
@@ -57,6 +74,7 @@ const Dashboard: React.FC = () => {
         />
       </View>
     </View>
+    </DrawerLayoutAndroid>
   );
 };
 

@@ -18,7 +18,7 @@ export const globalStyle = StyleSheet.create({
     backgroundColor: Colors.light.orange,
     marginTop: 10,
     paddingVertical: 18,
-    paddingHorizontal: 20,
+    paddingHorizontal: 10,
     borderRadius: 10,
   },
   flagContainer: {

@@ -23,6 +23,7 @@ const DrawerCards = ({
         alignItems: "center", // Center the items vertically
         paddingVertical: 10, // Add padding for better touchability
         marginTop: 5,
+        width:"100%"
       }}
     >
       <Text style={{ fontSize: 17, fontWeight: "400" }}>

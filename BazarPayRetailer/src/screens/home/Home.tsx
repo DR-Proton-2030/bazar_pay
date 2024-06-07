@@ -15,14 +15,13 @@ export default function HomePage() {
       <ScrollView
         style={{
           backgroundColor: "white",
-          // paddingHorizontal: 20,
+          // paddingHorizontal: 10,
           paddingBottom: 10,
           width: "100%",
         }}
       >
         <AppHeader />
         <ScrollView
-          style={{ paddingLeft: 10 }}
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         >
@@ -32,7 +31,7 @@ export default function HomePage() {
               <MaterialIcons
                 name="local-grocery-store"
                 size={15}
-                color="black"
+                color="red"
               />
             )}
           />

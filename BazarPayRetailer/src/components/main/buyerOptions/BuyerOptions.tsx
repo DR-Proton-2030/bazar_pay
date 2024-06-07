@@ -10,7 +10,7 @@ const BuyerOptions = () => {
     navigation.navigate("RatingsPage");
   };
   return (
-    <View style={{ paddingHorizontal: 20, marginTop: 20 }}>
+    <View style={{ paddingHorizontal: 10, marginTop: 20 }}>
       <View
         style={{
           flexDirection: "row",

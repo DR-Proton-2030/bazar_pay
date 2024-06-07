@@ -9,7 +9,7 @@ const Header = () => {
       style={{
         flexDirection: "row",
         justifyContent: "space-between",
-        paddingHorizontal: 20,
+        paddingHorizontal: 10,
         paddingTop: 20,
       }}
     >

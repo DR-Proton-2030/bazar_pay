@@ -42,9 +42,11 @@ const ActiveProducts = () => {
     try {
       const filter = {
         page,
-        wholesalerSaler_id: wholesaler?._id,
+        wholesaler_object_id: wholesaler?._id,
+        product_status:"ACTIVE"
       };
       const response = await api.product.getProductList(filter);
+      console.log("==========>active products",response)
       setProducts(response.result);
     } catch (error) {
       console.error("Failed to fetch products", error);

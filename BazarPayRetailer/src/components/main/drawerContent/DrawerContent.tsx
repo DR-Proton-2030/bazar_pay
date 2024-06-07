@@ -8,12 +8,12 @@ import DrawerCards from "./drawerCards/DrawerCards";
 import { useNavigation } from "expo-router";
 import { createDrawerItems } from "../../../database/drawerItems/drawerItems";
 
-export const DrawerContent = ({ onClose }: any) => {
+export const DrawerContent = () => {
   const navigation: any = useNavigation();
   const drawerItems = createDrawerItems(navigation);
   const handleNavigatetoProfile = ({ route }: any) => {
-    navigation.navigate("profilePage");
-    onClose();
+    // navigation.navigate("profilePage");
+    // onClose();
   };
 
   return (
@@ -57,7 +57,7 @@ export const DrawerContent = ({ onClose }: any) => {
           </TouchableOpacity>
         </View>
       </View>
-      <View style={{ marginTop: 30 }}>
+      <View style={{ marginTop: 30,width:260 }}>
         {drawerItems.map((item, index) => (
           <DrawerCards key={index} {...item} />
         ))}
