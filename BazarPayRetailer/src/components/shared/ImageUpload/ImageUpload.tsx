@@ -11,30 +11,9 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import Colors from "../../../constants/Colors";
 
-export default function ImagePickerExample() {
-  const [images, setImages] = useState([]);
-  const [hiddenButtons, setHiddenButtons] = useState([]);
+const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
   const [showSubmit, setShowSubmit] = useState(false);
 
-  const pickImage = async (buttonName) => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    if (!result.cancelled) {
-      const newImages = [...images];
-      newImages.push({ name: buttonName, uri: result.assets[0].uri });
-      setImages(newImages);
-
-      setHiddenButtons((prevHiddenButtons) => [
-        ...prevHiddenButtons,
-        buttonName,
-      ]);
-    }
-  };
 
   useEffect(() => {
     if (images.length === 4) {
@@ -42,106 +21,75 @@ export default function ImagePickerExample() {
     }
   }, [images]);
 
-  const handleSubmit = () => {
-    console.log("Selected Images:", images);
-  };
-
   return (
     <View style={styles.container}>
-      {!images ? (
-        <Text style={styles.label}>Upload Supporting Documents* </Text>
-      ) : null}
-
+      <Text style={styles.label}>Upload Supporting Documents* </Text>
       <View style={styles.buttonRow}>
-        {!hiddenButtons.includes("Shop SignBoard") && (
+        {!hiddenButtons.includes("sign_board") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("Shop SignBoard")}
+            onPress={() => pickImage("sign_board")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
-            <Text>Shop SignBoard</Text>
+            <Text>
+              Shop SignBoard<Text style={{ color: "red" }}>*</Text>
+            </Text>
           </TouchableOpacity>
         )}
-        {!hiddenButtons.includes("Own") && (
+        {!hiddenButtons.includes("owner_photo") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("Own")}
+            onPress={() => pickImage("owner_photo")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
-            <Text>Own</Text>
+            <Text>
+              Own Photo<Text style={{ color: "red" }}>*</Text>
+            </Text>
           </TouchableOpacity>
         )}
       </View>
 
       <View style={styles.buttonRow}>
-        {!hiddenButtons.includes("Trade License") && (
+        {!hiddenButtons.includes("trade_licensce") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("Trade License")}
+            onPress={() => pickImage("trade_licensce")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>Trade License</Text>
           </TouchableOpacity>
         )}
-        {!hiddenButtons.includes("NID") && (
+        {!hiddenButtons.includes("nid") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("NID")}
+            onPress={() => pickImage("nid")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
-            <Text>NID</Text>
+            <Text>
+              NID Card<Text style={{ color: "red" }}>*</Text>
+            </Text>
           </TouchableOpacity>
         )}
       </View>
-
-      {images ? <Text style={styles.label}>Selected Images</Text> : null}
-
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-        {images.map((image, index) => (
+      
+      <Text style={styles.label}>Selected Images</Text>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {images.map((image: any, index: number) => (
           <View
-            style={{
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
+            key={index}
+            style={{ flexDirection: "column", alignItems: "center" }}
           >
-            <Image
-              key={index}
-              source={{ uri: image.uri }}
-              style={styles.image}
-            />
-            <Text
-              style={{
-                textAlign: "center",
-                backgroundColor: Colors.light.grayBtn,
-                borderRadius: 50,
-                marginTop: 5,
-                justifyContent: "center",
-                width: "auto",
-                paddingHorizontal: 10,
-              }}
-            >
-              {image?.name}
-            </Text>
+            <Image source={{ uri: image.uri }} style={styles.image} />
+            <Text style={styles.imageLabel}>{image.name}</Text>
           </View>
         ))}
       </ScrollView>
-      <View style={{ justifyContent: "flex-end", flexDirection: "row" }}>
-        {showSubmit && (
-          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-            <MaterialIcons name="arrow-forward-ios" size={24} color="white" />
-          </TouchableOpacity>
-        )}
-      </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 10,
-  },
+  container: { flex: 1, paddingHorizontal: 0 },
   buttonRow: {
     flexDirection: "row",
     justifyContent: "flex-start",
@@ -151,46 +99,28 @@ const styles = StyleSheet.create({
   button: {
     width: "auto",
     height: 40,
-    backgroundColor: Colors.light.grayBtn,
+    backgroundColor: "white",
     borderRadius: 50,
     flexDirection: "row",
     gap: 5,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
     alignItems: "center",
     justifyContent: "center",
     shadowColor: "black",
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 3.84,
+    elevation: 5,
   },
-  label: {
-    fontWeight: "bold",
-    marginBottom: 25,
-    marginLeft: 10,
-  },
-  image: {
-    width: 90,
-    height: 80,
-    marginHorizontal: 10,
-    borderRadius: 10,
-  },
-  submitButton: {
-    backgroundColor: Colors.light.orange,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
+  label: { fontWeight: "bold", marginBottom: 25, marginLeft: 10 },
+  image: { width: 90, height: 80, marginHorizontal: 10, borderRadius: 10 },
+  imageLabel: {
+    textAlign: "center",
+    backgroundColor: Colors.light.grayBtn,
     borderRadius: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginTop: 20,
-    height: 60,
-    width: 60,
-  },
-  submitText: {
-    color: "white",
-    fontWeight: "bold",
-    fontSize: 16,
+    marginTop: 5,
+    paddingHorizontal: 20,
   },
 });
+
+export default ImageUpload;

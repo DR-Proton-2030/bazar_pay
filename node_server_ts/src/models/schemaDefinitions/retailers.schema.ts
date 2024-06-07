@@ -10,11 +10,13 @@ const retailerSchema: Schema<any> = new Schema<any>(
     contact_email: SCHEMA_DEFINITION_PROPERTY.requiredString,
     trade_licensce_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
     nid_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
+
     sign_board_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
     owner_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
     trade_licensce_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
     nid_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    password:SCHEMA_DEFINITION_PROPERTY.requiredString
+    
+    password:SCHEMA_DEFINITION_PROPERTY.optionalNullString
   },
   GENERAL_SCHEMA_OPTIONS
 );

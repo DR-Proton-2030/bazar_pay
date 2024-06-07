@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
   button: {
     width: "auto",
     height: 40,
-    backgroundColor: Colors.light.background,
+    backgroundColor: "white",
     borderRadius: 50,
     flexDirection: "row",
     gap: 5,

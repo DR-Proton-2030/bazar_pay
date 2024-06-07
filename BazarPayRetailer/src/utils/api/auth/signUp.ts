@@ -5,18 +5,15 @@ import { AUTHORIZATION } from "../../../constants/api/auth";
 
 const { post } = request;
 
-const initialRoute = "app";
+const initialRoute = "retailer";
 
-export const SignUp = async (payload: any) => {
+export const SignUp = async (formdata: any) => {
 	try {
-		const endpoint = `${initialRoute}/create-user`;
-		const response = await post(
-			endpoint,
-			payload,
-			{
-				...headers,
-			}
-		);
+		const endpoint = `${initialRoute}/add-retailer`;
+		const response = await post(endpoint, formdata, {
+			...headers,
+			"Content-Type": "multipart/form-data"
+		});
 		if (response) {
 			const {
 				data: { message }

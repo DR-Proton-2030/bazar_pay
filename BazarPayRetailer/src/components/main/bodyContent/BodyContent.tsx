@@ -14,15 +14,23 @@ const BodyContent = () => {
   const handleNavigate = () => {
     navigation.navigate("otpPage");
   };
+  // const handleToggle = () => {
+  //   setDisplayText(!displayText);
+  //   if (displayText) {
+  //     navigation.navigate("signUp");
+  //   }
+  //   console.log("first");
+  //   setDisplayImage(displayImage === wellcomeImg ? wellcomeImg2 : wellcomeImg);
+  // };
   const handleToggle = () => {
-    setDisplayText(!displayText);
     if (displayText) {
       navigation.navigate("signUp");
-    }
-    console.log("first");
-    setDisplayImage(displayImage === wellcomeImg ? wellcomeImg2 : wellcomeImg);
-  };
+    }else{
+      setDisplayText(!displayText);
+      setDisplayImage(displayImage === wellcomeImg ? wellcomeImg2 : wellcomeImg);
 
+    }
+  };
   return (
     <View style={styles.container}>
       <Image

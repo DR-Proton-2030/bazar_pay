@@ -46,7 +46,6 @@ function RootLayoutNav() {
       <Stack.Screen name="signUp" options={{ headerShown: false }} />
       <Stack.Screen
         name="homePage"
-        independent={true}
         options={{ headerShown: false }}
       />
       <Stack.Screen name="QrPage" options={{ headerShown: false }} />
