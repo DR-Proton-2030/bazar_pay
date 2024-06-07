@@ -14,7 +14,7 @@ export const full_prod_backend_url = "https://dev-portal-backend.enrollment.nexc
 
 // eslint-disable-next-line no-unused-vars
 // export const local_url = "https://haldia-paribesh-app.onrender.com";
-export const local_url = "http://16.171.5.195:4009";
+export const local_url = "http://192.168.55.155:8989";
 // export const local_url = "http://192.168.1.33:4009";
 export const local_port = "4009";
 

@@ -8,6 +8,8 @@ import ProductSection from "../../components/shared/productSection/ProductSectio
 import ImageBanner from "../../components/shared/imageBanner/ImageBanner";
 import OfferSection from "../../components/main/offerSection/OfferSection";
 import veg from "../../../assets/images/veg.png";
+import { useContext } from "react";
+import AuthContext from "../../contexts/authContext/authContext";
 
 export default function HomePage() {
   return (

@@ -11,6 +11,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AppHeader from "../src/components/shared/appheader/AppHeader";
+import AuthContextProvider from "../src/contexts/authContext/Provider";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -22,11 +23,13 @@ export default function RootLayout() {
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
+        <AuthContextProvider>
       <ThemeProvider value={DefaultTheme}>
         <View style={{ flex: 1 }}>
           <RootLayoutNav />
         </View>
       </ThemeProvider>
+      </AuthContextProvider>
     </GestureHandlerRootView>
   );
 }

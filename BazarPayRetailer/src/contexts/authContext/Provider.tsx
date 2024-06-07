@@ -9,14 +9,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const AuthContextProvider = ({ children }: ContextProviderProps) => {
 	const [state, dispatch] = useReducer(reducer, initialState);
-	// const value = {
-	// 	user: state.user,
-	// 	// eslint-disable-next-line react-hooks/exhaustive-deps
-	// 	setUser: useCallback((user: UserStudent | UserTeacher) =>
-
-	// 	dispatch({
-	// 		 type: actions.SET_USER, payload: { ...state, user } }), [])
-	// };
 
 	const fetchUserFromStorage = useCallback(async () => {
 		try {

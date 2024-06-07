@@ -5,11 +5,11 @@ import { AUTHORIZATION } from "../../../constants/api/auth";
 
 const { post } = request;
 
-const initialRoute = "app";
+const initialRoute = "retailer";
 
 export const Login = async (payload: any) => {
 	try {
-		const endpoint = `${initialRoute}/login-user`;
+		const endpoint = `${initialRoute}/login-retailer`;
 		const response = await post(endpoint, payload, {
 			...headers
 		});

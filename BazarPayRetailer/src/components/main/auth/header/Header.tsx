@@ -11,6 +11,7 @@ const Header = () => {
         justifyContent: "space-between",
         paddingHorizontal: 10,
         paddingTop: 20,
+        paddingBottom:20
       }}
     >
       <Text style={{ fontSize: 25, fontWeight: "700" }}>Sign In</Text>

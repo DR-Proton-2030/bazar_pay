@@ -10,20 +10,6 @@ export const api = {
 		SignUp: SignUp,
 		Login: Login,
 		OtpLogin: OtpLogin,
-		createAdmin: createAdmin
 	},
-	complain: {
-		PostComplaints: PostComplaints,
-		PostResolution: PostResolution,
-		getComplaints: getComplaints,
-		getComplaintsImage: getComplaintsImage,
-		assignComplaint: assignComplaint
-	},
-	feed: {
-		PostFeed: PostFeed,
-		getFeeds: getFeeds
-	},
-	department: {
-		getDepartments: getDepartments
-	}
+	
 };

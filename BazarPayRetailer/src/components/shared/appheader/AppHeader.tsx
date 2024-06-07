@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import { View, Text, Animated } from "react-native";
+import React, { useContext, useState } from "react";
+import { View, Text, Animated, TouchableOpacity } from "react-native";
 
 import Colors from "../../../constants/Colors";
 import { globalStyle } from "../../../globalStyles/globalStyles";
 import MenuButton from "../menuBtn/MenuBtn";
 import SideDrawer from "../sideDrawer/SideDrawer";
 import HeaderIcons from "./headerIcons/HeaderIcons";
+import AuthContext from "../../../contexts/authContext/authContext";
 
 const AppHeader: React.FC = () => {
+  const {user}= useContext(AuthContext)
+
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [animatedValue] = useState(new Animated.Value(-300));
 
@@ -38,8 +41,8 @@ const AppHeader: React.FC = () => {
           <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
             Halishahar
           </Text>
-          <Text style={globalStyle.posttitle}>Rafatul store</Text>
-          <View
+          <Text style={globalStyle.posttitle}>{user?.retailer_name}</Text>
+          <TouchableOpacity
             style={{
               flexDirection: "row",
               backgroundColor: Colors.light.yellow,
@@ -49,6 +52,7 @@ const AppHeader: React.FC = () => {
               gap: 5,
               marginLeft: 10,
               marginTop: 4,
+              width:150
             }}
           >
             <Text style={{ fontWeight: "500" }}>Tap for balance</Text>
@@ -62,7 +66,7 @@ const AppHeader: React.FC = () => {
             >
               ৳
             </Text>
-          </View>
+          </TouchableOpacity>
         </View>
         <SideDrawer
           isOpen={isDrawerOpen}
