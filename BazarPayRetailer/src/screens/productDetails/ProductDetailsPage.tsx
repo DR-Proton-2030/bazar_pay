@@ -10,19 +10,21 @@ import BuyerOptions from "../../components/main/buyerOptions/BuyerOptions";
 
 const ProductDetailsScreen = () => {
   return (
+    <>
+    <ProductHeader text="" />
     <ScrollView
       style={{
         flex: 1,
         backgroundColor: Colors.light.background,
         width: "100%",
       }}
-    >
-      <ProductHeader text="" />
+      >
       <ProductBlock />
       <ProductDesc />
       <BuyerOptions />
       <ProductSection />
     </ScrollView>
+      </>
   );
 };
 
