@@ -2,7 +2,7 @@ import express from "express";
 
 import { upload } from "../../../../middleware/multer.middleware";
 
-import { createRetailer, loginRetailer } from "../../controllers/retailer/retailer.controllers";
+import { createRetailer, loginRetailer, updatePassword } from "../../controllers/retailer/retailer.controllers";
 
 const router = express.Router();
 
@@ -17,5 +17,6 @@ router.route("/add-retailer").post(
   createRetailer
 );
 router.route("/login-retailer").post(loginRetailer);
+router.route("/update-password-retailer").patch(updatePassword);
 
 module.exports = router;

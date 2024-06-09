@@ -1,4 +1,5 @@
 import { Login, OtpLogin, createAdmin } from "./auth/login";
+import { getOtp } from "./auth/otp";
 import { SignUp } from "./auth/signUp";
 import { getDepartments } from "./departments/department";
 import { PostFeed, getFeeds } from "./feed/feed";
@@ -7,9 +8,9 @@ import { PostComplaints, PostResolution, assignComplaint, getComplaints } from "
 
 export const api = {
 	auth: {
-		SignUp: SignUp,
-		Login: Login,
-		OtpLogin: OtpLogin,
+		SignUp,
+		Login,
+		getOtp,
 	},
 	
 };

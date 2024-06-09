@@ -97,6 +97,45 @@ export const createRetailer = async (req: Request, res: Response) => {
   };
   
 
+  export const updatePassword = async (req: Request, res: Response) => {
+    try {
+      const { retailerId,newPassword } = req.body;
+
+      const retailer = await retailerModel.findById(retailerId);
+  
+      if (!retailer) {
+        return res.status(404).json({
+          message: MESSAGE.patch.fail,
+        });
+      }
+  
+      // const isMatch = await bcrypt.compare(currentPassword, retailer.password);
+  
+      // if (!isMatch) {
+      //   return res.status(400).json({
+      //     message: MESSAGE.patch.custom("Current password is incorrect"),
+      //   });
+      // }
+  
+      // const salt = await bcrypt.genSalt(10);
+      // const hashedPassword = await bcrypt.hash(newPassword, salt);
+  
+      await retailerModel.updateOne(
+        { _id: retailerId },
+        { $set: { password: newPassword } }
+      );
+  
+      return res.status(200).json({
+        message: MESSAGE.patch.succ,
+        result:retailer
+      });
+    } catch (error) {
+      return res.status(400).json({
+        message: MESSAGE.patch.fail,
+        error,
+      });
+    }
+  };
 
   export const loginRetailer = async (req: Request, res: Response) => {
     try {

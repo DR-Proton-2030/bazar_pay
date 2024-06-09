@@ -9,6 +9,7 @@ import {
   msg_senderId,
   msg_type,
 } from "../../../../config/config";
+import retailerModel from "../../../../models/retailer.model";
 
 export const getOtp = async (req: Request, res: Response) => {
   const { phone_number } = req.query;
@@ -26,6 +27,49 @@ export const getOtp = async (req: Request, res: Response) => {
     const otp = generateOTP();
     const generateMessage = () => {
       return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
+    };
+    const dynamicMessage = generateMessage();
+
+    const urlWithDynamicMessage = `${msg_apiUrl}?apiKey=${msg_apiKey}&type=${msg_type}&contactNumbers=${
+      phone_number?.length === 10 ? "880" + phone_number : phone_number
+    }&senderId=${msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
+
+    console.log("===>", urlWithDynamicMessage);
+
+    axios
+      .get(urlWithDynamicMessage)
+      .then((response: { data: any }) => {
+        console.log(response);
+        return res.status(200).json({
+          message: MESSAGE.get.succ,
+          result: otp,
+        });
+      })
+      .catch((error: { message: any }) => {
+        return res.status(400).json({
+          message: MESSAGE.get.fail,
+          result: error,
+        });
+      });
+  } catch (error) {
+    console.log("error", error);
+  }
+};
+export const getOtpForRetailer = async (req: Request, res: Response) => {
+  const { phone_number } = req.query;
+  try {
+
+    const employeeInstance: any = await retailerModel.findOne({
+      contact_phone_number:  phone_number,
+    });
+    if (employeeInstance) {
+      return res.status(404).json({
+        message: MESSAGE.get.fail,
+      });
+    }
+    const otp = generateOTP();
+    const generateMessage = () => {
+      return `your OTP for BazarPay Retailer App is ${otp}, Do not share this OTP with anyone`;
     };
     const dynamicMessage = generateMessage();
 

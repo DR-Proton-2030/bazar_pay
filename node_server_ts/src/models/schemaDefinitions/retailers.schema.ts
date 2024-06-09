@@ -16,7 +16,7 @@ const retailerSchema: Schema<any> = new Schema<any>(
     trade_licensce_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
     nid_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
     
-    password:SCHEMA_DEFINITION_PROPERTY.optionalNullString
+    password:SCHEMA_DEFINITION_PROPERTY.requiredString
   },
   GENERAL_SCHEMA_OPTIONS
 );

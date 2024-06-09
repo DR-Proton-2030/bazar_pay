@@ -9,6 +9,7 @@ export interface FormField {
     { label: "ইমেল", placeholder: "আপনার ইমেল লিখুন"  ,field:"contact_email"},
     { label: "এনআইডি", placeholder: "আপনার এনআইবি লিখুন"  ,field:"nid_number"},
     { label: "বাণিজ্য লাইসেন্স", placeholder: "আপনার বাণিজ্য লাইসেন্স লিখুন",field:"trade_licensce_number" },
+    { label: "পাসওয়ার্ড", placeholder: "আপনার পাসওয়ার্ড লিখুন",field:"password" },
   ];
   
   export default signUpformFields;
