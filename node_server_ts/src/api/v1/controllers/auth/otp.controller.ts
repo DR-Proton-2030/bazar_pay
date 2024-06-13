@@ -27,6 +27,7 @@ export const getOtp = async (req: Request, res: Response) => {
     const otp = generateOTP();
     const generateMessage = () => {
       return `your OTP for BazarPay Wholesaler App is ${otp}, Do not share this OTP with anyone`;
+      // return "Congratulation !! Your Product Burgur is Approved by an Admin ! Happy Selling !";
     };
     const dynamicMessage = generateMessage();
 
@@ -46,6 +47,7 @@ export const getOtp = async (req: Request, res: Response) => {
         });
       })
       .catch((error: { message: any }) => {
+        console.log("error", error);
         return res.status(400).json({
           message: MESSAGE.get.fail,
           result: error,

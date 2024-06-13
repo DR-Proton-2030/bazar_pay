@@ -15,7 +15,7 @@
     "@react-navigation/native": "^6.1.17",
     "axios": "^1.7.2",
     "expo": "^51.0.8",
-    "expo-constants": "~16.0.1",
+    "expo-constants": "~16.0.2",
     "expo-image-picker": "~15.0.5",
     "expo-linking": "~6.3.1",
     "expo-router": "~3.5.14",
@@ -33,7 +33,9 @@
     "react-native-select-dropdown": "^4.0.1",
     "react-native-svg": "15.2.0",
     "react-native-tab-view": "^3.5.2",
-    "react-native-web": "~0.19.6"
+    "react-native-web": "~0.19.6",
+    "expo-notifications": "~0.28.7",
+    "expo-device": "~6.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

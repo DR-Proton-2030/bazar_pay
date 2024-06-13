@@ -10,6 +10,7 @@ const wholesalerEmployeeSchema: Schema<IWholesalerEmployee> = new Schema<IWholes
     phone_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
     password: SCHEMA_DEFINITION_PROPERTY.requiredString,
     role: SCHEMA_DEFINITION_PROPERTY.requiredString,
+    expo_token: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     wholesaler_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
     last_login_date: SCHEMA_DEFINITION_PROPERTY.optionalNullDate,
   },

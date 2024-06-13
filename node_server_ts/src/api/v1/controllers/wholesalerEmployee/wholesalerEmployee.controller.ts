@@ -36,6 +36,27 @@ export const createWholeslaerEmployee = async (req: Request, res: Response) => {
 
 }
 
+export const updateWholeslaerEmployee = async (req: Request, res: Response) => {
+    try {
+        const payload = req.body;
+        const userID = payload._id;
+        delete payload._id;
+        const userInstance = await WholeSalerEmployeeModel.findByIdAndUpdate(userID, { ...payload }, { new: true });
+        res.status(200).json({
+            message: MESSAGE.patch.succ,
+            result: userInstance
+        })
+    }
+    catch (error) {
+        console.log("error", error)
+        res.status(400).json({
+            message: MESSAGE.patch.fail,
+            error,
+        });
+    }
+
+}
+
 // export const getEmployeeList = async (req: Request, res: Response) => {
 //     try {
 //       const filter: any = req.query;

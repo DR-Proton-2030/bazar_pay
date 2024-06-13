@@ -102,6 +102,26 @@ function RootLayoutNav() {
         }}
       />
       <Stack.Screen
+        name="(orders)"
+        options={{
+          headerShown: true,
+          headerTitleAlign: "center",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              Order List
+            </Text>
+          ),
+          headerRight: () => (
+            <Entypo
+              name="dots-three-vertical"
+              size={20}
+              color={Colors.light.primary}
+            />
+          ),
+        }}
+      />
+
+      <Stack.Screen
         name="productDetailsPage"
         options={{ headerShown: false, statusBarTranslucent: true }}
       />
