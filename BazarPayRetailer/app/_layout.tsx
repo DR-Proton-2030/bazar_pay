@@ -12,6 +12,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import AppHeader from "../src/components/shared/appheader/AppHeader";
 import AuthContextProvider from "../src/contexts/authContext/Provider";
+import ProductCartContextProvider from "../src/contexts/productCartContext/Provider";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -24,11 +25,13 @@ export default function RootLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
         <AuthContextProvider>
+          <ProductCartContextProvider>
       <ThemeProvider value={DefaultTheme}>
         <View style={{ flex: 1 }}>
           <RootLayoutNav />
         </View>
       </ThemeProvider>
+      </ProductCartContextProvider>
       </AuthContextProvider>
     </GestureHandlerRootView>
   );
@@ -50,6 +53,8 @@ function RootLayoutNav() {
       />
       <Stack.Screen name="QrPage" options={{ headerShown: false }} />
       <Stack.Screen name="profilePage" options={{ headerShown: false }} />
+      <Stack.Screen name="payments" options={{ headerShown: false }} />
+      <Stack.Screen name="cart" options={{ headerShown: false }} />
       <Stack.Screen
         name="productDetailsPage"
         options={{ headerShown: false }}

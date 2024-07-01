@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const ProductDesc = () => {
+const ProductDesc = ({product}:any) => {
   return (
     <View style={{ paddingHorizontal: 20 }}>
       <Text
@@ -15,9 +15,7 @@ const ProductDesc = () => {
         Product Description
       </Text>
       <Text>
-        Lörem ipsum hundvissla vide. Demimatisk sasat sare men pulverbrev den
-        nysare. Pred tetrase luten, men katt. Kroliga desyde ten astrosoheten
-        även om fakrorade. Decilogi infrara.
+      {product?.product_description}
       </Text>
     </View>
   );

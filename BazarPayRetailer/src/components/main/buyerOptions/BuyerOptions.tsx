@@ -4,7 +4,7 @@ import BuyerOptionsCards from "./buyerOptionsCards/BuyerOptionsCards";
 import Colors from "../../../constants/Colors";
 import { useNavigation } from "expo-router";
 
-const BuyerOptions = () => {
+const BuyerOptions = ({product}:any) => {
   const navigation: any = useNavigation();
   const handleNavigate = () => {
     navigation.navigate("RatingsPage");
@@ -43,10 +43,10 @@ const BuyerOptions = () => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
       >
-        <BuyerOptionsCards />
-        <BuyerOptionsCards />
-        <BuyerOptionsCards />
-        <BuyerOptionsCards />
+        <BuyerOptionsCards productdetails={product}/>
+        <BuyerOptionsCards productdetails={product}/>
+        <BuyerOptionsCards productdetails={product}/>
+        <BuyerOptionsCards productdetails={product}/>
       </ScrollView>
     </View>
   );

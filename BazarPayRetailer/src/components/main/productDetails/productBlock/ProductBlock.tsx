@@ -3,16 +3,16 @@ import React from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import productImg from "../../../../../assets/images/product.png";
 
-const ProductBlock = () => {
+const ProductBlock = ({product}:any) => {
   // const navigation: any = useNavigation();
   const handleNavigate = () => {
     // navigation.navigate("productDetails");
   };
   return (
     <TouchableOpacity onPress={handleNavigate} style={styles.container}>
-      <Image source={productImg} style={styles.image} />
-      <Text style={styles.title}>Chashi Chinigura Chal</Text>
-      <Text style={styles.amount}>1kg packet</Text>
+      <Image source={{uri:product?.product_image} || productImg} style={styles.image} />
+      <Text style={styles.title}>{product?.product_name}</Text>
+      <Text style={styles.amount}>{product?.current_stock}&nbsp;{product?.unit || "Unit"}</Text>
     </TouchableOpacity>
   );
 };

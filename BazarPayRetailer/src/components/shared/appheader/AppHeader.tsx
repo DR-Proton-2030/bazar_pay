@@ -7,10 +7,10 @@ import MenuButton from "../menuBtn/MenuBtn";
 import SideDrawer from "../sideDrawer/SideDrawer";
 import HeaderIcons from "./headerIcons/HeaderIcons";
 import AuthContext from "../../../contexts/authContext/authContext";
+import { useNavigation } from "expo-router";
 
 const AppHeader: React.FC = () => {
   const {user}= useContext(AuthContext)
-
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [animatedValue] = useState(new Animated.Value(-300));
 

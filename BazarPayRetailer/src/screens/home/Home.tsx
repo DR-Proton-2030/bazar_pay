@@ -8,10 +8,26 @@ import ProductSection from "../../components/shared/productSection/ProductSectio
 import ImageBanner from "../../components/shared/imageBanner/ImageBanner";
 import OfferSection from "../../components/main/offerSection/OfferSection";
 import veg from "../../../assets/images/veg.png";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import AuthContext from "../../contexts/authContext/authContext";
+import { ProductCartContext } from "../../contexts/productCartContext/Provider";
 
 export default function HomePage() {
+  const context = useContext(ProductCartContext);
+
+  if (!context) {
+    return <Text>Loading...</Text>;
+  }
+
+  const handleResetCart = () => {
+    context.resetProductCart();
+  };
+
+  useEffect(() => {
+    handleResetCart
+  }, [])
+  
+
   return (
     <>
       <ScrollView
@@ -72,7 +88,9 @@ export default function HomePage() {
         </ScrollView>
 
         <OfferSection />
+
         <ProductSection />
+
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
           <ImageBanner backgroundColor="FEDE27" imageUri={veg} />

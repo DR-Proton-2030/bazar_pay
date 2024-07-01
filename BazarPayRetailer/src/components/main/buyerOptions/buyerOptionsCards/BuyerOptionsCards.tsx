@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Image, View, Text } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import { Ionicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import Colors from "../../../../constants/Colors";
-const BuyerOptionsCards = () => {
+import { useNavigation } from "expo-router";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { ProductCartContext } from "../../../../contexts/productCartContext/Provider";
+const BuyerOptionsCards = ({ productdetails }: any) => {
+
+  const context = useContext(ProductCartContext);
+  const navigation = useNavigation<any>();
+
+  const handleNavigate = async () => {
+    if (context?.addProduct) {
+      context.addProduct(productdetails);
+    }
+    navigation.navigate("cart", { productdetails });
+  };
+
   return (
     <View
       style={{
@@ -98,34 +112,25 @@ const BuyerOptionsCards = () => {
           &nbsp; stock:998
         </Text>
         <Text style={{ fontSize: 14, color: "red", marginVertical: 5 }}>
-          648 BDT
+          {productdetails?.product_saling_price} BDT
         </Text>
         <View style={{ flexDirection: "row", gap: 8 }}>
-          <Text
-            style={{
-              backgroundColor: Colors.light.background,
-              paddingHorizontal: 8,
-              paddingVertical: 2,
-              borderRadius: 5,
-              fontSize: 13,
-              borderWidth: 1,
-              borderColor: "gray",
-            }}
-          >
-            Add to cart
-          </Text>
-          <Text
-            style={{
-              backgroundColor: Colors.light.orange,
-              paddingHorizontal: 8,
-              paddingVertical: 2,
-              borderRadius: 5,
-              fontSize: 13,
-              color: "white",
-            }}
-          >
-            Buy now
-          </Text>
+
+          <TouchableOpacity onPress={handleNavigate}>
+
+            <Text
+              style={{
+                backgroundColor: Colors.light.orange,
+                paddingHorizontal: 50,
+                paddingVertical: 5,
+                borderRadius: 5,
+                fontSize: 13,
+                color: "white",
+              }}
+            >
+              Buy now
+            </Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
