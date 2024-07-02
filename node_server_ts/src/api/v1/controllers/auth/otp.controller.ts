@@ -2,7 +2,6 @@ import { Request, Response } from "express";
 import axios from "axios";
 import { MESSAGE } from "../../../../constants/message";
 import { generateOTP } from "../../../../services/generateOtp";
-import WholeSalerEmployeeModel from "../../../../models/wholeSalerEmployee.model";
 import {
   msg_apiKey,
   msg_apiUrl,
@@ -10,13 +9,14 @@ import {
   msg_type,
 } from "../../../../config/config";
 import retailerModel from "../../../../models/retailer.model";
+import WholesalerModel from "../../../../models/wholesaler.model";
 
 export const getOtp = async (req: Request, res: Response) => {
   const { phone_number } = req.query;
   try {
     // const userInstance = await WholeSalerEmployeeModel.findOne({ phone_number});
     // console.log("userInstance", userInstance);
-    const employeeInstance: any = await WholeSalerEmployeeModel.findOne({
+    const employeeInstance: any = await WholesalerModel.findOne({
       phone_number,
     });
     if (employeeInstance) {

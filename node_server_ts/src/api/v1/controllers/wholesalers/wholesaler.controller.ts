@@ -96,6 +96,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
       console.log("wholesalerDetails", error);
     }
     
+    // Converting files to buffer
     const logoBuffer = logo ? logo.buffer : null;
     const signBoardBuffer = sign_board.buffer;
     const ownerPhotoBuffer = owner_photo.buffer;
@@ -104,6 +105,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
     const visiting_cardBuffer = visiting_card ? visiting_card.buffer : null;
     
     const existingWholesaler = await wholesalerModel.findOne({trade_licensce_number: _payload.trade_licensce_number});
+    
     if(existingWholesaler){
       if(existingWholesaler.nid_number === _payload.nid_number){
         return res.status(409).json({
@@ -117,6 +119,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
     }
     let payload = {};
     console.log("====>before payload", payload);
+
     try{
       const logoUrl = logoBuffer ? await uploadImageService("logo", logoBuffer) : DEFAULT_IMAGE;
       const signBoardUrl = await uploadImageService(
@@ -136,6 +139,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
         "visiting_card",
         visiting_cardBuffer
       ) : DEFAULT_IMAGE;
+      
       payload = {
         ..._payload,
         // wholesaler_number: totalCount + 1,
@@ -146,6 +150,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
         nid_photo: nidUrl,
         visiting_card_photo: visiting_card_url,
       };
+
     }
     catch(error){
       return res.status(400).json({
@@ -157,10 +162,12 @@ export const createWholesaler = async (req: Request, res: Response) => {
 
     console.log("====>payload", payload);
     const wholesalerInstance = await new wholesalerModel(payload).save();
+    
     return res.status(200).json({
       message: MESSAGE.post.succ,
       result: wholesalerInstance,
     });
+
   } catch (error) {
     return res.status(400).json({
       message: MESSAGE.post.fail,

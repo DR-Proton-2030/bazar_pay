@@ -1,40 +1,37 @@
-import express from "express";
-import cors from "cors";
-import bodyParser, { json } from "body-parser";
+import http from "http";
 import connectDb from "./config/db";
+import app from "./app";
+import { NODE_ENV } from "./config/config";
 
-// const mongo_url = process.env.NODE_ENV !== "PROD" ? process.env.LOCAL_MONGO_URL : process.env.PROD_MONGO_URL;
-
-// dotenv.config();
-const app = express();
-
-const port = process.env.PORT || 8989;
-
-// const mongo_url = (process.env.NODE_ENV !== "PROD") ? process.env.LOCAL_MONGO_URL : process.env.PROD_MONGO_URL
-
-const options: cors.CorsOptions = {
-	allowedHeaders: ["sessionId", "Content-Type"],
-	exposedHeaders: ["sessionId"],
-	origin: "*",
-	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-	preflightContinue: false
-};
-
-app.use(cors(options));
-app.use(json());
-
-app.use(express.json());
-
-app.get("/", (req, res) => {
-	res.send(`<h1>sentss succesfully</h1>`);
+const httpServer = http.createServer(app);
+const io = require("socket.io")(httpServer, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  },
 });
-
-app.use("/api/v1", require("./api/v1/routers/routes.index"));
-// Middleware
-app.use(bodyParser.json());
 
 connectDb();
 
-app.listen(port, () => {
-	console.log(`Server is running at http://localhost:${port}`);
+const PORT =
+  String(NODE_ENV) === "PROD" || String(NODE_ENV) === "LOCAL"
+    ? 4000
+    : String(NODE_ENV) === "DEV"
+    ? 4001
+    : "";
+
+const server = httpServer.listen(PORT, () => {
+  console.log(
+    "info",
+    `\x1b[33m \x1b[1m Server is running in ${NODE_ENV} mode on port ${PORT} \x1b[0m`
+  );
+
+  // logger.info({ a: 123, v: 456 });
+  io.on("connection", (socket: any) => {
+    //console.log("info", "new socket user" + socket.id);
+    socket.on("approval", (message: any) => {
+      socket.broadcast.emit("messageSent", message);
+      console.log(message);
+    });
+  });
 });
