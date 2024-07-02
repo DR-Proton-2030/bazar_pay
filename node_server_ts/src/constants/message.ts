@@ -3,8 +3,8 @@ export const MESSAGE = {
 		succ: "Data added successfully",
 		fail: "Failed to add data",
 		sameEntry: "Same entry not allowed",
-		succAuth:"Authentication Successful!",
-		failAuth:"Login Unsuccessful!",
+		succAuth: "Authentication Successful!",
+		failAuth: "Authentication Unsuccessful!",
 		custom: (msg: string) => msg
 	},
 	get: {
