@@ -1,6 +1,5 @@
-
-export interface ICategorySchema {
+export interface ICategory {
     name: string;
-    description?: string;
-    logo?:string
+    description: string;
+    logo:string
 }

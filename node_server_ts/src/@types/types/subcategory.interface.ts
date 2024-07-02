@@ -1,9 +1,8 @@
-// File: ../../ts/interfaces/subcategory.interface.ts
+import { SchemaDefinitionProperty, Types } from "mongoose";
 
-import { Types } from "mongoose";
-
-export interface ISubcategorySchema {
+export interface ISubcategory {
     name: string;
     description?: string;
-    category: Types.ObjectId;
+    category_object_id: SchemaDefinitionProperty<Types.ObjectId>;
+    logo: string;
 }

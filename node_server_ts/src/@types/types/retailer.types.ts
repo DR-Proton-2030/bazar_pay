@@ -1,17 +1,13 @@
 export interface IRetailer {
-  fullName: string;
-  email: string;
-  phone: string;
-  gender: 'male' | 'female' | 'other';
-  state: string;
-  address: string;
-  profilePhoto: string;
-  password: string;
-  businessName: string;
-  businessType: 'sole proprietorship' | 'partnership' | 'corporation' | 'LLC' | 'other';
-  businessRegistrationNumber: string;
-  businessAddress: string;
-  businessPhone: string;
-  taxIdentificationNumber: string;
-  productsSold: string[];
+  name:string
+  contact_name:string,
+  contact_phone:string,
+  contact_email:string,
+  logo:string,
+  trade_licensce_number:string,
+  sign_board_photo:string,
+  nid_number:string,
+  retailer_owner_photo:string,
+  trade_licensce_photo:string,
+  nid_photo:string,
 }

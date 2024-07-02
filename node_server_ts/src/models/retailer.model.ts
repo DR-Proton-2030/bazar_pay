@@ -1,6 +1,6 @@
 import { model } from "mongoose";
 import retailerSchema from "./schemaDefinitions/retailers.schema";
 
-const retailerModel = model<any>("retailer", retailerSchema);
+const RetailerModel = model<any>("retailer", retailerSchema);
 
-export default retailerModel;
+export default RetailerModel;

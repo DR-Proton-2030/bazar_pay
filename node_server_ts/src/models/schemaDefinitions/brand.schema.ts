@@ -1,11 +1,11 @@
 import { Schema } from "mongoose";
 import SCHEMA_DEFINITION_PROPERTY from "../../constants/model/model.constant";
 import { GENERAL_SCHEMA_OPTIONS } from "../../constants/model/schemaOption";
-import { IBrandSchema } from "../../@types/types/brand.interface";
+import { IBrand } from "../../@types/types/brand.interface";
 
-const BrandSchema: Schema<IBrandSchema> = new Schema<IBrandSchema>(
+const BrandSchema: Schema<IBrand> = new Schema<IBrand>(
   {
-    brand_name: SCHEMA_DEFINITION_PROPERTY.requiredString,
+    name: SCHEMA_DEFINITION_PROPERTY.requiredString,
     description: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     country: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
     logo: SCHEMA_DEFINITION_PROPERTY.optionalNullString,

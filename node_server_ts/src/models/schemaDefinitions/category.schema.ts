@@ -1,9 +1,9 @@
 import { Schema } from "mongoose";
 import SCHEMA_DEFINITION_PROPERTY from "../../constants/model/model.constant";
 import { GENERAL_SCHEMA_OPTIONS } from "../../constants/model/schemaOption";
-import { ICategorySchema } from "../../@types/types/category.interface";
+import { ICategory } from "../../@types/types/category.interface";
 
-const CategorySchema: Schema<ICategorySchema> = new Schema<ICategorySchema>(
+const CategorySchema: Schema<ICategory> = new Schema<ICategory>(
   {
     name: SCHEMA_DEFINITION_PROPERTY.requiredString,
     description: SCHEMA_DEFINITION_PROPERTY.optionalNullString,

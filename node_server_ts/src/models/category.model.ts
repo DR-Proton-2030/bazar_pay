@@ -1,8 +1,8 @@
 // File: models/category.model.ts
 import { model } from "mongoose";
-import { ICategorySchema } from "../@types/types/category.interface";
 import CategorySchema from "./schemaDefinitions/category.schema";
+import { ICategory } from "../@types/types/category.interface";
 
-const CategoryModel = model<ICategorySchema>("categories", CategorySchema);
+const CategoryModel = model<ICategory>("categories", CategorySchema);
 
 export default CategoryModel;

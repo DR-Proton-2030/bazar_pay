@@ -195,3 +195,7 @@ export const updateProductStatus = async (req: Request, res: Response) => {
     return res.status(500).json({ message: MESSAGE.patch.fail, error });
   }
 };
+
+export const getProductListForRetailers = (req:Request,res: Response) =>{
+  
+}

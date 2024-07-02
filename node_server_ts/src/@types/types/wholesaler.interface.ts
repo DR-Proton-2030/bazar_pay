@@ -1,16 +1,13 @@
 export interface IWholesaler{
-    wholesaler_name:string
-    contact_full_name:string,
-    contact_phone_number:string,
+    name:string
+    contact_name:string,
+    contact_phone:string,
     contact_email:string,
-    trade_licensce_number:string,
-    nid_number:string,
     logo:string,
-    business_type:string,
+    trade_licensce_number:string,
     sign_board_photo:string,
-    owner_photo:string,
+    nid_number:string,
+    wholesaler_owner_photo:string,
     trade_licensce_photo:string,
     nid_photo:string,
-    visiting_card_photo:string,
-    product_category:string,
 }

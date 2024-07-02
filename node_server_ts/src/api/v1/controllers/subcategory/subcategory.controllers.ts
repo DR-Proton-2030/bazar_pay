@@ -6,7 +6,8 @@ import { QUERY_PARAMS } from "../../../../constants/query";
 
 export const createSubcategory = async (req: Request, res: Response) => {
   try {
-    const newSubcategory = new SubcategoryModel(req.body);
+    const payload = req.body;
+    const newSubcategory = new SubcategoryModel(payload);
     await newSubcategory.save();
     return res.status(200).json({
       message: MESSAGE.post.succ,

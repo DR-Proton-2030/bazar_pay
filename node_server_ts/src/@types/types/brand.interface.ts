@@ -1,7 +1,6 @@
-
-export interface IBrandSchema {
-    brand_name: string;
-    description?: string;
-    country?: string;
-    logo?:string;
+export interface IBrand {
+   name: string,
+   logo: string,
+   country: string,
+   description : string
 }
