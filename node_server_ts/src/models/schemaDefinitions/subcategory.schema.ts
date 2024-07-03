@@ -5,24 +5,24 @@ import { ISubcategory } from "../../@types/types/subcategory.interface";
 import CategoryModel from "../category.model";
 
 const SubcategorySchema: Schema<ISubcategory> = new Schema<ISubcategory>(
-  {
-    name: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    description: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-    category_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
-    logo: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-  },
-  {
-    ...GENERAL_SCHEMA_OPTIONS,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
+	{
+		name: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		description: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
+		category_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
+		logo: SCHEMA_DEFINITION_PROPERTY.optionalNullString
+	},
+	{
+		...GENERAL_SCHEMA_OPTIONS,
+		toJSON: { virtuals: true },
+		toObject: { virtuals: true }
+	}
 );
 
 const categoryVirtualReference: VirtualTypeOptions<ISubcategory> = {
-  ref: CategoryModel,
-  localField: "category_object_id",
-  foreignField: "_id",
-  justOne: true,
+	ref: CategoryModel,
+	localField: "category_object_id",
+	foreignField: "_id",
+	justOne: true
 };
 
 SubcategorySchema.virtual("categories", categoryVirtualReference);

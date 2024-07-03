@@ -8,45 +8,45 @@ import BrandModel from "../brand.model";
 import SubcategoryModel from "../subcategory.model";
 
 const productSchema: Schema<IProduct> = new Schema<IProduct>(
-  {
-    product_name: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-    unit: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-    product_description: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-    product_image: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-    brand_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
-    subcategory_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
-    category_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
-    product_status:{...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default:"PENDING"},
-  },
-  {
-    ...GENERAL_SCHEMA_OPTIONS,
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
+	{
+		product_name: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
+		unit: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
+		product_description: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
+		product_image: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
+		brand_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
+		subcategory_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
+		category_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
+		product_status: { ...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default: "PENDING" }
+	},
+	{
+		...GENERAL_SCHEMA_OPTIONS,
+		toJSON: { virtuals: true },
+		toObject: { virtuals: true }
+	}
 );
 
 const categoryVirtualReference: VirtualTypeOptions<IProduct> = {
-  ref: CategoryModel,
-  localField: "category_object_id",
-  foreignField: "_id",
-  justOne: true,
+	ref: CategoryModel,
+	localField: "category_object_id",
+	foreignField: "_id",
+	justOne: true
 };
 
 const brandVirtualReference: VirtualTypeOptions<IBrand> = {
-  ref: BrandModel,
-  localField: "brand_object_id",
-  foreignField: "_id",
-  justOne: true,
+	ref: BrandModel,
+	localField: "brand_object_id",
+	foreignField: "_id",
+	justOne: true
 };
 const subCategoryVirtualReference: VirtualTypeOptions<IProduct> = {
-  ref: SubcategoryModel,
-  localField: "subcategory_object_id",
-  foreignField: "_id",
-  justOne: true,
+	ref: SubcategoryModel,
+	localField: "subcategory_object_id",
+	foreignField: "_id",
+	justOne: true
 };
 
-productSchema.virtual("category",categoryVirtualReference );
-productSchema.virtual("subcategory",subCategoryVirtualReference );
-productSchema.virtual("brand",brandVirtualReference );
+productSchema.virtual("category", categoryVirtualReference);
+productSchema.virtual("subcategory", subCategoryVirtualReference);
+productSchema.virtual("brand", brandVirtualReference);
 
 export default productSchema;

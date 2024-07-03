@@ -1,6 +1,5 @@
 import bcrypt from "bcryptjs";
 
-
 export const verifyPassword = async (plainTextPassword: string, hashedPassword: string): Promise<boolean> => {
 	try {
 		// Verify the password against the hashed password
@@ -10,4 +9,4 @@ export const verifyPassword = async (plainTextPassword: string, hashedPassword: 
 		console.error("Error verifying password:", error);
 		return false;
 	}
-}
+};

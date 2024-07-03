@@ -1,6 +1,18 @@
 import express from "express";
-import { createCategory, deleteCategory, getAllCategories, getCategoryById, updateCategory } from "../../controllers/category/category.controllers";
-import { createSubcategory, deleteSubcategory, getAllSubcategories, getSubcategoryById, updateSubcategory } from "../../controllers/subcategory/subcategory.controllers";
+import {
+	createCategory,
+	deleteCategory,
+	getAllCategories,
+	getCategoryById,
+	updateCategory
+} from "../../controllers/category/category.controllers";
+import {
+	createSubcategory,
+	deleteSubcategory,
+	getAllSubcategories,
+	getSubcategoryById,
+	updateSubcategory
+} from "../../controllers/subcategory/subcategory.controllers";
 
 const router = express.Router();
 

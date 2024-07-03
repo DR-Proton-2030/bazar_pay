@@ -4,21 +4,21 @@ import { GENERAL_SCHEMA_OPTIONS } from "../../constants/model/schemaOption";
 import { IWholesaler } from "../../@types/types/wholesaler.interface";
 
 const retailerSchema: Schema<any> = new Schema<any>(
-  {
-    retailer_name: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    contact_phone_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    contact_email: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    trade_licensce_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    nid_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
+	{
+		retailer_name: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		contact_phone_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		contact_email: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		trade_licensce_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		nid_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
 
-    sign_board_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    owner_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    trade_licensce_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    nid_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
-    
-    password:SCHEMA_DEFINITION_PROPERTY.requiredString
-  },
-  GENERAL_SCHEMA_OPTIONS
+		sign_board_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		owner_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		trade_licensce_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		nid_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
+
+		password: SCHEMA_DEFINITION_PROPERTY.requiredString
+	},
+	GENERAL_SCHEMA_OPTIONS
 );
 
 export default retailerSchema;
