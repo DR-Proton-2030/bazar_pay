@@ -1,9 +1,6 @@
-export interface FormField {
-  label: string;
-  placeholder: string;
-}
+import { IWholesalerForm } from "../../@types/types/wholesalerFormField.types";
 
-const formFields = [
+const formFields : IWholesalerForm[] = [
   { label: "নাম", placeholder: "আপনার নাম লিখুন", field: "wholesaler_name" },
   {
     label: "প্রাতিষ্ঠানিকনাম",
