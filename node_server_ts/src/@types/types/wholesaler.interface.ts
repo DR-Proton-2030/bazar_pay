@@ -1,8 +1,9 @@
 export interface IWholesaler {
-	name: string;
-	contact_name: string;
-	contact_phone: string;
-	contact_email: string;
+	wholesaler_name: string;
+	owner_name: string;
+	owner_phone: string;
+	owner_email: string;
+	approval_status: string;
 	logo: string;
 	trade_licensce_number: string;
 	sign_board_photo: string;
@@ -10,5 +11,4 @@ export interface IWholesaler {
 	wholesaler_owner_photo: string;
 	trade_licensce_photo: string;
 	nid_photo: string;
-	status: string;
 }
