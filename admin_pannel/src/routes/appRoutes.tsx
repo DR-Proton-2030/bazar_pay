@@ -5,6 +5,7 @@ import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import AllCustomersPage from "../components/pages/allCustomers/AllCustomersPage";
 import CategoryIcon from '@mui/icons-material/Category';
 import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
+import SellOutlinedIcon from '@mui/icons-material/SellOutlined';
 import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
@@ -39,6 +40,8 @@ import AddBanner from "../components/pages/permission/advertisement/addBanner/Ad
 import ProductList from "../components/pages/products/Products";
 import Categories from "../components/pages/categories/Categories";
 import AddCategoryForm from "../components/pages/categories/addCategory/AddCategoryForm";
+import Brand from "../components/pages/brand/Brand";
+import AddBrandDetails from "../components/pages/brand/addBrand/AddBrandDetails";
 
 const appRoutes: RouteType[] = [
   {
@@ -74,9 +77,23 @@ const appRoutes: RouteType[] = [
     },
   },
   {
+    path: "/brand",
+    element: <Brand/>,
+    state: "brand",
+    sidebarProps: {
+      displayText: "Brand",
+      icon: <SellOutlinedIcon/>,
+    },
+  },
+  {
     path: "/add-category",
     element: <AddCategoryForm/>,
     state: "categories",
+  },
+  {
+    path: "/add-brand",
+    element: <AddBrandDetails/>,
+    state: "brand",
   },
   {
     path: "/add-builders",
