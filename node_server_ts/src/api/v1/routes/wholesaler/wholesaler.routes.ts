@@ -1,10 +1,4 @@
 import express from "express";
-// import {
-//   createBuilder,
-//   getBuilder,
-//   getBuilderDetailsById,
-//   getBuilderNameWithID,
-// } from "../../controllers/wholesalers/wholesaler.controller";
 import { upload } from "../../../../middleware/multer.middleware";
 import { createWholesaler, getWholeSaler } from "../../controllers/wholesalers/wholesaler.controller";
 
@@ -15,11 +9,10 @@ router.route("/get-wholesaler").get(getWholeSaler);
 router.route("/add-wholesaler").post(
 	upload.fields([
 		{ name: "logo", maxCount: 1 },
-		{ name: "sign_board", maxCount: 1 },
-		{ name: "owner_photo", maxCount: 1 },
-		{ name: "trade_licensce", maxCount: 1 },
-		{ name: "nid", maxCount: 1 },
-		{ name: "visiting_card", maxCount: 1 }
+		{ name: "sign_board_photo", maxCount: 1 },
+		{ name: "wholesaler_owner_photo", maxCount: 1 },
+		{ name: "trade_licensce_photo", maxCount: 1 },
+		{ name: "nid_photo", maxCount: 1 },
 	]),
 	createWholesaler
 );

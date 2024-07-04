@@ -14,7 +14,7 @@ const io = require("socket.io")(httpServer, {
 connectDb();
 
 const PORT =
-	String(NODE_ENV) === "PROD" || String(NODE_ENV) === "LOCAL" ? 4000 : String(NODE_ENV) === "DEV" ? 4001 : "";
+	String(NODE_ENV) === "PROD" || String(NODE_ENV) === "LOCAL" ? 8989 : String(NODE_ENV) === "DEV" ? 8181 : "";
 
 const server = httpServer.listen(PORT, () => {
 	console.log("info", `\x1b[33m \x1b[1m Server is running in ${NODE_ENV} mode on port ${PORT} \x1b[0m`);
