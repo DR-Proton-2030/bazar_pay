@@ -1,4 +1,4 @@
-import { Schema, SchemaTypeOptions, VirtualTypeOptions } from "mongoose";
+import { Schema, VirtualTypeOptions } from "mongoose";
 import SCHEMA_DEFINITION_PROPERTY from "../../constants/model/model.constant";
 import { GENERAL_SCHEMA_OPTIONS } from "../../constants/model/schemaOption";
 import { IProduct } from "../../@types/types/product.interface";
