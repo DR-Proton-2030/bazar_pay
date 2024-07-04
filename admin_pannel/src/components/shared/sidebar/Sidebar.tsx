@@ -79,13 +79,15 @@ const Sidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
                         width: open ? sizeConfigs.sidebar.width : 0,
                         boxSizing: "border-box",
                         borderRight: "0px",
-                        backgroundColor: "#1B4242",
+                        backgroundColor: "#153448",
                         color: colorConfigs.sidebar.color,
                         overflowX: "hidden",
                     },
+                    marginLeft: "auto",
+                    marginRight: 'auto'
                 }}
             >
-                <Toolbar>
+                <Toolbar style={{justifyContent: "center", alignItems:"center"}}>
                     <IconButton
                         onClick={handleToggleSidebar}
                         style={{ color: "white" }}
@@ -93,28 +95,30 @@ const Sidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
                         {open ? <ChevronLeft /> : <Menu />}
                     </IconButton>
                     <Stack
-                        sx={{ width: "100%", alignItems: "center" }}
+                        sx={{ width: "100%", alignItems: "center", marginLeft: "auto", marginRight: "auto" }}
                         direction="row"
                         justifyContent="center"
                     >
                         {/* <Avatar src={assets.images.logo} /> */}
-                        <h2 style={{ fontWeight: "800", margin: 0 }}>
+                        <h2 style={{ fontWeight: "600", letterSpacing: 2, fontFamily: "poppins, sans-serif"}}>
                             Super Admin
                         </h2>
                     </Stack>
                 </Toolbar>
+                
                 <Avatar
                     style={{
-                        left: 110,
-                        marginTop: "10px",
-                        marginBottom: "30px",
-                        height: "80px",
-                        width: "80px",
+                        marginLeft: "auto",
+                        marginRight: 'auto',
+                        marginTop: "20px",
+                        marginBottom: "10px",
+                        height: "90px",
+                        width: "90px",
                     }}
                     // src="https://pbs.twimg.com/media/CnBrlSEVIAAsh04.jpg"
                     {...stringAvatar(user?.full_name || "Super Admin")}
                 />
-
+                  
                 <h1 style={{ textAlign: "center", marginBottom: "30px" }}>
                     {/* {builderData?.builder_name} */}
                     {user?.full_name}
@@ -132,6 +136,7 @@ const Sidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
                         ) : null
                     )}
                 </List>
+                
                 {/* Collapsible Section */}
                 {/* <Collapse in={!open} unmountOnExit>
           <div

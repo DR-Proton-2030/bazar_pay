@@ -66,24 +66,24 @@ const Topbar: React.FC<TopbarProps> = ({ sidebarOpen, toggleSidebar }) => {
 
         {/* <Button variant="contained" sx={{ backgroundColor: "#004d99", fontFamily: "Railway, sans-serif"}}>Builder</Button> */}
         {user?.role === ROLES.super_admin  ? <Dropdown/> : (
-          <div
-          className="button-group"
-          style={{
-            display: "flex",
+        //   <div
+        //   className="button-group"
+        //   style={{
+        //     display: "flex",
            
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        //     justifyContent: "center",
+        //     alignItems: "center",
+        //   }}
+        // >
           
-            <Button className="green-contained-button" variant="outlined">
-              {builderDetails?.builder_name}
-            </Button>
-            <Dropdown/>
+        //     <Button className="green-contained-button" variant="outlined">
+        //       {builderDetails?.builder_name}
+        //     </Button>
+        //     <Dropdown/>
           
           
-        </div>
-        
+        // </div>
+        <Dropdown/>
         ) }
        
         

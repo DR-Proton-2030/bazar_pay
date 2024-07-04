@@ -3,6 +3,13 @@ import { RouteType } from "./config";
 import DashboardIndex from "../components/pages/bookings/DashboardIndex";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import AllCustomersPage from "../components/pages/allCustomers/AllCustomersPage";
+import CategoryIcon from '@mui/icons-material/Category';
+import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
+import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
+import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
+import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import Builders from "../components/pages/builders/Builders";
 import BuilderForm from "../components/pages/builders/builderForm/BuilderForm";
@@ -30,6 +37,8 @@ import Advertisement from "../components/pages/permission/advertisement/Advertis
 import AddAdvertisement from "../components/pages/permission/advertisement/addBanner/AddBanner";
 import AddBanner from "../components/pages/permission/advertisement/addBanner/AddBanner";
 import ProductList from "../components/pages/products/Products";
+import Categories from "../components/pages/categories/Categories";
+import AddCategoryForm from "../components/pages/categories/addCategory/AddCategoryForm";
 
 const appRoutes: RouteType[] = [
   {
@@ -43,7 +52,7 @@ const appRoutes: RouteType[] = [
     state: "allcustomers",
     sidebarProps: {
       displayText: "All Retailers",
-      icon: <People />,
+      icon: <PeopleOutlineOutlinedIcon/>,
     },
   },
   {
@@ -52,8 +61,22 @@ const appRoutes: RouteType[] = [
     state: "Wholesalers",
     sidebarProps: {
       displayText: "Wholesalers",
-      icon: <AdminPanelSettings />,
+      icon: <AdminPanelSettingsOutlinedIcon />,
     },
+  },
+  {
+    path: "/categories",
+    element: <Categories />,
+    state: "categories",
+    sidebarProps: {
+      displayText: "Categories",
+      icon: <CategoryOutlinedIcon/>,
+    },
+  },
+  {
+    path: "/add-category",
+    element: <AddCategoryForm/>,
+    state: "categories",
   },
   {
     path: "/add-builders",
@@ -72,7 +95,7 @@ const appRoutes: RouteType[] = [
     state: "plots",
     sidebarProps: {
       displayText: "All Products",
-      icon: <ShoppingCart />,
+      icon: <ShoppingCartOutlinedIcon />,
     },
   },
   {
@@ -82,7 +105,7 @@ const appRoutes: RouteType[] = [
 
     sidebarProps: {
       displayText: "Reports",
-      icon: <Book />,
+      icon: <BookmarksOutlinedIcon/>,
     },
   },
 
@@ -92,7 +115,7 @@ const appRoutes: RouteType[] = [
     state: "permission",
     sidebarProps: {
       displayText: "Settings",
-      icon: <Settings />,
+      icon: <SettingsOutlinedIcon/>,
     },
     child: [
       {
@@ -116,7 +139,7 @@ const appRoutes: RouteType[] = [
       {
         path: "/permission/advertisement",
         element: <Advertisement />,
-        state: "bookings.history",
+        state: "advertisement",
         sidebarProps: {
           displayText: "Advertisement",
         },
@@ -124,7 +147,7 @@ const appRoutes: RouteType[] = [
       {
         path: "/permission/telecaller-management",
         element: <TelecallerManagement />,
-        state: "bookings.history",
+        state: "telecaller",
         sidebarProps: {
           displayText: "Telecaller Management",
         },

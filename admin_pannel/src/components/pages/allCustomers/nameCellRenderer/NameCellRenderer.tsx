@@ -1,5 +1,6 @@
 import { Avatar } from "@mui/material";
 import { ICustomer } from "../../../../@types/interface/Customer.interface";
+import { ICategory } from "../../../../@types/interface/category.interface";
 
 const NameCellRenderer = ({ data }: { data: ICustomer }) => {
   // console.log(data);

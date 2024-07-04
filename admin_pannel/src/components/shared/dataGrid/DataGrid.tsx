@@ -9,7 +9,7 @@ interface DataGridProps {
 
 const DataGrid = ({ rowData, colDefs }: DataGridProps) => {
   return (
-    <div className="ag-theme-alpine" style={{ height: 500 }}>
+    <div className="ag-theme-alpine" style={{ height: 300 }}>
       <AgGridReact
         animateRows={true}
         rowSelection="multiple"

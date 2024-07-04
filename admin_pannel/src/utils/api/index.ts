@@ -9,6 +9,8 @@ import {
 import { getBuilder } from "./builders/getBuilder";
 import { getBuilderByID } from "./builders/getBuilderByID";
 import { addBuilder } from "./builders/postBuilder";
+import { getCategory } from "./category/getCategory";
+import { createCategory } from "./category/postCategory";
 import { getCustomer } from "./customer/getCustomer";
 import { getEmployeeList } from "./employee/getEmployee";
 import { createAdmin } from "./permission/userManagement/createAdmin";
@@ -58,4 +60,8 @@ export const api = {
     getWholesaler,
     updateWholesalerStatus,
   },
+  category: {
+    getCategory,
+    createCategory
+  }
 };

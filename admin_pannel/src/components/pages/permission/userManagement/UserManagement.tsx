@@ -19,7 +19,7 @@ const UserManagement = () => {
   return (
     <div>
       <div className="add-user-btn">
-        <Button className='button' variant="contained" style={{backgroundColor: "#1DC51D", fontFamily: "Railway, sans-serif"}}onClick={handleNavigateToAddUser}>
+        <Button className='blue-btn' variant="contained" onClick={handleNavigateToAddUser}>
           Add Admin
         </Button>
       </div>

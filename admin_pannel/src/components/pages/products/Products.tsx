@@ -177,14 +177,14 @@ const ProductList = () => {
             TabIndicatorProps={{
               style: {
                 border: "none",
-                backgroundColor: "#558b2f",
+                backgroundColor: "#3876BF",
               },
             }}
             className="glb-tab-panel"
           >
-            <Tab label="Pending For Approval" {...a11yProps(0)} />
-            <Tab label="Approved Products" {...a11yProps(1)} />
-            <Tab label="All" {...a11yProps(2)} />
+            <Tab label="Pending For Approval" {...a11yProps(0)} className="tab-text" />
+            <Tab label="Approved Products" {...a11yProps(1)} className="tab-text" />
+            <Tab label="All" {...a11yProps(2)} className="tab-text"/>
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>

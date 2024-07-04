@@ -18,10 +18,9 @@ const SidebarItem = ({ item }: Props) => {
       to={item.path}
       sx={{
         "&: hover": {
-          backgroundColor: "#5C8374",
+          backgroundColor: "#265073",
         },
-        backgroundColor:
-          appState === item.state ? "#5C8374" : "unset",
+        backgroundColor: appState === item.state ? "#2C74B3" : "unset",
         paddingY: "12px",
         paddingX: "24px",
       }}

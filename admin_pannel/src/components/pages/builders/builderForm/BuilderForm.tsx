@@ -238,12 +238,11 @@ const BuilderForm = () => {
         </Accordion> */}
         <Button
           variant="contained"
-          className="btn"
+          className="blue-btn"
           type="submit"
           style={{
-            marginTop: 2,
-            backgroundColor: "#49BB43",
-            fontFamily: "Railway, sans-serif",
+            marginTop: 12,
+            
           }}
         >
           Submit
