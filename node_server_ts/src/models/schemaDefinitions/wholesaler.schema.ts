@@ -1,4 +1,4 @@
-import { Schema, SchemaTypeOptions } from "mongoose";
+import { Schema } from "mongoose";
 import SCHEMA_DEFINITION_PROPERTY from "../../constants/model/model.constant";
 import { GENERAL_SCHEMA_OPTIONS } from "../../constants/model/schemaOption";
 import { IWholesaler } from "../../@types/types/wholesaler.interface";
