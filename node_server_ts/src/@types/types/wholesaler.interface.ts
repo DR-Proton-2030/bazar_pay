@@ -10,4 +10,5 @@ export interface IWholesaler {
 	wholesaler_owner_photo: string;
 	trade_licensce_photo: string;
 	nid_photo: string;
+	status: string;
 }

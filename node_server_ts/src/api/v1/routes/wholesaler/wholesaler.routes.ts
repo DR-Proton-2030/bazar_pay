@@ -1,6 +1,7 @@
 import express from "express";
 import { upload } from "../../../../middleware/multer.middleware";
 import { createWholesaler, getWholeSaler } from "../../controllers/wholesalers/wholesaler.controller";
+import { getOtpForSignup } from "../../controllers/wholesalers/wholeslaer.otp.controller";
 
 const router = express.Router();
 
@@ -12,12 +13,12 @@ router.route("/add-wholesaler").post(
 		{ name: "sign_board_photo", maxCount: 1 },
 		{ name: "wholesaler_owner_photo", maxCount: 1 },
 		{ name: "trade_licensce_photo", maxCount: 1 },
-		{ name: "nid_photo", maxCount: 1 },
+		{ name: "nid_photo", maxCount: 1 }
 	]),
 	createWholesaler
 );
 
-// router.route("/getOtp").post(getOtp);
+router.route("/get-otp-signup").get(getOtpForSignup);
 
 // router.route("/get-builder-list").get(getBuilderNameWithID);
 

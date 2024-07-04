@@ -15,7 +15,8 @@ const wholesalerSchema: Schema<IWholesaler> = new Schema<IWholesaler>(
 		sign_board_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		trade_licensce_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		nid_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
-		wholesaler_owner_photo: SCHEMA_DEFINITION_PROPERTY.requiredString
+		wholesaler_owner_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		status: { ...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default: "PENDING" }
 	},
 	GENERAL_SCHEMA_OPTIONS
 );

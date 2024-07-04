@@ -111,7 +111,8 @@ export const createWholesaler = async (req: Request, res: Response) => {
 				wholesaler_owner_photo: ownerPhotoUrl,
 				logo: logoUrl,
 				trade_licensce_photo: tradeLicensceUrl,
-				nid_photo: nidUrl
+				nid_photo: nidUrl,
+				status: "PENDING"
 			};
 		} catch (error) {
 			return res.status(400).json({
