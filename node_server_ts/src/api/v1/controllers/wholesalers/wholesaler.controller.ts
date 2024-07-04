@@ -6,7 +6,7 @@ import WholesalerModel from "../../../../models/wholesaler.model";
 
 export const getWholeSaler = async (req: Request, res: Response) => {
 	try {
-		const filter: any = req.query;
+		const filter = req.query as unknown as any;
 
 		let currentPage = 0;
 		if (filter.page) {
@@ -39,7 +39,6 @@ export const getWholeSaler = async (req: Request, res: Response) => {
 			result: builders
 		});
 	} catch (error) {
-		
 		console.error("Error fetching wholesalers:", error);
 		res.status(400).json({
 			message: MESSAGE.get.fail
@@ -100,7 +99,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
 			const logoUrl = logoBuffer ? await uploadImageService("logo", logoBuffer) : DEFAULT_IMAGE;
 			const signBoardUrl = await uploadImageService("sign_board", signBoardBuffer);
 			const ownerPhotoUrl = await uploadImageService("owner_photo", ownerPhotoBuffer);
-			
+
 			const tradeLicensceUrl = tradeLicensceBuffer
 				? await uploadImageService("trade_licensce", tradeLicensceBuffer)
 				: DEFAULT_IMAGE;
@@ -139,33 +138,28 @@ export const createWholesaler = async (req: Request, res: Response) => {
 	}
 };
 
-
 export const updateWholesalerStatus = async (req: Request, res: Response) => {
 	try {
-	  const {id, status } = req.body;
-  
-	  const updatedWholesaler = await WholesalerModel.findByIdAndUpdate(
-		id,
-		{ status },
-		{ new: true }
-	  );
-  
-	  if (!updatedWholesaler) {
-		return res.status(404).json({
-		  message: MESSAGE.patch.fail,
-		  error: "Wholesaler not found",
+		const { id, status } = req.body;
+
+		const updatedWholesaler = await WholesalerModel.findByIdAndUpdate(id, { status }, { new: true });
+
+		if (!updatedWholesaler) {
+			return res.status(404).json({
+				message: MESSAGE.patch.fail,
+				error: "Wholesaler not found"
+			});
+		}
+
+		res.status(200).json({
+			message: MESSAGE.patch.succ,
+			result: updatedWholesaler
 		});
-	  }
-  
-	  res.status(200).json({
-		message: MESSAGE.patch.succ,
-		result: updatedWholesaler,
-	  });
 	} catch (error) {
-	  console.error("Error updating wholesaler status:", error);
-	  res.status(400).json({
-		message: MESSAGE.patch.fail,
-		error,
-	  });
+		console.error("Error updating wholesaler status:", error);
+		res.status(400).json({
+			message: MESSAGE.patch.fail,
+			error
+		});
 	}
-  };
+};

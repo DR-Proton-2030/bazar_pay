@@ -1,21 +1,10 @@
 import express from "express";
-import {
-	createCategory,
-	deleteCategory,
-	getAllCategories,
-	getCategoryById,
-	updateCategory
-} from "../../controllers/category/category.controllers";
+import { upload } from "../../../../middleware/multer.middleware";
+import { createCategory, getCategories } from "../../controllers/category/category.controllers";
 
 const router = express.Router();
 
-router.route("/create-category").post(createCategory);
-
-router.route("/update-category").patch(updateCategory);
-
-router.route("/delete-category").delete(deleteCategory);
-
-router.route("/getAll-category").get(getAllCategories);
-router.route("/getbyId-category").get(getCategoryById);
+router.route("/create-category").post(upload.fields([{ name: "logo", maxCount: 1 }]), createCategory);
+router.route("/get-category-list").get(getCategories);
 
 module.exports = router;
