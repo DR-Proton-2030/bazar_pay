@@ -1,6 +1,6 @@
 import express from "express";
 import { upload } from "../../../../middleware/multer.middleware";
-import { createWholesaler, getWholeSaler } from "../../controllers/wholesalers/wholesaler.controller";
+import { createWholesaler, getWholeSaler, updateWholesalerStatus } from "../../controllers/wholesalers/wholesaler.controller";
 import { getOtpForSignup } from "../../controllers/wholesalers/wholeslaer.otp.controller";
 
 const router = express.Router();
@@ -19,6 +19,7 @@ router.route("/add-wholesaler").post(
 );
 
 router.route("/get-otp-signup").get(getOtpForSignup);
+router.route("/update-wholesaler-status").patch(updateWholesalerStatus);
 
 // router.route("/get-builder-list").get(getBuilderNameWithID);
 

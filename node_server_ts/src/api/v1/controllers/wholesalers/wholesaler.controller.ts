@@ -138,3 +138,34 @@ export const createWholesaler = async (req: Request, res: Response) => {
 		});
 	}
 };
+
+
+export const updateWholesalerStatus = async (req: Request, res: Response) => {
+	try {
+	  const {id, status } = req.body;
+  
+	  const updatedWholesaler = await WholesalerModel.findByIdAndUpdate(
+		id,
+		{ status },
+		{ new: true }
+	  );
+  
+	  if (!updatedWholesaler) {
+		return res.status(404).json({
+		  message: MESSAGE.patch.fail,
+		  error: "Wholesaler not found",
+		});
+	  }
+  
+	  res.status(200).json({
+		message: MESSAGE.patch.succ,
+		result: updatedWholesaler,
+	  });
+	} catch (error) {
+	  console.error("Error updating wholesaler status:", error);
+	  res.status(400).json({
+		message: MESSAGE.patch.fail,
+		error,
+	  });
+	}
+  };
