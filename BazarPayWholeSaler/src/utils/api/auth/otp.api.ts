@@ -5,11 +5,11 @@ import { AUTHORIZATION } from "../../../constants/api/auth";
 
 const { get } = request;
 
-const initialRoute = "auth";
+const initialRoute = "wholesaler";
 
 export const getOtp = async (filterQuery: any) => {
   try {
-    const endpoint = `${initialRoute}/get-otp`;
+    const endpoint = `${initialRoute}/get-otp-signup`;
 
     const response = await get(
       endpoint,

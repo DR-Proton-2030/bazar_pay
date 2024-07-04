@@ -39,6 +39,7 @@ export const getWholeSaler = async (req: Request, res: Response) => {
 			result: builders
 		});
 	} catch (error) {
+		
 		console.error("Error fetching wholesalers:", error);
 		res.status(400).json({
 			message: MESSAGE.get.fail
@@ -99,6 +100,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
 			const logoUrl = logoBuffer ? await uploadImageService("logo", logoBuffer) : DEFAULT_IMAGE;
 			const signBoardUrl = await uploadImageService("sign_board", signBoardBuffer);
 			const ownerPhotoUrl = await uploadImageService("owner_photo", ownerPhotoBuffer);
+			
 			const tradeLicensceUrl = tradeLicensceBuffer
 				? await uploadImageService("trade_licensce", tradeLicensceBuffer)
 				: DEFAULT_IMAGE;

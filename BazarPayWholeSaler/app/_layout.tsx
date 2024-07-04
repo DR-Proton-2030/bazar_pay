@@ -44,7 +44,11 @@ function RootLayoutNav() {
     >
       <Stack.Screen
         name="index"
-        options={{ headerShown: false, statusBarStyle: "dark" }}
+        options={{
+          headerShown: false,
+          statusBarStyle: "dark",
+          statusBarTranslucent: true,
+        }}
       />
       <Stack.Screen
         name="wellcomePage"
@@ -60,7 +64,19 @@ function RootLayoutNav() {
       />
       <Stack.Screen
         name="signUp"
-        options={{ headerShown: false, statusBarTranslucent: true }}
+        options={{
+          headerShown: false,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+        }}
+      />
+      <Stack.Screen
+        name="conformationPage"
+        options={{
+          headerShown: false,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+        }}
       />
       <Stack.Screen
         name="passwordSet"

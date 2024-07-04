@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { ScrollView, View, Alert,ActivityIndicator } from "react-native";
+import { ScrollView, View, Alert, ActivityIndicator } from "react-native";
 import { useNavigation } from "expo-router";
-import { Modal, Portal,  } from "react-native-paper";
+import { Modal, Portal } from "react-native-paper";
 import Colors from "../../../constants/Colors";
 import CommonHeader from "../../../components/shared/commonHeader/CommonHeader";
 import SignUpForm from "./signUpForm/SignUpForm";
@@ -22,7 +22,7 @@ const SignUpPage = () => {
   const [otp, setOtp] = useState("");
   const [originalOtp, setOriginalOtp] = useState<string>("");
   const [page, setPage] = useState(0);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
 
   const createWholesaler = async () => {
     const formDataToSend = new FormData();
@@ -44,8 +44,8 @@ const SignUpPage = () => {
       console.log("response===>", response);
       if (response) {
         console.log(response);
-        setWholesaler(response);
-        navigation.navigate("passwordSet");
+        // setWholesaler(response);
+        navigation.navigate("conformationPage");
       } else {
         console.log(response);
       }
@@ -55,21 +55,20 @@ const SignUpPage = () => {
   };
 
   const requestOtp = async () => {
-    setLoading(true); 
+    setLoading(true);
     if (formData) {
       try {
         const response = await api.auth.getOtp({
-          phone_number: formData.contact_phone_number,
+          phone: formData.contact_phone,
         });
         console.log("===>", response);
         setOriginalOtp(response);
-   
+        setPage(1);
       } catch (error) {
         console.log(error);
-        Alert.alert("Error! Phone number already registered");
+        Alert.alert("Error! You have already registered as a wholesaler");
       } finally {
-        setLoading(false); 
-        setPage(1);
+        setLoading(false);
       }
     }
   };
@@ -109,9 +108,9 @@ const SignUpPage = () => {
             />
           </ScrollView>
         </>
-      ) : formData?.contact_phone_number ? (
+      ) : formData?.contact_phone ? (
         <OtpPage
-          phone_number={formData?.contact_phone_number}
+          phone_number={formData?.contact_phone}
           verifyOtp={verifyOtp}
           handleBack={handleBack}
           originalOtp={originalOtp}
@@ -121,8 +120,22 @@ const SignUpPage = () => {
 
       <Portal>
         <Modal visible={loading} dismissable={false}>
-          <View style={{ backgroundColor: "white", padding: 20, borderRadius: 10, alignItems: "center",width:80,marginLeft:'auto',marginRight:"auto" }}>
-            <ActivityIndicator animating={true} size="large" color={Colors.light.primary} />
+          <View
+            style={{
+              backgroundColor: "white",
+              padding: 20,
+              borderRadius: 10,
+              alignItems: "center",
+              width: 80,
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          >
+            <ActivityIndicator
+              animating={true}
+              size="large"
+              color={Colors.light.primary}
+            />
           </View>
         </Modal>
       </Portal>

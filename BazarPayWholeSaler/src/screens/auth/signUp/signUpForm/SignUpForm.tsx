@@ -103,45 +103,35 @@ const SignUpForm = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>
-        আপনার ব্যবসার ধরন নির্বাচন করুন<Text style={{ color: "red" }}>*</Text>
-      </Text>
-      <ScrollView
-        horizontal
-        style={{ marginBottom: 20 }}
-        showsHorizontalScrollIndicator={false}
-      >
-        {["ইলেকট্রনিক্স", "মুদিখানা", "কাপড়", "খাবার", "এআই", "অন্যান্য"].map(
-          (text, index) => (
-            <Chip key={index} text={text} />
-          )
-        )}
-      </ScrollView>
       {formFields.map((field, index) => (
         <View style={styles.fieldContainer} key={index}>
           <View style={styles.labelContainer}>
             <Text style={styles.label}>{field.label}</Text>
           </View>
-          {field.field === "contact_phone_number"? (
+          {field.field === "contact_phone_number" ? (
             <>
-            <Text style={{color:"black",fontSize:14,marginBottom:-30}}>880</Text>
-           <TextInput
-           style={[styles.input,{paddingLeft:28}]}
-           placeholder={field.placeholder}
-           value={formData[field.field]}
-           onChangeText={(text) => handleInputChange(field.field, text)}
-           underlineColorAndroid="transparent"
-         />
-         </>
-          ) : <TextInput
-          style={styles.input}
-          placeholder={field.placeholder}
-          value={formData[field.field]}
-          onChangeText={(text) => handleInputChange(field.field, text)}
-          underlineColorAndroid="transparent"
-        />}
-          
-          {field.field === "contact_phone_number" && errors.contact_phone_number ? (
+              <Text style={{ color: "black", fontSize: 14, marginBottom: -30 }}>
+                880
+              </Text>
+              <TextInput
+                style={[styles.input, { paddingLeft: 28 }]}
+                placeholder={field.placeholder}
+                value={formData[field.field]}
+                onChangeText={(text) => handleInputChange(field.field, text)}
+                underlineColorAndroid="transparent"
+              />
+            </>
+          ) : (
+            <TextInput
+              style={styles.input}
+              placeholder={field.placeholder}
+              value={formData[field.field]}
+              onChangeText={(text) => handleInputChange(field.field, text)}
+              underlineColorAndroid="transparent"
+            />
+          )}
+
+          {field.field === "contact_phone" && errors.contact_phone_number ? (
             <Text style={styles.errorText}>{errors.contact_phone_number}</Text>
           ) : null}
           {field.field === "contact_email" && errors.email ? (
@@ -172,6 +162,7 @@ const styles = StyleSheet.create({
     paddingBottom: 40,
     paddingHorizontal: 20,
     backgroundColor: Colors.light.background,
+    paddingTop: 20,
   },
   fieldContainer: { marginBottom: 30 },
   labelContainer: { flexDirection: "row", alignItems: "center" },

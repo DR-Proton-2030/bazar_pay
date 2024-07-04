@@ -11,9 +11,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
 import Colors from "../../../constants/Colors";
 
-const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
+const ImageUpload = ({ images, hiddenButtons, pickImage }: any) => {
   const [showSubmit, setShowSubmit] = useState(false);
-
 
   useEffect(() => {
     if (images.length === 4) {
@@ -25,10 +24,10 @@ const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
     <View style={styles.container}>
       <Text style={styles.label}>Upload Supporting Documents* </Text>
       <View style={styles.buttonRow}>
-        {!hiddenButtons.includes("sign_board") && (
+        {!hiddenButtons.includes("sign_board_photo") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("sign_board")}
+            onPress={() => pickImage("sign_board_photo")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>
@@ -36,10 +35,10 @@ const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
             </Text>
           </TouchableOpacity>
         )}
-        {!hiddenButtons.includes("owner_photo") && (
+        {!hiddenButtons.includes("wholesaler_owner_photo") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("owner_photo")}
+            onPress={() => pickImage("wholesaler_owner_photo")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>
@@ -50,19 +49,19 @@ const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
       </View>
 
       <View style={styles.buttonRow}>
-        {!hiddenButtons.includes("trade_licensce") && (
+        {!hiddenButtons.includes("trade_licensce_photo") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("trade_licensce")}
+            onPress={() => pickImage("trade_licensce_photo")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>Trade License</Text>
           </TouchableOpacity>
         )}
-        {!hiddenButtons.includes("nid") && (
+        {!hiddenButtons.includes("nid_photo") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("nid")}
+            onPress={() => pickImage("nid_photo")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>
@@ -72,15 +71,6 @@ const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
         )}
       </View>
       <View style={styles.buttonRow}>
-        {!hiddenButtons.includes("visiting_card") && (
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => pickImage("visiting_card")}
-          >
-            <MaterialIcons name="image" size={20} color="gray" />
-            <Text>Visiting Card</Text>
-          </TouchableOpacity>
-        )}
         {!hiddenButtons.includes("logo") && (
           <TouchableOpacity
             style={styles.button}

@@ -16,7 +16,7 @@ export const globalStyle = StyleSheet.create({
   },
   nextButton: {
     backgroundColor: Colors.light.primary,
-    width: windowWidth-40,
+    width: windowWidth - 40,
     marginTop: 10,
     paddingVertical: 18,
     paddingHorizontal: 20,
@@ -67,7 +67,6 @@ export const globalStyle = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-    
   },
   congratsModalContent: {
     width: 300,
@@ -85,18 +84,18 @@ export const globalStyle = StyleSheet.create({
     marginTop: 20,
     backgroundColor: Colors.light.primary,
     borderRadius: 50,
-    paddingHorizontal:30,
-    paddingVertical:10,
+    paddingHorizontal: 30,
+    paddingVertical: 10,
   },
   closeButtonText: {
     color: "white",
     fontWeight: "bold",
-    fontSize:18
+    fontSize: 18,
   },
   commonHeader: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     paddingVertical: 20,
     paddingLeft: 5,
     paddingTop: 40,
@@ -104,7 +103,7 @@ export const globalStyle = StyleSheet.create({
     zIndex: 50,
     width: windowWidth,
     // Shadow for iOS
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
@@ -112,13 +111,13 @@ export const globalStyle = StyleSheet.create({
     elevation: 5,
   },
   commonHeader2: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingVertical: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    // paddingVertical: 20,
     paddingLeft: 5,
-    paddingTop: 10,
-  
+    paddingTop: 35,
+    paddingBottom: 10,
   },
   chipStyle: {
     flexDirection: "row",
@@ -139,7 +138,6 @@ export const globalStyle = StyleSheet.create({
     padding: 10,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
-   
   },
 
   backButton: {
@@ -233,10 +231,10 @@ export const globalStyle = StyleSheet.create({
     borderRadius: 40,
     paddingVertical: 10,
   },
-  lightVioletButtonText:{
-    color:Colors.light.secondary,
-    fontSize:16,
-    fontWeight:"bold"
+  lightVioletButtonText: {
+    color: Colors.light.secondary,
+    fontSize: 16,
+    fontWeight: "bold",
   },
   signInButtonText: {
     color: "white",
@@ -290,80 +288,80 @@ export const globalStyle = StyleSheet.create({
     borderRadius: 50,
   },
   primaryButton: {
-    padding:20
+    padding: 20,
   },
-    // nextButton: {
-    //   backgroundColor: Colors.light.primary,
-    //   marginTop: 30,
-    //   paddingVertical: 18,
-    //   paddingHorizontal: 20,
-    //   borderRadius: 50,
-    // },
-    loginButton: {
-      backgroundColor: "white",
-      width: windowWidth-40,
-      borderWidth: 2,
-      borderColor: "black",
-      marginTop: 30,
-      paddingVertical: 18,
-      paddingHorizontal: 20,
-      borderRadius: 50,
-    },
-    nextButtonText: {
-      fontSize: 16,
-      textAlign: "center",
-      color: "white",
-    },
-    loginButtonText: {
-      fontSize: 16,
-      color: "black",
-      textAlign: "center",
-    },
-    dropdownButtonStyle: {
-      width: 178,
-      height: 47,
-      backgroundColor: '#FFFFFF',
-      borderRadius: 8,
-      borderColor:"#adadad",
-      borderWidth:0.4,
-      flexDirection: 'row',
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: 12,
-    },
-    dropdownButtonTxtStyle: {
-      flex: 1,
-      fontSize: 15,
-      fontWeight: '500',
-      color: '#adadad',
-    },
-    dropdownButtonArrowStyle: {
-      fontSize: 28,
-    },
-    dropdownButtonIconStyle: {
-      fontSize: 28,
-      marginRight: 8,
-    },
-    dropdownMenuStyle: {
-      backgroundColor: '#E9ECEF',
-      borderRadius: 8,
-    },
-    dropdownItemStyle: {
-      width: '100%',
-      flexDirection: 'row',
-      paddingHorizontal: 12,
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingVertical: 8,
-    },
-    dropdownItemTxtStyle: {
-      flex: 1,
-      fontSize: 18,
-      fontWeight: '500',
-      color: '#151E26',
-    },
-    dropdownItemIconStyle: {
-      fontSize: 28,
-      marginRight: 8,
-    },
+  // nextButton: {
+  //   backgroundColor: Colors.light.primary,
+  //   marginTop: 30,
+  //   paddingVertical: 18,
+  //   paddingHorizontal: 20,
+  //   borderRadius: 50,
+  // },
+  loginButton: {
+    backgroundColor: "white",
+    width: windowWidth - 40,
+    borderWidth: 2,
+    borderColor: "black",
+    marginTop: 30,
+    paddingVertical: 18,
+    paddingHorizontal: 20,
+    borderRadius: 50,
+  },
+  nextButtonText: {
+    fontSize: 16,
+    textAlign: "center",
+    color: "white",
+  },
+  loginButtonText: {
+    fontSize: 16,
+    color: "black",
+    textAlign: "center",
+  },
+  dropdownButtonStyle: {
+    width: 178,
+    height: 47,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 8,
+    borderColor: "#adadad",
+    borderWidth: 0.4,
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingHorizontal: 12,
+  },
+  dropdownButtonTxtStyle: {
+    flex: 1,
+    fontSize: 15,
+    fontWeight: "500",
+    color: "#adadad",
+  },
+  dropdownButtonArrowStyle: {
+    fontSize: 28,
+  },
+  dropdownButtonIconStyle: {
+    fontSize: 28,
+    marginRight: 8,
+  },
+  dropdownMenuStyle: {
+    backgroundColor: "#E9ECEF",
+    borderRadius: 8,
+  },
+  dropdownItemStyle: {
+    width: "100%",
+    flexDirection: "row",
+    paddingHorizontal: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    paddingVertical: 8,
+  },
+  dropdownItemTxtStyle: {
+    flex: 1,
+    fontSize: 18,
+    fontWeight: "500",
+    color: "#151E26",
+  },
+  dropdownItemIconStyle: {
+    fontSize: 28,
+    marginRight: 8,
+  },
 });
