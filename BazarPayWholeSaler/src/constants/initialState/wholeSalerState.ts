@@ -1,10 +1,10 @@
 import { IWholesaler } from "../../@types/types/wholesaler.interface";
 
 export const defaultWholesalerState: IWholesaler = {
-  name: "",
-  contact_name: "",
-  contact_phone: "",
-  contact_email: "",
+  wholesaler_name: "",
+  owner_name: "",
+  owner_phone: "",
+  owner_email: "",
   logo: "",
   trade_licensce_number: "",
   sign_board_photo: "",
@@ -12,4 +12,5 @@ export const defaultWholesalerState: IWholesaler = {
   wholesaler_owner_photo: "",
   trade_licensce_photo: "",
   nid_photo: "",
+  approval_status:""
 };

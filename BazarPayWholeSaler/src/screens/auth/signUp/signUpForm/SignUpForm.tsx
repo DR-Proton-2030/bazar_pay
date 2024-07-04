@@ -4,13 +4,10 @@ import {
   TextInput,
   Text,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
 } from "react-native";
-import { FontAwesome } from "@expo/vector-icons";
 import formFields from "../../../../database/signUpFileds/SignUpFileds";
 import Colors from "../../../../constants/Colors";
-import Chip from "../../../../components/shared/chips/Chips";
 import ImageUpload from "../../../../components/shared/ImageUpload/ImageUpload";
 import * as ImagePicker from "expo-image-picker";
 
@@ -108,7 +105,7 @@ const SignUpForm = ({
           <View style={styles.labelContainer}>
             <Text style={styles.label}>{field.label}</Text>
           </View>
-          {field.field === "contact_phone_number" ? (
+          {field.field === "owner_phone" ? (
             <>
               <Text style={{ color: "black", fontSize: 14, marginBottom: -30 }}>
                 880
@@ -131,10 +128,10 @@ const SignUpForm = ({
             />
           )}
 
-          {field.field === "contact_phone" && errors.contact_phone_number ? (
+          {field.field === "owner_phone" && errors.contact_phone_number ? (
             <Text style={styles.errorText}>{errors.contact_phone_number}</Text>
           ) : null}
-          {field.field === "contact_email" && errors.email ? (
+          {field.field === "owner_email" && errors.email ? (
             <Text style={styles.errorText}>{errors.email}</Text>
           ) : null}
           {errors.emptyFields[field.field] ? (

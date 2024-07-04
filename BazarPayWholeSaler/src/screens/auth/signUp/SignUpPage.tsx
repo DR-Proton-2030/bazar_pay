@@ -59,7 +59,7 @@ const SignUpPage = () => {
     if (formData) {
       try {
         const response = await api.auth.getOtp({
-          phone: formData.contact_phone,
+          phone: formData.owner_phone,
         });
         console.log("===>", response);
         setOriginalOtp(response);
@@ -108,9 +108,9 @@ const SignUpPage = () => {
             />
           </ScrollView>
         </>
-      ) : formData?.contact_phone ? (
+      ) : formData?.owner_phone ? (
         <OtpPage
-          phone_number={formData?.contact_phone}
+          phone_number={formData?.owner_phone}
           verifyOtp={verifyOtp}
           handleBack={handleBack}
           originalOtp={originalOtp}
