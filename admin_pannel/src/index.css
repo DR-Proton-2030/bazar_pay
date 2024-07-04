@@ -24,24 +24,24 @@ body {
 }
 
 .green-contained-button {
-  background-color: #d7ffe4 !important;
+  background-color: #DEECFF !important;
   border-width: 0.8px !important;
   font-weight: 500 !important;
-  border-color: #009933 !important;
+  border-color: #3876BF !important;
   border-radius: 20px !important;
-  color: #009933 !important;
+  color: #3876BF !important;
   text-transform: capitalize !important;
   font-family: "Raleway", sans-serif !important;
 }
-.green-outlined-button {
+.blue-outlined-button {
   padding: 2px 8px !important;
   font-size: small;
   font-weight: 500 !important;
-  background-color: #e3f4d9 !important;
-  color: #009933 !important;
-  border-color: #01882e !important;
+  background-color: #e5eefc !important;
+  color: #3876BF !important;
+  border-color: #3876BF 2px !important;
   text-transform: capitalize !important;
-  font-family: "Raleway", sans-serif !important;
+  font-family: "Poppins", sans-serif !important;
 }
 .btn {
   background-color: #55912f !important;
