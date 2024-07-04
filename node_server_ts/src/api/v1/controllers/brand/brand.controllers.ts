@@ -13,7 +13,8 @@ export const createBrand = async (req: Request, res: Response) => {
 			});
 		}
 		const { brandDetails } = req.body;
-		const existingBrand = await BrandModel.findOne({ name: brandDetails.name });
+		const bradPayload = JSON.parse(brandDetails);
+		const existingBrand = await BrandModel.findOne({ name: bradPayload.name });
 		if (existingBrand) {
 			return res.status(409).json({
 				message: MESSAGE.custom(`Brand with the same name already exists.`)
@@ -31,7 +32,7 @@ export const createBrand = async (req: Request, res: Response) => {
 			});
 		}
 		const payload = {
-			...brandDetails,
+			...bradPayload,
 			logo: logoUrl
 		};
 		const brandInstance = await new BrandModel(payload).save();
