@@ -1,6 +1,11 @@
 import { loginAdmin } from "./auth/loginAdmin";
 import { getOtp } from "./auth/otpAdmin";
-import { forwardEnqury, getBooking, getForwardEnquryList, updateEnquiryStatus } from "./booking/booking";
+import {
+  forwardEnqury,
+  getBooking,
+  getForwardEnquryList,
+  updateEnquiryStatus,
+} from "./booking/booking";
 import { getBuilder } from "./builders/getBuilder";
 import { getBuilderByID } from "./builders/getBuilderByID";
 import { addBuilder } from "./builders/postBuilder";
@@ -9,9 +14,14 @@ import { getEmployeeList } from "./employee/getEmployee";
 import { createAdmin } from "./permission/userManagement/createAdmin";
 import { getBuilderList } from "./permission/userManagement/getBuilderList";
 import { adminAssignProject } from "./products/assignProject";
-import { getAdminPlots, getAssignedProjectList, getProjectDetails } from "./products/getAdminProjects";
+import {
+  getAdminPlots,
+  getAssignedProjectList,
+  getProjectDetails,
+} from "./products/getAdminProjects";
 import { getProducts, updateProductStatus } from "./products/getProducts";
 import { updatePlotPostion } from "./products/updatePlotPosition";
+import { getWholesaler, updateWholesalerStatus } from "./wholesaler/WholeSaler";
 
 export const api = {
   customer: {
@@ -35,13 +45,17 @@ export const api = {
     getBuilderList: getBuilderList,
   },
   product: {
-   getProducts,
-   updateProductStatus
+    getProducts,
+    updateProductStatus,
   },
   booking: {
     getBooking,
     forwardEnqury,
     getForwardEnquryList,
-    updateEnquiryStatus
+    updateEnquiryStatus,
+  },
+  wholesaler: {
+    getWholesaler,
+    updateWholesalerStatus,
   },
 };

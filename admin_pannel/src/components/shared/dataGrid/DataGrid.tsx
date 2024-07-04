@@ -1,17 +1,15 @@
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-alpine.css";
-import { DataGridProp } from "../../../@types/props/DataGrid.props";
 
-interface IRow {
-  make: string;
-  model: string;
-  price: number;
+interface DataGridProps {
+  rowData: any[];
+  colDefs: any[];
 }
 
-const DataGrid = ({ rowData, colDefs } :DataGridProp) => {
+const DataGrid = ({ rowData, colDefs }: DataGridProps) => {
   return (
-    <div className="ag-theme-alpine" style={{ height: 500}}>
+    <div className="ag-theme-alpine" style={{ height: 500 }}>
       <AgGridReact
         animateRows={true}
         rowSelection="multiple"
