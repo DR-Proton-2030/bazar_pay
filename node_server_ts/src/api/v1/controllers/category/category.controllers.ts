@@ -14,6 +14,7 @@ export const createCategory = async (req: Request, res: Response) => {
 		const { categoryDetails } = req.body;
 		const categoryPayload = JSON.parse(categoryDetails);
 		const existingBrand = await CategoryModel.findOne({ name: categoryPayload.name });
+
 		if (existingBrand) {
 			return res.status(409).json({
 				message: MESSAGE.custom(`Brand with the same name already exists.`)

@@ -9,7 +9,7 @@ const SubcategorySchema: Schema<ISubcategory> = new Schema<ISubcategory>(
 		name: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		description: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
 		category_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
-		logo: SCHEMA_DEFINITION_PROPERTY.optionalNullString
+		sub_category_image: SCHEMA_DEFINITION_PROPERTY.optionalNullString
 	},
 	{
 		...GENERAL_SCHEMA_OPTIONS,

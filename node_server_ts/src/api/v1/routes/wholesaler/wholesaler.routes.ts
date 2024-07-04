@@ -1,6 +1,10 @@
 import express from "express";
 import { upload } from "../../../../middleware/multer.middleware";
-import { createWholesaler, getWholeSaler, updateWholesalerStatus } from "../../controllers/wholesalers/wholesaler.controller";
+import {
+	createWholesaler,
+	getWholeSaler,
+	updateWholesalerStatus
+} from "../../controllers/wholesalers/wholesaler.controller";
 import { getOtpForSignup } from "../../controllers/wholesalers/wholeslaer.otp.controller";
 
 const router = express.Router();
