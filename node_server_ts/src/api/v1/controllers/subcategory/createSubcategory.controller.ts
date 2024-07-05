@@ -17,9 +17,9 @@ export const createSubCategory = async (req: Request, res: Response) => {
 		const subCategoryPayload = JSON.parse(subCategoryDetails);
 		const categoryInstance: any = await CategoryModel.findOne({ _id: subCategoryPayload.category_object_id });
 
-		if (categoryInstance) {
+		if (!categoryInstance) {
 			return res.status(StatusCodes.NOT_FOUND).json({
-				message: MESSAGE.custom("Brand with the same name already exists!")
+				message: MESSAGE.custom("Category does not exist")
 			});
 		}
 

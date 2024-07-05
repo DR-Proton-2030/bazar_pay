@@ -10,6 +10,6 @@ app.use("/product", require("./product/product.routes"));
 app.use("/retailer", require("./reatiler/retailer.routes"));
 app.use("/brands", require("./brand/brand.routes"));
 app.use("/category", require("./category/category.routes"));
-// app.use("/subcategory", require("./subcategory/subcategory.routes"));
+app.use("/subcategory", require("./subcategory/subcategory.routes"));
 
 module.exports = app;
