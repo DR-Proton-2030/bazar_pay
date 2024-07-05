@@ -5,7 +5,7 @@ import {
 	getWholeSaler,
 	updateWholesalerStatus
 } from "../../controllers/wholesalers/wholesaler.controller";
-import { getOtpForSignup } from "../../controllers/wholesalers/wholeslaer.otp.controller";
+import { getOtpForLogin, getOtpForSignup } from "../../controllers/wholesalers/wholeslaer.otp.controller";
 import { uploadProduct } from "../../controllers/wholesalers/wholesalerUploadProduct.controller";
 
 const router = express.Router();
@@ -24,6 +24,7 @@ router.route("/add-wholesaler").post(
 );
 
 router.route("/get-otp-signup").get(getOtpForSignup);
+router.route("/get-otp-login").get(getOtpForLogin);
 router.route("/update-wholesaler-status").patch(updateWholesalerStatus);
 router.route("/upload-product").post(uploadProduct);
 

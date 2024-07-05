@@ -22,3 +22,28 @@ export const getOtpForSignup = async (req: Request, res: Response) => {
 		});
 	}
 };
+export const getOtpForLogin = async (req: Request, res: Response) => {
+	try {
+		const { phone } = req.query;
+		const existingWholesaler = await WholesalerModel.findOne({ contact_phone: phone });
+		if (existingWholesaler) {
+			if (existingWholesaler?.approval_status === "APROVED") {
+				const otp = "1234";
+				return res.status(200).json({
+					message: MESSAGE.get.succ,
+					otp: otp,
+					result: existingWholesaler
+				});
+			}
+
+		}
+		return res.status(404).json({
+			message: MESSAGE.get.fail,
+		});
+
+	} catch (error) {
+		return res.status(400).json({
+			message: MESSAGE.get.fail
+		});
+	}
+};
