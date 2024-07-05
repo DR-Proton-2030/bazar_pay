@@ -103,6 +103,8 @@ function RootLayoutNav() {
         options={{
           headerShown: true,
           headerTitleAlign: "center",
+           statusBarStyle: "dark",
+          statusBarTranslucent: true,
           headerTitle: () => (
             <Text style={{ textAlign: "center", fontSize: 20 }}>
               পণ্যের লিস্ট
@@ -144,6 +146,72 @@ function RootLayoutNav() {
       <Stack.Screen
         name="ManualAddProduct"
         options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="QuickAddProduct"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              
+              Upload Product
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="categoryPage"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              Choose Category
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="subcategoryPage"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              Choose Sub Category
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="brandPage"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              Choose a Brand
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="quickProductList"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              Choose a Product
+            </Text>
+          ),
+        }}
       />
       <Stack.Screen
         name="RatingsPage"

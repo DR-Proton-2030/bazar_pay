@@ -5,4 +5,5 @@ export interface ISmallCardProps {
   subTitle?: string;
   icon?: ReactNode | ReactNode[];
   handlePress?: () => void;
+  logo?:any
 }

@@ -21,13 +21,16 @@ const ActiveProducts = () => {
   const handleNavigateAddProduct = () => {
     navigation.navigate("ManualAddProduct");
   };
+  const handleNavigateQuictProduct = () => {
+    navigation.navigate("categoryPage");
+  };
 
   const action_list: IFavGroupAction[] = [
     {
       icon: "star",
       label: "দ্রুত পণ্য যোগ করুন",
       color: Colors.light.secondary,
-      onPress: () => console.log("Pressed star"),
+      onPress: handleNavigateQuictProduct,
     },
     {
       icon: "cart",

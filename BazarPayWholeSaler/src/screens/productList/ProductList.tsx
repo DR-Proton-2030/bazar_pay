@@ -33,6 +33,7 @@ const ProductList = ({ loading, products }: any) => {
           )}
         />
       )}
+      
     </SafeAreaView>
   );
 };
