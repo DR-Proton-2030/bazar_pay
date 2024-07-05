@@ -39,7 +39,7 @@ const AppHeader: React.FC = () => {
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity onPress={openDrawer}>
           <Image
-            source={{ uri: wholesaler?.owner_photo }}
+            source={{ uri: wholesaler?.owner_phone }}
             style={{ width: 50, height: 50, borderRadius: 50 }}
           />
         </TouchableOpacity>
@@ -47,7 +47,7 @@ const AppHeader: React.FC = () => {
           <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
             {wholesaler?.wholesaler_name},
           </Text>
-          <Text style={globalStyle.posttitle}>{user?.full_name}</Text>
+          <Text style={globalStyle.posttitle}>{user?.owner_name}</Text>
         </View>
         <SideDrawer
           isOpen={isDrawerOpen}

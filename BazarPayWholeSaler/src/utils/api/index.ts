@@ -2,7 +2,7 @@ import {  createAdmin, createWholesalerEmployee } from "./auth/wholesalerEmploye
 import { createWholesaler } from "./auth/signUp";
 import { loginWholesaler } from "./auth/auth";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
-import { getOtp } from "./auth/otp.api";
+import { getLoginOtp, getOtp } from "./auth/otp.api";
 import { createProduct } from "./product/addProduct";
 import { getProductList } from "./product/getProduct";
 import { updateProduct } from "./product/updateProduct";
@@ -16,7 +16,8 @@ export const api = {
 		createWholesaler,
 		createWholesalerEmployee,
 		loginWholesaler,
-		getOtp
+		getOtp,
+		getLoginOtp
 	},
 	product:{
 		createProduct,
@@ -33,7 +34,8 @@ export const api = {
 		getBrandList
 	},
 	wholesaler:{
-		WholesalerUploadProduct
+		WholesalerUploadProduct,
+
 	}
 
 };
