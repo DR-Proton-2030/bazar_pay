@@ -6,6 +6,8 @@ import {
   getForwardEnquryList,
   updateEnquiryStatus,
 } from "./booking/booking";
+import { getBrand } from "./brand/getBrand";
+import { createBrand } from "./brand/postBrand";
 import { getBuilder } from "./builders/getBuilder";
 import { getBuilderByID } from "./builders/getBuilderByID";
 import { addBuilder } from "./builders/postBuilder";
@@ -63,5 +65,9 @@ export const api = {
   category: {
     getCategory,
     createCategory
+  },
+  brand: {
+    getBrand,
+    createBrand
   }
 };
