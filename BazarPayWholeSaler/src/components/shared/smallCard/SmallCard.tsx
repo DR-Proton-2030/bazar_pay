@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity ,Image} from "react-native";
 import Colors from "../../../constants/Colors";
 import { smallCardStyle } from "./SmallCard.style";
 import { ISmallCardProps } from "../../../@types/props/SmallCard.props";
@@ -9,11 +9,17 @@ const SmallCard = ({
   icon: Icon,
   subTitle,
   handlePress,
+  logo
 }: ISmallCardProps) => {
   return (
     <TouchableOpacity style={smallCardStyle.card} onPress={handlePress}>
       <View style={{ alignItems: "center", flexDirection: "row", gap: 8 }}>
         {Icon}
+        {
+        logo?
+        <Image style={{height:60,width:60}} source={{uri:logo}}/>:
+        null
+      }
         <View style={{ flexDirection: "column" }}>
           <Text
             style={{

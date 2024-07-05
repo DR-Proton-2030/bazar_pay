@@ -1,27 +1,27 @@
 import { Request, Response } from "express";
 import { MESSAGE } from "../../../../constants/message";
 import { QUERY_PARAMS } from "../../../../constants/query";
-import SubcategoryModel from "../../../../models/subcategory.model";
 import { StatusCodes } from "http-status-codes";
+import SubcategoryModel from "../../../../models/subcategory.model";
 
 export const getSubcategory = async (req: Request, res: Response) => {
 	try {
-		const subCategoryFilter = req.query[QUERY_PARAMS.filter];
+		const { category_object_id } = req.query; 
 
-		const subCategoryInstance = await SubcategoryModel.find({ subCategoryFilter }).lean();
+		const subCategoryInstance = await SubcategoryModel.find({ category_object_id });
 
 		if (!subCategoryInstance) {
-			return res.status(StatusCodes.NOT_FOUND).json({
-				message: MESSAGE.get.fail
+			return res.status(400).json({
+				message: MESSAGE.custom("Subcategory not found for the provided category_object_id")
 			});
 		}
 
-		return res.status(StatusCodes.OK).json({
+		return res.status(200).json({
 			message: MESSAGE.get.succ,
 			result: subCategoryInstance
 		});
 	} catch (error) {
-		return res.status(StatusCodes.BAD_REQUEST).json({
+		return res.status(400).json({
 			message: MESSAGE.get.fail,
 			error
 		});

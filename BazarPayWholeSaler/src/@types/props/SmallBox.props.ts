@@ -6,4 +6,5 @@ export interface ISmallBoxProps {
     backgroundColor?:string;
     textColor:string;
     handleNavigate?:()=>void;
+    logo?:string
 }

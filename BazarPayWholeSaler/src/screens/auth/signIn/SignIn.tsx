@@ -25,44 +25,63 @@ import SignInCongratsModal from "../../../components/main/auth/signInCongratsMod
 import { api } from "../../../utils/api";
 import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerContext";
 import AuthContext from "../../../contexts/authContext/authContext";
+import { OtpInput } from "react-native-otp-entry";
+import { ActivityIndicator, Button } from "react-native-paper";
 
 const SignIn = () => {
   const { setUser } = useContext(AuthContext);
   const { setWholesaler } = useContext(WholesalerContext);
   const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(true); // Modal visibility state
   const [isCongratsModalVisible, setIsCongratsModalVisible] = useState(true); // Congrats modal visibility state
+  const [step, setStep] = useState("phone"); // Step state to switch between phone input and OTP input
+  const [otp, setOtp] = useState(""); // State to hold the entered OTP
+  const [serverOtp, setServerOtp] = useState(""); // State to hold the OTP from the server
   const screenHeight = Dimensions.get("screen").height;
   const navigation = useNavigation<any>();
+  const [focusColor, setFocusColor] = useState("green");
+  const [tempUser, setTempUser] = useState<any>();
 
   useEffect(() => {
     setIsModalVisible(true);
   }, []);
 
   const handleSignIn = async () => {
-    console.log(phone, password); // Log phone and password
-    // setIsCongratsModalVisible(true);
-    try {
-      const payload = {
-        phone_number: phone,
-        password: password,
-      };
-      const response = await api.auth.loginWholesaler(payload);
-      console.log("response===>", response);
-      setUser(response.user);
-      setWholesaler(response.wholesaler);
-      // setIsCongratsModalVisible(true);
-      navigation.navigate("homePage");
-    } catch (error: any) {
-      console.log(error);
-      Alert.alert("Error", error.response?.data?.message || error.message);
+    if (step === "phone") {
+    setLoading(true)
+
+      try {
+        const payload = { phone };
+        const response = await api.auth.getLoginOtp(payload);
+        setServerOtp(response?.otp);
+        setTempUser(response?.result)
+        setLoading(false)
+        setStep("otp")
+      } catch (error: any) {
+        console.log(error);
+        Alert.alert("Error", error.response?.data?.message || error.message);
+      }
+    } else if (step === "otp") {
+
+      if (otp === serverOtp) {
+        if (tempUser?.approval_status === "PENDING") {
+          navigation.navigate("conformationPage");
+        } else {
+          setUser(tempUser);
+          setWholesaler(tempUser);
+          setIsCongratsModalVisible(true);
+          navigation.navigate("homePage");
+          console.log("=====>temp user", tempUser)
+        }
+      } else {
+        Alert.alert("Error", "Entered OTP is incorrect.");
+      }
     }
   };
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }}>
-      {/* <StatusBar translucent={true} backgroundColor={"transparent"} /> */}
       <View style={{ flexDirection: "column" }}>
         <Image
           style={{ width: "100%", height: screenHeight / 1.9 }}
@@ -76,14 +95,51 @@ const SignIn = () => {
         >
           <Header isSignup={false} />
           <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
-            <InputField
-              placeholder="Email"
-              onChangeText={setPhone}
-              value={phone}
-            />
-            <PasswordToggle password={password} setPassword={setPassword} />
-            <Text style={globalStyle.forgotPasswordText}>Forgot Password?</Text>
-            <SignInButton isSignup={false} onPress={handleSignIn} />
+            {step === "phone" ? (
+              <>
+                <InputField
+                  placeholder="Phone number"
+                  onChangeText={setPhone}
+                  value={phone}
+                />
+                <Button style={[globalStyle.blueButton, { marginTop: 10 }]} onPress={handleSignIn}>
+                  {
+                    loading ?
+                      <ActivityIndicator color="white"/>
+                      :
+                      <Text style={globalStyle.signInButtonText}>
+                        Get Otp</Text>
+                  }
+
+                </Button>
+                <Button style={[globalStyle.lightVioletButton, { marginTop: 10 }]} onPress={() => navigation.goBack()}>
+                  <Text style={globalStyle.lightVioletButtonText}>Back</Text>
+                </Button>
+              </>
+            ) : (
+              <>
+                <View style={{ marginBottom: 20 }}>
+                  <OtpInput
+                    numberOfDigits={4}
+                    focusColor={"green"}
+                    focusStickBlinkingDuration={400}
+                    onTextChange={setOtp}
+                    onFilled={(text) => setOtp(text)}
+                    theme={{
+                      filledPinCodeContainerStyle: {
+                        borderColor: focusColor,
+                      },
+                    }}
+                  />
+                </View>
+                <Button style={[globalStyle.blueButton, { marginTop: 10 }]} onPress={handleSignIn}>
+                  <Text style={globalStyle.signInButtonText}>Get Otp</Text>
+                </Button>
+                <Button style={[globalStyle.lightVioletButton, { marginTop: 10 }]} onPress={() => setStep("phone")}>
+                  <Text style={globalStyle.lightVioletButtonText}>Back</Text>
+                </Button>
+              </>
+            )}
           </View>
         </View>
       </View>
