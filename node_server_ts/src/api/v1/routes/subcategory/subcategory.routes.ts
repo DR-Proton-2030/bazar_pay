@@ -14,11 +14,4 @@ router.route("/get-paginated-subcategories").get(getSubcategories);
 
 router.route("/get-subcategory-with-filter").get(getSubcategory);
 
-// router.route("/update-sub-category").patch(updateSubcategory);
-
-// router.route("/delete-sub-category").delete(deleteSubcategory);
-
-// router.route("/getAll-sub-category").get(getAllSubcategories);
-// router.route("/getbyId-sub-category").get(getSubcategoryById);
-
 module.exports = router;
