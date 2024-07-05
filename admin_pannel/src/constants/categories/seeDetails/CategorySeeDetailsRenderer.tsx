@@ -5,11 +5,11 @@ import { ICategory } from "../../../@types/interface/category.interface";
 
 const CategoryDetailsCellRenderer = ({data}:{data: ICategory}) => {
     const navigate = useNavigate();
-    // const handleRouteToProjectDetails = () =>{
-    //     navigate(`/admin/select-plots?pid=${data._id}`)
-    // }
+    const handleRouteToCategoryDetails = () =>{
+        navigate(`/categories/category-details?cid=${data._id}`)
+    }
   return (
-    <Button variant="outlined" className='blue-outlined-button' >See Details</Button>
+    <Button variant="outlined" className='blue-outlined-button' onClick={handleRouteToCategoryDetails}>See Details</Button>
   )
 }
 

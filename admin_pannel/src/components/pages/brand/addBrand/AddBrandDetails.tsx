@@ -95,6 +95,7 @@ const AddBrandForm = () => {
               <label>Brand Name:</label>
               <TextField
                 className="mui-textfield"
+                sx={{fontFamily: "poppins, sans-serif"}}
                 value={brandDetails.name}
                 onChange={handleChange}
                 name="name"
@@ -116,7 +117,7 @@ const AddBrandForm = () => {
             <div className="flex-input">
               <label>Country:</label>
                 <FormControl sx={{width: "500px"}}>
-                <InputLabel id="demo-simple-select-label">
+                <InputLabel id="demo-simple-select-label" sx={{fontFamily: "poppins, sans-serif"}}>
                   Select Country
                 </InputLabel>
                 <Select
@@ -126,6 +127,7 @@ const AddBrandForm = () => {
                   label="Country"
                   name="country"
                   onChange={handleChange}
+                  sx={{fontFamily: "poppins, sans-serif"}}
                 >
                   <MenuItem value={"INDIA"}>India</MenuItem>
                   <MenuItem value={"BANGLADESH"}>Bangladesh</MenuItem>

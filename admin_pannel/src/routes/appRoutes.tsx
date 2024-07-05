@@ -42,6 +42,8 @@ import Categories from "../components/pages/categories/Categories";
 import AddCategoryForm from "../components/pages/categories/addCategory/AddCategoryForm";
 import Brand from "../components/pages/brand/Brand";
 import AddBrandDetails from "../components/pages/brand/addBrand/AddBrandDetails";
+import CategoryDetails from "../components/pages/categoryDetails/CategoryDetails";
+import AddSubcategoryForm from "../components/pages/categoryDetails/subCategoryDetails/addSubcategory/AddSubcategoryForm";
 
 const appRoutes: RouteType[] = [
   {
@@ -91,6 +93,11 @@ const appRoutes: RouteType[] = [
     state: "categories",
   },
   {
+    path: "/add-subcategory",
+    element: <AddSubcategoryForm/>,
+    state: "categories",
+  },
+  {
     path: "/add-brand",
     element: <AddBrandDetails/>,
     state: "brand",
@@ -104,6 +111,11 @@ const appRoutes: RouteType[] = [
     path: "/add-banner",
     element: <AddBanner />,
     state: "advertisement",
+  },
+  {
+    path: "/categories/category-details",
+    element: <CategoryDetails />,
+    state: "category",
   },
 
   {
