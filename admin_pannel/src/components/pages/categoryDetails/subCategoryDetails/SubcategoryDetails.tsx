@@ -11,19 +11,22 @@ const SubcategoryDetails = () => {
   const [rowData, setRowData] = useState<ISubcategory[]>([]);
   // const [builderData, setBuilderData] = useState<I>();
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const queryParams = new URLSearchParams(window.location.search);
+  const categoryId = queryParams.get("cid");
+
 
   const getSubcategories = useCallback(
-    async (filterQuery: any) => {
+    async () => {
       try {
         const queryParams = new URLSearchParams(window.location.search);
         const categoryId = queryParams.get("cid");
         if (!categoryId) {
+          //add alert
           throw new Error("Builder ID is missing in the query parameters.");
         }
         const filter = {
-          ...filterQuery,
-
           page: currentPage,
+          category_object_id: categoryId
         };
         const response = await api.subcategory.getSubcategory(filter);
         if (response) {
@@ -44,7 +47,7 @@ const SubcategoryDetails = () => {
   };
 
   useEffect(() => {
-    getSubcategories({});
+    getSubcategories();
   }, [getSubcategories]);
 
   return (
