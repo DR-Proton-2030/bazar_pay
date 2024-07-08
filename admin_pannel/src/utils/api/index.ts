@@ -25,6 +25,8 @@ import {
 } from "./products/getAdminProjects";
 import { getProducts, updateProductStatus } from "./products/getProducts";
 import { updatePlotPostion } from "./products/updatePlotPosition";
+import { getSubcategory } from "./subcategory/getSubcategory";
+import { createSubcategory } from "./subcategory/postSubcategory";
 import { getWholesaler, updateWholesalerStatus } from "./wholesaler/WholeSaler";
 
 export const api = {
@@ -65,6 +67,10 @@ export const api = {
   category: {
     getCategory,
     createCategory
+  },
+  subcategory: {
+getSubcategory,
+createSubcategory
   },
   brand: {
     getBrand,

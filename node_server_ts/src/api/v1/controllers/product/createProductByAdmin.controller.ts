@@ -55,7 +55,7 @@ export const createProductByAdmin = async (req: Request, res: Response) => {
 			...productPayload,
 			product_image: productUrl,
 			category_object_id: subCategoryInstance.category_object_id,
-			brand_object_id: brandInstance.brand_object_id,
+			brand_object_id: brandInstance._id,
 			subcategory_object_id: subCategoryInstance._id
 		};
 

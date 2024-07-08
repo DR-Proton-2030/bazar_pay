@@ -16,7 +16,7 @@ const productSchema: Schema<IProduct> = new Schema<IProduct>(
 		brand_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
 		subcategory_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
 		category_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
-		product_status: { ...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default: "PENDING" }
+		product_status: { ...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default: "ACTIVE" }
 	},
 	{
 		...GENERAL_SCHEMA_OPTIONS,
