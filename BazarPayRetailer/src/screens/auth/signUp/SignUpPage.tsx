@@ -15,7 +15,7 @@ const SignUpPage = () => {
   const {setUser}=useContext(AuthContext)
   const navigation:any = useNavigation();
   const [phoneNo, setPhoneNo] = useState("");
-  const [formData, setFormData] = useState<User>(defaultRetailerState);
+  const [formData, setFormData] = useState<any>(defaultRetailerState);
   const [images, setImages] = useState<string[]>([]);
   const [hiddenButtons, setHiddenButtons] = useState<string[]>([]);
   const [otp, setOtp] = useState("");
@@ -28,6 +28,7 @@ const SignUpPage = () => {
   };
 
   const createRetailer = async () => {
+    setLoading(true)
     const formDataToSend = new FormData();
 
     const payload = JSON.stringify(formData);
@@ -54,8 +55,10 @@ const SignUpPage = () => {
       } else {
         console.log("Response is empty or invalid: ", response);
       }
+      setLoading(false)
     } catch (error: any) {
       console.error("Error adding retailer: ", error);
+      setLoading(false)
     }
   };
 
@@ -68,12 +71,12 @@ const SignUpPage = () => {
         });
         console.log("===>", response);
         setOriginalOtp(response);
+        setPage(1);
    
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false); 
-        setPage(1);
       }
     }
   };
@@ -98,15 +101,7 @@ const SignUpPage = () => {
     <>
     {page === 0 ? (
       <>
-      <View style={globalStyle.productHeader}>
-        <TouchableOpacity
-          onPress={handleNavigate}
-          style={{ display: "flex", flexDirection: "row", paddingLeft: 20, alignItems: "center", gap: 10 }}
-        >
-          <Ionicons name="arrow-back" size={28} color={Colors.light.orange} />
-          <Text style={{ fontWeight: '700', fontSize: 22 }}>Create Account</Text>
-        </TouchableOpacity>
-      </View>
+      
       <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background, paddingTop: 20 }}>
         <SignUpForm
           onSubmit={changePage}
@@ -116,24 +111,26 @@ const SignUpPage = () => {
           hiddenButtons={hiddenButtons}
           setHiddenButtons={setHiddenButtons}
           setImages={setImages}
+          loading={loading}
         />
       </ScrollView>
       </>
-    ) : formData?.contact_phone_number ? (
+    ) : formData?.contact_phone ? (
         <OtpModal
-          phone_number={formData?.contact_phone_number}
+          phone_number={formData?.contact_phone}
           verifyOtp={verifyOtp}
           handleBack={handleBack}
           originalOtp={originalOtp}
           setOtp={setOtp}
+          loading={loading}
         />
       ) : null}
 
-        <Modal visible={loading} >
+        {/* <Modal visible={loading} >
           <View style={{ backgroundColor: "white", padding: 20, borderRadius: 10, alignItems: "center",width:80,marginLeft:'auto',marginRight:"auto" }}>
             <ActivityIndicator animating={true} size="large" color={Colors.light.orange} />
           </View>
-        </Modal>
+        </Modal> */}
       </>
   );
 };

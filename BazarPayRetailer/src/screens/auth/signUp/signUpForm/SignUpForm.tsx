@@ -6,6 +6,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicatorBase,
+  ActivityIndicator,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import Colors from "../../../../constants/Colors";
@@ -21,6 +23,7 @@ const SignUpForm = ({
   setHiddenButtons,
   hiddenButtons,
   onSubmit,
+  loading
 }:any) => {
   const [errors, setErrors] = useState<any>({
     contact_phone_number: "",
@@ -105,11 +108,11 @@ const SignUpForm = ({
           <View style={styles.labelContainer}>
             <Text style={styles.label}>{field.label}</Text>
           </View>
-          {field.field === "contact_phone_number" ? (
+          {field.field === "contact_phone" ? (
             <>
-              <Text style={{ color: "black", fontSize: 14, marginBottom: -30 }}>880</Text>
+              <Text style={{ color: "black", fontSize: 14, marginBottom: -30,paddingLeft:10 }}>+880</Text>
               <TextInput
-                style={[styles.input, { paddingLeft: 28 }]}
+                style={[styles.input, { paddingLeft: 48 }]}
                 placeholder={field.placeholder}
                 value={formData[field.field]}
                 onChangeText={(text) => handleInputChange(field.field, text)}
@@ -144,9 +147,20 @@ const SignUpForm = ({
         images={images}
         hiddenButtons={hiddenButtons}
       />
-      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
-        <Text style={styles.submitText}>Submit</Text>
-      </TouchableOpacity>
+      {loading ?
+          <TouchableOpacity style={styles.submitButton}>
+            <ActivityIndicator color={"white"} />
+          </TouchableOpacity>
+          :
+          <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
+            <Text style={{
+              textAlign: "center", color: "white",
+              fontSize: 19,
+            }}>Submit Details</Text>
+          </TouchableOpacity>
+
+        }
+      
     </View>
   );
 };
@@ -160,7 +174,7 @@ const styles = StyleSheet.create({
   },
   fieldContainer: { marginBottom: 30 },
   labelContainer: { flexDirection: "row", alignItems: "center" },
-  label: { fontWeight: "bold", marginBottom: 5, marginLeft: 10 },
+  label: { fontWeight: "500", marginBottom: 3, marginLeft: 10,fontSize:17 ,color:Colors.light.orange},
   icon: { marginRight: 10 },
   input: {
     width: "100%",
@@ -172,7 +186,7 @@ const styles = StyleSheet.create({
   errorText: { color: "red", marginTop: 5, marginLeft: 10 },
   submitButton: {
     backgroundColor: Colors.light.orange,
-    paddingVertical: 10,
+    paddingVertical: 15,
     paddingHorizontal: 20,
     borderRadius: 50,
     alignItems: "center",

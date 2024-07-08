@@ -39,9 +39,9 @@ const AppHeader: React.FC = () => {
         <MenuButton onPress={openDrawer} />
         <View style={{ display: "flex", flexDirection: "column" }}>
           <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
-            Halishahar
+            {user?.retailer_name}
           </Text>
-          <Text style={globalStyle.posttitle}>{user?.retailer_name}</Text>
+          <Text style={globalStyle.posttitle}>{user?.contact_name}</Text>
           <TouchableOpacity
             style={{
               flexDirection: "row",

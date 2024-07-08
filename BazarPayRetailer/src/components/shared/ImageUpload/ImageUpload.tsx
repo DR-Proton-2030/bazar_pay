@@ -25,10 +25,10 @@ const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
     <View style={styles.container}>
       <Text style={styles.label}>Upload Supporting Documents* </Text>
       <View style={styles.buttonRow}>
-        {!hiddenButtons.includes("sign_board") && (
+        {!hiddenButtons.includes("sign_board_photo") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("sign_board")}
+            onPress={() => pickImage("sign_board_photo")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>
@@ -36,10 +36,10 @@ const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
             </Text>
           </TouchableOpacity>
         )}
-        {!hiddenButtons.includes("owner_photo") && (
+        {!hiddenButtons.includes("retailer_owner_photo") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("owner_photo")}
+            onPress={() => pickImage("retailer_owner_photo")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>
@@ -50,19 +50,19 @@ const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
       </View>
 
       <View style={styles.buttonRow}>
-        {!hiddenButtons.includes("trade_licensce") && (
+        {!hiddenButtons.includes("trade_license_photo") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("trade_licensce")}
+            onPress={() => pickImage("trade_license_photo")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>Trade License</Text>
           </TouchableOpacity>
         )}
-        {!hiddenButtons.includes("nid") && (
+        {!hiddenButtons.includes("nid_photo") && (
           <TouchableOpacity
             style={styles.button}
-            onPress={() => pickImage("nid")}
+            onPress={() => pickImage("nid_photo")}
           >
             <MaterialIcons name="image" size={20} color="gray" />
             <Text>
@@ -71,6 +71,17 @@ const ImageUpload = ({ images, hiddenButtons,pickImage }: any) => {
           </TouchableOpacity>
         )}
       </View>
+      {!hiddenButtons.includes("logo") && (
+          <TouchableOpacity
+            style={[styles.button,{width:156,marginBottom:20}]}
+            onPress={() => pickImage("logo")}
+          >
+            <MaterialIcons name="image" size={20} color="gray" />
+            <Text>
+              Logo<Text style={{ color: "red" }}>*</Text>
+            </Text>
+          </TouchableOpacity>
+      )}
       
       <Text style={styles.label}>Selected Images</Text>
       <ScrollView horizontal showsHorizontalScrollIndicator={false}>
@@ -100,7 +111,7 @@ const styles = StyleSheet.create({
     width: "auto",
     height: 40,
     backgroundColor: "white",
-    borderRadius: 50,
+    borderRadius: 10,
     flexDirection: "row",
     gap: 5,
     paddingHorizontal: 20,
@@ -110,7 +121,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 3.84,
-    elevation: 5,
+    elevation: 3,
   },
   label: { fontWeight: "bold", marginBottom: 25, marginLeft: 10 },
   image: { width: 90, height: 80, marginHorizontal: 10, borderRadius: 10 },

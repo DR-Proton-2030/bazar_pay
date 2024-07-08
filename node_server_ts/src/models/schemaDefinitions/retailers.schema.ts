@@ -5,16 +5,17 @@ import { IRetailer } from "../../@types/types/retailer.types";
 
 const retailerSchema: Schema<IRetailer> = new Schema<IRetailer>(
 	{
-		name: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		retailer_name: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		contact_name: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		contact_email: SCHEMA_DEFINITION_PROPERTY.requiredString,
-		trade_licensce_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		contact_phone: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		trade_license_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		nid_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
+
 		sign_board_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		retailer_owner_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
-		trade_licensce_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
+		trade_license_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		nid_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
-		contact_phone: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		logo: SCHEMA_DEFINITION_PROPERTY.requiredString
 	},
 	GENERAL_SCHEMA_OPTIONS

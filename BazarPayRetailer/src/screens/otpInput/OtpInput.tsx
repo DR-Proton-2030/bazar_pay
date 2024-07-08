@@ -5,32 +5,44 @@ import {
   Animated,
   Vibration,
   TouchableOpacity,
-  Button,
   ActivityIndicator,
 } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
-import { useNavigation } from "expo-router";
+import { useRoute } from "@react-navigation/native";
 import { OtpInput } from "react-native-otp-entry";
-import Colors from "../../../constants/Colors";
+import Colors from "../../constants/Colors";
+import AuthContext from "../../contexts/authContext/authContext";
+import { useNavigation } from "expo-router";
 
 const tempUri =
   "https://img.freepik.com/free-photo/3d-render-secure-login-password-illustration_107791-16640.jpg?t=st=1717929713~exp=1717933313~hmac=157ad2907e7eb0411c0520577b9be72e32e30779f8138d01969324b35856b974&w=740";
 
-const OtpModal = ({ verifyOtp, originalOtp, setOtp, handleBack, loading }: any) => {
+const OtpInputPage = () => {
+  const route = useRoute<any>();
   const navigation = useNavigation<any>();
+  const {setUser} = useContext(AuthContext)
+  const { otp, result } = route.params;
+  const [focusColor, setFocusColor] = useState("green");
+  const shakeAnimation = useRef(new Animated.Value(0)).current;
+
+  
+  const verifyOtp = () => {
+    console.log("Otp correct")
+    setUser(result)
+    navigation.navigate("homePage")
+    };
+
   const handleSetOtp = (text: string) => {
-    setOtp(text);
-    if (text !== originalOtp) {
+    if (text !== otp) {
       setFocusColor("red");
       shakeImage();
-    }
-    else {
+    } else {
       setFocusColor("green");
       verifyOtp();
+
     }
   };
-  const shakeAnimation = useRef(new Animated.Value(0)).current;
-  const [focusColor, setFocusColor] = useState("green");
+
   const shakeImage = () => {
     Animated.sequence([
       Animated.timing(shakeAnimation, {
@@ -61,6 +73,7 @@ const OtpModal = ({ verifyOtp, originalOtp, setOtp, handleBack, loading }: any) 
     ]).start();
     Vibration.vibrate(100);
   };
+
 
   return (
     <ScrollView style={{ flex: 1, backgroundColor: "white" }}>
@@ -99,10 +112,10 @@ const OtpModal = ({ verifyOtp, originalOtp, setOtp, handleBack, loading }: any) 
           numberOfDigits={4}
           focusColor={focusColor}
           focusStickBlinkingDuration={400}
-          onTextChange={(text) => {
+          onTextChange={() => {
             setFocusColor("green");
           }}
-          onFilled={(text) => handleSetOtp(text)}
+          onFilled={(text: string) => handleSetOtp(text)}
           theme={{
             filledPinCodeContainerStyle: {
               borderColor: focusColor,
@@ -110,40 +123,57 @@ const OtpModal = ({ verifyOtp, originalOtp, setOtp, handleBack, loading }: any) 
           }}
         />
 
-        {loading ?
-          <TouchableOpacity style={{
-            backgroundColor: Colors.light.orange,
-            borderRadius: 40,
-            paddingVertical: 10,
-          }}>
+        {false ? (
+          <TouchableOpacity
+            style={{
+              backgroundColor: Colors.light.orange,
+              borderRadius: 40,
+              paddingVertical: 10,
+            }}
+          >
             <ActivityIndicator color={"white"} />
           </TouchableOpacity>
-          :
-          <TouchableOpacity style={{
-            backgroundColor: Colors.light.orange,
+        ) : (
+          <TouchableOpacity
+            style={{
+              backgroundColor: Colors.light.orange,
+              borderRadius: 40,
+              paddingVertical: 10,
+            }}
+            onPress={()=>handleSetOtp}
+          >
+            <Text
+              style={{
+                textAlign: "center",
+                color: "white",
+                fontSize: 19,
+              }}
+            >
+              Verify & Continue
+            </Text>
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity
+          style={{
+            backgroundColor: Colors.light.cardColor,
             borderRadius: 40,
             paddingVertical: 10,
-          }} onPress={verifyOtp}>
-            <Text style={{
-              textAlign: "center", color: "white",
+          }}
+          onPress={() => navigation.goBack()}
+        >
+          <Text
+            style={{
+              textAlign: "center",
+              color: "black",
               fontSize: 19,
-            }}>Verify & Continue</Text>
-          </TouchableOpacity>
-
-        }
-        <TouchableOpacity style={{
-          backgroundColor: Colors.light.cardColor,
-          borderRadius: 40,
-          paddingVertical: 10,
-        }} onPress={handleBack}>
-          <Text style={{
-            textAlign: "center", color: "black",
-            fontSize: 19,
-          }}>Go Back</Text>
+            }}
+          >
+            Go Back
+          </Text>
         </TouchableOpacity>
       </View>
     </ScrollView>
   );
 };
 
-export default OtpModal;
+export default OtpInputPage;

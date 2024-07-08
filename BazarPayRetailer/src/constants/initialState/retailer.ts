@@ -1,14 +1,16 @@
 import { User } from "../../@types/user.types";
 
-export const defaultRetailerState: User = {
-        contact_phone_number: '',
+export const defaultRetailerState: any = {
         retailer_name: '',
-        contact_email: '',
-        trade_licensce_number: '',
-        nid_number: '',
-        sign_board_photo: '',
-        owner_photo: '',
-        trade_licensce_photo: '',
-        nid_photo: '',
+	contact_name: '',
+	contact_phone: '',
+	contact_email: '',
+	trade_license_number: '',
+	nid_number: '',
+        logo: '',
+	sign_board_photo:'',
+	retailer_owner_photo: '',
+	trade_license_photo: '',
+	nid_photo: '',
     
 };

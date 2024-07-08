@@ -26,9 +26,8 @@ export const getOtp = async (req: Request, res: Response) => {
 		};
 		const dynamicMessage = generateMessage();
 
-		const urlWithDynamicMessage = `${msg_apiUrl}?apiKey=${msg_apiKey}&type=${msg_type}&contactNumbers=${
-			phone_number?.length === 10 ? "880" + phone_number : phone_number
-		}&senderId=${msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
+		const urlWithDynamicMessage = `${msg_apiUrl}?apiKey=${msg_apiKey}&type=${msg_type}&contactNumbers=${phone_number?.length === 10 ? "880" + phone_number : phone_number
+			}&senderId=${msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
 
 		console.log("===>", urlWithDynamicMessage);
 
@@ -56,7 +55,7 @@ export const getOtpForRetailer = async (req: Request, res: Response) => {
 	const { phone_number } = req.query;
 	try {
 		const employeeInstance: any = await retailerModel.findOne({
-			contact_phone_number: phone_number
+			contact_phone: phone_number
 		});
 		if (employeeInstance) {
 			return res.status(404).json({
@@ -69,9 +68,8 @@ export const getOtpForRetailer = async (req: Request, res: Response) => {
 		};
 		const dynamicMessage = generateMessage();
 
-		const urlWithDynamicMessage = `${msg_apiUrl}?apiKey=${msg_apiKey}&type=${msg_type}&contactNumbers=${
-			phone_number?.length === 10 ? "880" + phone_number : phone_number
-		}&senderId=${msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
+		const urlWithDynamicMessage = `${msg_apiUrl}?apiKey=${msg_apiKey}&type=${msg_type}&contactNumbers=${phone_number?.length === 10 ? "880" + phone_number : phone_number
+			}&senderId=${msg_senderId}&textBody=${encodeURIComponent(dynamicMessage)}`;
 
 		console.log("===>", urlWithDynamicMessage);
 

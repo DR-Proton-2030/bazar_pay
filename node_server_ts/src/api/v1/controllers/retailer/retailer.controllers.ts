@@ -9,20 +9,22 @@ export const createRetailer = async (req: Request, res: Response) => {
 	try {
 		if (
 			!req.files ||
-			!("sign_board" in req.files) ||
-			!("owner_photo" in req.files) ||
-			!("trade_licensce" in req.files) ||
-			!("nid" in req.files)
+			!("sign_board_photo" in req.files) ||
+			!("retailer_owner_photo" in req.files) ||
+			!("trade_license_photo" in req.files) ||
+			!("nid_photo" in req.files) ||
+			!("logo" in req.files)
 		) {
 			return res.status(404).json({
 				message: MESSAGE.post.custom("img not found")
 			});
 		}
 		console.log(req.files);
-		const sign_board = req.files["sign_board"][0];
-		const owner_photo = req.files["owner_photo"][0];
-		const trade_licensce = req.files["trade_licensce"] ? req.files["trade_licensce"][0] : null;
-		const nid = req.files["nid"][0];
+		const sign_board = req.files["sign_board_photo"][0];
+		const owner_photo = req.files["retailer_owner_photo"][0];
+		const trade_license = req.files["trade_license_photo"] ? req.files["trade_license_photo"][0] : null;
+		const nid = req.files["nid_photo"][0];
+		const logo = req.files["logo"][0];
 
 		const { retailerDetails } = req.body;
 		console.log("====>req.files", retailerDetails);
@@ -35,10 +37,11 @@ export const createRetailer = async (req: Request, res: Response) => {
 
 		const signBoardBuffer = sign_board.buffer;
 		const ownerPhotoBuffer = owner_photo.buffer;
-		const tradeLicensceBuffer = trade_licensce ? trade_licensce.buffer : null;
+		const tradeLicensceBuffer = trade_license ? trade_license.buffer : null;
 		const nidBuffer = nid.buffer;
+		const logoBuffer = logo.buffer;
 
-		const existingretailer = await retailerModel.findOne({ trade_licensce_number: _payload.trade_licensce_number });
+		const existingretailer = await retailerModel.findOne({ trade_license_number: _payload.trade_license_number });
 		if (existingretailer) {
 			if (existingretailer.nid_number === _payload.nid_number) {
 				return res.status(409).json({
@@ -53,19 +56,21 @@ export const createRetailer = async (req: Request, res: Response) => {
 		let payload = {};
 		console.log("====>before payload", payload);
 		try {
-			const signBoardUrl = await uploadImageService("sign_board", signBoardBuffer);
-			const ownerPhotoUrl = await uploadImageService("owner_photo", ownerPhotoBuffer);
+			const signBoardUrl = await uploadImageService("sign_board_photo", signBoardBuffer);
+			const ownerPhotoUrl = await uploadImageService("retailer_owner_photo", ownerPhotoBuffer);
 			const tradeLicensceUrl = tradeLicensceBuffer
-				? await uploadImageService("trade_licensce", tradeLicensceBuffer)
+				? await uploadImageService("trade_license_photo", tradeLicensceBuffer)
 				: DEFAULT_IMAGE;
-			const nidUrl = await uploadImageService("nid", nidBuffer);
+			const nidUrl = await uploadImageService("nid_photo", nidBuffer);
+			const logoUrl = await uploadImageService("logo", logoBuffer);
 
 			payload = {
 				..._payload,
 				sign_board_photo: signBoardUrl,
-				owner_photo: ownerPhotoUrl,
-				trade_licensce_photo: tradeLicensceUrl,
-				nid_photo: nidUrl
+				retailer_owner_photo: ownerPhotoUrl,
+				trade_license_photo: tradeLicensceUrl,
+				nid_photo: nidUrl,
+				logo: logoUrl
 			};
 		} catch (error) {
 			return res.status(400).json({

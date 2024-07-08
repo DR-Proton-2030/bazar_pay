@@ -16,7 +16,7 @@ export type ProductCartContextType = {
   resetProductCart: () => void;
 };
 
-const ProductCartContextProvider: React.FC = ({ children }) => {
+const ProductCartContextProvider= ({ children }:any) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const fetchUserFromStorage = useCallback(async () => {

@@ -1,7 +1,7 @@
 export const NODE_ENV: "PROD" | "DEV" | "LOCAL" = "LOCAL";
 
 export const MONGO_URI = {
-	LOCAL: "mongodb+srv://drprotonofficial:Adarsha%40123@cluster0.9ogg6pi.mongodb.net/",
+	LOCAL: "mongodb+srv://drprotonofficial:Adarsha%40123@cluster0.9ogg6pi.mongodb.net/bazarpay_local",
 	DEV: "",
 	PROD: "mongodb://bp_admin:Proton%402030@127.0.0.1:27017/bazar_pay?authSource=bazar_pay"
 };

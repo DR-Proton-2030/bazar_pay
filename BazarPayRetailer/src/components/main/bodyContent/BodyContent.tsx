@@ -34,7 +34,7 @@ const BodyContent = () => {
   return (
     <View style={styles.container}>
       <Image
-        style={[styles.image, { marginTop: displayText ? 120 : 170 }]}
+        style={[styles.image, { marginTop: displayText ? 100 : 120 }]}
         source={displayImage}
       />
       <View style={styles.textContainer}>

@@ -1,5 +1,5 @@
 import { Login, OtpLogin, createAdmin } from "./auth/login";
-import { getOtp } from "./auth/otp";
+import { getLoginOtp, getOtp } from "./auth/otp";
 import { SignUp } from "./auth/signUp";
 import { getDepartments } from "./departments/department";
 import { PostFeed, getFeeds } from "./feed/feed";
@@ -12,6 +12,7 @@ export const api = {
 		SignUp,
 		Login,
 		getOtp,
+		getLoginOtp
 	},
 	product :{
 		getProductList
