@@ -36,7 +36,7 @@ export const createSubCategory = async (req: Request, res: Response) => {
 
 		const SubCategoryPayload = {
 			...subCategoryPayload,
-			subCategoryImage: subCategoryUrl,
+			sub_category_image: subCategoryUrl,
 			category_object_id: categoryInstance._id
 		};
 

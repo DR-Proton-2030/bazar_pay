@@ -32,11 +32,13 @@ const VisuallyHiddenInput = styled("input")({
 
 const AddSubcategoryForm = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const queryParams = new URLSearchParams(window.location.search);
+  const categoryId = queryParams.get("cid");
   const [subcategoryDetails, setSubcategoryDetails] = useState<ISubcategory>(
    {
     name: "",
     description: "",
-    category_object_id: "",
+    category_object_id: categoryId as string,
     sub_category_image: "",
    }
   );
@@ -57,9 +59,10 @@ const AddSubcategoryForm = () => {
 
     try {
       const formData = new FormData();
-      formData.append("categoryDetails", JSON.stringify(subcategoryDetails));
+      formData.append("subCategoryDetails", JSON.stringify(subcategoryDetails));
       if (uploadedFile) {
-        formData.append("logo", uploadedFile);
+        alert("image uploaded")
+        formData.append("sub_category_image", uploadedFile);
       }
       const response = await api.subcategory.createSubcategory(formData);
       if (response) {
@@ -83,7 +86,7 @@ const AddSubcategoryForm = () => {
       <div>
         <Accordion defaultExpanded>
           <AccordionSummary>
-            <h3>Add Category Details</h3>
+            <h3>Add Subcategory Details</h3>
           </AccordionSummary>
           <AccordionDetails>
             <div className="flex-input">

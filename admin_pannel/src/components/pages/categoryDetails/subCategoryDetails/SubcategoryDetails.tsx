@@ -36,7 +36,7 @@ const SubcategoryDetails = () => {
         console.error("Error while fetching data:", error);
       }
     },
-    [currentPage]
+    [currentPage, categoryId]
   );
 
   const handlePageChange = (
@@ -48,7 +48,7 @@ const SubcategoryDetails = () => {
 
   useEffect(() => {
     getSubcategories();
-  }, [getSubcategories]);
+  }, []);
 
   return (
     <div>
@@ -56,7 +56,7 @@ const SubcategoryDetails = () => {
         <Button
           variant="contained"
           className="blue-btn"
-          onClick={() => navigate("/add-subcategory")}
+          onClick={() => navigate(`/add-subcategory?cid=${categoryId}`)}
         >
           Add Sub Category
         </Button>
