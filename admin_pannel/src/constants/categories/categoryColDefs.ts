@@ -3,6 +3,7 @@ import NameCellRenderer from "../../components/pages/allCustomers/nameCellRender
 import CategoryCellRenderer from "../../components/pages/categories/categoryCellRenderer/CategoryCellRenderer";
 import SeeDetailsCellRenderer from "../../components/pages/products/seeDetailsCellRenderer/SeeDetailsCellRenderer";
 import CategoryDetailsCellRenderer from "./seeDetails/CategorySeeDetailsRenderer";
+import FormattedDateCellRenderer from "../../components/shared/dateCellRenderer/FormattedDateCellRenderer";
 
 export const CategoryColDefs: ColDef[] = [
   {
@@ -12,7 +13,7 @@ export const CategoryColDefs: ColDef[] = [
   },
 
   { field: "description", headerName: "Details" },
-  { field: "createdAt", headerName: "Created On" },
-  { field: "updatedAt", headerName: "Last Updated On" },
+  { field: "createdAt", headerName: "Created On" , cellRenderer: FormattedDateCellRenderer},
+  { field: "updatedAt", headerName: "Last Updated On" , cellRenderer: FormattedDateCellRenderer},
   { field: "action", headerName: "See Details" , cellRenderer: CategoryDetailsCellRenderer}
 ];

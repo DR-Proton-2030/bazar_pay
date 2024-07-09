@@ -8,7 +8,7 @@ const SeeDetailsCellRenderer = ({data}:{data: IProject}) => {
         navigate(`/admin/select-plots?pid=${data._id}`)
     }
   return (
-    <Button variant="outlined" className='green-outlined-button' onClick={handleRouteToProjectDetails}>See Details</Button>
+    <Button variant="outlined" className='blue-outlined-button' onClick={handleRouteToProjectDetails}>See Details</Button>
   )
 }
 

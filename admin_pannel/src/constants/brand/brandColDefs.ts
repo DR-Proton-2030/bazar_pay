@@ -3,7 +3,7 @@ import NameCellRenderer from "../../components/pages/allCustomers/nameCellRender
 import CategoryCellRenderer from "../../components/pages/categories/categoryCellRenderer/CategoryCellRenderer";
 import SeeDetailsCellRenderer from "../../components/pages/products/seeDetailsCellRenderer/SeeDetailsCellRenderer";
 import BrandDetailsCellRenderer from "./seeDetails/BrandDetailsCellRenderer";
-
+import FormattedDateCellRenderer from "../../components/shared/dateCellRenderer/FormattedDateCellRenderer";
 
 export const BrandColDefs: ColDef[] = [
   {
@@ -11,9 +11,21 @@ export const BrandColDefs: ColDef[] = [
     headerName: "Brand Name",
     cellRenderer: BrandDetailsCellRenderer,
   },
-    { field: "country", headerName: "Country" },
+  { field: "country", headerName: "Country" },
   { field: "description", headerName: "Details" },
-  { field: "createdAt", headerName: "Created On" },
-  { field: "updatedAt", headerName: "Last Updated On" },
-  { field: "action", headerName: "See Details", cellRenderer: SeeDetailsCellRenderer }
+  {
+    field: "createdAt",
+    headerName: "Created On",
+    cellRenderer: FormattedDateCellRenderer,
+  },
+  {
+    field: "updatedAt",
+    headerName: "Last Updated On",
+    cellRenderer: FormattedDateCellRenderer,
+  },
+  {
+    field: "action",
+    headerName: "See Details",
+    cellRenderer: SeeDetailsCellRenderer,
+  },
 ];

@@ -44,6 +44,8 @@ import Brand from "../components/pages/brand/Brand";
 import AddBrandDetails from "../components/pages/brand/addBrand/AddBrandDetails";
 import CategoryDetails from "../components/pages/categoryDetails/CategoryDetails";
 import AddSubcategoryForm from "../components/pages/categoryDetails/subCategoryDetails/addSubcategory/AddSubcategoryForm";
+import SubcategoryDetails from "../components/pages/categoryDetails/subCategoryDetails/SubcategoryDetails";
+import Details from "../components/pages/categoryDetails/subCategoryDetails/details/Details";
 
 const appRoutes: RouteType[] = [
   {
@@ -95,6 +97,11 @@ const appRoutes: RouteType[] = [
   {
     path: "/add-subcategory",
     element: <AddSubcategoryForm/>,
+    state: "categories",
+  },
+  {
+    path: "/subcategory-details",
+    element: <Details/>,
     state: "categories",
   },
   {
