@@ -3,6 +3,7 @@ import { upload } from "../../../../middleware/multer.middleware";
 import { createSubCategory } from "../../controllers/subcategory/createSubcategory.controller";
 import { getSubcategories } from "../../controllers/subcategory/getSubcategoriesWithPagination.controller";
 import { getSubcategory } from "../../controllers/subcategory/getSubcategory.controller";
+import { getAggregatedSubcategory } from "../../controllers/subcategory/getAggregatedSubcategory.controller";
 
 const router = express.Router();
 
@@ -13,5 +14,7 @@ router
 router.route("/get-paginated-subcategories").get(getSubcategories);
 
 router.route("/get-subcategory-with-filter").get(getSubcategory);
+
+router.route("/get-aggregated-subcategory").get(getAggregatedSubcategory)
 
 module.exports = router;
