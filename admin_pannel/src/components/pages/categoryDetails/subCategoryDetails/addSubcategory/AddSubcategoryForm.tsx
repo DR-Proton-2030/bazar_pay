@@ -66,7 +66,7 @@ const AddSubcategoryForm = () => {
       }
       const response = await api.subcategory.createSubcategory(formData);
       if (response) {
-        alert("category created successfully");
+        alert("Subcategory created successfully");
       }
       if (!response) {
         throw new Error(`API request failed with status ${response.status}`);
@@ -75,7 +75,7 @@ const AddSubcategoryForm = () => {
       setSubcategoryDetails(subcategoryDetails);
     } catch (error) {
       console.log("Error while adding");
-      alert("failed to create category");
+      alert("failed to create subcategory");
     }
   };
   useEffect(() => {
