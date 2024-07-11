@@ -4,6 +4,7 @@ import CategoryCellRenderer from "../../components/pages/categories/categoryCell
 import SeeDetailsCellRenderer from "../../components/pages/products/seeDetailsCellRenderer/SeeDetailsCellRenderer";
 import BrandDetailsCellRenderer from "./seeDetails/BrandDetailsCellRenderer";
 import FormattedDateCellRenderer from "../../components/shared/dateCellRenderer/FormattedDateCellRenderer";
+import BrandSeeDetails from "../../components/pages/brand/brandSeeDetails/BrandSeeDetails";
 
 export const BrandColDefs: ColDef[] = [
   {
@@ -26,6 +27,6 @@ export const BrandColDefs: ColDef[] = [
   {
     field: "action",
     headerName: "See Details",
-    cellRenderer: SeeDetailsCellRenderer,
+    cellRenderer: BrandSeeDetails,
   },
 ];

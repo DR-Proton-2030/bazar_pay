@@ -13,8 +13,8 @@ const {setDashboardHeader} = useContext(UIContext)
   const [rowData, setRowData] = useState<IProduct[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1);
   const queryParams = new URLSearchParams(window.location.search);
-  const categoryId = queryParams.get("cid");
-  const subcategoryId = queryParams.get("scid");
+  const brandId = queryParams.get("bid");
+ 
 
   const getProducts = useCallback(
     async (filterQuery: any) => {
@@ -22,8 +22,8 @@ const {setDashboardHeader} = useContext(UIContext)
         const filter = {
           ...filterQuery,
           page: currentPage,
-          category_object_id: categoryId,
-          subcategory_object_id: subcategoryId,
+          brand_object_id: brandId,
+          
         };
         const response = await api.productbyId.getProductbyId(filter);
         if (response) {

@@ -16,7 +16,14 @@ export const ProductColDefs: ColDef[] = [
   { field: "product_description", headerName: "Product Details" },
   { field: "product_status", headerName: "Product Status" },
   { field: "unit", headerName: "Unit" },
-  { field: "createdAt", headerName: "Created On" , cellRenderer: FormattedDateCellRenderer},
-  { field: "updatedAt", headerName: "Last Updated On" , cellRenderer: FormattedDateCellRenderer},
- 
+  {
+    field: "createdAt",
+    headerName: "Created On",
+    cellRenderer: FormattedDateCellRenderer,
+  },
+  {
+    field: "updatedAt",
+    headerName: "Last Updated On",
+    cellRenderer: FormattedDateCellRenderer,
+  },
 ];

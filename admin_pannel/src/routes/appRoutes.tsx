@@ -48,6 +48,7 @@ import SubcategoryDetails from "../components/pages/categoryDetails/subCategoryD
 import Details from "../components/pages/categoryDetails/subCategoryDetails/details/Details";
 import AddProductsForm from "../components/pages/categoryDetails/products/addProducts/AddProductsForm";
 import ProductDetails from "../components/pages/categoryDetails/products/ProductDetails";
+import BrandProducts from "../components/pages/brand/productDetails/BrandProducts";
 
 const appRoutes: RouteType[] = [
   {
@@ -135,6 +136,11 @@ const appRoutes: RouteType[] = [
     path: "/subcategory-details",
     element: <ProductDetails />,
     state: "category",
+  },
+  {
+    path: "/product-details",
+    element: <BrandProducts />,
+    state: "brand",
   },
 
   {
