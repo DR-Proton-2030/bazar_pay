@@ -9,7 +9,7 @@
 //     }, [setDashboardHeader])
 //   return (
 //     <div>
-        
+
 //     </div>
 //   )
 // }
@@ -22,8 +22,10 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Autocomplete,
   Button,
   Chip,
+  Stack,
   TextField,
   TextareaAutosize,
   styled,
@@ -34,6 +36,12 @@ import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import UIContext from "../../../../../contexts/uiContext/UIContext";
 import { api } from "../../../../../utils/api";
 import { ICategory } from "../../../../../@types/interface/category.interface";
+import { IProduct } from "../../../../../@types/interface/product.interface";
+import { IWholesaler } from "../../../../../@types/interface/wholesaler.interface";
+import { IProducts } from "../../../../../@types/interface/products.interface";
+import { getProductbyId } from "../../../../../utils/api/productsByid/getProductById";
+import axios from "axios";
+import BrandAutoComplete from "../../../../shared/brandAutoField/BrandAutoComplete";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -49,10 +57,40 @@ const VisuallyHiddenInput = styled("input")({
 
 const AddProductsForm = () => {
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
-  const [categoryDetails, setCategoryDetails] = useState<ICategory>({
-    name: "",
-    description: "",
-    logo: "",
+  const [brandData, setBrandData] = useState([]);
+  const [brandId, setBrandId] = useState("");
+  const [brandName, setBrandName] = useState("");
+  const [state, setState] = useState<string | null>(null);
+  const [data, setData] = useState(null);
+  const queryParams = new URLSearchParams(window.location.search);
+  //   const brandId = queryParams.get("bid");
+  const categoryId = queryParams.get("cid");
+  const subcategoryId = queryParams.get("scid");
+
+  const states = [
+    "Andhra Pradesh",
+    "Assam",
+    "Bihar",
+    "Chattisgarh",
+    "Haryana",
+    "Gujrat",
+    "Kerala",
+    "Maharashtra",
+    "Tamilnadu",
+    "Telangana",
+    "Uttarakhand",
+    "West Bengal",
+  ];
+
+  const [productDetails, setProductDetails] = useState<IProducts>({
+    product_name: "",
+    unit: "",
+    product_description: "",
+    product_image: "",
+    product_status: "",
+    category_object_id: categoryId as string,
+    subcategory_object_id: subcategoryId as string,
+    brand_object_id: "",
   });
   const { setDashboardHeader } = useContext(UIContext);
 
@@ -61,9 +99,9 @@ const AddProductsForm = () => {
       const {
         target: { name, value },
       } = event;
-      setCategoryDetails(Object.assign({}, categoryDetails, { [name]: value }));
+      setProductDetails(Object.assign({}, productDetails, { [name]: value }));
     },
-    [categoryDetails]
+    [productDetails]
   );
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
@@ -71,24 +109,29 @@ const AddProductsForm = () => {
 
     try {
       const formData = new FormData();
-      formData.append("categoryDetails", JSON.stringify(categoryDetails));
+      formData.append("productDetails", JSON.stringify(productDetails));
       if (uploadedFile) {
-        formData.append("logo", uploadedFile);
+        formData.append("product_image", uploadedFile);
       }
-      const response = await api.category.createCategory(formData);
+      const response = await api.productbyId.createProductById(formData);
       if (response) {
-        alert("category created successfully");
+        alert("Product created successfully");
       }
       if (!response) {
         throw new Error(`API request failed with status ${response.status}`);
       }
 
-      setCategoryDetails(categoryDetails);
+      setProductDetails(productDetails);
     } catch (error) {
       console.log("Error while adding");
-      alert("failed to create category");
+      alert("failed to create product");
     }
   };
+
+  useEffect(() => {
+    getProductbyId({});
+  }, [getProductbyId]);
+
   useEffect(() => {
     setDashboardHeader("Add Products");
   }, [setDashboardHeader]);
@@ -104,9 +147,9 @@ const AddProductsForm = () => {
               <label>Product Name:</label>
               <TextField
                 className="mui-textfield"
-                value={categoryDetails.name}
+                value={productDetails.product_name}
                 onChange={handleChange}
-                name="name"
+                name="product_name"
                 required
               />
             </div>
@@ -115,46 +158,73 @@ const AddProductsForm = () => {
               <label>Product Details:</label>
               <textarea
                 className="textarea"
-                value={categoryDetails.description}
+                value={productDetails.product_description}
                 onChange={handleChange}
-                name="description"
+                name="product_description"
                 required
               ></textarea>
             </div>
 
             <div className="flex-input">
+              <label>Unit:</label>
+              <TextField
+                className="mui-textfield"
+                value={productDetails.unit}
+                onChange={handleChange}
+                name="unit"
+                required
+              />
+            </div>
+            <div className="flex-input">
+              <label>Status:</label>
+              <TextField
+                className="mui-textfield"
+                value={productDetails.product_status}
+                onChange={handleChange}
+                name="product_status"
+                required
+              />
+            </div>
+
+            <div className="flex-input">
+              <label>Select Brand:</label>
+              <BrandAutoComplete />
+            </div>
+
+           
+            <div className="flex-input">
               <label>Product Image:</label>
               <div className="flex-btn-chip">
-              <Button
-                className="blue-btn"
-                component="label"
-                role={undefined}
-                variant="contained"
-                sx={{ fontSize: "10px" }}
-                endIcon={<CloudUploadIcon />}
-              >
-                Upload Image
-                <VisuallyHiddenInput
-                  type="file"
-                  onChange={(event) => {
-                    const file = event.target.files?.[0];
-                    if (file) {
-                      setUploadedFile(file);
-                    }
-                  }}
-                  required
-                />
-              </Button>
-            
-              {uploadedFile && (
-                <Chip
-                  label={uploadedFile.name}
-                  onDelete={() => setUploadedFile(null)}
-                  variant="outlined"
-                  sx={{ marginTop: 1 }}
-                />
-              )}
-                </div>
+                <Button
+                  className="blue-btn"
+                  component="label"
+                  role={undefined}
+                  variant="contained"
+                  sx={{ fontSize: "10px" }}
+                  endIcon={<CloudUploadIcon />}
+                >
+                  Upload Image
+                  <VisuallyHiddenInput
+                    type="file"
+                    onChange={(event) => {
+                      const file = event.target.files?.[0];
+                      if (file) {
+                        setUploadedFile(file);
+                      }
+                    }}
+                    required
+                  />
+                </Button>
+
+                {uploadedFile && (
+                  <Chip
+                    label={uploadedFile.name}
+                    onDelete={() => setUploadedFile(null)}
+                    variant="outlined"
+                    sx={{ marginTop: 1 }}
+                  />
+                )}
+              </div>
             </div>
 
             <Button

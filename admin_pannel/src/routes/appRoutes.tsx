@@ -114,8 +114,8 @@ const appRoutes: RouteType[] = [
   },
   {
     path: "/add-products",
-    element: <AddProductsForm/>,
-    state: "brand",
+    element: <AddProductsForm />,
+    state: "categories",
   },
   {
     path: "/add-builders",

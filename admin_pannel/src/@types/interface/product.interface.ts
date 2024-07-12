@@ -18,7 +18,7 @@ export interface IProduct {
     product_bhat: string;
     total: number;
     product_status: string;
-    wholesaler: IWholesaler ;
+   
     category_object_id: string;
 	subcategory_object_id: string;
 	brand_object_id: string;

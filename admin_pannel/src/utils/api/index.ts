@@ -25,6 +25,7 @@ import {
 } from "./products/getAdminProjects";
 import { getProducts, updateProductStatus } from "./products/getProducts";
 import { updatePlotPostion } from "./products/updatePlotPosition";
+import { createProductById } from "./productsByid/addProductById";
 import { getProductbyId } from "./productsByid/getProductById";
 import { getSubcategory } from "./subcategory/getSubcategory";
 import { createSubcategory } from "./subcategory/postSubcategory";
@@ -78,6 +79,7 @@ createSubcategory
     createBrand
   },
   productbyId:{
-    getProductbyId
+    getProductbyId,
+    createProductById
   }
 };

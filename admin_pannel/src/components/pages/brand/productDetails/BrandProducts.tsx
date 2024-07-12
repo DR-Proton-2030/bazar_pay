@@ -6,15 +6,16 @@ import { useNavigate } from 'react-router-dom'
 import { api } from '../../../../utils/api'
 import { IProduct } from '../../../../@types/interface/product.interface'
 import UIContext from '../../../../contexts/uiContext/UIContext'
+import { IProducts } from '../../../../@types/interface/products.interface'
 
 const Products = () => {
 const navigate = useNavigate()
 const {setDashboardHeader} = useContext(UIContext)
-  const [rowData, setRowData] = useState<IProduct[]>([])
+  const [rowData, setRowData] = useState<IProducts[]>([])
   const [currentPage, setCurrentPage] = useState<number>(1);
   const queryParams = new URLSearchParams(window.location.search);
   const brandId = queryParams.get("bid");
- 
+  
 
   const getProducts = useCallback(
     async (filterQuery: any) => {
@@ -23,7 +24,7 @@ const {setDashboardHeader} = useContext(UIContext)
           ...filterQuery,
           page: currentPage,
           brand_object_id: brandId,
-          
+         
         };
         const response = await api.productbyId.getProductbyId(filter);
         if (response) {
