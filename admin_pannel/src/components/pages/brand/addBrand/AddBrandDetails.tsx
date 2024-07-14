@@ -10,6 +10,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  Paper,
   Select,
   SelectChangeEvent,
   Stack,
@@ -85,12 +86,10 @@ const AddBrandForm = () => {
   }, [setDashboardHeader]);
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Accordion defaultExpanded>
-          <AccordionSummary>
-            <h3>Add Brand Details</h3>
-          </AccordionSummary>
-          <AccordionDetails>
+       <h3>Add Brand Details</h3>
+      
+        <Paper sx={{marginTop: "20px", padding: "30px"}} elevation={3}>
+        
             <div className="flex-input">
               <label>Brand Name:</label>
               <TextField
@@ -169,7 +168,8 @@ const AddBrandForm = () => {
                 )}
               </div>
             </div>
-
+            </Paper>
+            <div style={{display: 'flex', justifyContent: "right", alignItems: "right"}}>
             <Button
               className="blue-btn"
               variant="contained"
@@ -178,14 +178,15 @@ const AddBrandForm = () => {
                 fontFamily: "poppins, sans-serif",
                 fontWeight: "500",
                 fontSize: "13px",
+                marginTop: "20px"
               }}
               endIcon={<SendOutlinedIcon />}
             >
               Submit
             </Button>
-          </AccordionDetails>
-        </Accordion>
-      </div>
+            </div>
+        
+    
     </form>
   );
 };

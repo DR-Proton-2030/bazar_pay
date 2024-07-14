@@ -236,17 +236,19 @@ const BuilderForm = () => {
             />
           </AccordionDetails>
         </Accordion> */}
+        <div style={{display: 'flex', justifyContent: 'right', alignItems: "right"}}>
         <Button
           variant="contained"
           className="blue-btn"
           type="submit"
           style={{
-            marginTop: 12,
+            marginTop: "10px",
             
           }}
         >
           Submit
         </Button>
+        </div>
       </div>
     </form>
   );

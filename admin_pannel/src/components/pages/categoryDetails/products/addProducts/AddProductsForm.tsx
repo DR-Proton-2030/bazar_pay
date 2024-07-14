@@ -25,6 +25,7 @@ import {
   Autocomplete,
   Button,
   Chip,
+  Paper,
   Stack,
   TextField,
   TextareaAutosize,
@@ -137,112 +138,111 @@ const AddProductsForm = () => {
   }, [setDashboardHeader]);
   return (
     <form onSubmit={handleSubmit}>
-      <div>
-        <Accordion defaultExpanded>
-          <AccordionSummary>
-            <h3>Add Product Details</h3>
-          </AccordionSummary>
-          <AccordionDetails>
-            <div className="flex-input">
-              <label>Product Name:</label>
-              <TextField
-                className="mui-textfield"
-                value={productDetails.product_name}
-                onChange={handleChange}
-                name="product_name"
-                required
-              />
-            </div>
+       <h3>Add Product Details</h3>
+      
+        <Paper sx={{ marginTop: "20px", padding: "30px" }} elevation={3}>
+         
 
-            <div className="flex-input">
-              <label>Product Details:</label>
-              <textarea
-                className="textarea"
-                value={productDetails.product_description}
-                onChange={handleChange}
-                name="product_description"
-                required
-              ></textarea>
-            </div>
+          <div className="flex-input">
+            <label>Product Name:</label>
+            <TextField
+              className="mui-textfield"
+              value={productDetails.product_name}
+              onChange={handleChange}
+              name="product_name"
+              required
+            />
+          </div>
 
-            <div className="flex-input">
-              <label>Unit:</label>
-              <TextField
-                className="mui-textfield"
-                value={productDetails.unit}
-                onChange={handleChange}
-                name="unit"
-                required
-              />
-            </div>
-            <div className="flex-input">
-              <label>Status:</label>
-              <TextField
-                className="mui-textfield"
-                value={productDetails.product_status}
-                onChange={handleChange}
-                name="product_status"
-                required
-              />
-            </div>
+          <div className="flex-input">
+            <label>Product Details:</label>
+            <textarea
+              className="textarea"
+              value={productDetails.product_description}
+              onChange={handleChange}
+              name="product_description"
+              required
+            ></textarea>
+          </div>
 
-            <div className="flex-input">
-              <label>Select Brand:</label>
-              <BrandAutoComplete />
+          <div className="flex-input">
+            <label>Unit:</label>
+            <TextField
+              className="mui-textfield"
+              value={productDetails.unit}
+              onChange={handleChange}
+              name="unit"
+              required
+            />
+          </div>
+          <div className="flex-input">
+            <label>Status:</label>
+            <TextField
+              className="mui-textfield"
+              value={productDetails.product_status}
+              onChange={handleChange}
+              name="product_status"
+              required
+            />
+          </div>
+
+          <div className="flex-input">
+            <label>Select Brand:</label>
+            <BrandAutoComplete />
+          </div>
+
+          <div className="flex-input">
+            <label>Product Image:</label>
+            <div className="flex-btn-chip">
+              <Button
+                className="blue-btn"
+                component="label"
+                role={undefined}
+                variant="contained"
+                sx={{ fontSize: "10px" }}
+                endIcon={<CloudUploadIcon />}
+              >
+                Upload Image
+                <VisuallyHiddenInput
+                  type="file"
+                  onChange={(event) => {
+                    const file = event.target.files?.[0];
+                    if (file) {
+                      setUploadedFile(file);
+                    }
+                  }}
+                  required
+                />
+              </Button>
+
+              {uploadedFile && (
+                <Chip
+                  label={uploadedFile.name}
+                  onDelete={() => setUploadedFile(null)}
+                  variant="outlined"
+                  sx={{ marginTop: 1 }}
+                />
+              )}
             </div>
-
-           
-            <div className="flex-input">
-              <label>Product Image:</label>
-              <div className="flex-btn-chip">
-                <Button
-                  className="blue-btn"
-                  component="label"
-                  role={undefined}
-                  variant="contained"
-                  sx={{ fontSize: "10px" }}
-                  endIcon={<CloudUploadIcon />}
-                >
-                  Upload Image
-                  <VisuallyHiddenInput
-                    type="file"
-                    onChange={(event) => {
-                      const file = event.target.files?.[0];
-                      if (file) {
-                        setUploadedFile(file);
-                      }
-                    }}
-                    required
-                  />
-                </Button>
-
-                {uploadedFile && (
-                  <Chip
-                    label={uploadedFile.name}
-                    onDelete={() => setUploadedFile(null)}
-                    variant="outlined"
-                    sx={{ marginTop: 1 }}
-                  />
-                )}
-              </div>
-            </div>
-
-            <Button
-              className="blue-btn"
-              variant="contained"
-              type="submit"
-              sx={{
-                fontFamily: "poppins, sans-serif",
-                fontWeight: "500",
-                fontSize: "13px",
-              }}
-              endIcon={<SendOutlinedIcon />}
-            >
-              Submit
-            </Button>
-          </AccordionDetails>
-        </Accordion>
-      </div>
+          </div>
+          </Paper>
+          <div style={{display: "flex", justifyContent: "right", alignItems: "right"}}>
+          <Button
+            className="blue-btn"
+            variant="contained"
+            type="submit"
+            sx={{
+              fontFamily: "poppins, sans-serif",
+              fontWeight: "500",
+              fontSize: "13px",
+              marginTop: "20px"
+            }}
+            endIcon={<SendOutlinedIcon />}
+          >
+            Submit
+          </Button>
+          </div>
+      
     </form>
   );
 };

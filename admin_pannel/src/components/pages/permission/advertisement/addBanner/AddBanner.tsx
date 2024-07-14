@@ -8,6 +8,7 @@ import {
   FormControl,
   InputLabel,
   MenuItem,
+  Paper,
   Select,
   SelectChangeEvent,
   styled,
@@ -55,8 +56,8 @@ const AddBanner = () => {
   return (
     <div>
       <h3>Banner Details</h3>
-      <Accordion defaultExpanded style={{ marginTop: "20px" }}>
-        <AccordionDetails>
+      <Paper sx={{marginTop: "20px", padding: "30px"}} elevation={3}>
+      
           <div className="details" style={{ marginTop: "20px" }}>
             <div className="fields">
               <label>Advertisement For:</label>
@@ -147,10 +148,11 @@ const AddBanner = () => {
               <label>Banner Photo:</label>
              <div className="banner-photo-btn">
              <Button
-                                style={{ marginBottom: "20px" , backgroundColor: "#1DC51D"}}
+                               
                                 component="label"
                                 role={undefined}
                                 variant="contained"
+                                className="blue-btn"
                                 // tabIndex={-1}
                                
                             >
@@ -192,11 +194,12 @@ const AddBanner = () => {
             </div>
           </div>
 
-          <Button variant="contained" className="submit-btn">
-            SUBMIT
+      </Paper>
+      <div style={{display: 'flex', justifyContent: "right", alignItems: 'right'}}>
+          <Button variant="contained" className="blue-btn" sx={{marginTop: "20px"}} >
+            Submit
           </Button>
-        </AccordionDetails>
-      </Accordion>
+          </div>
     </div>
   );
 };

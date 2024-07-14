@@ -343,7 +343,7 @@ const UserForm = () => {
 
         <Button
           variant="contained"
-          className="btn"
+          className="blue-btn"
           onClick={handleRequestOTP}
           style={{
             marginTop: "20px",
