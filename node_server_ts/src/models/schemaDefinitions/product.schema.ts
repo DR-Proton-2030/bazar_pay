@@ -6,6 +6,7 @@ import CategoryModel from "../category.model";
 import { IBrand } from "../../@types/types/brand.interface";
 import BrandModel from "../brand.model";
 import SubcategoryModel from "../subcategory.model";
+import { PRODUCT_STATUS } from "../../constants/productStatus";
 
 const productSchema: Schema<IProduct> = new Schema<IProduct>(
 	{
@@ -16,7 +17,7 @@ const productSchema: Schema<IProduct> = new Schema<IProduct>(
 		brand_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
 		subcategory_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
 		category_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
-		product_status: { ...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default: "ACTIVE" }
+		product_status: { ...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default: PRODUCT_STATUS.active }
 	},
 	{
 		...GENERAL_SCHEMA_OPTIONS,
