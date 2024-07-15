@@ -27,7 +27,8 @@ const QuickProductList: React.FC = () => {
         brand_object_id:brandId
     }
     try {
-      const {result} = await api.product.getProductList(filter)
+      console.log("filter===>",filter);
+      const {result} = await api.product.getProductList(filter);
       console.log("=====>products", result)
       setProductList(result)
     } catch (error) {

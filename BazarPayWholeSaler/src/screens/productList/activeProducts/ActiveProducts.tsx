@@ -21,7 +21,8 @@ const ActiveProducts = () => {
   const handleNavigateAddProduct = () => {
     navigation.navigate("ManualAddProduct");
   };
-  const handleNavigateQuictProduct = () => {
+  const handleNavigateQuictProductAdd = () => {
+    console.log("===>hi")
     navigation.navigate("categoryPage");
   };
 
@@ -30,7 +31,7 @@ const ActiveProducts = () => {
       icon: "star",
       label: "দ্রুত পণ্য যোগ করুন",
       color: Colors.light.secondary,
-      onPress: handleNavigateQuictProduct,
+      onPress: handleNavigateQuictProductAdd,
     },
     {
       icon: "cart",

@@ -5,7 +5,7 @@ import WholesalerModel from "../../../../models/wholesaler.model";
 export const getOtpForSignup = async (req: Request, res: Response) => {
 	try {
 		const { phone } = req.query;
-		const existingWholesaler = await WholesalerModel.findOne({ contact_phone: phone });
+		const existingWholesaler = await WholesalerModel.findOne({ owner_phone: phone });
 		if (existingWholesaler) {
 			return res.status(409).json({
 				message: MESSAGE.custom("Account Exist with Same Number")
@@ -24,10 +24,11 @@ export const getOtpForSignup = async (req: Request, res: Response) => {
 };
 export const getOtpForLogin = async (req: Request, res: Response) => {
 	try {
-		const otp = "1234";
 
 		const { phone } = req.query;
-		const existingWholesaler = await WholesalerModel.findOne({ contact_phone: phone });
+		const existingWholesaler = await WholesalerModel.findOne({ owner_phone: phone });
+
+		const otp = "1234";
 		if (existingWholesaler) {
 			return res.status(200).json({
 				message: MESSAGE.get.succ,
