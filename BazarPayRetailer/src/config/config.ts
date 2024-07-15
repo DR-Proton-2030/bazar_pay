@@ -15,7 +15,7 @@ export const full_prod_backend_url =
 
 // eslint-disable-next-line no-unused-vars
 // export const local_url = "https://haldia-paribesh-app.onrender.com";
-export const local_url = "http://192.168.29.74:8989";
+export const local_url = "http://192.168.187.155:8989";
 // export const local_url = "http://192.168.1.33:4009";
 export const local_port = "4009";
 

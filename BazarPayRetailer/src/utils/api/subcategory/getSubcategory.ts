@@ -6,18 +6,18 @@ import { Params } from "../../../@types/api/api.types";
 
 const { get } = request;
 
-const initialRoute = "product";
+const initialRoute = "subcategory";
 
 
-export const getProductList = async (filterQuery:Params) => {
+export const getSubcategoryList = async () => {
     try {
-      const endpoint = `${initialRoute}/get-paginated-products`;
+      const endpoint = `${initialRoute}/get-aggregated-subcategory`;
       const response = await get(
         endpoint,
         {
           ...headers,
         },
-        filterQuery
+        
       );
       if (response) {
         const {
@@ -25,9 +25,9 @@ export const getProductList = async (filterQuery:Params) => {
         } = response;
         if (message === MESSAGE.get.succ) {
           const {
-            data: { result,pagination },
+            data: { result },
           } = response;
-          return {result,pagination};
+          return result;
         }
       }
       throw new Error();

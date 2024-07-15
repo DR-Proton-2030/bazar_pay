@@ -1,11 +1,8 @@
 import { Login, OtpLogin, createAdmin } from "./auth/login";
 import { getLoginOtp, getOtp } from "./auth/otp";
 import { SignUp } from "./auth/signUp";
-import { getDepartments } from "./departments/department";
-import { PostFeed, getFeeds } from "./feed/feed";
-import { getComplaintsImage } from "./getImage/getImage";
 import { getProductList } from "./products/Products";
-import { PostComplaints, PostResolution, assignComplaint, getComplaints } from "./scan/complaints.api";
+import { getSubcategoryList } from "./subcategory/getSubcategory";
 
 export const api = {
 	auth: {
@@ -14,8 +11,11 @@ export const api = {
 		getOtp,
 		getLoginOtp
 	},
-	product :{
+	product: {
 		getProductList
+	},
+	subcategory: {
+		getSubcategoryList
 	}
-	
+
 };

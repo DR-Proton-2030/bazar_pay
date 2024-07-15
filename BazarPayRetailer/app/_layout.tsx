@@ -50,6 +50,23 @@ function RootLayoutNav() {
           </Text>
         ),
       }} />
+      <Stack.Screen name="wholesallersList"
+      options={{
+        headerShown: true,
+        statusBarTranslucent: true,
+        statusBarStyle: "dark",
+        headerTitle: () => (
+          <Text style={{ textAlign: "center", fontSize: 20 }}>
+           Sellect Wholesaller
+          </Text>
+        ),
+      }} />
+      <Stack.Screen name="AllProducts"
+      options={{
+        headerShown: false,
+        statusBarTranslucent: true,
+        statusBarStyle: "dark",
+      }} />
       <Stack.Screen
         name="homePage"
         options={{ headerShown: false,statusBarTranslucent:false,statusBarStyle:"dark" }}

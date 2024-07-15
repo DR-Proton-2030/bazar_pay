@@ -12,7 +12,7 @@ export default {
     yellow: "#FEC54B",
     cardColor: "#F4F4F4",
     grayBtn: "#D9D9D9",
-    border: "#D9D9D9",
+    border: "#f2f2f2",
   },
   dark: {
     text: "#fff",

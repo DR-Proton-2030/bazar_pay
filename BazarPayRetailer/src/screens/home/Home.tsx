@@ -7,7 +7,7 @@ import ImageCard from "../../components/shared/imageCrad/ImageCard";
 import ProductSection from "../../components/shared/productSection/ProductSection";
 import ImageBanner from "../../components/shared/imageBanner/ImageBanner";
 import OfferSection from "../../components/main/offerSection/OfferSection";
-import veg from "../../../assets/images/veg.png";
+// import veg from "../../../assets/images/veg.png";
 import { useContext, useEffect } from "react";
 import AuthContext from "../../contexts/authContext/authContext";
 import { ProductCartContext } from "../../contexts/productCartContext/Provider";
@@ -91,13 +91,13 @@ export default function HomePage() {
 
         <ProductSection />
 
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
           <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
           <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
-        </ScrollView>
+        </ScrollView> */}
 
-        <ProductSection />
+        {/* <ProductSection /> */}
       </ScrollView>
     </>
   );
