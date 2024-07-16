@@ -43,4 +43,24 @@ export const uploadProduct = async (req: Request, res: Response) => {
 	}
 };
 
-// Add additional controllers as needed, such as retrieving products by ID, updating products, etc.
+export const getProductsByProductId = async (req: Request, res: Response) => {
+	try {
+		const { productId } = req.query;
+
+
+		const products = await WholesalerListedProductModel.find({ product_object_id: productId })
+			.populate('wholesaler')
+			.exec();
+
+		return res.status(200).json({
+			message: MESSAGE.get.succ,
+			result: products
+		});
+	} catch (error) {
+		console.error("Error :", error);
+		return res.status(400).json({
+			message: MESSAGE.get.fail,
+			error
+		});
+	}
+};
