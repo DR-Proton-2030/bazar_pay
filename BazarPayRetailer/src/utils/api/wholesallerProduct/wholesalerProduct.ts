@@ -6,12 +6,11 @@ import { Params } from "../../../@types/api/api.types";
 
 const { get } = request;
 
-const initialRoute = "product";
+const initialRoute = "wholesaler";
 
-
-export const getProductList = async (filterQuery:Params) => {
+export const getWholesalerProductList = async (filterQuery:Params) => {
     try {
-      const endpoint = `${initialRoute}/get-paginated-products`;
+      const endpoint = `${initialRoute}/get-product`;
       const response = await get(
         endpoint,
         {
@@ -27,7 +26,7 @@ export const getProductList = async (filterQuery:Params) => {
           const {
             data: { result,pagination },
           } = response;
-          return {result,pagination};
+          return result;
         }
       }
       throw new Error();
@@ -36,5 +35,4 @@ export const getProductList = async (filterQuery:Params) => {
       throw error;
     }
   };
-
   

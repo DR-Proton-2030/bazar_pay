@@ -8,7 +8,7 @@ import { useNavigation } from 'expo-router';
 const ProductCard = ({ product }: any) => {
     const navigation: any = useNavigation();
     const handleNavigate = () => {
-      navigation.navigate("wholesallersList");
+      navigation.navigate("wholesallersList",{productId:product?._id});
     };
     return (
         
