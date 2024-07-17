@@ -2,29 +2,33 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
+import { api } from "../../../utils/api";
 
-const AutocompleteInputField = () => {
+const AutocompleteInputField = ({setBrandId}:any) => {
   const [options, setOptions] = useState([]);
 
   const defProps = {
     options: options,
-    getOptionLabel: (options: { name: any; _id: any }) =>
-      options.name + " " + "(" + options._id + ")",
+    getOptionLabel: (option:any) => `${option.name}`,
   };
 
-  const getData = (data: { _id: string; name: string } | null) => {
+  const getData = (data:any) => {
     console.log(data?._id);
+    setBrandId(data?._id)
   };
+const getBrandList = async()=>{
+  const filter ={
+    page:1
+  }
+try {
+  const result = await api.brand.getBrand(filter)
+  setOptions(result);
+} catch (error) {
+  console.log(error)
+}
+}
   useEffect(() => {
-    axios
-      .get(`http://localhost:8989/api/v1/brands/get-brand-list?page=1`)
-      .then((response) => {
-        console.log("response", response.data.result);
-        setOptions(response.data.result);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    getBrandList()
   }, []);
 
   return (
