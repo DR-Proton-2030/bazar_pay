@@ -10,6 +10,10 @@ import {
   Stack,
   TextField,
   TextareaAutosize,
+  Select,
+  MenuItem,
+  FormControl,
+  InputLabel,
   styled,
 } from "@mui/material";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
@@ -139,13 +143,18 @@ const AddProductsForm = () => {
 
         <div className="flex-input">
           <label>Status:</label>
-          <TextField
-            className="mui-textfield"
-            value={productDetails.product_status}
-            onChange={handleChange}
-            name="product_status"
-            required
-          />
+          <FormControl className="mui-textfield" fullWidth required>
+            <InputLabel>Status</InputLabel>
+            <Select
+              value={productDetails.product_status}
+              onChange={handleChange}
+              name="product_status"
+              label="Status"
+            >
+              <MenuItem value="Active">Active</MenuItem>
+              <MenuItem value="Pending">Pending</MenuItem>
+            </Select>
+          </FormControl>
         </div>
 
         <div className="flex-input">
