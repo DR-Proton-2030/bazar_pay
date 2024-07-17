@@ -6,7 +6,7 @@ import SubcategoryModel from "../../../../models/subcategory.model";
 
 export const getSubcategory = async (req: Request, res: Response) => {
 	try {
-		const { category_object_id } = req.query; 
+		const { category_object_id } = req.query;
 
 		const subCategoryInstance = await SubcategoryModel.find({ category_object_id });
 
