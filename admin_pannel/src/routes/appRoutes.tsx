@@ -49,6 +49,7 @@ import Details from "../components/pages/categoryDetails/subCategoryDetails/deta
 import AddProductsForm from "../components/pages/categoryDetails/products/addProducts/AddProductsForm";
 import ProductDetails from "../components/pages/categoryDetails/products/ProductDetails";
 import BrandProducts from "../components/pages/brand/productDetails/BrandProducts";
+import Wholesalers from "../components/pages/builders/Builders";
 
 const appRoutes: RouteType[] = [
   {
@@ -66,8 +67,8 @@ const appRoutes: RouteType[] = [
     },
   },
   {
-    path: "/builders",
-    element: <Builders />,
+    path: "/wholesalers",
+    element: <Builders/>,
     state: "Wholesalers",
     sidebarProps: {
       displayText: "Wholesalers",
@@ -96,6 +97,11 @@ const appRoutes: RouteType[] = [
     path: "/add-category",
     element: <AddCategoryForm/>,
     state: "categories",
+  },
+  {
+    path: "/wholesaler-details",
+    element: <AddCategoryForm/>,
+    state: "wholesalers",
   },
   {
     path: "/add-subcategory",
@@ -133,12 +139,17 @@ const appRoutes: RouteType[] = [
     state: "category",
   },
   {
-    path: "/subcategory-details",
+    path: "/product-details",
     element: <ProductDetails />,
     state: "category",
   },
   {
-    path: "/product-details",
+    path: "/subcategory-details",
+    element: <SubcategoryDetails />,
+    state: "category",
+  },
+  {
+    path: "/brand-details",
     element: <BrandProducts />,
     state: "brand",
   },

@@ -7,6 +7,14 @@ import DataGrid from "../../shared/dataGrid/DataGrid";
 import UIContext from "../../../contexts/uiContext/UIContext";
 import { IWholesaler } from "../../../@types/interface/wholesaler";
 import StatusCell from "../../shared/statusCell/StatusCell";
+import LogoCellRenderer from "./logoCellRenderer/LogoCellRenderer";
+import SignboardCellRenderer from "./signboardCell/SignboardCellRenderer";
+import FormattedDateCellRenderer from "../../shared/dateCellRenderer/FormattedDateCellRenderer";
+import SeeDetailsCellRenderer from "../products/seeDetailsCellRenderer/SeeDetailsCellRenderer";
+import WholesalerDetailsCellRenderer from "../products/seeDetailsCellRenderer/SeeDetailsCellRenderer";
+import TLPcellRenderer from "./tradeCellRenderer/TLPcellRenderer";
+import NIDcellRenderer from "./nidCellRenderer/NIDcellRenderer";
+import OwnerCellRenderer from "./ownerCellRenderer/OwnerCellRenderer";
 
 const Builders = () => {
   const navigate = useNavigate();
@@ -46,18 +54,42 @@ const Builders = () => {
   };
 
   const colDefs = [
-    { headerName: "Name", field: "name" },
-    { headerName: "Contact Name", field: "contact_name" },
-    { headerName: "Contact Phone", field: "contact_phone" },
-    { headerName: "Contact Email", field: "contact_email" },
-    { headerName: "Trade License Number", field: "trade_licensce_number" },
-    { headerName: "NID Number", field: "nid_number" },
+    { headerName: "Wholesaler Name", field: "wholesaler_name" , cellRenderer: LogoCellRenderer},
+    { headerName: "Owner Name", field: "owner_name", cellRenderer: OwnerCellRenderer },
+    { headerName: "Owner Phone", field: "owner_phone" },
+    { headerName: "Owner Email", field: "owner_email" },
     {
       headerName: "Status",
-      field: "status",
+      field: "approval_status",
       cellRenderer: (params: any) => (
         <StatusCell {...params} handleSwitchChange={handleSwitchChange} />
       ),
+    },
+    { headerName: "Trade License Number", field: "trade_licensce_number" },
+    { headerName: "NID Number", field: "nid_number" },
+    
+    {
+      headerName: "Sign Board Photo",
+      field: "sign_board_photo",
+      cellRenderer: SignboardCellRenderer,
+    },
+    { headerName: "Trade License Photo", field: "trade_license_photo" , cellRenderer: TLPcellRenderer},
+    { headerName: "NID Photo", field: "nid_photo" , cellRenderer: NIDcellRenderer},
+    
+    {
+      headerName: "Created On",
+      field: "createdAt",
+      cellRenderer: FormattedDateCellRenderer,
+    },
+    {
+      headerName: "Last Edited On",
+      field: "updatedAt",
+      cellRenderer: FormattedDateCellRenderer,
+    },
+    {
+      headerName: "Actions",
+      field: "actions",
+      cellRenderer: WholesalerDetailsCellRenderer,
     },
   ];
 
@@ -76,7 +108,7 @@ const Builders = () => {
         <Button
           variant="contained"
           className="blue-btn"
-         onClick={() => navigate("/add-builders")}
+          onClick={() => navigate("/add-builders")}
         >
           Add Wholesaler
         </Button>

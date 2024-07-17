@@ -1,7 +1,7 @@
 export interface IWholesaler {
   _id: string;
   name: string;
-  contact_name: string;
+  owner_name: string;
   contact_phone: string;
   contact_email: string;
   trade_licensce_number: string;

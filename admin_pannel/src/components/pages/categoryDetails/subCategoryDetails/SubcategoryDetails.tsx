@@ -1,13 +1,15 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import DataGrid from "../../../shared/dataGrid/DataGrid";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { SubcategoryColDefs } from "../../../../constants/subCategory/subCategoryColDefs";
 import { ISubcategory } from "../../../../@types/interface/subcategory.interface";
 import { api } from "../../../../utils/api";
+import UIContext from "../../../../contexts/uiContext/UIContext";
 
 const SubcategoryDetails = () => {
   const navigate = useNavigate();
+  const {setDashboardHeader} = useContext(UIContext)
   const [rowData, setRowData] = useState<ISubcategory[]>([]);
   // const [builderData, setBuilderData] = useState<I>();
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -50,6 +52,10 @@ const SubcategoryDetails = () => {
     getSubcategories();
   }, []);
 
+
+  useEffect(() => {
+    setDashboardHeader("All subcategories")
+  }, [setDashboardHeader])
   return (
     <div>
       <div className="add-btn">
