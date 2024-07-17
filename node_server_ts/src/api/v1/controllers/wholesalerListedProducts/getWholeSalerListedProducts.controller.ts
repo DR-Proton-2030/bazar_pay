@@ -11,7 +11,24 @@ export const getEachWholesalerListedProducts = async (req: Request, res: Respons
 
 		const wholesalerListedProductInstance = await WholesalerListedProductModel
 			.findOne({ _id: wholesaler_listed_product_id })
-			.populate("wholesaler product")
+			.populate("wholesaler")
+			.populate({			// Populating Fields from Product Model which has reference in Product Model
+				path: 'product',
+				populate: [
+					{
+						path: 'brand_object_id',
+						model: 'brands'  // Populating from Brand model
+					},
+					{
+						path: 'category_object_id',
+						model: 'categories'  // Populating from Category model
+					},
+					{
+						path: 'subcategory_object_id',
+						model: 'sub_categories' // Populating from Sub Category model
+					}
+				]
+			})
 			.lean();
 
 		if (!wholesalerListedProductInstance) {
