@@ -15,6 +15,7 @@ import WholesalerDetailsCellRenderer from "../products/seeDetailsCellRenderer/Se
 import TLPcellRenderer from "./tradeCellRenderer/TLPcellRenderer";
 import NIDcellRenderer from "./nidCellRenderer/NIDcellRenderer";
 import OwnerCellRenderer from "./ownerCellRenderer/OwnerCellRenderer";
+import ImageCellRenderer from "./imageCellRenderer/ImageCellRenderer";
 
 const Builders = () => {
   const navigate = useNavigate();
@@ -54,8 +55,16 @@ const Builders = () => {
   };
 
   const colDefs = [
-    { headerName: "Wholesaler Name", field: "wholesaler_name" , cellRenderer: LogoCellRenderer},
-    { headerName: "Owner Name", field: "owner_name", cellRenderer: OwnerCellRenderer },
+    {
+      headerName: "Wholesaler Name",
+      field: "wholesaler_name",
+      cellRenderer: LogoCellRenderer,
+    },
+    {
+      headerName: "Owner Name",
+      field: "owner_name",
+      cellRenderer: OwnerCellRenderer,
+    },
     { headerName: "Owner Phone", field: "owner_phone" },
     { headerName: "Owner Email", field: "owner_email" },
     {
@@ -67,15 +76,23 @@ const Builders = () => {
     },
     { headerName: "Trade License Number", field: "trade_licensce_number" },
     { headerName: "NID Number", field: "nid_number" },
-    
+
     {
       headerName: "Sign Board Photo",
       field: "sign_board_photo",
-      cellRenderer: SignboardCellRenderer,
+      cellRenderer: ImageCellRenderer,
     },
-    { headerName: "Trade License Photo", field: "trade_license_photo" , cellRenderer: TLPcellRenderer},
-    { headerName: "NID Photo", field: "nid_photo" , cellRenderer: NIDcellRenderer},
-    
+    {
+      headerName: "Trade License Photo",
+      field: "trade_license_photo",
+      cellRenderer: TLPcellRenderer,
+    },
+    {
+      headerName: "NID Photo",
+      field: "nid_photo",
+      cellRenderer: NIDcellRenderer,
+    },
+
     {
       headerName: "Created On",
       field: "createdAt",
