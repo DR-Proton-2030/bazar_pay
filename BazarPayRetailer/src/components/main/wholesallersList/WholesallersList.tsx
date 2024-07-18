@@ -5,6 +5,7 @@ import Colors from '../../../constants/Colors';
 import { useRoute } from "@react-navigation/native";
 import { api } from '../../../utils/api';
 import WholesallerCard from '../../shared/wholesallerCard/WholesallerCard';
+import BuyerOptionsCards from '../buyerOptions/buyerOptionsCards/BuyerOptionsCards';
 
 
 const WholesalersList = () => {
@@ -15,7 +16,6 @@ const WholesalersList = () => {
     try {
       const filter = {
         productId: productId
-
       }
       console.log(productId)
       const result = await api.product.getWholesalerProductList(filter)
@@ -31,9 +31,11 @@ const WholesalersList = () => {
   
   return (
     <View style={styles.container}>
+      <AppHeader title={"Sellect Wholesaller"} />
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {wholesalerProduct.map((wholesaler:any, index) => (
-         <WholesallerCard wholesaler={wholesaler} index={index}/>
+        //  <WholesallerCard productId={productId} wholesaler={wholesaler} index={index}/>
+        <BuyerOptionsCards wholesaler={wholesaler}/>
         ))}
       </ScrollView>
     </View>
@@ -48,6 +50,10 @@ const styles = StyleSheet.create({
   scrollContainer: {
     paddingHorizontal: 10,
     paddingVertical: 20,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent:'center',
+    gap:10
   },
   
 });

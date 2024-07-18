@@ -3,8 +3,9 @@ import { View, Text, ScrollView, TouchableOpacity } from "react-native";
 import BuyerOptionsCards from "./buyerOptionsCards/BuyerOptionsCards";
 import Colors from "../../../constants/Colors";
 import { useNavigation } from "expo-router";
+import RatingBar from "../ratings/RatingBar/RatingBar";
 
-const BuyerOptions = ({product}:any) => {
+const BuyerOptions = () => {
   const navigation: any = useNavigation();
   const handleNavigate = () => {
     navigation.navigate("RatingsPage");
@@ -38,16 +39,7 @@ const BuyerOptions = ({product}:any) => {
           </Text>
         </TouchableOpacity>
       </View>
-      <ScrollView
-        style={{ paddingLeft: 0, marginVertical: 10 }}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-      >
-        <BuyerOptionsCards productdetails={product}/>
-        <BuyerOptionsCards productdetails={product}/>
-        <BuyerOptionsCards productdetails={product}/>
-        <BuyerOptionsCards productdetails={product}/>
-      </ScrollView>
+      <RatingBar />
     </View>
   );
 };

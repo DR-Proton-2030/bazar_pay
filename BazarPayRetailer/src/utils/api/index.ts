@@ -3,6 +3,7 @@ import { getLoginOtp, getOtp } from "./auth/otp";
 import { SignUp } from "./auth/signUp";
 import { getProductList } from "./products/Products";
 import { getSubcategoryList } from "./subcategory/getSubcategory";
+import { getWholesalerProductDetails } from "./wholesallerProduct/productDetaiils";
 import { getWholesalerProductList } from "./wholesallerProduct/wholesalerProduct";
 
 export const api = {
@@ -14,7 +15,8 @@ export const api = {
 	},
 	product: {
 		getProductList,
-		getWholesalerProductList
+		getWholesalerProductList,
+		getWholesalerProductDetails
 	},
 	subcategory: {
 		getSubcategoryList

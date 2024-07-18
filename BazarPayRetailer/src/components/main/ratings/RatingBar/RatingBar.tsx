@@ -19,7 +19,7 @@ const RatingBar = () => {
         marginVertical: 20,
         flexDirection: "row",
         justifyContent: "space-between",
-        paddingHorizontal: 10,
+        paddingHorizontal: 20,
       }}
     >
       <View>

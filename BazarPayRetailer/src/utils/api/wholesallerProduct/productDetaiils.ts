@@ -6,11 +6,11 @@ import { Params } from "../../../@types/api/api.types";
 
 const { get } = request;
 
-const initialRoute = "wholesaler";
+const initialRoute = "wholesaler-listed-product";
 
-export const getWholesalerProductList = async (filterQuery:Params) => {
+export const getWholesalerProductDetails = async (filterQuery:Params) => {
     try {
-      const endpoint = `${initialRoute}/get-product`;
+      const endpoint = `${initialRoute}/get-each-wholesaler-listed-product`;
       const response = await get(
         endpoint,
         {

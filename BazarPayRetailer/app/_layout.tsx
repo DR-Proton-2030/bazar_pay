@@ -52,14 +52,10 @@ function RootLayoutNav() {
       }} />
       <Stack.Screen name="wholesallersList"
       options={{
-        headerShown: true,
+        headerShown: false,
         statusBarTranslucent: true,
         statusBarStyle: "dark",
-        headerTitle: () => (
-          <Text style={{ textAlign: "center", fontSize: 20 }}>
-           Sellect Wholesaller
-          </Text>
-        ),
+       
       }} />
       <Stack.Screen name="AllProducts"
       options={{
@@ -77,7 +73,7 @@ function RootLayoutNav() {
       <Stack.Screen name="cart" options={{ headerShown: false }} />
       <Stack.Screen
         name="productDetailsPage"
-        options={{ headerShown: false }}
+        options={{ headerShown: false , statusBarStyle: "dark"}}
       />
       <Stack.Screen name="RatingsPage" options={{ headerShown: false }} />
       <AppHeader />

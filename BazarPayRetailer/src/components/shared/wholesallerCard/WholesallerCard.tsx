@@ -1,12 +1,18 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Colors from '../../../constants/Colors';
+import { useNavigation } from 'expo-router';
 
-const WholesallerCard = ({ wholesaler, index }:any) => {
+const WholesallerCard = ({ wholesaler, index,productId }:any) => {
   const inStock = wholesaler.current_stock > 0;
+  const navigation: any = useNavigation();
+    const handleNavigate = () => {
+      console.log(wholesaler?._id)
+      navigation.navigate("productDetailsPage",{wholesalerId:wholesaler?._id});
+    };
 
   return (
-    <TouchableOpacity key={index} style={styles.card}>
+    <TouchableOpacity key={index} style={styles.card} onPress={handleNavigate}>
       <View style={styles.logoContainer}>
         <Image source={{ uri: wholesaler.wholesaler.logo }} style={styles.logo} />
       </View>

@@ -8,34 +8,29 @@ import Colors from "../../../../constants/Colors";
 import { useNavigation } from "expo-router";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ProductCartContext } from "../../../../contexts/productCartContext/Provider";
-const BuyerOptionsCards = ({ productdetails }: any) => {
+const BuyerOptionsCards = ({ wholesaler }: any) => {
 
   const context = useContext(ProductCartContext);
-  const navigation = useNavigation<any>();
-
-  const handleNavigate = async () => {
-    if (context?.addProduct) {
-      context.addProduct(productdetails);
-    }
-    navigation.navigate("cart", { productdetails });
+  const navigation: any = useNavigation();
+  const handleNavigate = () => {
+    console.log(wholesaler?.wholesaler._id)
+    navigation.navigate("productDetailsPage", { wholesalerId: wholesaler?.wholesaler?._id });
   };
 
   return (
     <View
       style={{
-        backgroundColor: "#F4F4F4",
+        backgroundColor: "white",
         height: "auto",
-        width: "auto",
+        width: "48%",
         borderRadius: 10,
         padding: 10,
-        gap: 8,
-        marginRight: 12,
       }}
     >
       <View style={{ flexDirection: "row", gap: 8 }}>
         <Image
           source={{
-            uri: "https://imgs.search.brave.com/5-piIW2ggZigrFKTSXEgYBBR56lkRl9zkSmpHTEUuDg/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9keW5h/bWljLmJyYW5kY3Jv/d2QuY29tL2Fzc2V0/L2xvZ28vZTNkZGM0/YTUtMTU3YS00Mzc3/LTk1NDQtNzEyZjUx/MjRhY2JlL2xvZ28t/c2VhcmNoLWdyaWQt/MXg_bG9nb1RlbXBs/YXRlVmVyc2lvbj0x/JnY9NjM4MTU3Njcy/MTkxNjAwMDAw",
+            uri: wholesaler.wholesaler?.logo
           }}
           style={{
             backgroundColor: "gray",
@@ -43,12 +38,12 @@ const BuyerOptionsCards = ({ productdetails }: any) => {
             borderWidth: 0.5,
             borderColor: "gray",
           }}
-          height={40}
-          width={40}
+          height={50}
+          width={50}
         />
         <View>
           <Text style={{ fontSize: 12, fontWeight: "700", marginBottom: 3 }}>
-            BD24 Shop for COD
+            {wholesaler?.wholesaler?.owner_name}
           </Text>
           <View style={{ flexDirection: "row", gap: 8 }}>
             <Text
@@ -61,21 +56,9 @@ const BuyerOptionsCards = ({ productdetails }: any) => {
                 color: "white",
               }}
             >
-              COD
+              {wholesaler?.wholesaler?.wholesaler_name}
             </Text>
-            <Text
-              style={{
-                backgroundColor: Colors.light.background,
-                paddingHorizontal: 8,
-                paddingVertical: 2,
-                borderRadius: 20,
-                fontSize: 12,
-                borderWidth: 1,
-                borderColor: "gray",
-              }}
-            >
-              6&nbsp;Sold
-            </Text>
+
           </View>
           <View
             style={{
@@ -95,10 +78,7 @@ const BuyerOptionsCards = ({ productdetails }: any) => {
         </View>
       </View>
       <View>
-        <Text style={{ fontSize: 13 }}>
-          <Ionicons name="location-outline" size={14} color="black" />
-          &nbsp; Hanai,Dhaka
-        </Text>
+
         <Text style={{ fontSize: 13 }}>
           <MaterialCommunityIcons
             name="truck-delivery-outline"
@@ -109,26 +89,27 @@ const BuyerOptionsCards = ({ productdetails }: any) => {
         </Text>
         <Text style={{ fontSize: 13 }}>
           <Feather name="layers" size={14} color="black" />
-          &nbsp; stock:998
+          &nbsp; stock: {wholesaler?.current_stock}
         </Text>
-        <Text style={{ fontSize: 14, color: "red", marginVertical: 5 }}>
-          {productdetails?.product_saling_price} BDT
+        <Text style={{ fontSize: 16, color: "red", marginVertical: 5 }}>
+          {wholesaler?.selling_price} BDT
         </Text>
         <View style={{ flexDirection: "row", gap: 8 }}>
 
-          <TouchableOpacity onPress={handleNavigate}>
+          <TouchableOpacity style={{
+            backgroundColor: Colors.light.orange,
+            paddingHorizontal: 38,
+            paddingVertical: 7,
+            borderRadius: 5,
+          }} onPress={handleNavigate}>
 
             <Text
               style={{
-                backgroundColor: Colors.light.orange,
-                paddingHorizontal: 50,
-                paddingVertical: 5,
-                borderRadius: 5,
-                fontSize: 13,
+                fontSize: 14,
                 color: "white",
               }}
             >
-              Buy now
+              View Details
             </Text>
           </TouchableOpacity>
         </View>
