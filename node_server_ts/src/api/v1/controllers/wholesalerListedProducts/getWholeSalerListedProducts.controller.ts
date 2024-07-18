@@ -5,12 +5,10 @@ import WholesalerListedProductModel from "../../../../models/wholesalerListedpro
 
 export const getEachWholesalerListedProducts = async (req: Request, res: Response) => {
 	try {
-		const { wholesaler_listed_product_id } = req.query;
+		const filter = req.query;
 
-		console.log("Whole Listed Product Id", wholesaler_listed_product_id)
-
-		const wholesalerListedProductInstance = await WholesalerListedProductModel
-			.findOne({ _id: wholesaler_listed_product_id })
+		let wholesalerListedProductInstance: any = await WholesalerListedProductModel
+			.findOne(filter)
 			.populate("wholesaler")
 			.populate({			// Populating Fields from Product Model which has reference in Product Model
 				path: 'product',
@@ -31,10 +29,26 @@ export const getEachWholesalerListedProducts = async (req: Request, res: Respons
 			})
 			.lean();
 
+
 		if (!wholesalerListedProductInstance) {
 			return res.status(StatusCodes.BAD_REQUEST).json({
 				message: MESSAGE.custom("Wholesaler Listed Product not found!")
 			});
+		}
+		else {
+			const result = {
+				...wholesalerListedProductInstance,
+				brand_details: wholesalerListedProductInstance.product.brand_object_id,
+				product_details: wholesalerListedProductInstance.product,
+			};
+
+			// Remove the original references if not needed
+			delete result.product.brand_object_id;
+			delete result.product.category_object_id;
+			delete result.product.subcategory_object_id;
+			delete result.product_object_id;
+
+			wholesalerListedProductInstance = result;
 		}
 
 		return res.status(StatusCodes.OK).json({
