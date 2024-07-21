@@ -1,6 +1,5 @@
-import { IWholesaler } from "../../../../@types/interface/wholesaler.interface";
 import React from "react";
-
+import RemoveRedEyeOutlinedIcon from "@mui/icons-material/RemoveRedEyeOutlined";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 
 import Button from "@mui/material/Button";
@@ -12,6 +11,7 @@ import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import Typography from "@mui/material/Typography";
+import { IWholesaler } from "../../../../@types/interface/wholesaler";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -24,7 +24,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-const TLPcellRenderer = ({ data }: { data: IWholesaler }) => {
+const ImageCellRenderer = ({ data }: { data: IWholesaler }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -48,7 +48,7 @@ const TLPcellRenderer = ({ data }: { data: IWholesaler }) => {
         open={open}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-          Trade License Photo
+          Sign Board Photo
         </DialogTitle>
         <IconButton
           aria-label="close"
@@ -65,7 +65,7 @@ const TLPcellRenderer = ({ data }: { data: IWholesaler }) => {
         <DialogContent dividers>
           <div >
             <img
-              src={data.trade_licensce_photo}
+              src={data.sign_board_photo}
               style={{ maxWidth: "100%", maxHeight: "100%" }}
             />
           </div>
@@ -80,4 +80,4 @@ const TLPcellRenderer = ({ data }: { data: IWholesaler }) => {
   );
 };
 
-export default TLPcellRenderer;
+export default ImageCellRenderer;
