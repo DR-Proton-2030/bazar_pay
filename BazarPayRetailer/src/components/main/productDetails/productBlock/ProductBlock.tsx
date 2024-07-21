@@ -2,45 +2,87 @@
 import React from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import productImg from "../../../../../assets/images/product.png";
-
+import Colors from "../../../../constants/Colors";
+import { AntDesign, FontAwesome } from '@expo/vector-icons';
 const ProductBlock = ({product}:any) => {
   // const navigation: any = useNavigation();
   const handleNavigate = () => {
     // navigation.navigate("productDetails");
   };
   return (
-    <TouchableOpacity onPress={handleNavigate} style={styles.container}>
+    <View  style={styles.container}>
       <Image source={{uri:product?.product_image} || productImg} style={styles.image} />
       <Text style={styles.title}>{product?.product_name}</Text>
-      <Text style={styles.amount}>{product?.current_stock}&nbsp;{product?.unit || "Unit"}</Text>
-    </TouchableOpacity>
+        <View style={{flexDirection:"row",alignItems:"center",gap:3,marginTop:9}}>
+        <FontAwesome
+              name={"star"}
+              size={17}
+              color={Colors.light.yellow}
+            />
+        <FontAwesome
+              name={"star"}
+              size={17}
+              color={Colors.light.yellow}
+            />
+        <FontAwesome
+              name={"star"}
+              size={17}
+              color={Colors.light.yellow}
+            />
+        <FontAwesome
+              name={"star"}
+              size={17}
+              color={Colors.light.yellow}
+            />
+       
+        <FontAwesome
+              name={"star-o"}
+              size={17}
+              color={Colors.light.yellow}
+            />
+          <Text style={{color:"gray",fontWeight:"600",marginLeft:5}}>
+            780 Reviews
+          </Text>
+        </View>
+        
+      
+      <Text style={styles.description}>
+       {product?.product_description}
+      </Text>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     borderRadius: 10,
-    alignItems: "center",
-    textAlign: "center",
+    paddingHorizontal:20
   },
   image: {
     width: 350,
-    height: 280,
+    height: 300,
     borderRadius: 10,
     marginTop: 20,
+    marginLeft:"auto",
+    marginRight:"auto"
   },
   title: {
-    fontSize: 22,
-    fontWeight: "bold",
-    textAlign: "center",
+    fontSize: 25,
+    fontWeight: "500",
+    textAlign: "left",
     marginTop: 18,
   },
   description: {
-    fontSize: 11,
+    fontSize: 14,
+    color: "gray",
+    marginTop:12,
+    lineHeight:18
   },
   price: {
-    fontSize: 16,
-    fontWeight: "bold",
+    fontSize: 18,
+    fontWeight: "500",
+    color:Colors.light.orange,
+    marginTop:4
   },
   amount: {
     fontSize: 20,

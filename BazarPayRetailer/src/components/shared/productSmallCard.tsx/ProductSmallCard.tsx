@@ -19,7 +19,7 @@ const ProductCard = ({ product }: any) => {
                 Available
             </Text>
             <Text style={styles.name}>{product.product_name}</Text>
-            <Text style={styles.description}>{product.product_description}</Text>
+            {/* <Text style={styles.description}>{product.product_description}</Text> */}
         </TouchableOpacity>
         </View>
     );
