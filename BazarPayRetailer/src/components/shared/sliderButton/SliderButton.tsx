@@ -119,8 +119,6 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    paddingHorizontal: 30,
-    paddingTop: 10
   },
   label: {
     fontSize: 18,

@@ -12,6 +12,11 @@ const ProductBlock = ({product}:any) => {
   return (
     <View  style={styles.container}>
       <Image source={{uri:product?.product_image} || productImg} style={styles.image} />
+      <View style={{marginTop: 18,borderRightColor:"red"}}>
+        <Text style={{backgroundColor:Colors.light.cardColor,width:95,paddingVertical:4,textAlign:"center",borderRadius:20,
+        fontWeight:400,color:"gray"
+        }}>Electronics</Text></View>
+
       <Text style={styles.title}>{product?.product_name}</Text>
         <View style={{flexDirection:"row",alignItems:"center",gap:3,marginTop:9}}>
         <FontAwesome
@@ -70,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: "500",
     textAlign: "left",
-    marginTop: 18,
+    marginTop: 4,
   },
   description: {
     fontSize: 14,

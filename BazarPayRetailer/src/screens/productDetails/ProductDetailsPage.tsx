@@ -1,36 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View,StyleSheet } from "react-native";
+import React, { useEffect, useState, useRef } from "react";
+import { ScrollView, Text, TouchableOpacity, View, Modal, StyleSheet, Animated } from "react-native";
 import { useRoute } from "@react-navigation/native";
 import Colors from "../../constants/Colors";
 import ProductHeader from "../../components/main/productDetails/productHeader/ProductHeader";
 import ProductBlock from "../../components/main/productDetails/productBlock/ProductBlock";
 import { api } from "../../utils/api";
-import { useNavigation } from "expo-router";
 import ProductOverView from "../../components/main/productOverview/ProductOverView";
+import ProductSpecificationTab from "../../components/main/productSpecificationTab/ProductSpecificationTab";
+import { ProductStyles } from "./style";
+import CheckoutButtomSheet from "../../components/shared/checkoutButtomSheet/CheckoutButtomSheet";
 
 const ProductDetailsScreen = () => {
-  const [productDetails, setProductDetails] = useState<any>()
+  const [productDetails, setProductDetails] = useState<any>();
+  const [modalVisible, setModalVisible] = useState(false);
+  const translateY = useRef(new Animated.Value(300)).current;
+
   const route = useRoute();
   const { wholesalerId }: any = route.params;
+
   const getProductDetails = async () => {
     try {
       const filter = {
-        wholesaler_object_id: wholesalerId
-      }
-      const result = await api.product.getWholesalerProductDetails(filter)
-      console.log(result)
-      setProductDetails(result)
+        wholesaler_object_id: wholesalerId,
+      };
+      const result = await api.product.getWholesalerProductDetails(filter);
+      console.log(result);
+      setProductDetails(result);
     } catch (error) {
-      console.log("error in getProductDetails", error)
+      console.log("error in getProductDetails", error);
     }
-  }
-  const navigation: any = useNavigation();
-  const handleNavigate = () => {
-    navigation.navigate("RatingsPage");
   };
+
   useEffect(() => {
-    getProductDetails()
-  }, [])
+    getProductDetails();
+  }, []);
+
+  useEffect(() => {
+    Animated.timing(translateY, {
+      toValue: modalVisible ? 0 : 300,
+      duration: 300,
+      useNativeDriver: true,
+    }).start();
+  }, [modalVisible]);
 
   return (
     <>
@@ -40,133 +51,85 @@ const ProductDetailsScreen = () => {
           flex: 1,
           backgroundColor: Colors.light.background,
           width: "100%",
-          paddingBottom:200
+          paddingBottom: 200,
         }}
       >
         <ProductBlock product={productDetails?.product} />
         <ProductOverView />
-       
+        <ProductSpecificationTab />
       </ScrollView>
-      <View style={styles.overlay}>
-        <View style={styles.overlayContent}>
-        <Text style={styles.overlayContentTotal}>
-            Price
-          </Text>
-          <View style={styles.overlayContentTop}>
-            <Text style={styles.overlayContentPriceBefore}>599৳</Text>
-            <Text style={styles.overlayContentPrice}>499৳</Text>
+      <View style={ProductStyles.overlay}>
+        <View style={ProductStyles.overlayContent}>
+          <Text style={ProductStyles.overlayContentTotal}>Price</Text>
+          <View style={ProductStyles.overlayContentTop}>
+            <Text style={ProductStyles.overlayContentPriceBefore}>599৳</Text>
+            <Text style={ProductStyles.overlayContentPrice}>499৳</Text>
           </View>
-         
         </View>
-        <TouchableOpacity
-          onPress={() => {
-            // handle onPress
-          }}>
-          <View style={styles.btn}>
-            <Text style={styles.btnText}>Add to Cart</Text>
-           
+        <TouchableOpacity onPress={() => setModalVisible(true)}>
+          <View style={ProductStyles.btn}>
+            <Text style={ProductStyles.btnText}>Add to Cart</Text>
           </View>
         </TouchableOpacity>
       </View>
+      <Modal
+        animationType="none"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          setModalVisible(false);
+        }}
+      >
+        <View style={styles.modalContainer}>
+          <Animated.View
+            style={[
+              styles.modalContent,
+              {
+                transform: [{ translateY }],
+              },
+            ]}
+          >
+            <View style={styles.handle}></View>
+            <CheckoutButtomSheet />
+          </Animated.View>
+        </View>
+      </Modal>
     </>
   );
 };
 
-export default ProductDetailsScreen;
 const styles = StyleSheet.create({
-  /** Placeholder */
-  placeholder: {
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: 0,
-    height: 400,
-    marginTop: 60,
-    padding: 24,
-    backgroundColor: '#F3F4F6',
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
   },
-  placeholderInset: {
-    borderWidth: 4,
-    borderColor: '#CFD1D4',
-    borderStyle: 'dashed',
-    borderRadius: 9,
-    flexGrow: 1,
-    flexShrink: 1,
-    flexBasis: 0,
+  modalContent: {
+    height: 220,
+    backgroundColor: "white",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    paddingTop: 6,
+    paddingHorizontal: 20,
+    elevation: 10
   },
-  /** Overlay */
-  overlay: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#fff',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingTop: 12,
-    paddingHorizontal: 26,
-    paddingBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
-    borderTopEndRadius:12
+  handle: {
+    width: 60,
+    height: 5,
+    backgroundColor: '#ccc',
+    borderRadius: 2.5,
+    alignSelf: 'center',
+    marginTop:10,
+    marginBottom:10
   },
-  overlayContent: {
-    flexDirection: 'column',
-    alignItems: 'flex-start',
+  modalTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
   },
-  overlayContentTop: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    marginBottom: 2,
-  },
-  overlayContentPriceBefore: {
+  closeButton: {
+    marginTop: 20,
     fontSize: 16,
-    lineHeight: 21,
-    fontWeight: '600',
-    color: '#8e8e93',
-    marginRight: 4,
-    textDecorationLine: 'line-through',
-    textDecorationColor: '#8e8e93',
-    textDecorationStyle: 'solid',
-  },
-  overlayContentPrice: {
-    fontSize: 21,
-    lineHeight: 26,
-    fontWeight: '700',
-    color: '#000',
-    marginLeft:5
-  },
-  overlayContentTotal: {
-    fontSize: 13,
-    lineHeight: 18,
-    fontWeight: '600',
-    color: 'gray',
-    letterSpacing: -0.07,
-    textDecorationStyle: 'solid',
-  },
-  /** Button */
-  btn: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 19,
-    paddingVertical: 10,
-    paddingHorizontal: 50,
-    // backgroundColor: Colors.light.orange,
-    backgroundColor: Colors.light.text,
-    elevation:3
-  },
-  btnText: {
-    fontSize: 18,
-    lineHeight: 26,
-    fontWeight: '600',
-    color: '#fff',
+    color: Colors.light.orange,
   },
 });
+
+export default ProductDetailsScreen;
