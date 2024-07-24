@@ -1,5 +1,5 @@
 
-export const url = "http://192.168.152.155:8989";
+export const url = "http://192.168.155.155:8989";
 // export const local_url = "http://192.168.1.33:4009";
 export const port = "4009";
 

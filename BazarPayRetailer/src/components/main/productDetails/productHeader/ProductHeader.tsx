@@ -18,9 +18,9 @@ const ProductHeader = ({ text }: any) => {
         onPress={handleNavigate}
         style={{ display: "flex", flexDirection: "column", paddingLeft: 20 }}
       >
-        <Ionicons name="arrow-back" size={28} color={Colors.light.orange} />
+        <Ionicons name="arrow-back" size={28} color={Colors.light.text} />
       </TouchableOpacity>
-      <Text style={{ fontSize: 20, fontWeight: "600" }}>{text}</Text>
+      {/* <Text style={{ fontSize: 20, fontWeight: "600" }}>{text}</Text> */}
       <View
         style={{
           display: "flex",
@@ -30,13 +30,13 @@ const ProductHeader = ({ text }: any) => {
         }}
       >
         <TouchableOpacity>
-          <AntDesign name="sharealt" size={24} color={Colors.light.orange} />
+          <AntDesign name="sharealt" size={24} color={Colors.light.text} />
         </TouchableOpacity>
         <TouchableOpacity>
           <MaterialCommunityIcons
             name="dots-vertical"
             size={28}
-            color={Colors.light.orange}
+            color={Colors.light.text}
           />
         </TouchableOpacity>
       </View>
