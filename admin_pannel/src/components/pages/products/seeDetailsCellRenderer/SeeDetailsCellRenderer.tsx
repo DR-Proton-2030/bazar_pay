@@ -13,4 +13,4 @@ const WholesalerDetailsCellRenderer = ({data}:{data: IWholesaler}) => {
   )
 }
 
-export default WholesalerDetailsCellRenderer
+export default WholesalerDetailsCellRenderer;

@@ -50,6 +50,7 @@ import AddProductsForm from "../components/pages/categoryDetails/products/addPro
 import ProductDetails from "../components/pages/categoryDetails/products/ProductDetails";
 import BrandProducts from "../components/pages/brand/productDetails/BrandProducts";
 import Wholesalers from "../components/pages/builders/Builders";
+import WholesalerDetails from "../components/pages/builders/wholesalerDetails/WholesalerDetails";
 
 const appRoutes: RouteType[] = [
   {
@@ -100,7 +101,7 @@ const appRoutes: RouteType[] = [
   },
   {
     path: "/wholesaler-details",
-    element: <AddCategoryForm/>,
+    element: <WholesalerDetails/>,
     state: "wholesalers",
   },
   {
