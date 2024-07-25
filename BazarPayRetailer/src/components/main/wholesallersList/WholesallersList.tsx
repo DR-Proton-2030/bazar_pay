@@ -10,7 +10,7 @@ import BuyerOptionsCards from '../buyerOptions/buyerOptionsCards/BuyerOptionsCar
 
 const WholesalersList = () => {
   const route = useRoute();
-  const { productId }: any = route.params;
+  const { productId ,categoryName}: any = route.params;
   const [wholesalerProduct,setWholesalerProduct]= useState<any[]>([])
   const getWholesalerList = async () => {
     try {
@@ -35,7 +35,7 @@ const WholesalersList = () => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {wholesalerProduct.map((wholesaler:any, index) => (
         //  <WholesallerCard productId={productId} wholesaler={wholesaler} index={index}/>
-        <BuyerOptionsCards wholesaler={wholesaler}/>
+        <BuyerOptionsCards wholesaler={wholesaler} categoryName={categoryName}/>
         ))}
       </ScrollView>
     </View>

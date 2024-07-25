@@ -9,14 +9,16 @@ import ProductOverView from "../../components/main/productOverview/ProductOverVi
 import ProductSpecificationTab from "../../components/main/productSpecificationTab/ProductSpecificationTab";
 import { ProductStyles } from "./style";
 import CheckoutButtomSheet from "../../components/shared/checkoutButtomSheet/CheckoutButtomSheet";
+import { useNavigation } from "expo-router";
 
 const ProductDetailsScreen = () => {
   const [productDetails, setProductDetails] = useState<any>();
+  const [userBuyingPrice, setUserBuyingPrice] = useState(productDetails?.selling_price);
   const [modalVisible, setModalVisible] = useState(false);
   const translateY = useRef(new Animated.Value(300)).current;
 
   const route = useRoute();
-  const { wholesalerId }: any = route.params;
+  const { wholesalerId ,categoryName}: any = route.params;
 
   const getProductDetails = async () => {
     try {
@@ -24,13 +26,19 @@ const ProductDetailsScreen = () => {
         wholesaler_object_id: wholesalerId,
       };
       const result = await api.product.getWholesalerProductDetails(filter);
-      console.log(result);
       setProductDetails(result);
     } catch (error) {
       console.log("error in getProductDetails", error);
     }
   };
 
+  const navigation: any = useNavigation();
+  const handleNavigate = async({quantity}:any) => {
+      await setModalVisible(false)
+      const totalPrice = quantity * productDetails?.marked_price;
+      console.log(totalPrice)
+    navigation.navigate("payments",{userBuyingPrice:totalPrice});
+  };
   useEffect(() => {
     getProductDetails();
   }, []);
@@ -54,16 +62,16 @@ const ProductDetailsScreen = () => {
           paddingBottom: 200,
         }}
       >
-        <ProductBlock product={productDetails?.product} />
-        <ProductOverView />
-        <ProductSpecificationTab />
+        <ProductBlock product={productDetails?.product} categoryName={categoryName}/>
+        <ProductOverView productDetails={productDetails}/>
+        <ProductSpecificationTab productDetails={productDetails} />
       </ScrollView>
       <View style={ProductStyles.overlay}>
         <View style={ProductStyles.overlayContent}>
           <Text style={ProductStyles.overlayContentTotal}>Price</Text>
           <View style={ProductStyles.overlayContentTop}>
-            <Text style={ProductStyles.overlayContentPriceBefore}>599৳</Text>
-            <Text style={ProductStyles.overlayContentPrice}>499৳</Text>
+            <Text style={ProductStyles.overlayContentPriceBefore}>{productDetails?.selling_price}৳</Text>
+            <Text style={ProductStyles.overlayContentPrice}>{productDetails?.marked_price}৳</Text>
           </View>
         </View>
         <TouchableOpacity onPress={() => setModalVisible(true)}>
@@ -90,7 +98,7 @@ const ProductDetailsScreen = () => {
             ]}
           >
             <View style={styles.handle}></View>
-            <CheckoutButtomSheet />
+            <CheckoutButtomSheet handleNavigate={handleNavigate} setUserBuyingPrice={setUserBuyingPrice} Price={productDetails?.marked_price} setModalVisible={setModalVisible} />
           </Animated.View>
         </View>
       </Modal>

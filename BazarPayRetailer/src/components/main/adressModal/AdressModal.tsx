@@ -6,7 +6,7 @@ import Colors from '../../../constants/Colors';
 import { Entypo } from '@expo/vector-icons';
 
 const AddressModal = ({handleCancelLogout}:any) => {
-  const [selectedAddress, setSelectedAddress] = useState(null);
+  const [selectedAddress, setSelectedAddress] = useState<any>(null);
   const [addresses, setAddresses] = useState([
     { id: 1, address: 'NewTown, Kolkata' },
     { id: 3, address: 'Asansol, Purba Bardhaman' },
@@ -23,7 +23,7 @@ const AddressModal = ({handleCancelLogout}:any) => {
     })();
   }, []);
 
-  const handleAddressSelect = (address) => {
+  const handleAddressSelect = (address:any) => {
     setSelectedAddress(address);
   };
 
@@ -105,10 +105,9 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 20,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 8,
+    borderRadius: 20,
     marginBottom: 10,
+    backgroundColor:Colors.light.cardColor,
   },
   icon: {
     marginLeft: 'auto',
@@ -119,11 +118,12 @@ const styles = StyleSheet.create({
     marginBottom:9
   },
   ConfirmButton: {
-    borderRadius: 6,
+    borderRadius: 20,
     backgroundColor:Colors.light.orange,
     justifyContent:"center",
     alignItems:"center",
-    paddingVertical:8,
+    paddingVertical:12,
+    
   },
   addButtonText: {
     color: Colors.light.orange,

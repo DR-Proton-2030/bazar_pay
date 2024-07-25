@@ -1,132 +1,270 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import React, { useRef, useState } from 'react';
+import {
+  StyleSheet,
+  View,
+  SafeAreaView,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  Image,
+  Animated,
+  PanResponder,
+  Dimensions,
+} from 'react-native';
+import SliderButton from '../../components/shared/sliderButton/SliderButton';
+import { styles } from './style';
+import AddressModal from '../../components/main/adressModal/AdressModal';
+import { useRoute } from "@react-navigation/native";
+const paymentMethods = [
+  {
+    id: 'paypal',
+    label: 'PayPal',
+    img: 'https://assets.withfra.me/credit_cards/paypal.png',
+  },
+  {
+    id: 'amex-89001',
+    label: 'Amex ••••89001',
+    img: 'https://assets.withfra.me/credit_cards/amex.png',
+  },
+  {
+    id: 'visa-3021',
+    label: 'Visa ••••3021',
+    img: 'https://assets.withfra.me/credit_cards/visa.png',
+  },
+];
+const { height } = Dimensions.get("window");
+export const PaymentScreen =()=> {
 
-const PaymentScreen = () => {
-  const [cardNumber, setCardNumber] = useState('');
-  const [cardHolder, setCardHolder] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvv, setCvv] = useState('');
+  const route = useRoute();
+  const { userBuyingPrice}: any = route.params;
+  
+  const [form, setForm] = React.useState({
+    paymentMethod: paymentMethods[0].id,
+  });
 
-  const handlePayment = () => {
-      Alert.alert('Payment Successful', 'Your payment was processed successfully!');
+  const [address, setAddress] = useState('Newtown, Kolkata WestBengal, India');
 
+  const [modalVisible, setModalVisible] = useState(false);
+  const translateY = useRef(new Animated.Value(height)).current;
+  const [departmernt, setDepartmernt] = useState("");
+
+
+
+  const handleLogoutPress = () => {
+    setModalVisible(true);
+    openDrawer();
   };
 
-  const validateForm = () => {
-    const cardNumberRegex = /^[0-9]{16}$/;
-    const cardHolderRegex = /^[a-zA-Z ]+$/;
-    const expiryDateRegex = /^(0[1-9]|1[0-2])\/?([0-9]{2})$/;
-    const cvvRegex = /^[0-9]{3,4}$/;
-
-    return (
-      cardNumberRegex.test(cardNumber) &&
-      cardHolderRegex.test(cardHolder) &&
-      expiryDateRegex.test(expiryDate) &&
-      cvvRegex.test(cvv)
-    );
+  const handleCancelLogout = () => {
+    setModalVisible(false);
+    closeDrawer();
   };
+
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => true,
+      onPanResponderMove: (e, gestureState) => {
+        if (gestureState.dy > 0 && gestureState.dy <= height * 0.5) {
+          translateY.setValue(gestureState.dy);
+        }
+      },
+      onPanResponderRelease: (e, gestureState) => {
+        if (gestureState.dy > height * 0.15) {
+          closeDrawer();
+        } else {
+          openDrawer();
+        }
+      }
+    })
+  ).current;
+
+  const openDrawer = () => {
+    Animated.timing(translateY, {
+      toValue: 0,
+      duration: 300,
+      useNativeDriver: true
+    }).start();
+  };
+
+  const closeDrawer = () => {
+    Animated.timing(translateY, {
+      toValue: height,
+      duration: 300,
+      useNativeDriver: true
+    }).start(() => setModalVisible(false));
+  };
+
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Payment Details</Text>
-      
-      <Text style={styles.label}>Card Number</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="1234 5678 9012 3456"
-        keyboardType="numeric"
-        value={cardNumber}
-        onChangeText={setCardNumber}
-        maxLength={16}
-      />
-      
-      <Text style={styles.label}>Cardholder Name</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="John Doe"
-        value={cardHolder}
-        onChangeText={setCardHolder}
-      />
-      
-      <View style={styles.row}>
-        <View style={styles.column}>
-          <Text style={styles.label}>Expiry Date</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="MM/YY"
-            keyboardType="numeric"
-            value={expiryDate}
-            onChangeText={setExpiryDate}
-            maxLength={5}
-          />
+    <View style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
+        <View style={styles.header}>
+          <View style={styles.headerAction}>
+            <TouchableOpacity
+              onPress={() => {
+                // handle onPress
+              }}>
+              <Feather
+                color="#1d1d1d"
+                name="arrow-left"
+                size={21} />
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.headerTitle}>Checkout</Text>
+
+          <View style={styles.headerAction}>
+            <TouchableOpacity
+              onPress={() => {
+                // handle onPress
+              }}>
+              <Feather
+                color="#1d1d1d"
+                name="more-horizontal"
+                size={21} />
+            </TouchableOpacity>
+          </View>
         </View>
-        
-        <View style={styles.column}>
-          <Text style={styles.label}>CVV</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="123"
-            keyboardType="numeric"
-            value={cvv}
-            onChangeText={setCvv}
-            maxLength={4}
-          />
-        </View>
+
+        <ScrollView contentContainerStyle={styles.content}>
+          <View style={styles.section}>
+            <View style={styles.sectionHeader}>
+              <Text style={styles.sectionTitle}>Summary</Text>
+
+              <TouchableOpacity
+                onPress={() => {
+                  // handle onPress
+                }}
+                style={styles.sectionAction}>
+                <Feather
+                  color="#1A1A1A"
+                  name="arrow-right"
+                  size={17} />
+              </TouchableOpacity>
+            </View>
+
+            <View style={styles.summaryRow}>
+              <Text style={styles.summaryLabel}>Subtotal</Text>
+
+              <Text style={styles.summaryPrice}>৳{userBuyingPrice}</Text>
+            </View>
+
+            <View style={styles.summaryRow}>
+              <Text style={styles.summaryLabel}>Delivery Fee</Text>
+
+              <TouchableOpacity
+                onPress={() => {
+                  // handle onPress
+                }}>
+                <Feather
+                  color="#454545"
+                  name="help-circle"
+                  size={17} />
+              </TouchableOpacity>
+
+              <Text style={styles.summaryPrice}>৳3.95</Text>
+            </View>
+
+            
+
+            <View style={styles.summaryRow}>
+              <Text style={styles.summaryLabel}>Discount</Text>
+
+              <TouchableOpacity
+                onPress={() => {
+                  // handle onPress
+                }}>
+                <Feather
+                  color="#454545"
+                  name="help-circle"
+                  size={17} />
+              </TouchableOpacity>
+
+              <Text style={styles.summaryPrice}>৳3.75</Text>
+            </View>
+
+            <View style={styles.summaryTotal}>
+              <Text style={styles.summaryLabel}>Total</Text>
+
+              <Text style={styles.summaryPriceOld}>৳25.90</Text>
+
+              <Text style={styles.summaryPricePrimary}>৳22.15</Text>
+            </View>
+
+           
+          </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>Payment methods</Text>
+
+            <View style={styles.sectionBody}>
+              {paymentMethods.map(({ id, label, img }, index, arr) => {
+                const isFirst = index === 0;
+                const isLast = index === arr.length - 1;
+                const isActive = form.paymentMethod === id;
+
+                return (
+                  <View
+                    key={index}
+                    style={[
+                      styles.radioWrapper,
+                      isActive && styles.radioActive,
+                      isFirst && styles.radioFirst,
+                      isLast && styles.radioLast,
+                    ]}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        setForm({ ...form, ['paymentMethod']: id })
+                      }
+                      style={styles.radio}>
+                      <View
+                        style={[
+                          styles.radioInput,
+                          isActive && styles.radioInputActive,
+                        ]} />
+
+                      <Image
+                        alt=""
+                        resizeMode="contain"
+                        source={{ uri: img }}
+                        style={styles.radioImg} />
+
+                      <Text style={styles.radioLabel}>{label}</Text>
+                    </TouchableOpacity>
+                  </View>
+                );
+              })}
+            </View>
+
+            <TouchableOpacity
+              onPress={() => {
+                // handle onPress
+              }}
+              style={styles.sectionButton}>
+              <Feather color="#1A1A1A" name="plus" size={14} />
+
+              <Text style={styles.sectionButtonText}>Add payment method</Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+
+      <View style={styles.overlay}>
+      <SliderButton price={999} handleLogoutPress={handleLogoutPress}/>
       </View>
-      
-      <TouchableOpacity style={styles.button} onPress={handlePayment}>
-        <Text style={styles.buttonText}>Pay Now</Text>
-      </TouchableOpacity>
+      {modalVisible && (
+        <>
+          <TouchableOpacity onPress={handleCancelLogout} />
+          <Animated.View
+            style={[styles.drawer, { transform: [{ translateY }] }]}
+            {...panResponder.panHandlers}>
+            <View style={styles.handle} />
+            <AddressModal handleCancelLogout={handleCancelLogout} />
+          </Animated.View>
+        </>
+      )}
     </View>
   );
-};
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: '#f8f8f8',
-  },
-  header: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    marginBottom: 20,
-    textAlign: 'center',
-    color: '#333',
-  },
-  label: {
-    fontSize: 16,
-    marginBottom: 5,
-    color: '#333',
-  },
-  input: {
-    height: 50,
-    borderColor: '#ddd',
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: 10,
-    marginBottom: 15,
-    fontSize: 16,
-    backgroundColor: '#fff',
-  },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  column: {
-    flex: 0.48,
-  },
-  button: {
-    backgroundColor: '#4caf50',
-    paddingVertical: 15,
-    borderRadius: 10,
-    marginTop: 20,
-  },
-  buttonText: {
-    color: '#fff',
-    fontSize: 18,
-    textAlign: 'center',
-  },
-});
-
-export default PaymentScreen;

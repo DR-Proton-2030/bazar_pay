@@ -69,7 +69,7 @@ function RootLayoutNav() {
       />
       <Stack.Screen name="QrPage" options={{ headerShown: false }} />
       <Stack.Screen name="profilePage" options={{ headerShown: false }} />
-      <Stack.Screen name="payments" options={{ headerShown: false }} />
+      <Stack.Screen name="payments" options={{ headerShown: false,statusBarTranslucent:false,statusBarStyle:"dark"  }} />
       <Stack.Screen name="cart" options={{ headerShown: false }} />
       <Stack.Screen
         name="productDetailsPage"

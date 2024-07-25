@@ -41,7 +41,7 @@ const ProductSection = () => {
       </View>
           <View style={{ flexDirection: "row", gap:8,justifyContent:"center"}}>
             {category.subcategoryInstance.map((subcategory:any) => (
-              <SubCategoryCard key={subcategory._id} product={subcategory} categoryId={category?._id}/>
+              <SubCategoryCard categoryName={category?.name} key={subcategory._id} product={subcategory} categoryId={category?._id}/>
             ))}
           </View>
         </View>
