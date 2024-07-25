@@ -63,10 +63,10 @@ const NIDcellRenderer = ({ data }: { data: IWholesaler }) => {
           <CloseIcon />
         </IconButton>
         <DialogContent dividers>
-          <div style={{ backgroundColor: "blue", width:"100%", height: "auto" }}>
+          <div style={{ width:"100%", height: "auto" }}>
             <img
               src={data.nid_photo}
-              style={{ maxWidth: "100", maxHeight: "100%" }}
+              style={{ maxWidth: "100%", maxHeight: "100%" }}
             />
           </div>
         </DialogContent>
