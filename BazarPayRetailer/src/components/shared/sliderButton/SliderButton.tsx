@@ -6,7 +6,7 @@ import Colors from '../../../constants/Colors';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 
-const SliderButton = ({ price,handleLogoutPress }: any) => {
+const SliderButton = ({ price,handleLogoutPress ,handlePlaceOrder}: any) => {
   const navigation: any = useNavigation();
   const handleNavigate = () => {
     navigation.navigate("payments");
@@ -35,8 +35,7 @@ const SliderButton = ({ price,handleLogoutPress }: any) => {
   const onHandlerStateChange = (event:any) => {
     if (event.nativeEvent.state === State.END) {
       if (event.nativeEvent.translationX >= endPosition - 10) {
-        console.log('Slider reached end');
-        handleNavigate()
+        handlePlaceOrder()
       }
       Animated.spring(translateX, {
         toValue: 0,

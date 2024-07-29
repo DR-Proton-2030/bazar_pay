@@ -11,6 +11,7 @@ app.use("/product", require("./product/productByAdmin.routes"));
 app.use("/retailer", require("./reatiler/retailer.routes"));
 app.use("/brands", require("./brand/brand.routes"));
 app.use("/category", require("./category/category.routes"));
+app.use("/order", require("./order/order.routes"));
 app.use("/subcategory", require("./subcategory/subcategory.routes"));
 app.use("/wholesaler-listed-product", require("./wholesalerListedProducts/wholesalerListedProducts.routes"));
 

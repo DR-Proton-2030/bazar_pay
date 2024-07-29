@@ -1,16 +1,15 @@
 import React, { useContext, useState } from "react";
 import { View, Text, Animated, TouchableOpacity } from "react-native";
-
+import { LinearGradient } from 'expo-linear-gradient';
 import Colors from "../../../constants/Colors";
 import { globalStyle } from "../../../globalStyles/globalStyles";
 import MenuButton from "../menuBtn/MenuBtn";
 import SideDrawer from "../sideDrawer/SideDrawer";
 import HeaderIcons from "./headerIcons/HeaderIcons";
 import AuthContext from "../../../contexts/authContext/authContext";
-import { useNavigation } from "expo-router";
 
-const AppHeader: React.FC = () => {
-  const {user}= useContext(AuthContext)
+const AppHeader = () => {
+  const { user } = useContext(AuthContext);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [animatedValue] = useState(new Animated.Value(-300));
 
@@ -34,14 +33,32 @@ const AppHeader: React.FC = () => {
   };
 
   return (
-    <View style={globalStyle.header}>
+    <LinearGradient
+      colors={['#ffd280', 'transparent']}
+      start={{ x: 0.1, y: 0 }}
+      end={{ x: 0.1, y: 0.4 }}
+      style={globalStyle.header}
+    >
       <View style={{ flexDirection: "row" }}>
         <MenuButton onPress={openDrawer} />
         <View style={{ display: "flex", flexDirection: "column" }}>
-          <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
-            {user?.retailer_name}
-          </Text>
-          <Text style={globalStyle.posttitle}>{user?.contact_name}</Text>
+          {
+            user ?
+            <>
+              <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
+                {user?.retailer_name} TestCompany
+              </Text>
+              <Text style={globalStyle.posttitle}>{user?.contact_name}</Text>
+            </>
+              :
+              <>
+              <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
+                TestCompany
+              </Text>
+              <Text style={globalStyle.posttitle}>Guest User</Text>
+              </>
+          }
+
           <TouchableOpacity
             style={{
               flexDirection: "row",
@@ -52,7 +69,8 @@ const AppHeader: React.FC = () => {
               gap: 5,
               marginLeft: 10,
               marginTop: 4,
-              width:150
+              width: 150,
+              elevation:2
             }}
           >
             <Text style={{ fontWeight: "500" }}>Tap for balance</Text>
@@ -75,7 +93,7 @@ const AppHeader: React.FC = () => {
         />
       </View>
       <HeaderIcons />
-    </View>
+    </LinearGradient>
   );
 };
 

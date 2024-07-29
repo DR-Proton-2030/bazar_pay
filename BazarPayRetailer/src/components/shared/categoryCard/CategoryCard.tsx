@@ -18,6 +18,8 @@ const CategoryCard = ({ text, icon: Icon }: any) => {
         marginTop: 4,
         justifyContent: "center",
         alignItems: "center",
+        elevation:5,
+        marginBottom:10
       }}
     >
       <View style={{ alignItems: "center", flexDirection: "row" }}>

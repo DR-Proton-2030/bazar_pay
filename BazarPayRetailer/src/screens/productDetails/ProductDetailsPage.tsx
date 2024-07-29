@@ -12,12 +12,12 @@ import CheckoutButtomSheet from "../../components/shared/checkoutButtomSheet/Che
 import { useNavigation } from "expo-router";
 
 const ProductDetailsScreen = () => {
+  const route = useRoute();
+  const navigation: any = useNavigation();
   const [productDetails, setProductDetails] = useState<any>();
   const [userBuyingPrice, setUserBuyingPrice] = useState(productDetails?.selling_price);
   const [modalVisible, setModalVisible] = useState(false);
   const translateY = useRef(new Animated.Value(300)).current;
-
-  const route = useRoute();
   const { wholesalerId ,categoryName}: any = route.params;
 
   const getProductDetails = async () => {
@@ -32,12 +32,12 @@ const ProductDetailsScreen = () => {
     }
   };
 
-  const navigation: any = useNavigation();
+
   const handleNavigate = async({quantity}:any) => {
       await setModalVisible(false)
       const totalPrice = quantity * productDetails?.marked_price;
       console.log(totalPrice)
-    navigation.navigate("payments",{userBuyingPrice:totalPrice});
+    navigation.navigate("payments",{userBuyingPrice:totalPrice,orderDetails:productDetails, quantity:quantity});
   };
   useEffect(() => {
     getProductDetails();

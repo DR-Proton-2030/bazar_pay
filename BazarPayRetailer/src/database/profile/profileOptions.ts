@@ -1,33 +1,34 @@
+import { useNavigation } from "expo-router";
+
 interface Option {
   iconName: string;
   iconColor: string;
   text: string;
-  onPress: () => void;
+  route: string;
 }
-
 export const options: Option[] = [
   {
     iconName: "container",
     iconColor: "green",
     text: "Orders",
-    onPress: () => console.log("Orders pressed"),
+    route:"paymentHistory"
   },
   {
     iconName: "person",
     iconColor: "blue",
     text: "Profile",
-    onPress: () => console.log("Profile pressed"),
+    route:"paymentHistory",
   },
   {
     iconName: "location",
     iconColor: "red",
     text: "Address",
-    onPress: () => console.log("Address pressed"),
+    route:"paymentHistory",
   },
   {
     iconName: "chat-bubble-outline",
     iconColor: "orange",
     text: "Message",
-    onPress: () => console.log("Message pressed"),
+    route:"paymentHistory",
   },
 ];

@@ -1,5 +1,5 @@
 import { Feather } from '@expo/vector-icons';
-import React, { useRef, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -16,6 +16,9 @@ import SliderButton from '../../components/shared/sliderButton/SliderButton';
 import { styles } from './style';
 import AddressModal from '../../components/main/adressModal/AdressModal';
 import { useRoute } from "@react-navigation/native";
+import { api } from '../../utils/api';
+import { useNavigation } from 'expo-router';
+import AuthContext from '../../contexts/authContext/authContext';
 const paymentMethods = [
   {
     id: 'paypal',
@@ -34,22 +37,22 @@ const paymentMethods = [
   },
 ];
 const { height } = Dimensions.get("window");
-export const PaymentScreen =()=> {
 
+
+
+export const PaymentScreen =()=> {
+  const {user}=useContext(AuthContext);
+  const navigation: any = useNavigation();
   const route = useRoute();
-  const { userBuyingPrice}: any = route.params;
-  
+  const { userBuyingPrice,orderDetails, quantity}: any = route.params;
+  console.log("=====>params",userBuyingPrice,orderDetails,quantity)
+
   const [form, setForm] = React.useState({
     paymentMethod: paymentMethods[0].id,
   });
 
-  const [address, setAddress] = useState('Newtown, Kolkata WestBengal, India');
-
   const [modalVisible, setModalVisible] = useState(false);
   const translateY = useRef(new Animated.Value(height)).current;
-  const [departmernt, setDepartmernt] = useState("");
-
-
 
   const handleLogoutPress = () => {
     setModalVisible(true);
@@ -95,7 +98,27 @@ export const PaymentScreen =()=> {
     }).start(() => setModalVisible(false));
   };
 
-
+  const handlePlaceOrder = async () => {
+    try {
+      const payload={
+        product_object_id: orderDetails?.product?._id,
+        wholesaler_object_id: orderDetails?.wholesaler_object_id,
+        retailer_object_id: user?._id,
+        wholesaler_listed_product_object_id: orderDetails?._id,
+        payment_object_id: "60c72b5f4f1a4e3d4c8b456b",
+        order_date: new Date().toISOString(),
+        order_status: "PENDING",
+        possible_delivery_date: "",
+        possible_delivery_time: "",
+        order_quantity:quantity
+      }
+      const result = await api.order.placeOrder(payload);
+      console.log("=======>order placed",result)
+      navigation.navigate("paymentSuccessPage");
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -251,7 +274,7 @@ export const PaymentScreen =()=> {
       </SafeAreaView>
 
       <View style={styles.overlay}>
-      <SliderButton price={999} handleLogoutPress={handleLogoutPress}/>
+      <SliderButton price={userBuyingPrice} handleLogoutPress={handleLogoutPress} handlePlaceOrder={handlePlaceOrder}/>
       </View>
       {modalVisible && (
         <>

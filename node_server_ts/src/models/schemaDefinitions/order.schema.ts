@@ -14,6 +14,7 @@ const orderSchema: Schema<IOrder> = new Schema<IOrder>(
 		wholesaler_listed_product_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
 		payment_object_id: SCHEMA_DEFINITION_PROPERTY.optionalNullObjectId,
 		order_date: SCHEMA_DEFINITION_PROPERTY.optionalNullDate,
+		order_quantity: SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
 		order_status: { ...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default: "PENDING" },
 		possible_delivery_date: SCHEMA_DEFINITION_PROPERTY.optionalNullDate,
 		possible_delivery_time: SCHEMA_DEFINITION_PROPERTY.optionalNullString
