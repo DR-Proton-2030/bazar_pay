@@ -65,8 +65,7 @@ function RootLayoutNav() {
       }} />
       <Stack.Screen name="paymentSuccessPage"
       options={{
-        title:"Payment Successful",
-        headerShown: true,
+        headerShown: false,
         statusBarTranslucent: true,
         statusBarStyle: "dark",
       }} />
