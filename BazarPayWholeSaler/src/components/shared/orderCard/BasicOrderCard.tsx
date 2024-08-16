@@ -1,18 +1,19 @@
+
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, Animated, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, Animated } from 'react-native';
 import { Card, Text, Chip } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
-import { api } from '../../../utils/api';
 
-const OrderCard = ({ order }: any) => {
+const BasicOrderCard = ({ order }: any) => {
   const { product, order_status,_id, createdAt, order_quantity, price } = order;
 
+  // Animated values for animation
   const [translateX] = useState(new Animated.Value(0));
   const [opacity] = useState(new Animated.Value(1));
-  const [backgroundColor] = useState(new Animated.Value(0));
+  const [backgroundColor] = useState(new Animated.Value(0)); // For interpolating background color
 
-
+  // Get status icon based on order status
   const getStatusIcon = (order_status: any) => {
     switch (order_status) {
       case 'CONFIRMED':
@@ -26,70 +27,7 @@ const OrderCard = ({ order }: any) => {
     }
   };
 
-  const updateOrderStatus = async()=>{
-    try {
-      const payload ={
-        order_id:_id,
-        order_status:"CONFIRMED"
-      }
-      const updateStatus = await api.order.updateOrderStatus(payload)
-      console.log(updateStatus)
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  const onGestureEvent = Animated.event(
-    [{ nativeEvent: { translationX: translateX } }],
-    { useNativeDriver: true }
-  );
-
-  const onHandlerStateChange = ({ nativeEvent }: any) => {
-    if (nativeEvent.state === State.END) {
-      if (nativeEvent.translationX > 50) {
-        // Swipe right animation (green background)
-        Animated.timing(translateX, {
-          toValue: 100,
-          duration: 200,
-          useNativeDriver: true,
-        }).start();
-        Animated.timing(opacity, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-        }).start();
-        Animated.timing(backgroundColor, {
-          toValue: 1,
-          duration: 200,
-          useNativeDriver: true,
-        }).start();
-        updateOrderStatus()
-      } else if (nativeEvent.translationX < -50) {
-        // Swipe left animation (red background)
-        Animated.timing(translateX, {
-          toValue: -100,
-          duration: 200,
-          useNativeDriver: true,
-        }).start();
-        Animated.timing(opacity, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-        }).start();
-        Animated.timing(backgroundColor, {
-          toValue: -1,
-          duration: 200,
-          useNativeDriver: true,
-        }).start();
-      } else {
-        // Spring back to the initial position if swipe is not enough
-        Animated.spring(translateX, {
-          toValue: 0,
-          duration: 200,
-          useNativeDriver: true,
-        }).start();
-      }
-    }
-  };
+ 
 
   // Interpolate background color based on translateX value
   const interpolatedBackgroundColor = backgroundColor.interpolate({
@@ -98,13 +36,7 @@ const OrderCard = ({ order }: any) => {
   });
 
   return (
-    <PanGestureHandler
-      onGestureEvent={onGestureEvent}
-      onHandlerStateChange={onHandlerStateChange}
-    >
     
-      <Animated.View style={[styles.animatedCard, { transform: [{ translateX }], opacity, }]}>
-     
         <Card style={[styles.card,{backgroundColor: interpolatedBackgroundColor }]}>
           <Card.Content style={styles.cardContent}>
             <View style={styles.row}>
@@ -124,8 +56,7 @@ const OrderCard = ({ order }: any) => {
             </View>
           </Card.Content>
         </Card>
-      </Animated.View>
-    </PanGestureHandler>
+     
   );
 };
 
@@ -170,4 +101,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderCard;
+export default BasicOrderCard;

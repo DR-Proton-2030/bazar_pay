@@ -124,6 +124,7 @@ function RootLayoutNav() {
         options={{
           headerShown: true,
           headerTitleAlign: "center",
+          statusBarStyle:"dark",
           headerTitle: () => (
             <Text style={{ textAlign: "center", fontSize: 20 }}>
               Order List

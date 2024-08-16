@@ -1,7 +1,9 @@
 import { View, StyleSheet, ScrollView } from 'react-native'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ActiveProducts from '../../src/screens/productList/activeProducts/ActiveProducts'
 import OrderCard from '../../src/components/shared/orderCard/OrderCard';
+import { api } from '../../src/utils/api';
+import BasicOrderCard from '../../src/components/shared/orderCard/BasicOrderCard';
 
 const dummyData = [
   {
@@ -29,15 +31,29 @@ const dummyData = [
 ];
 
 const All = () => {
-//   return (
-//    <ActiveProducts/>
-//   )
-// }
+const [allOrder,setAllOrder]=useState<any[]>([])
+
+const getOrderList = async()=>{
+  try {
+    const filter ={
+      wholesaler_object_id:"6696054a3a1c178ad8053204"
+    }
+    const orders = await api.order.getOrderList(filter)
+    console.log("=======>orders",orders)
+    setAllOrder(orders)
+  } catch (error) {
+    
+  }
+}
+
+useEffect(() => {
+  getOrderList()
+}, [])
 
 return (
   <ScrollView style={styles.container}>
-    {dummyData.map((order, index) => (
-      <OrderCard key={index} order={order} />
+    {allOrder.map((order, index) => (
+      <BasicOrderCard key={index} order={order} />
     ))}
   </ScrollView>
 );

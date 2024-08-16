@@ -10,6 +10,7 @@ import { getCategoryList } from "./category/category";
 import { getSubategoryList } from "./subcategory/subcategory";
 import { getBrandList } from "./brands/brand";
 import { WholesalerUploadProduct } from "./wholesalerListedProducts/wholesalerListedProducts";
+import { getOrderList, updateOrderStatus } from "./order/order";
 
 export const api = {
 	auth: {
@@ -36,6 +37,10 @@ export const api = {
 	wholesaler:{
 		WholesalerUploadProduct,
 
+	},
+	order:{
+		getOrderList,
+		updateOrderStatus
 	}
 
 };

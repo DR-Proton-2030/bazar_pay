@@ -47,9 +47,9 @@ export const placeOrder = async (req: Request, res: Response) => {
 
 export const getOrdersByRetailer = async (req: Request, res: Response) => {
 	try {
-		const { filterQuery } = req.query;
+		const filter: any = req.query;
 
-		const orders = await OrderModel.find({ filterQuery })
+		const orders = await OrderModel.find(filter)
 			.populate("wholesaler")
 			.populate("product")
 			.populate("retailer")
@@ -68,3 +68,31 @@ export const getOrdersByRetailer = async (req: Request, res: Response) => {
 	}
 };
 
+export const updateOrderStatus = async (req: Request, res: Response) => {
+	try {
+		const { order_id, order_status } = req.body;
+
+		const updatedOrder = await OrderModel.findByIdAndUpdate(
+			order_id,
+			{ order_status },
+			{ new: true }
+		);
+
+		if (!updatedOrder) {
+			return res.status(404).json({
+				message: MESSAGE.patch.fail,
+				error: "Order not found",
+			});
+		}
+
+		return res.status(200).json({
+			message: MESSAGE.patch.succ,
+			result: updatedOrder,
+		});
+	} catch (error) {
+		return res.status(400).json({
+			message: MESSAGE.patch.fail,
+			error,
+		});
+	}
+};
