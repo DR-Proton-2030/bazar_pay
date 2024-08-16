@@ -7,21 +7,71 @@ import a11yProps from "../../../shared/tabPanel/tabPanelProps/ayProps";
 import ListedProducts from './listedProducts/ListedProducts'
 import Orders from './orders/Orders'
 import TsrList from './tsrList/TsrList'
+import WholesalerDetailsComponent from '../../../shared/wholesalerDetails/WholesalerDetails'
+import WholesalerContactPerson from '../../../shared/wholesalerContactPerson/WholesalerContactPerson'
+import { api } from '../../../../utils/api'
+import { useLocation } from 'react-router-dom';
 
 const WholesalerDetails = () => {
-
+  const [wholesalerDetail, setWholesalerDetail] = useState<any>(null);
+  const [orderList, setOrderList] = useState<any>(null);
+  const [productList, setProductList] = useState<any>(null);
     const [value, setValue] = useState<number>(0);
     const { setDashboardHeader } = useContext(UIContext);
     
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
       setValue(newValue);
     };
-    
+    const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const wid = queryParams.get('wid');
   
-    
+    const wholesalerDetails = async()=>{
+      try {
+        const filter={
+          _id:wid
+        }
+          const wholesalerDetail = await api.wholesaler.getWholesaler(filter,1)
+          setWholesalerDetail(wholesalerDetail[0])
+      } catch (error) {
+          console.log(error)
+      }
+  }
+  
+  const getOrderList = async()=>{
+    try {
+      const filter={
+        wholesaler_object_id:wid
+      }
+      const response = await api.order.getOrderList(filter)
+      setOrderList(response)
+      
+    } catch (error) {
+      
+    }
+  }
+  const getProductList = async()=>{
+    try {
+      const filter={
+        wholesaler_object_id:wid,
+        
+      }
+      const response = await api.product.getWholesalerListedProducts(filter)
+      console.log("=======>details",response)
+      setProductList(response)
+      
+    } catch (error) {
+      
+    }
+  }
     useEffect(() => {
       setDashboardHeader("Wholesaler Details");
     }, [setDashboardHeader]);
+    useEffect(() => {
+      wholesalerDetails()
+      getOrderList()
+      getProductList()
+    }, []);
   return (
     <div>
          <Box sx={{ width: "100%" }}>
@@ -68,17 +118,17 @@ const WholesalerDetails = () => {
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
-            
+            <WholesalerDetailsComponent wholesalerDetail={wholesalerDetail}/>
          
         </TabPanel>
         <TabPanel value={value} index={1}>
-         
+         <WholesalerContactPerson wholesalerDetail={wholesalerDetail}/>
         </TabPanel>
         <TabPanel value={value} index={2}>
-         <ListedProducts/>
+         <ListedProducts productList={productList}/>
         </TabPanel>
         <TabPanel value={value} index={3}>
-         <Orders/>
+         <Orders orderList={orderList}/>
         </TabPanel>
         <TabPanel value={value} index={4}>
          <TsrList/>

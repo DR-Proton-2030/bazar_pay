@@ -62,3 +62,25 @@ export const getEachWholesalerListedProducts = async (req: Request, res: Respons
 		});
 	}
 };
+
+
+export const getAllListedProducts = async (req: Request, res: Response) => {
+
+	try {
+		const filter = req.query;
+
+		const ProductList = await WholesalerListedProductModel.find(filter)
+			.populate("product")
+
+		return res.status(200).json({
+			message: MESSAGE.get.succ,
+			result: ProductList
+		});
+	} catch (error) {
+		console.log(error)
+		return res.status(400).json({
+			message: MESSAGE.get.fail,
+			error
+		});
+	}
+};

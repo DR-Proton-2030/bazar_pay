@@ -15,6 +15,7 @@ import { getCategory } from "./category/getCategory";
 import { createCategory } from "./category/postCategory";
 import { getCustomer } from "./customer/getCustomer";
 import { getEmployeeList } from "./employee/getEmployee";
+import { getOrderList } from "./order/order";
 import { createAdmin } from "./permission/userManagement/createAdmin";
 import { getBuilderList } from "./permission/userManagement/getBuilderList";
 import { adminAssignProject } from "./products/assignProject";
@@ -25,6 +26,7 @@ import {
 } from "./products/getAdminProjects";
 import { getProducts, updateProductStatus } from "./products/getProducts";
 import { updatePlotPostion } from "./products/updatePlotPosition";
+import { getWholesalerListedProducts } from "./products/wholesalersProducts";
 import { createProductById } from "./productsByid/addProductById";
 import { getProductbyId } from "./productsByid/getProductById";
 import { getSubcategory } from "./subcategory/getSubcategory";
@@ -55,6 +57,7 @@ export const api = {
   product: {
     getProducts,
     updateProductStatus,
+    getWholesalerListedProducts
   },
   booking: {
     getBooking,
@@ -81,5 +84,8 @@ createSubcategory
   productbyId:{
     getProductbyId,
     createProductById
+  },
+  order:{
+    getOrderList
   }
 };

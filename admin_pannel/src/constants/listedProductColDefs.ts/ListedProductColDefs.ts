@@ -1,10 +1,9 @@
 export const ListedProductsColDefs =[
-    {field: "phone_number", headerName: "permission", suppressSizeToFit:true, },
-    {field: "full_name", headerName: "permission",suppressSizeToFit:true},
-    {field: "email", headerName : "Location", suppressSizeToFit:true},
-    {field: "phone_number", headerName: "Time Slot", suppressSizeToFit:true},
-    {field: "phone_number", headerName: "Customer Name", suppressSizeToFit:true},
-    {field: "phone_number", headerName: "Customer Phone", suppressSizeToFit:true},
-    {field: "phone_number", headerName: "Customer Email", suppressSizeToFit:true},
-    {field: "phone_number", headerName: "Action", suppressSizeToFit:true},
+    {field: "product.product_name", headerName: "Product", suppressSizeToFit:true, },
+    {field: "buying_price", headerName: "Buying Price",suppressSizeToFit:true},
+    {field: "marked_price", headerName : "Marked Price", suppressSizeToFit:true},
+    {field: "selling_price", headerName: "Selling Price", suppressSizeToFit:true},
+    {field: "current_stock", headerName: "Current Stock", suppressSizeToFit:true},
+    {field: "selling_status", headerName: "selling status", suppressSizeToFit:true},
+    {field: "product.product_status", headerName: "Product status", suppressSizeToFit:true},
 ]
