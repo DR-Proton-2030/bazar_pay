@@ -32,10 +32,11 @@ const WholesalersList = () => {
   return (
     <View style={styles.container}>
       <AppHeader title={"Sellect Wholesaller"} />
+        {/* <Text style={{fontWeight:500,fontSize:20,marginTop:20,paddingLeft:15}}>All Wholesalers ({wholesalerProduct.length})</Text> */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {wholesalerProduct.map((wholesaler:any, index) => (
-        //  <WholesallerCard productId={productId} wholesaler={wholesaler} index={index}/>
-        <BuyerOptionsCards wholesaler={wholesaler} categoryName={categoryName}/>
+         <WholesallerCard wholesaler={wholesaler} categoryName={categoryName} index={index}/>
+        // <BuyerOptionsCards wholesaler={wholesaler} categoryName={categoryName}/>
         ))}
       </ScrollView>
     </View>
@@ -48,12 +49,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#f5f5f5',
   },
   scrollContainer: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
     paddingVertical: 20,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent:'center',
-    gap:10
+    // flexDirection: 'row',
+    // flexWrap: 'wrap',
+    // justifyContent:'center',
+    // gap:4
   },
   
 });
