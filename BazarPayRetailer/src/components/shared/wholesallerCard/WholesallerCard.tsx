@@ -87,7 +87,7 @@ const WholesallerCard = ({ wholesaler, index, categoryName }: any) => {
               <Feather name="arrow-up-right" size={15} color={Colors.light.background} />
             </View>
           </TouchableOpacity>
-          <View style={{ flexDirection: "row", alignItems: "baseline", gap: 5, marginTop: 10 }}>
+          <View style={{ flexDirection: "row", alignItems: "baseline", gap: 5, marginTop:5 }}>
             <Text>
               Price:
             </Text>

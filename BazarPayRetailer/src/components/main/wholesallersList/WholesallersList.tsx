@@ -31,7 +31,7 @@ const WholesalersList = () => {
   
   return (
     <View style={styles.container}>
-      <AppHeader title={"Sellect Wholesaller"} />
+      <AppHeader title={"Select Wholesaler"} />
         {/* <Text style={{fontWeight:500,fontSize:20,marginTop:20,paddingLeft:15}}>All Wholesalers ({wholesalerProduct.length})</Text> */}
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         {wholesalerProduct.map((wholesaler:any, index) => (
