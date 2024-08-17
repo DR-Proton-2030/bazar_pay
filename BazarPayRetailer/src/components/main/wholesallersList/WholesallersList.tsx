@@ -6,7 +6,8 @@ import { useRoute } from "@react-navigation/native";
 import { api } from '../../../utils/api';
 import WholesallerCard from '../../shared/wholesallerCard/WholesallerCard';
 import BuyerOptionsCards from '../buyerOptions/buyerOptionsCards/BuyerOptionsCards';
-
+import LottieView from 'lottie-react-native';
+import ff from "../../../database/animation/success/Animation - 1721420607611.json"
 
 const WholesalersList = () => {
   const route = useRoute();
@@ -32,13 +33,28 @@ const WholesalersList = () => {
   return (
     <View style={styles.container}>
       <AppHeader title={"Select Wholesaler"} />
-        {/* <Text style={{fontWeight:500,fontSize:20,marginTop:20,paddingLeft:15}}>All Wholesalers ({wholesalerProduct.length})</Text> */}
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {wholesalerProduct.map((wholesaler:any, index) => (
-         <WholesallerCard wholesaler={wholesaler} categoryName={categoryName} index={index}/>
-        // <BuyerOptionsCards wholesaler={wholesaler} categoryName={categoryName}/>
-        ))}
-      </ScrollView>
+      {
+        wholesalerProduct.length <= 0 ?
+        <View style={{marginTop:100}}>
+          <LottieView
+        source={require('../../../database/animation/notfound/Animation - 1723892477680.json')}
+        autoPlay
+        loop={true}
+        style={styles.animation}
+      />
+      <Text style={{textAlign:"center",fontSize:20,fontWeight:600,marginTop:-50}}>
+        No Results Found
+      </Text>
+          </View>
+          :
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+          {wholesalerProduct.map((wholesaler:any, index) => (
+           <WholesallerCard wholesaler={wholesaler} categoryName={categoryName} index={index}/>
+          // <BuyerOptionsCards wholesaler={wholesaler} categoryName={categoryName}/>
+          ))}
+        </ScrollView>
+      }
+     
     </View>
   );
 };
@@ -47,6 +63,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f5f5f5',
+  },
+  animation: {
+    width: 350,
+    height: 350,
+    marginLeft:"auto",
+    marginRight:"auto"
+    // marginTop:-100
+    // backgroundColor:"red"
   },
   scrollContainer: {
     paddingHorizontal: 12,
