@@ -1,9 +1,13 @@
-export const inputFields = [
-    { label: 'Quantity', key: 'quantity', keyboardType: 'numeric' },
-    { label: 'Buying Price', key: 'buyingPrice', keyboardType: 'numeric' },
-    { label: 'Marked Price', key: 'markedPrice', keyboardType: 'numeric' },
-    { label: 'Discount (%)', key: 'discount', keyboardType: 'numeric' },
-    { label: 'Selling Price', key: 'sellingPrice', keyboardType: 'numeric' },
-    { label: 'Current Stock', key: 'currentStock', keyboardType: 'numeric' },
-    // { label: 'Selling Status', key: 'sellingStatus', keyboardType: 'default' },
-  ];
+import { IForm } from "../../@types/types/FormField.type";
+
+export const inputFields: IForm[] = [
+  { label: "Quantity", field: "quantity", keyboardType: "numeric" },
+  {
+    label: "Buying Price (BDT)",
+    field: "buyingPrice",
+    keyboardType: "numeric",
+  },
+  { label: "MRP (BDT)", field: "markedPrice", keyboardType: "numeric" },
+  { label: "Discount (%)", field: "discount", keyboardType: "numeric" },
+  // { label: 'Selling Status', key: 'sellingStatus', keyboardType: 'default' },
+];

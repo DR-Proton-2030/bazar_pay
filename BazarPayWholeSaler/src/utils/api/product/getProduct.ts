@@ -8,32 +8,30 @@ const { get } = request;
 
 const initialRoute = "product";
 
-
-export const getProductList = async (filterQuery:Params) => {
-    try {
-      const endpoint = `${initialRoute}/get-product-list`;
-      const response = await get(
-        endpoint,
-        {
-          ...headers,
-        },
-        filterQuery
-      );
-      if (response) {
+export const getProductList = async (filterQuery: Params) => {
+  try {
+    const endpoint = `${initialRoute}/get-paginated-products`;
+    const response = await get(
+      endpoint,
+      {
+        ...headers,
+      },
+      filterQuery
+    );
+    if (response) {
+      const {
+        data: { message },
+      } = response;
+      if (message === MESSAGE.get.succ) {
         const {
-          data: { message },
+          data: { result, pagination },
         } = response;
-        if (message === MESSAGE.get.succ) {
-          const {
-            data: { result,pagination },
-          } = response;
-          return {result,pagination};
-        }
+        return { result, pagination };
       }
-      throw new Error();
-    } catch (error: unknown) {
-      console.log(error);
-      throw error;
     }
-  };
-  
+    throw new Error();
+  } catch (error: unknown) {
+    console.log(error);
+    throw error;
+  }
+};

@@ -3,6 +3,7 @@ import { windowWidth } from "../../../constants/HeightWidth";
 
 export const productCardStyles = StyleSheet.create({
   outerContainer: {
+    flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
     marginTop: 10,
@@ -13,9 +14,11 @@ export const productCardStyles = StyleSheet.create({
     width: windowWidth - 20,
     borderColor: "#ddd",
     borderWidth: 1,
-    display: "flex",
-    paddingTop:5,
-    paddingLeft:5
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 20,
+    paddingTop: 5,
+    paddingLeft: 5,
   },
   image: {
     width: 90,
@@ -23,19 +26,14 @@ export const productCardStyles = StyleSheet.create({
     borderRadius: 10,
   },
   infoContainer: {
-    position: "absolute",
-    top: 8,
-    bottom: 0,
-    left: 100,
-    right: 0,
-    paddingLeft: 8,
+    paddingVertical: 8,
   },
   title: {
     fontSize: 16,
     fontWeight: "bold",
   },
   priceContainer: {
-    marginTop: 8,
+    marginTop: 4,
   },
   price: {
     fontSize: 14,

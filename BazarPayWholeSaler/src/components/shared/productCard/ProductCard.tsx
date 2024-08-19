@@ -38,7 +38,16 @@ const ProductCard: React.FC<ProductCardProps> = ({
   };
   return (
     <PaperProvider>
-      <StockModal hideModal={hideModal} visible={visible} type={type} value={type==="PRICE" ? product.product_saling_price : product.current_stock} /> 
+      <StockModal
+        hideModal={hideModal}
+        visible={visible}
+        type={type}
+        value={
+          type === "PRICE"
+            ? product.product_saling_price
+            : product.current_stock
+        }
+      />
       <View style={productCardStyles.outerContainer}>
         <TouchableOpacity
           onPress={handleNavigate}
@@ -49,20 +58,20 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <Text style={productCardStyles.title}>{title}</Text>
             <View style={productCardStyles.priceContainer}>
               <Text style={productCardStyles.price}>
-                Buying Price: {buyingPrice}
+                Buying Price: {buyingPrice} BDT
               </Text>
               <Text style={productCardStyles.price}>
-                Selling Price: {sellingPrice}
+                Selling Price: {sellingPrice} BDT
               </Text>
               <Text style={productCardStyles.stock}>Stock: {stock}</Text>
             </View>
           </View>
-          <View style={productCardStyles.separator} />
-          <View style={productCardStyles.gridContainer}>
-            <TouchableOpacity onPress={()=>showModal("STOCK")}>
+          {/* <View style={productCardStyles.separator} /> */}
+          {/* <View style={productCardStyles.gridContainer}>
+            <TouchableOpacity onPress={() => showModal("STOCK")}>
               <Text style={productCardStyles.gridText}>Edit Stock</Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=>showModal("PRICE")}>
+            <TouchableOpacity onPress={() => showModal("PRICE")}>
               <Text style={productCardStyles.gridText}>Edit Price</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={handleNavigate}>
@@ -74,7 +83,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
             <TouchableOpacity>
               <Feather name="more-vertical" size={20} color="blue" />
             </TouchableOpacity>
-          </View>
+          </View> */}
         </TouchableOpacity>
       </View>
     </PaperProvider>

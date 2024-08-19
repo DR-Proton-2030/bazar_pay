@@ -7,17 +7,26 @@ import CategoryDetailsCellRenderer from "../categories/seeDetails/CategorySeeDet
 import FormattedDateCellRenderer from "../../components/shared/dateCellRenderer/FormattedDateCellRenderer";
 import SubcategoryCellRenderer from "../../components/pages/categoryDetails/subCategoryDetails/subcategoryCellRenderer/SubcategoryCellRenderer";
 import SeeDetails from "../../components/pages/categoryDetails/subCategoryDetails/seeDetails/SeeDetails";
-
+import SeeProducts from "../../components/pages/categoryDetails/subCategoryDetails/seeProducts/SeeProducts";
 
 export const SubcategoryColDefs: ColDef[] = [
   {
     field: "name",
     headerName: "Sub category Name",
-    cellRenderer: SubcategoryCellRenderer
+    cellRenderer: SubcategoryCellRenderer,
   },
- 
+
   { field: "description", headerName: "Details" },
-  { field: "createdAt", headerName: "Created On", cellRenderer: FormattedDateCellRenderer },
-  { field: "updatedAt", headerName: "Last Updated On" , cellRenderer: FormattedDateCellRenderer},
-  { field: "action", headerName: "Action" , cellRenderer: SeeDetails},
+  {
+    field: "createdAt",
+    headerName: "Created On",
+    cellRenderer: FormattedDateCellRenderer,
+  },
+  {
+    field: "updatedAt",
+    headerName: "Last Updated On",
+    cellRenderer: FormattedDateCellRenderer,
+  },
+  { field: "action", headerName: "Action", cellRenderer: SeeDetails },
+  { field: "action", headerName: "Action", cellRenderer: SeeProducts },
 ];

@@ -22,7 +22,7 @@ const ActiveProducts = () => {
     navigation.navigate("ManualAddProduct");
   };
   const handleNavigateQuictProductAdd = () => {
-    console.log("===>hi")
+    console.log("===>hi");
     navigation.navigate("categoryPage");
   };
 
@@ -45,13 +45,14 @@ const ActiveProducts = () => {
     setLoading(true);
     try {
       const filter = {
-        page,
+        // page,
         wholesaler_object_id: wholesaler?._id,
-        product_status:"ACTIVE"
+        // product_status: "ACTIVE",
       };
-      const response = await api.product.getProductList(filter);
-      console.log("==========>active products",response)
-      setProducts(response.result);
+      const response =
+        await api.wholesalerListedProducts.getWholesalerListedProducts(filter);
+      console.log("==========>active products", response);
+      setProducts(response);
     } catch (error) {
       console.error("Failed to fetch products", error);
     } finally {
@@ -67,7 +68,7 @@ const ActiveProducts = () => {
     <>
       <PaperProvider>
         <Portal>
-          <ProductList loading={loading} products={products}/>
+          <ProductList loading={loading} products={products} />
           <FavGroup action_list={action_list} />
         </Portal>
       </PaperProvider>

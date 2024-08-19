@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import "./builders.css";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { api } from "../../../utils/api";
 import DataGrid from "../../shared/dataGrid/DataGrid";
 import UIContext from "../../../contexts/uiContext/UIContext";
@@ -30,25 +30,24 @@ const Builders = () => {
     setCurrentPage(value);
   };
 
-  const fetchWholesalers = async () => {
-    const fileter = {};
+  const fetchWholesalers = useCallback(async () => {
+    const filter = {};
     try {
-      const response = await api.wholesaler.getWholesaler(fileter, currentPage);
+      const response = await api.wholesaler.getWholesaler(filter, currentPage);
       setRowData(response);
     } catch (error) {
       console.error("Error fetching wholesalers:", error);
     }
-  };
+  }, [currentPage]);
 
   const handleSwitchChange = async (id: string, checked: boolean) => {
-    const newStatus = checked ? "APPROVED" : "PENDING";
+    const newStatus = checked ? "ACTIVE" : "REJECTED";
     const payload = {
       id: id,
-      status: newStatus,
+      approval_status: newStatus,
     };
     try {
       const response = await api.wholesaler.updateWholesalerStatus(payload);
-      fetchWholesalers();
     } catch (error) {
       console.error("Error updating wholesaler status:", error);
     }
@@ -111,13 +110,12 @@ const Builders = () => {
   ];
 
   useEffect(() => {
-    setDashboardHeader("Wholesalers");
-    fetchWholesalers();
-  }, []);
+    setDashboardHeader("Wholesalers List");
+  }, [setDashboardHeader]);
 
   useEffect(() => {
     fetchWholesalers();
-  }, [currentPage]);
+  }, [fetchWholesalers]);
 
   return (
     <div className="builders-container">

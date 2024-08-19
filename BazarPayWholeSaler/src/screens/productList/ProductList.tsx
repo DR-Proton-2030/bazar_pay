@@ -23,17 +23,16 @@ const ProductList = ({ loading, products }: any) => {
           renderItem={({ item }) => (
             <ProductCard
               key={item._id}
-              title={item.product_name}
-              buyingPrice={item.product_buying_price}
-              sellingPrice={item.product_saling_price}
+              title={item.product.product_name}
+              buyingPrice={item.buying_price}
+              sellingPrice={item.selling_price}
               stock={item.current_stock}
-              uri={item.product_image}
+              uri={item.product.product_image}
               product={item}
             />
           )}
         />
       )}
-      
     </SafeAreaView>
   );
 };

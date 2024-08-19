@@ -39,7 +39,7 @@ const AppHeader: React.FC = () => {
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity onPress={openDrawer}>
           <Image
-            source={{ uri: wholesaler?.owner_phone }}
+            source={{ uri: wholesaler?.wholesaler_owner_photo }}
             style={{ width: 50, height: 50, borderRadius: 50 }}
           />
         </TouchableOpacity>

@@ -1,32 +1,35 @@
-import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, ScrollView, RefreshControl, ActivityIndicator } from 'react-native';
-import OrderCard from '../../src/components/shared/orderCard/OrderCard';
-import { api } from '../../src/utils/api';
-
-
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  RefreshControl,
+  ActivityIndicator,
+} from "react-native";
+import OrderCard from "../../src/components/shared/orderCard/OrderCard";
+import { api } from "../../src/utils/api";
+import AuthContext from "../../src/contexts/authContext/authContext";
 
 const Pending = () => {
-  const [allOrder,setAllOrder]=useState<any[]>([])
-
-const getOrderList = async()=>{
-  try {
-    const filter ={
-      wholesaler_object_id:"6696054a3a1c178ad8053204",
-      order_status:"PENDING"
-    }
-    const orders = await api.order.getOrderList(filter)
-    console.log("=======>orders",orders)
-    setAllOrder(orders)
-  } catch (error) {
-    
-  }
-}
-
-useEffect(() => {
-  getOrderList()
-}, [])
-
+  const { user } = useContext(AuthContext);
+  const [allOrder, setAllOrder] = useState<any[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const getOrderList = useCallback(async () => {
+    try {
+      const filter = {
+        wholesaler_object_id: user?._id,
+        order_status: "PENDING",
+      };
+      const orders = await api.order.getOrderList(filter);
+      console.log("=======>orders", orders);
+      setAllOrder(orders);
+    } catch (error) {}
+  }, [user]);
+
+  useEffect(() => {
+    getOrderList();
+  }, [getOrderList]);
 
   const onRefresh = () => {
     setIsRefreshing(true);
@@ -43,7 +46,7 @@ useEffect(() => {
         <RefreshControl
           refreshing={isRefreshing}
           onRefresh={onRefresh}
-          colors={['#9Bd35A', '#689F38']}
+          colors={["#9Bd35A", "#689F38"]}
           progressBackgroundColor="#ffffff"
         />
       }
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    backgroundColor:"white"
+    backgroundColor: "white",
   },
 });
 

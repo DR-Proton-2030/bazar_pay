@@ -6,19 +6,21 @@ import AuthContext from "../../../../contexts/authContext/authContext";
 import WholesalerContext from "../../../../contexts/wholesalerContext/wholesalerContext";
 
 const ProfileView = () => {
-  const {user} = useContext(AuthContext);
-  const {wholesaler} = useContext(WholesalerContext);
+  const { user } = useContext(AuthContext);
+  const { wholesaler } = useContext(WholesalerContext);
   return (
     <View style={{ alignItems: "center", marginBottom: 20 }}>
       <Image
-        source={{uri: wholesaler?.owner_photo}}
+        source={{ uri: wholesaler?.wholesaler_owner_photo }}
         style={{ width: 120, height: 120, borderRadius: 50 }}
       />
       <View style={{ marginLeft: 10, alignItems: "center" }}>
         <Text style={{ fontSize: 18, fontWeight: "bold", marginTop: 10 }}>
-          {user?.full_name}
+          {user?.wholesaler_name}
         </Text>
-        <Text style={{ fontSize: 14, marginTop: 5 }}>+88 {user?.phone_number}</Text>
+        <Text style={{ fontSize: 14, marginTop: 5 }}>
+          +88 {user?.owner_phone}
+        </Text>
         <TouchableOpacity
           onPress={() => console.log("Show Details button clicked")}
           style={{

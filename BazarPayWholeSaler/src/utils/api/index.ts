@@ -1,4 +1,7 @@
-import {  createAdmin, createWholesalerEmployee } from "./auth/wholesalerEmployee";
+import {
+  createAdmin,
+  createWholesalerEmployee,
+} from "./auth/wholesalerEmployee";
 import { createWholesaler } from "./auth/signUp";
 import { loginWholesaler } from "./auth/auth";
 import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
@@ -11,36 +14,38 @@ import { getSubategoryList } from "./subcategory/subcategory";
 import { getBrandList } from "./brands/brand";
 import { WholesalerUploadProduct } from "./wholesalerListedProducts/wholesalerListedProducts";
 import { getOrderList, updateOrderStatus } from "./order/order";
+import { getWholesalerListedProducts } from "./wholesalerListedProducts/getWholesaleListedProduct";
 
 export const api = {
-	auth: {
-		createWholesaler,
-		createWholesalerEmployee,
-		loginWholesaler,
-		getOtp,
-		getLoginOtp
-	},
-	product:{
-		createProduct,
-		getProductList,
-		updateProduct
-	},
-	category:{
-		getCategoryList
-	},
-	subcategory:{
-		getSubategoryList
-	},
-	brands:{
-		getBrandList
-	},
-	wholesaler:{
-		WholesalerUploadProduct,
-
-	},
-	order:{
-		getOrderList,
-		updateOrderStatus
-	}
-
+  auth: {
+    createWholesaler,
+    createWholesalerEmployee,
+    loginWholesaler,
+    getOtp,
+    getLoginOtp,
+  },
+  product: {
+    createProduct,
+    getProductList,
+    updateProduct,
+  },
+  category: {
+    getCategoryList,
+  },
+  subcategory: {
+    getSubategoryList,
+  },
+  brands: {
+    getBrandList,
+  },
+  wholesaler: {
+    WholesalerUploadProduct,
+  },
+  wholesalerListedProducts: {
+    getWholesalerListedProducts,
+  },
+  order: {
+    getOrderList,
+    updateOrderStatus,
+  },
 };
