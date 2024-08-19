@@ -6,8 +6,7 @@ import { PanGestureHandler, State } from 'react-native-gesture-handler';
 import { api } from '../../../utils/api';
 
 const OrderCard = ({ order }: any) => {
-  const { product, order_status,_id, createdAt, order_quantity, price } = order;
-
+  const { product, order_status,_id, createdAt, order_quantity, wholesalerListedProduct } = order;
   const [translateX] = useState(new Animated.Value(0));
   const [opacity] = useState(new Animated.Value(1));
   const [backgroundColor] = useState(new Animated.Value(0));
@@ -90,7 +89,16 @@ const OrderCard = ({ order }: any) => {
       }
     }
   };
-
+  function formatDate(dateString:any) {
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    
+    return `${day} ${month} ${year}`;
+  }
   // Interpolate background color based on translateX value
   const interpolatedBackgroundColor = backgroundColor.interpolate({
     inputRange: [-1, 0, 1],
@@ -112,11 +120,15 @@ const OrderCard = ({ order }: any) => {
               <View style={styles.infoContainer}>
                 <Text style={styles.productName}>{product?.product_name}</Text>
                 <View style={styles.detailsRow}>
-                  <Text style={styles.details}>Order Date: {createdAt}</Text>
+                  <Text style={styles.details}>Order Date: {formatDate(createdAt)}</Text>
                 </View>
                 <View style={styles.detailsRow}>
-                  <Text style={styles.details}>Quantity: {order_quantity}</Text>
+                  <Text style={styles.details}>Current Stock: {wholesalerListedProduct?.current_stock}</Text>
                 </View>
+                <View style={styles.detailsRow}>
+                  <Text style={styles.details}>Order Quantity: {order_quantity}</Text>
+                </View>
+                
                 <View style={styles.status}>
                   <Chip icon={() => getStatusIcon(order_status)}>{order_status}</Chip>
                 </View>

@@ -8,6 +8,7 @@ import wholesalerListedproductSchema from "./wholesalerListedProduct.schema";
 import RetailerModel from "../retailer.model";
 import paymentSchema from "./payment.schema";
 import PaymentModel from "../payment.model";
+import WholesalerListedProductModel from "../wholesalerListedproduct.model";
 
 const orderSchema: Schema<IOrder> = new Schema<IOrder>(
 	{
@@ -35,6 +36,12 @@ const wholesalerVirtualReference: VirtualTypeOptions<IOrder> = {
 	foreignField: "_id",
 	justOne: true
 };
+const wholesalerProductVirtualReference: VirtualTypeOptions<IOrder> = {
+	ref: WholesalerListedProductModel,
+	localField: "wholesaler_listed_product_object_id",
+	foreignField: "_id",
+	justOne: true
+};
 const productVirtualReference: VirtualTypeOptions<IOrder> = {
 	ref: productModel,
 	localField: "product_object_id",
@@ -57,7 +64,7 @@ const paymentVirtualReference: VirtualTypeOptions<IOrder> = {
 orderSchema.virtual("wholesaler", wholesalerVirtualReference);
 orderSchema.virtual("product", productVirtualReference);
 orderSchema.virtual("retailer", retailerVirtualReference);
-orderSchema.virtual("wholesalerListedProduct", wholesalerListedproductSchema);
+orderSchema.virtual("wholesalerListedProduct", wholesalerProductVirtualReference);
 orderSchema.virtual("payment", paymentVirtualReference);
 
 export default orderSchema;

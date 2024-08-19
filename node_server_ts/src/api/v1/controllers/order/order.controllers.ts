@@ -53,6 +53,7 @@ export const getOrdersByRetailer = async (req: Request, res: Response) => {
 			.populate("wholesaler")
 			.populate("product")
 			.populate("retailer")
+			.populate("wholesalerListedProduct")
 			.populate("payment");
 
 		return res.status(200).json({
