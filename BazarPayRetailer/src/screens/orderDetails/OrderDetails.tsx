@@ -9,8 +9,16 @@ import {
   Image,
 } from 'react-native';
 import { styles } from './orderStyle';
+import { useRoute } from "@react-navigation/native";
+import RNPrint from 'react-native-print';
+import { useNavigation } from 'expo-router';
 
-export const OrderDetails =()=> {
+export const OrderDetails = () => {
+  const route = useRoute();
+  const { product }: any = route.params;
+  console.log("==================>product", product)
+  const navigation: any = useNavigation();
+
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -19,7 +27,7 @@ export const OrderDetails =()=> {
             <View style={styles.headerAction}>
               <TouchableOpacity
                 onPress={() => {
-                  // handle onPress
+                  navigation.goBack()
                 }}>
                 <Feather
                   color="#0e0e0e"
@@ -39,16 +47,16 @@ export const OrderDetails =()=> {
           <ScrollView
             contentContainerStyle={styles.receipt}
             showsVerticalScrollIndicator={false}>
-           
-            <Image source={{uri:"https://images.samsung.com/is/image/samsung/p6pim/in/sm-a346ezkrins/gallery/in-galaxy-a34-5g-sm-a346-452746-452746-sm-a346ezkrins-540119575?imwidth=480" }} style={styles.receiptLogo} />
+
+            <Image source={{ uri: product?.product?.product_image }} style={styles.receiptLogo} />
             <Text style={styles.receiptTitle}>
-              Galaxy A35
+              {product?.product?.product_name}
             </Text>
 
-            <Text style={styles.receiptSubtitle}>Invoice #0012-2832</Text>
+            <Text style={styles.receiptSubtitle}>Invoice #{product?._id}</Text>
 
             <View style={styles.receiptPrice}>
-              <Text style={styles.receiptPriceText}>$115,900</Text>
+              <Text style={styles.receiptPriceText}>৳{product?.wholesalerListedProduct?.selling_price}</Text>
 
               <Text
                 style={[
@@ -60,11 +68,8 @@ export const OrderDetails =()=> {
             </View>
 
             <Text style={styles.receiptDescription}>
-              Software Development March 2023 - April 2023
+              {product?.wholesaler?.owner_name} Company
             </Text>
-
-            
-
             <View style={styles.divider}>
               <View style={styles.dividerInset} />
             </View>
@@ -78,43 +83,33 @@ export const OrderDetails =()=> {
                 <Text style={styles.detailsValue}>April 2, 2023</Text>
               </View>
 
-              <View style={styles.detailsRow}>
-                <Text style={styles.detailsField}>Category</Text>
 
-                <Text style={styles.detailsValue}>Development</Text>
-              </View>
 
               <View style={styles.detailsRow}>
                 <Text style={styles.detailsField}>Payment method</Text>
 
-                <Text style={styles.detailsValue}>Visa ending in 0182</Text>
+                <Text style={styles.detailsValue}>Bkash Test payment</Text>
               </View>
 
               <View style={styles.detailsRow}>
                 <Text style={styles.detailsField}>Receipt Number</Text>
 
-                <Text style={styles.detailsValue}>9876543210</Text>
+                <Text style={styles.detailsValue}>{product?.retailer?.contact_phone}</Text>
               </View>
 
               <View style={styles.detailsRow}>
                 <Text style={styles.detailsField}>Billing Name</Text>
 
-                <Text style={styles.detailsValue}>John Smith</Text>
+                <Text style={styles.detailsValue}>{product?.retailer?.contact_name}</Text>
               </View>
 
               <View style={styles.detailsRow}>
                 <Text style={styles.detailsField}>Billing Email</Text>
 
-                <Text style={styles.detailsValue}>johnsmith@example.com</Text>
+                <Text style={styles.detailsValue}>{product?.retailer?.contact_email}</Text>
               </View>
 
-              <View style={styles.detailsRow}>
-                <Text style={styles.detailsField}>Billing Address</Text>
 
-                <Text style={styles.detailsValue}>
-                  1234 Elm Street, Suite 567, Anytown, USA
-                </Text>
-              </View>
             </View>
           </ScrollView>
         </View>
@@ -122,16 +117,14 @@ export const OrderDetails =()=> {
 
       <View style={styles.overlay}>
         <TouchableOpacity
-          onPress={() => {
-            // handle onPress
-          }}>
+          onPress={()=>{}}>
           <View style={styles.btn}>
             <Text style={styles.btnText}>Save as PDF</Text>
           </View>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            // handle onPress
+            navigation.goBack()
           }}>
           <View style={styles.btnSecondary}>
             <Text style={styles.btnSecondaryText}>Cancel Order</Text>

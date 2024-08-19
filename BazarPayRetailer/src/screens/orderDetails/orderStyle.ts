@@ -148,7 +148,7 @@ export const styles = StyleSheet.create({
     flexBasis: 0,
   },
   detailsValue: {
-    fontSize: 15,
+    fontSize: 12,
     lineHeight: 20,
     fontWeight: '600',
     color: '#444',

@@ -44,21 +44,21 @@ export const PaymentHistoryScreen = () =>{
         <AppHeader title={"My Orders"}/>
      <ScrollView style={{paddingHorizontal:10,marginTop:10}}>
 
-              {orderHistory.map(({ product, order_status, symbol, change, price }:any, index:any) => {
+              {orderHistory.map((item:any, index:any) => {
                   return (
                       <View key={index} style={styles.cardWrapper}>
                     <TouchableOpacity
                       onPress={() => {
                           navigation.navigate('orderDetails', {
-                            product: product,
+                            product: item,
                           });
                         }}>
                       <View style={styles.card}>
                        
-                        <Image style={styles.cardIcon} source={{ uri: product?.product_image }} />
+                        <Image style={styles.cardIcon} source={{ uri: item.product?.product_image }} />
 
                         <View style={styles.cardBody}>
-                          <Text style={styles.cardTitle}>{product?.product_name}</Text>
+                          <Text style={styles.cardTitle}>{item.product?.product_name}</Text>
 
                           <View style={styles.cardSubtitle}>
                             <Text style={styles.cardSymbol}>2 Days ago</Text>
@@ -67,7 +67,7 @@ export const PaymentHistoryScreen = () =>{
                         </View>
 
                         <Text style={styles.cardPrice}>
-                          {order_status}
+                          {item.order_status}
                         </Text>
                       </View>
                     </TouchableOpacity>

@@ -1,4 +1,4 @@
-import { Feather } from "@expo/vector-icons";
+import { Feather, Octicons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
@@ -15,6 +15,14 @@ interface DrawerItem {
 
 export const createDrawerItems = (navigation: NavigationProp<any>) => {
   const drawerItems: DrawerItem[] = [
+    {
+      Icon: Octicons,
+      iconName: "clock",
+      iconSize: 22,
+      iconColor: Colors.light.orange,
+      text: "Order History",
+      onPress: () => navigation.navigate("paymentHistory"),
+    },
     {
       Icon: Feather,
       iconName: "edit",

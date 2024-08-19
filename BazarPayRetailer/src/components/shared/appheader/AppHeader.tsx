@@ -46,7 +46,7 @@ const AppHeader = () => {
             user ?
             <>
               <Text style={{ fontWeight: "400", marginLeft: 10, fontSize: 15 }}>
-                {user?.retailer_name} TestCompany
+                {user?.retailer_name}
               </Text>
               <Text style={globalStyle.posttitle}>{user?.contact_name}</Text>
             </>

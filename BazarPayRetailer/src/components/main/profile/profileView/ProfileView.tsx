@@ -1,22 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Image, Text, TouchableOpacity } from "react-native";
 import Colors from "../../../../constants/Colors";
 import { Foundation } from "@expo/vector-icons";
+import AuthContext from "../../../../contexts/authContext/authContext";
 
 const ProfileView = () => {
+  const {user}=useContext(AuthContext)
   return (
     <View style={{ alignItems: "center", marginBottom: 20 }}>
       <Image
         source={{
-          uri: "https://img.icons8.com/?size=512&id=108652&format=png",
+          uri: user?.logo,
         }}
         style={{ width: 120, height: 120, borderRadius: 50 }}
       />
       <View style={{ marginLeft: 10, alignItems: "center" }}>
         <Text style={{ fontSize: 18, fontWeight: "bold", marginTop: 10 }}>
-          Your Name
+        {user?.retailer_name}
         </Text>
-        <Text style={{ fontSize: 14, marginTop: 5 }}>nomanroni@gmail.com</Text>
+        <Text style={{ fontSize: 14, marginTop: 5 }}>{user?.contact_email}</Text>
         <TouchableOpacity
           onPress={() => console.log("Show Details button clicked")}
           style={{
