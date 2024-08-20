@@ -6,7 +6,9 @@ export interface IProduct {
 	product_image: string;
 	unit: string;
 	product_status: string;
+	profit_percentage: number;
 	category_object_id: SchemaDefinitionProperty<Types.ObjectId>;
 	subcategory_object_id: SchemaDefinitionProperty<Types.ObjectId>;
 	brand_object_id: SchemaDefinitionProperty<Types.ObjectId>;
+
 }

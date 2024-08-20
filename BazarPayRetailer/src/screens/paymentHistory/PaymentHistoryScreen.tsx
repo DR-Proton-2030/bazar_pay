@@ -60,10 +60,7 @@ export const PaymentHistoryScreen = () =>{
                         <View style={styles.cardBody}>
                           <Text style={styles.cardTitle}>{item.product?.product_name}</Text>
 
-                          <View style={styles.cardSubtitle}>
-                            <Text style={styles.cardSymbol}>2 Days ago</Text>
-
-                          </View>
+                          
                         </View>
 
                         <Text style={styles.cardPrice}>

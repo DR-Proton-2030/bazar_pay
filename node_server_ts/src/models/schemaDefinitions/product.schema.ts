@@ -17,6 +17,7 @@ const productSchema: Schema<IProduct> = new Schema<IProduct>(
 		brand_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
 		subcategory_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
 		category_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
+		profit_percentage: SCHEMA_DEFINITION_PROPERTY.optionalNullNumber,
 		product_status: { ...SCHEMA_DEFINITION_PROPERTY.optionalNullString, default: PRODUCT_STATUS.active }
 	},
 	{
