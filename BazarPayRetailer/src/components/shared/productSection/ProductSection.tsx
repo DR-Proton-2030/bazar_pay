@@ -39,7 +39,7 @@ const ProductSection = () => {
           View more
         </Text>
       </View>
-          <View style={{ flexDirection: "row", gap:8,justifyContent:"center"}}>
+          <View style={{ flexDirection: "row", gap:8,justifyContent:"flex-start"}}>
             {category.subcategoryInstance.map((subcategory:any) => (
               <SubCategoryCard categoryName={category?.name} key={subcategory._id} product={subcategory} categoryId={category?._id}/>
             ))}

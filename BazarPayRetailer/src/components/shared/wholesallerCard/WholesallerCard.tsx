@@ -28,9 +28,38 @@ const WholesallerCard = ({ wholesaler, index, categoryName }: any) => {
         width={65}
       />
       <View style={{ flexDirection: "row" }}>
-        <View>
+        <View style={{ width: "88%" }}>
+          <View style={{ flexDirection: "row", alignItems: "baseline", gap: 2, justifyContent: "space-between" }}>
 
-          <Text style={{ fontSize: 16, fontWeight: "700" }}>{wholesaler?.wholesaler?.owner_name}</Text>
+            <Text style={{ fontSize: 16, fontWeight: "700" }}>{wholesaler?.wholesaler?.owner_name}</Text>
+            <TouchableOpacity style={{
+              flexDirection: "row", alignItems: "baseline", gap: 2,
+            }} onPress={handleNavigate}>
+
+              <Text
+                style={{
+                  fontSize: 14,
+                  color: Colors.light.orange,
+                  fontWeight: "600",
+                  marginTop: 4
+                }}
+              >
+                View Details
+              </Text>
+              <View style={{
+                backgroundColor: Colors.light.orange,
+                width: 23, height: 23, borderRadius: 999, alignItems: "center", justifyContent: "center"
+              }}>
+                <Feather name="arrow-up-right" size={15} color={Colors.light.background} />
+              </View>
+            </TouchableOpacity>
+          </View>
+
+
+          <View style={{ flexDirection: "row", alignItems: "center", gap: 2, justifyContent: "space-between"}}>
+            <View>
+
+           
           <View
             style={{
               flexDirection: "row",
@@ -57,15 +86,22 @@ const WholesallerCard = ({ wholesaler, index, categoryName }: any) => {
                 borderRadius: 999,
                 borderWidth: 0.5,
                 marginTop: 3,
-                marginBottom: -10
               }}
               height={23}
               width={23}
             />
-            <Text style={{ marginBottom: -14 }}>{wholesaler?.wholesaler?.wholesaler_name}</Text>
+            <Text style={{ }}>{wholesaler?.wholesaler?.wholesaler_name}</Text>
+          </View>
+          </View>
+          <View style={{ flexDirection: "row", alignItems: "baseline", gap: 5, marginTop:5 }}>
+            <Text>
+              Price:
+            </Text>
+            <Text style={{ fontSize: 22 }}>{wholesaler?.selling_price}৳</Text>
+          </View>
           </View>
         </View>
-        <View style={{ marginLeft: 50 }}>
+        {/* <View style={{ marginLeft: 20 }}>
           <TouchableOpacity style={{
             flexDirection: "row", alignItems: "baseline", gap: 2,
           }} onPress={handleNavigate}>
@@ -94,7 +130,7 @@ const WholesallerCard = ({ wholesaler, index, categoryName }: any) => {
             <Text style={{ fontSize: 22 }}>{wholesaler?.selling_price}৳</Text>
           </View>
 
-        </View>
+        </View> */}
       </View>
     </View>
   );
