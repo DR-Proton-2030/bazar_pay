@@ -70,8 +70,8 @@ const ProductDetailsScreen = () => {
         <View style={ProductStyles.overlayContent}>
           <Text style={ProductStyles.overlayContentTotal}>Price</Text>
           <View style={ProductStyles.overlayContentTop}>
-            <Text style={ProductStyles.overlayContentPriceBefore}>{productDetails?.selling_price}৳</Text>
-            <Text style={ProductStyles.overlayContentPrice}>{productDetails?.marked_price}৳</Text>
+            <Text style={ProductStyles.overlayContentPriceBefore}>{productDetails?.marked_price}৳</Text>
+            <Text style={ProductStyles.overlayContentPrice}>{productDetails?.selling_price}৳</Text>
           </View>
         </View>
         <TouchableOpacity onPress={() => setModalVisible(true)}>

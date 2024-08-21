@@ -6,10 +6,10 @@ import QuickAddProductForm from "../../components/main/quickAddProductForm/Quick
 const QuickAddProductPage = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
-  const { productId, productImage }: any = route.params;
+  const { productId, productImage ,productPercent }: any = route.params;
   return (
     <View style={{ flex: 1, backgroundColor: "#fff", paddingHorizontal: 10 }}>
-      <QuickAddProductForm productId={productId} productImage={productImage} />
+      <QuickAddProductForm productId={productId} productImage={productImage} productPercent={productPercent} />
     </View>
   );
 };

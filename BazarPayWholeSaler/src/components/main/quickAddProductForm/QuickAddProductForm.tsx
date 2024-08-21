@@ -8,7 +8,7 @@ import AuthContext from "../../../contexts/authContext/authContext";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { globalStyle } from "../../../globalStyles/globalStyles";
 
-const QuickAddProductForm = ({ productId, productImage }: any) => {
+const QuickAddProductForm = ({ productId, productImage ,productPercent}: any) => {
   const { user } = useContext(AuthContext);
   const [formValues, setFormValues] = useState<any>({
     quantity: 0,
@@ -50,14 +50,19 @@ const QuickAddProductForm = ({ productId, productImage }: any) => {
     setFormValues(Object.assign({}, formValues, { [key]: value }));
   };
 
+  const AfterProfitSellingPrice = (price:number)=>{
+    const val = price+ (price * productPercent)/100
+    return val;
+  }
   const handleSubmit = async () => {
+
     const productToUpload = {
       product_object_id: productId,
       wholesaler_object_id: user?._id || "66866383cf6daa0537ad4d8d",
       buying_price: parseFloat(formValues.buyingPrice),
       marked_price: parseFloat(formValues.markedPrice),
       discount: parseFloat(formValues.discount),
-      selling_price: parseFloat(formValues.sellingPrice),
+      selling_price: AfterProfitSellingPrice(formValues.sellingPrice),
       current_stock: parseInt(formValues.quantity),
       selling_status: formValues.sellingStatus || "In Stock",
     };
