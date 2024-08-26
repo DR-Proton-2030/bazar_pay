@@ -4,6 +4,7 @@ import { View, StyleSheet, Image, Animated } from 'react-native';
 import { Card, Text, Chip } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
+import { useNavigation } from 'expo-router';
 
 const BasicOrderCard = ({ order }: any) => {
   const { product, order_status,_id, createdAt, order_quantity, price } = order;
@@ -27,7 +28,10 @@ const BasicOrderCard = ({ order }: any) => {
     }
   };
 
- 
+  const navigation: any = useNavigation();
+  const handleNavigate = () => {
+    navigation.navigate("orderDetails", { order: order });
+  };
 
   // Interpolate background color based on translateX value
   const interpolatedBackgroundColor = backgroundColor.interpolate({
@@ -37,7 +41,7 @@ const BasicOrderCard = ({ order }: any) => {
 
   return (
     
-        <Card style={[styles.card,{backgroundColor: interpolatedBackgroundColor }]}>
+        <Card onPress={handleNavigate} style={[styles.card,{backgroundColor: interpolatedBackgroundColor }]}>
           <Card.Content style={styles.cardContent}>
             <View style={styles.row}>
               <Image source={{ uri: product?.product_image }} style={styles.productImage} />

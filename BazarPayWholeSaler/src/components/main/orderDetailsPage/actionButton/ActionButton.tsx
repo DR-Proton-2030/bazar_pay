@@ -1,0 +1,107 @@
+import React from "react";
+import { StyleSheet, View, TouchableOpacity, Text } from "react-native";
+import Colors from "../../../../constants/Colors";
+import Entypo from "@expo/vector-icons/Entypo";
+import { useNavigation } from "expo-router";
+
+const ActionButton = () => {
+  const navigation: any = useNavigation();
+  const handleNavigate = () => {
+    navigation.navigate("orderSuccess");
+  };
+  return (
+    <View style={styles.overlay}>
+      <TouchableOpacity onPress={handleNavigate}>
+        <View style={styles.btn}>
+          <Entypo name="check" size={24} color="white" />
+          <Text style={styles.btnText}>Accept Order</Text>
+        </View>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          // handle onPress
+        }}
+      >
+        <View style={styles.btn2}>
+          <Entypo name="cross" size={24} color="white" />
+          <Text style={styles.btnText}>Cancel Order</Text>
+        </View>
+      </TouchableOpacity>
+    </View>
+  );
+};
+
+export default ActionButton;
+
+const styles = StyleSheet.create({
+  overlay: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    backgroundColor: Colors.light.cardColor,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingTop: 12,
+    paddingHorizontal: 16,
+    paddingBottom: 18,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    gap: 10,
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+  },
+  /** Placeholder */
+  placeholder: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+    height: 400,
+    marginTop: 60,
+    padding: 24,
+    backgroundColor: "#F3F4F6",
+  },
+  placeholderInset: {
+    borderWidth: 4,
+    borderColor: "#CFD1D4",
+    borderStyle: "dashed",
+    borderRadius: 9,
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 0,
+  },
+  /** Button */
+  btn: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    backgroundColor: "#5FBC39",
+    borderColor: "#5FBC39",
+  },
+  btn2: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderWidth: 1,
+    backgroundColor: "red",
+    borderColor: "red",
+  },
+  btnText: {
+    fontSize: 18,
+    lineHeight: 26,
+    fontWeight: "600",
+    color: "#fff",
+  },
+});

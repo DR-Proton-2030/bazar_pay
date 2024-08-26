@@ -22,7 +22,6 @@ const Pending = () => {
         order_status: "PENDING",
       };
       const orders = await api.order.getOrderList(filter);
-      console.log("=======>orders", orders);
       setAllOrder(orders);
     } catch (error) {}
   }, [user]);

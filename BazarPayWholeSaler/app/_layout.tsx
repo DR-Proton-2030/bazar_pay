@@ -10,6 +10,7 @@ import WholesalerContextProvider from "../src/contexts/wholesalerContext/Provide
 import AuthContextProvider from "../src/contexts/authContext/Provider";
 import AuthContext from "../src/contexts/authContext/authContext";
 import WholesalerContext from "../src/contexts/wholesalerContext/wholesalerContext";
+import React from "react";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -186,6 +187,28 @@ function RootLayoutNav() {
               Due / Savings
             </Text>
           ),
+        }}
+      />
+      <Stack.Screen
+        name="orderDetails"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              Order Details
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="orderSuccess"
+        options={{
+          headerShown: false,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          
         }}
       />
       <Stack.Screen

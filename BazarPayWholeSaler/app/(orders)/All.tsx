@@ -15,7 +15,6 @@ const All = () => {
         wholesaler_object_id: user?._id,
       };
       const orders = await api.order.getOrderList(filter);
-      console.log("=======>orders", orders);
       setAllOrder(orders);
     } catch (error) {}
   };
