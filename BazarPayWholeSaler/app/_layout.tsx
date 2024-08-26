@@ -176,6 +176,19 @@ function RootLayoutNav() {
         }}
       />
       <Stack.Screen
+        name="dueSavings"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              Due / Savings
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
         name="subcategoryPage"
         options={{
           headerShown: true,

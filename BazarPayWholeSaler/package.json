@@ -36,8 +36,7 @@
     "react-native-screens": "3.31.1",
     "react-native-select-dropdown": "^4.0.1",
     "react-native-tab-view": "^3.5.2",
-    "react-native-web": "~0.19.6",
-    "uninstall": "^0.0.0"
+    "react-native-web": "~0.19.6"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

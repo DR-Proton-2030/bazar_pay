@@ -170,61 +170,7 @@ const ProductList = () => {
     <div>
       <Box sx={{ width: "100%" }}>
         <Box>
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="basic tabs example"
-            TabIndicatorProps={{
-              style: {
-                border: "none",
-                backgroundColor: "#3876BF",
-              },
-            }}
-            className="glb-tab-panel"
-          >
-            <Tab label="Pending For Approval" {...a11yProps(0)} className="tab-text" />
-            <Tab label="Approved Products" {...a11yProps(1)} className="tab-text" />
-            <Tab label="All" {...a11yProps(2)} className="tab-text"/>
-          </Tabs>
-        </Box>
-        <TabPanel value={value} index={0}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "right",
-              alignItems: "right",
-              marginBottom: "20px",
-            }}
-          >
-            <Download onClick={onDownloadClickForPending}/>
-          </div>
-          <DataGrid
-            colDefs={ProductDefs}
-            rowData={pendingProductList}
-            key={0}
-          ></DataGrid>
-          {/* <BasicPagination currentPage={pagination.currentPage} handlePageChange={()=>{}} pageCount={pagination.pageCount} key={0} /> */}
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "right",
-              alignItems: "right",
-              marginBottom: "20px",
-            }}
-          >
-            <Download onClick={onDownloadClickForApproved}/>
-          </div>
-          <DataGrid
-            colDefs={ProductDefs}
-            rowData={approvedProductList}
-            key={1}
-          ></DataGrid>
-          {/* <BasicPagination currentPage={} /> */}
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          <div
+        <div
             style={{
               display: "flex",
               justifyContent: "right",
@@ -240,7 +186,7 @@ const ProductList = () => {
             key={2}
           ></DataGrid>
           <BasicPagination />
-        </TabPanel>
+      </Box>
       </Box>
     </div>
   );
