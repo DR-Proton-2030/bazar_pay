@@ -27,6 +27,7 @@ import {
 } from 'react-native';
 import SelectDropdown from 'react-native-select-dropdown';
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
+import { useNavigation } from 'expo-router';
 
 const users = [
 
@@ -94,6 +95,10 @@ const users = [
 
 export const BalanceHistory = () => {
   const [input, setInput] = useState('');
+  const navigation: any = useNavigation();
+  const handleNavigate = () => {
+    navigation.navigate("paymentDue");
+  };
   const filteredRows = useMemo(() => {
     const rows = [];
     const query = input.toLowerCase();
@@ -195,9 +200,7 @@ export const BalanceHistory = () => {
               return (
                 <View key={index} style={styles.cardWrapper}>
                   <TouchableOpacity
-                    onPress={() => {
-                      // handle onPress
-                    }}>
+                    onPress={handleNavigate}>
                     <View style={styles.card}>
                       {img ? (
                         <Image

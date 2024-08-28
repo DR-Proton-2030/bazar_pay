@@ -10,7 +10,7 @@ const BalanceCard = () => {
     style={{
       height: "auto",
       width: "95%",
-      backgroundColor: "#efefef",
+      backgroundColor: "#f1f4ff",
       borderRadius: 10,
       paddingHorizontal:10,
       paddingVertical:25,

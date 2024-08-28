@@ -9,12 +9,12 @@ import ActionButton from '../../components/main/orderDetailsPage/actionButton/Ac
 
 const OrderDetails = () => {
     const route = useRoute();
-    const order:any = route.params;
+    const {order}:any = route.params;
     console.log("=========>param order",order)
   return (
 <View style={{flex:1,backgroundColor:"white",paddingHorizontal:15,paddingVertical:20}}>
-    <Productverview/>
-    <LocationOverview/>
+    <Productverview product={order?.product} order_quantity={order?.order_quantity}/>
+    <LocationOverview retailer={order?.retailer}/>
     <PaymentOverview/>
     <OrderOverview/>
     <ActionButton/>

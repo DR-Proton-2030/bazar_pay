@@ -225,6 +225,19 @@ function RootLayoutNav() {
         }}
       />
       <Stack.Screen
+        name="paymentDue"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+            Payment Details
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
         name="brandPage"
         options={{
           headerShown: true,

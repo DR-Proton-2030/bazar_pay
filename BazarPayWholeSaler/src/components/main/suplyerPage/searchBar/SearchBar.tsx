@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     /** Search */
     search: {
       position: 'relative',
-      backgroundColor: '#efefef',
+      backgroundColor: '#f1f4ff',
       borderRadius: 12,
       alignItems: 'center',
       justifyContent: 'center',
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       paddingBottom: 12,
       borderBottomWidth: 1,
-      borderColor: '#efefef',
+      borderColor: '#f1f4ff',
     },
     searchIcon: {
       position: 'absolute',

@@ -3,7 +3,7 @@ import { View, Text ,TouchableOpacity} from "react-native";
 import Colors from "../../../../constants/Colors";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
-const LocationOverview = () => {
+const LocationOverview = ({retailer}:any) => {
   return (
     <View style={{ marginTop: 20, paddingHorizontal: 5 }}>
       <Text
