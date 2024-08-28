@@ -8,6 +8,7 @@ import SideDrawer from "../sideDrawer/SideDrawer";
 import HeaderIcons from "./headerIcons/HeaderIcons";
 import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerContext";
 import AuthContext from "../../../contexts/authContext/authContext";
+import { LinearGradient } from "expo-linear-gradient";
 
 const AppHeader: React.FC = () => {
   const { user } = useContext(AuthContext);
@@ -35,7 +36,12 @@ const AppHeader: React.FC = () => {
   };
 
   return (
-    <View style={globalStyle.header}>
+    <LinearGradient
+    colors={['#cce0ff', 'transparent']}
+    start={{ x: 0.1, y: 0 }}
+    end={{ x: 0.1, y: 0.6 }}
+    style={globalStyle.header}
+  >
       <View style={{ flexDirection: "row" }}>
         <TouchableOpacity onPress={openDrawer}>
           <Image
@@ -56,7 +62,7 @@ const AppHeader: React.FC = () => {
         />
       </View>
       <HeaderIcons />
-    </View>
+    </LinearGradient>
   );
 };
 

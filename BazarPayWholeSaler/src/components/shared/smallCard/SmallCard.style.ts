@@ -4,14 +4,17 @@ import Colors from "../../../constants/Colors";
 export const smallCardStyle = StyleSheet.create({
     card:{
         flexDirection: "row",
-        backgroundColor: Colors.light.cardColor,
+        backgroundColor: Colors.light.grayBg,
         justifyContent: "flex-start",
         alignItems: "center",
-        padding: 15,
-        borderWidth: 1.5,
+        padding: 18,
+        // borderWidth: 1.5,
         borderRadius: 10,
-        borderColor: Colors.light.border,
-        marginRight:20,
+        borderColor: Colors.light.lightBlue,
+        marginRight:10,
         minWidth: 220,
+        // elevation:1,
+        marginBottom:10,
+        marginLeft:4
     }
 })

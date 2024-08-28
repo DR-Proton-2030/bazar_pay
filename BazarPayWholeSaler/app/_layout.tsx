@@ -85,7 +85,7 @@ function RootLayoutNav() {
       />
       <Stack.Screen
         name="homePage"
-        options={{ headerShown: false, statusBarStyle: "dark" }}
+        options={{ headerShown: false, statusBarStyle: "dark" ,statusBarTranslucent: true }}
       />
       <Stack.Screen
         name="stockPage"

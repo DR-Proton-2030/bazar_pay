@@ -7,7 +7,7 @@ const HeaderIcons: React.FC = () => {
     <View style={{ flexDirection: "row", gap: 16 }}>
       {/* <Feather name="search" size={24} color="black" />
       <AntDesign name="Trophy" size={24} color="black" /> */}
-      <Octicons name="bell-fill" size={24} color="black" />
+      <Octicons name="bell-fill" size={24} color="blue" />
     </View>
   );
 };
