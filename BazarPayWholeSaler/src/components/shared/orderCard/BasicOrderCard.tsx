@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, Image, Animated } from 'react-native';
 import { Card, Text, Chip } from 'react-native-paper';
-import { MaterialIcons } from '@expo/vector-icons';
+import { MaterialIcons ,MaterialCommunityIcons} from '@expo/vector-icons';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
 import { useNavigation } from 'expo-router';
 
@@ -21,8 +21,8 @@ const BasicOrderCard = ({ order }: any) => {
         return <MaterialIcons name="check-circle" size={20} color="green" />;
       case 'PENDING':
         return <MaterialIcons name="pending" size={20} color="orange" />;
-      case 'Cancelled':
-        return <MaterialIcons name="cancel" size={20} color="red" />;
+      case 'SHIPPED':
+        return <MaterialCommunityIcons name="truck-delivery-outline" size={20} color="blue" />;
       default:
         return <MaterialIcons name="pending" size={20} color="gray" />;
     }

@@ -124,19 +124,12 @@ function RootLayoutNav() {
         name="(orders)"
         options={{
           headerShown: true,
-          headerTitleAlign: "center",
-          statusBarStyle:"dark",
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
           headerTitle: () => (
             <Text style={{ textAlign: "center", fontSize: 20 }}>
               Order List
             </Text>
-          ),
-          headerRight: () => (
-            <Entypo
-              name="dots-three-vertical"
-              size={20}
-              color={Colors.light.primary}
-            />
           ),
         }}
       />

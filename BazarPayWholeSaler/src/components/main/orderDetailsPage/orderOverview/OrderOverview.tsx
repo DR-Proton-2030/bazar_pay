@@ -2,7 +2,7 @@ import React from 'react'
 import { View,Text } from 'react-native'
 import Colors from '../../../../constants/Colors'
 
-const OrderOverview = () => {
+const OrderOverview = ({order}:any) => {
   return (
 <View style={{marginTop:20 ,paddingHorizontal:5}}>
     <Text style={{fontSize:20,fontWeight:"700",color:Colors.light.text,marginBottom:7}}>
@@ -13,7 +13,7 @@ const OrderOverview = () => {
             Subtotal
         </Text>
         <Text style={{fontSize:15,fontWeight:"700",color:Colors.light.lightText}}>
-            $200
+        ৳{order?.order_quantity*order?.wholesalerListedProduct?.selling_price}
         </Text>
     </View>
     <View style={{flexDirection:"row",justifyContent:"space-between"}}>
@@ -21,7 +21,7 @@ const OrderOverview = () => {
             Shipping Cost
         </Text>
         <Text style={{fontSize:15,fontWeight:"700",color:Colors.light.lightText}}>
-            $20
+        ৳20
         </Text>
     </View>
     <View style={{flexDirection:"row",justifyContent:"space-between",marginTop:10}}>
@@ -29,7 +29,7 @@ const OrderOverview = () => {
             Total Cost
         </Text>
         <Text style={{fontSize:20,fontWeight:"700",color:Colors.light.text}}>
-            $220
+        ৳{order?.order_quantity*order?.wholesalerListedProduct?.selling_price+20}
         </Text>
     </View>
 </View>

@@ -13,11 +13,11 @@ const OrderDetails = () => {
     console.log("=========>param order",order)
   return (
 <View style={{flex:1,backgroundColor:"white",paddingHorizontal:15,paddingVertical:20}}>
-    <Productverview product={order?.product} order_quantity={order?.order_quantity}/>
+    <Productverview product={order?.product} order_quantity={order?.order_quantity} stock={order?.wholesalerListedProduct?.current_stock}/>
     <LocationOverview retailer={order?.retailer}/>
     <PaymentOverview/>
-    <OrderOverview/>
-    <ActionButton/>
+    <OrderOverview order={order}/>
+    <ActionButton order={order}/>
 </View>
   )
 }

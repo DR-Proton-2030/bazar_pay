@@ -18,8 +18,8 @@ const PaymentOverview = () => {
        <Entypo name="credit-card" size={24} color="blue" />
       </View>
       <View style={{width:"60%"}}>
-        <Text style={{fontSize:16,fontWeight:"700"}}>Kolkata, Jhautala</Text>
-        <Text style={{fontSize:13,fontWeight:"700",color:Colors.light.lightText}}>700156,West Bengal</Text>
+        <Text style={{fontSize:16,fontWeight:"700"}}>Online payment ,Bkash</Text>
+        <Text style={{fontSize:13,fontWeight:"700",color:Colors.light.lightText}}>Account : XXXX123 </Text>
       </View>
     </TouchableOpacity>
         </View>
