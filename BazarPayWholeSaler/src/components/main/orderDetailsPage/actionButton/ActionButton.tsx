@@ -32,7 +32,10 @@ updateOrderStatus("CONFIRMED")
 {
 order?.order_status === "CONFIRMED"?
 <TouchableOpacity
-onPress={()=>updateOrderStatus("SHIPPED")}
+onPress={()=>{
+  updateOrderStatus("SHIPPED") 
+  navigation.navigate("homePage");
+}}
 >
 <View style={styles.btn3}>
   <MaterialCommunityIcons  name="truck-delivery-outline" size={24} color="white" />

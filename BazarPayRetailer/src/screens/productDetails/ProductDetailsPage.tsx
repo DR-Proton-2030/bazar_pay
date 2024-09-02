@@ -35,7 +35,7 @@ const ProductDetailsScreen = () => {
 
   const handleNavigate = async({quantity}:any) => {
       await setModalVisible(false)
-      const totalPrice = quantity * productDetails?.marked_price;
+      const totalPrice = quantity * productDetails?.selling_price;
       console.log(totalPrice)
     navigation.navigate("payments",{userBuyingPrice:totalPrice,orderDetails:productDetails, quantity:quantity});
   };
@@ -98,7 +98,7 @@ const ProductDetailsScreen = () => {
             ]}
           >
             <View style={styles.handle}></View>
-            <CheckoutButtomSheet handleNavigate={handleNavigate} setUserBuyingPrice={setUserBuyingPrice} Price={productDetails?.marked_price} setModalVisible={setModalVisible} />
+            <CheckoutButtomSheet handleNavigate={handleNavigate} setUserBuyingPrice={setUserBuyingPrice} Price={productDetails?.selling_price} setModalVisible={setModalVisible} />
           </Animated.View>
         </View>
       </Modal>

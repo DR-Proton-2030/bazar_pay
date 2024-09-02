@@ -164,15 +164,15 @@ const appRoutes: RouteType[] = [
       icon: <ShoppingCartOutlinedIcon />,
     },
   },
-  {
-    path: "/productDetails",
-    element: <ProductDetails />,
-    state: "plots",
-    sidebarProps: {
-      displayText: "All Products",
-      icon: <ShoppingCartOutlinedIcon />,
-    },
-  },
+  // {
+  //   path: "/productDetails",
+  //   element: <ProductDetails />,
+  //   state: "plots",
+  //   sidebarProps: {
+  //     displayText: "All Products",
+  //     icon: <ShoppingCartOutlinedIcon />,
+  //   },
+  // },
   {
     path: "/reports",
     element: <Reports />,

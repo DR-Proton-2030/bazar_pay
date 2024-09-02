@@ -184,7 +184,7 @@ export const PaymentScreen =()=> {
                   size={17} />
               </TouchableOpacity>
 
-              <Text style={styles.summaryPrice}>৳3.95</Text>
+              <Text style={styles.summaryPrice}>৳0</Text>
             </View>
 
             
@@ -202,15 +202,15 @@ export const PaymentScreen =()=> {
                   size={17} />
               </TouchableOpacity>
 
-              <Text style={styles.summaryPrice}>৳3.75</Text>
+              <Text style={styles.summaryPrice}>৳0</Text>
             </View>
 
             <View style={styles.summaryTotal}>
               <Text style={styles.summaryLabel}>Total</Text>
 
-              <Text style={styles.summaryPriceOld}>৳25.90</Text>
+              <Text style={styles.summaryPriceOld}>৳{userBuyingPrice+100}</Text>
 
-              <Text style={styles.summaryPricePrimary}>৳22.15</Text>
+              <Text style={styles.summaryPricePrimary}>৳{userBuyingPrice}</Text>
             </View>
 
            

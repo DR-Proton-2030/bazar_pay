@@ -9,6 +9,7 @@ import {
 import OrderCard from "../../src/components/shared/orderCard/OrderCard";
 import { api } from "../../src/utils/api";
 import AuthContext from "../../src/contexts/authContext/authContext";
+import BasicOrderCard from "../../src/components/shared/orderCard/BasicOrderCard";
 
 const Pending = () => {
   const { user } = useContext(AuthContext);
@@ -50,9 +51,8 @@ const Pending = () => {
         />
       }
     >
-      {isRefreshing && <ActivityIndicator size="large" color="#0000ff" />}
       {allOrder.map((order, index) => (
-        <OrderCard key={index} order={order} />
+        <BasicOrderCard key={index} order={order} />
       ))}
     </ScrollView>
   );
