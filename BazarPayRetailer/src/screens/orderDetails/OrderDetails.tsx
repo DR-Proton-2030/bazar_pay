@@ -145,7 +145,7 @@ export const OrderDetails = () => {
         <TouchableOpacity
           onPress={()=>{}}>
           <View style={styles.btn}>
-            <Text style={styles.btnText}>{product?.order_status}Save as Invoice</Text>
+            <Text style={styles.btnText}>Download Invoice</Text>
           </View>
         </TouchableOpacity>
      
