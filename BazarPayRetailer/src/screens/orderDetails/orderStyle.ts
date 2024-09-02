@@ -168,6 +168,17 @@ export const styles = StyleSheet.create({
     backgroundColor: Colors.light.orange,
     marginBottom: 12,
   },
+  succ_btn: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 8,
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    backgroundColor: "green",
+    marginBottom: 12,
+    marginTop:10
+  },
   btnText: {
     fontSize: 18,
     lineHeight: 26,

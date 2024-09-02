@@ -12,6 +12,7 @@ import { styles } from './orderStyle';
 import { useRoute } from "@react-navigation/native";
 import RNPrint from 'react-native-print';
 import { useNavigation } from 'expo-router';
+import { api } from '../../utils/api';
 
 export const OrderDetails = () => {
   const route = useRoute();
@@ -19,6 +20,19 @@ export const OrderDetails = () => {
   console.log("==================>product", product)
   const navigation: any = useNavigation();
 
+  const updateOrderStatus = async()=>{
+    try {
+      const payload ={
+        order_id:product?._id,
+        order_status:"DELIVERED"
+      }
+      const updateStatus = await api.order.updateOrderStatus(payload)
+      console.log(updateStatus)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  
   return (
     <View style={{ flex: 1 }}>
       <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -115,13 +129,26 @@ export const OrderDetails = () => {
         </View>
       </SafeAreaView>
 
-      <View style={styles.overlay}>
+{
+  product?.order_status === "DELIVERED"?
+  <View style={styles.overlay}>
         <TouchableOpacity
           onPress={()=>{}}>
           <View style={styles.btn}>
-            <Text style={styles.btnText}>Save as PDF</Text>
+            <Text style={styles.btnText}>Save as Invoice</Text>
           </View>
         </TouchableOpacity>
+        
+      </View>
+      :
+<View style={styles.overlay}>
+        <TouchableOpacity
+          onPress={()=>{}}>
+          <View style={styles.btn}>
+            <Text style={styles.btnText}>{product?.order_status}Save as Invoice</Text>
+          </View>
+        </TouchableOpacity>
+     
         <TouchableOpacity
           onPress={() => {
             navigation.goBack()
@@ -130,7 +157,15 @@ export const OrderDetails = () => {
             <Text style={styles.btnSecondaryText}>Cancel Order</Text>
           </View>
         </TouchableOpacity>
+        <TouchableOpacity
+          onPress={updateOrderStatus}>
+          <View style={styles.succ_btn}>
+            <Text style={styles.btnText}>Order Delivered</Text>
+          </View>
+        </TouchableOpacity>
       </View>
+}
+      
     </View>
   );
 }

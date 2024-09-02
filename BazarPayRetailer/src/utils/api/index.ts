@@ -1,7 +1,7 @@
 import { Login, OtpLogin, createAdmin } from "./auth/login";
 import { getLoginOtp, getOtp } from "./auth/otp";
 import { SignUp } from "./auth/signUp";
-import { getOrderHIstory, placeOrder } from "./order/order";
+import { getOrderHIstory, placeOrder, updateOrderStatus } from "./order/order";
 import { getProductList } from "./products/Products";
 import { getSubcategoryList } from "./subcategory/getSubcategory";
 import { getWholesalerProductDetails } from "./wholesallerProduct/productDetaiils";
@@ -24,7 +24,8 @@ export const api = {
 	},
 	order:{
 		placeOrder,
-		getOrderHIstory
+		getOrderHIstory,
+		updateOrderStatus
 	}
 
 };

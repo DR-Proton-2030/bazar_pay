@@ -103,7 +103,7 @@ export const PaymentScreen =()=> {
       const payload={
         product_object_id: orderDetails?.product?._id,
         wholesaler_object_id: orderDetails?.wholesaler_object_id,
-        retailer_object_id: user?._id || "668bbf12fb3afbe5d9c30531",
+        retailer_object_id: user?._id ,
         wholesaler_listed_product_object_id: orderDetails?._id,
         payment_object_id: "60c72b5f4f1a4e3d4c8b456b",
         order_date: new Date().toISOString(),
