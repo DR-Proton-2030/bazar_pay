@@ -13,6 +13,7 @@ import { useRoute } from "@react-navigation/native";
 import RNPrint from 'react-native-print';
 import { useNavigation } from 'expo-router';
 import { api } from '../../utils/api';
+import { PrintPdf } from '../../components/shared/print/Print';
 
 export const OrderDetails = () => {
   const route = useRoute();
@@ -70,7 +71,7 @@ export const OrderDetails = () => {
             <Text style={styles.receiptSubtitle}>Invoice #{product?._id}</Text>
 
             <View style={styles.receiptPrice}>
-              <Text style={styles.receiptPriceText}>৳{product?.wholesalerListedProduct?.selling_price}</Text>
+              <Text style={styles.receiptPriceText}>৳{product?.order_quantity * product?.wholesalerListedProduct?.selling_price}</Text>
 
               <Text
                 style={[
@@ -132,22 +133,12 @@ export const OrderDetails = () => {
 {
   product?.order_status === "DELIVERED"?
   <View style={styles.overlay}>
-        <TouchableOpacity
-          onPress={()=>{}}>
-          <View style={styles.btn}>
-            <Text style={styles.btnText}>Save as Invoice</Text>
-          </View>
-        </TouchableOpacity>
+     <PrintPdf/>
         
       </View>
       :
 <View style={styles.overlay}>
-        <TouchableOpacity
-          onPress={()=>{}}>
-          <View style={styles.btn}>
-            <Text style={styles.btnText}>Download Invoice</Text>
-          </View>
-        </TouchableOpacity>
+<PrintPdf/>
      
         <TouchableOpacity
           onPress={() => {
