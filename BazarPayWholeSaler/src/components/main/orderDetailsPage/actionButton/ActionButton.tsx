@@ -5,6 +5,7 @@ import Entypo from "@expo/vector-icons/Entypo";
 import { useNavigation } from "expo-router";
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { api } from "../../../../utils/api";
+import { PrintPdfInvoice } from "../../../shared/print/Print";
 
 const ActionButton = ({order}:any) => {
   const navigation: any = useNavigation();
@@ -46,12 +47,7 @@ onPress={()=>{
 :
 order?.order_status === "SHIPPED"?
 
-<TouchableOpacity >
-<View style={styles.btn}>
-  <Entypo name="check" size={24} color="white" />
-  <Text style={styles.btnText}>Download Pdf</Text>
-</View>
-</TouchableOpacity>
+<PrintPdfInvoice/>
 :
 <TouchableOpacity onPress={handleNavigate}>
 <View style={styles.btn}>
