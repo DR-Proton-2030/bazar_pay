@@ -17,19 +17,19 @@ body {
 
 .glb-tab-panel .MuiTab-textColorPrimary.Mui-selected {
   /* color: #28a745 !important; */
-  color: #3876BF !important;
+  color: #3876bf !important;
   /* background-color: rgba(40, 167, 69, 0.12549019607843137) !important; */
-  background-color: #DEECFF !important;
+  background-color: #deecff !important;
   font-family: "poppins", sans-serif !important;
 }
 
 .green-contained-button {
-  background-color: #DEECFF !important;
+  background-color: #deecff !important;
   border-width: 0.8px !important;
   font-weight: 500 !important;
-  border-color: #3876BF !important;
+  border-color: #3876bf !important;
   border-radius: 20px !important;
-  color: #3876BF !important;
+  color: #3876bf !important;
   text-transform: capitalize !important;
   font-family: "Raleway", sans-serif !important;
 }
@@ -38,8 +38,8 @@ body {
   font-size: small;
   font-weight: 500 !important;
   background-color: #e5eefc !important;
-  color: #3876BF !important;
-  border-color: #3876BF 2px !important;
+  color: #3876bf !important;
+  border-color: #3876bf 2px !important;
   text-transform: capitalize !important;
   font-family: "Poppins", sans-serif !important;
 }
@@ -116,6 +116,41 @@ body {
   align-items: center !important;
   gap: 10px !important;
 }
-.tab-text{
+.tab-text {
   font-family: "poppins", sans-serif !important;
+}
+.admin-form-container {
+  width: 100%;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+.label-with-input-field {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+.text-input-field {
+  width: 555px !important;
+}
+.form-labels {
+  font-size: 17px;
+  font-weight: 400;
+}
+.submit-btn-container {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+}
+.form-heading {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 20px;
 }

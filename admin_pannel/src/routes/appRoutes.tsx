@@ -3,22 +3,21 @@ import { RouteType } from "./config";
 import DashboardIndex from "../components/pages/bookings/DashboardIndex";
 import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
 import AllCustomersPage from "../components/pages/allCustomers/AllCustomersPage";
-import CategoryIcon from '@mui/icons-material/Category';
-import PeopleOutlineOutlinedIcon from '@mui/icons-material/PeopleOutlineOutlined';
-import SellOutlinedIcon from '@mui/icons-material/SellOutlined';
-import AdminPanelSettingsOutlinedIcon from '@mui/icons-material/AdminPanelSettingsOutlined';
-import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
-import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined';
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
-import BookmarksOutlinedIcon from '@mui/icons-material/BookmarksOutlined';
+import CategoryIcon from "@mui/icons-material/Category";
+import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined";
+import SellOutlinedIcon from "@mui/icons-material/SellOutlined";
+import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
 import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
 import Builders from "../components/pages/builders/Builders";
 import BuilderForm from "../components/pages/builders/builderForm/BuilderForm";
 import PermissionPage from "../components/pages/permission/PermissionPage";
 import TelecallerManagement from "../components/pages/permission/telecallerManagement/TelecallerManagement";
 import BuilderManagement from "../components/pages/permission/advertisement/Advertisement";
-import UserManagement from "../components/pages/permission/userManagement/UserManagement";
-import UserForm from "../components/pages/permission/userManagement/userForm/UserForm";
+
 import {
   AdminPanelSettings,
   Book,
@@ -51,6 +50,8 @@ import ProductDetails from "../components/pages/categoryDetails/products/Product
 import BrandProducts from "../components/pages/brand/productDetails/BrandProducts";
 import Wholesalers from "../components/pages/builders/Builders";
 import WholesalerDetails from "../components/pages/builders/wholesalerDetails/WholesalerDetails";
+import AdminManagement from "../components/pages/permission/adminManagement/AdminManagement";
+import AddAdminForm from "../components/pages/permission/adminManagement/addAdminForm/AddAdminForm";
 
 const appRoutes: RouteType[] = [
   {
@@ -64,12 +65,12 @@ const appRoutes: RouteType[] = [
     state: "allcustomers",
     sidebarProps: {
       displayText: "All Retailers",
-      icon: <PeopleOutlineOutlinedIcon/>,
+      icon: <PeopleOutlineOutlinedIcon />,
     },
   },
   {
     path: "/wholesalers",
-    element: <Builders/>,
+    element: <Builders />,
     state: "Wholesalers",
     sidebarProps: {
       displayText: "Wholesalers",
@@ -82,41 +83,41 @@ const appRoutes: RouteType[] = [
     state: "categories",
     sidebarProps: {
       displayText: "Categories",
-      icon: <CategoryOutlinedIcon/>,
+      icon: <CategoryOutlinedIcon />,
     },
   },
   {
     path: "/brand",
-    element: <Brand/>,
+    element: <Brand />,
     state: "brand",
     sidebarProps: {
       displayText: "Brand",
-      icon: <SellOutlinedIcon/>,
+      icon: <SellOutlinedIcon />,
     },
   },
   {
     path: "/add-category",
-    element: <AddCategoryForm/>,
+    element: <AddCategoryForm />,
     state: "categories",
   },
   {
     path: "/wholesaler-details",
-    element: <WholesalerDetails/>,
+    element: <WholesalerDetails />,
     state: "wholesalers",
   },
   {
     path: "/add-subcategory",
-    element: <AddSubcategoryForm/>,
+    element: <AddSubcategoryForm />,
     state: "categories",
   },
   {
     path: "/tails",
-    element: <Details/>,
+    element: <Details />,
     state: "categories",
   },
   {
     path: "/add-brand",
-    element: <AddBrandDetails/>,
+    element: <AddBrandDetails />,
     state: "brand",
   },
   {
@@ -171,7 +172,7 @@ const appRoutes: RouteType[] = [
 
     sidebarProps: {
       displayText: "Reports",
-      icon: <BookmarksOutlinedIcon/>,
+      icon: <BookmarksOutlinedIcon />,
     },
   },
 
@@ -181,7 +182,7 @@ const appRoutes: RouteType[] = [
     state: "permission",
     sidebarProps: {
       displayText: "Settings",
-      icon: <SettingsOutlinedIcon/>,
+      icon: <SettingsOutlinedIcon />,
     },
     child: [
       {
@@ -190,16 +191,16 @@ const appRoutes: RouteType[] = [
         state: "bookings.index",
       },
       {
-        path: "/permission/user-management",
-        element: <UserManagement />,
+        path: "/permission/admin-management",
+        element: <AdminManagement />,
         state: "bookings.currentbooking",
         sidebarProps: {
           displayText: "Admin Management",
         },
       },
       {
-        path: "/permission/add-user",
-        element: <UserForm />,
+        path: "/permission/add-admin",
+        element: <AddAdminForm />,
         state: "permission",
       },
       {
