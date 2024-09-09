@@ -1,55 +1,65 @@
-import { View, StyleSheet, ScrollView } from 'react-native'
-import React from 'react'
-import ActiveProducts from '../../src/screens/productList/activeProducts/ActiveProducts'
-import OrderCard from '../../src/components/shared/orderCard/OrderCard';
-
-const dummyData = [
-  {
-    productImage: 'https://bazarpay.s3.ap-south-1.amazonaws.com/product_image/1717676087787.png',
-    productName: 'Product 1',
-    userName: 'User 1',
-    userAvatar: 'https://via.placeholder.com/24',
-    orderStatus: 'Completed',
-    orderDate: '2024-06-20',
-    orderId: '001',
-    quantity: 2,
-    price: 29.99,
-  },
-  {
-    productImage: 'https://bazarpay.s3.ap-south-1.amazonaws.com/product_image/1717676498312.png',
-    productName: 'Test product updated',
-    userName: 'User 4',
-    userAvatar: 'https://via.placeholder.com/24',
-    orderStatus: 'Completed',
-    orderDate: '2024-06-23',
-    orderId: '004',
-    quantity: 4,
-    price: 24.99,
-  },
-];
+import { View, StyleSheet, ScrollView, RefreshControl, ActivityIndicator } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import ActiveProducts from "../../src/screens/productList/activeProducts/ActiveProducts";
+import OrderCard from "../../src/components/shared/orderCard/OrderCard";
+import { api } from "../../src/utils/api";
+import BasicOrderCard from "../../src/components/shared/orderCard/BasicOrderCard";
+import AuthContext from "../../src/contexts/authContext/authContext";
 
 const All = () => {
-//   return (
-//    <ActiveProducts/>
-//   )
-// }
+  const [allOrder, setAllOrder] = useState<any[]>([]);
+  const { user } = useContext(AuthContext);
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-return (
-  <ScrollView style={styles.container}>
-    {dummyData.map((order, index) => (
-      <OrderCard key={index} order={order} />
-    ))}
-  </ScrollView>
-);
+
+  const getOrderList = async () => {
+    try {
+      const filter = {
+        wholesaler_object_id: user?._id,
+      };
+      const orders = await api.order.getOrderList(filter);
+      setAllOrder(orders);
+    } catch (error) {}
+  };
+
+  useEffect(() => {
+    getOrderList();
+  }, []);
+
+  const onRefresh = () => {
+    setIsRefreshing(true);
+    getOrderList()
+    // Simulate fetching new data with a delay
+    setTimeout(() => {
+      setIsRefreshing(false);
+    }, 1000); // Adjust delay as needed
+  };
+
+  return (
+     <ScrollView
+      style={styles.container}
+      refreshControl={
+        <RefreshControl
+          refreshing={isRefreshing}
+          onRefresh={onRefresh}
+          colors={["#9Bd35A", "#689F38"]}
+          progressBackgroundColor="#ffffff"
+        />
+      }
+    >
+      {allOrder.map((order, index) => (
+        <BasicOrderCard key={index} order={order} />
+      ))}
+    </ScrollView>
+  );
 };
 
 const styles = StyleSheet.create({
-container: {
-  flex: 1,
+  container: {
+    flex: 1,
     paddingHorizontal: 10,
-  backgroundColor:"white"
-},
+    backgroundColor: "white",
+  },
 });
 
-
-export default All
+export default All;

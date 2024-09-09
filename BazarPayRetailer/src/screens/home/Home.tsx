@@ -11,6 +11,7 @@ import OfferSection from "../../components/main/offerSection/OfferSection";
 import { useContext, useEffect } from "react";
 import AuthContext from "../../contexts/authContext/authContext";
 import { ProductCartContext } from "../../contexts/productCartContext/Provider";
+import StoryList from "../../components/shared/storyList/StoryList";
 
 export default function HomePage() {
   const context = useContext(ProductCartContext);
@@ -49,7 +50,7 @@ export default function HomePage() {
               <MaterialIcons
                 name="local-grocery-store"
                 size={15}
-                color="red"
+                color="black"
               />
             )}
           />
@@ -76,16 +77,8 @@ export default function HomePage() {
             )}
           />
         </ScrollView>
-        <ScrollView
-          style={{ paddingLeft: 10 }}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        >
-          <ImageCard text={"Fresh, Healthier"} />
-          <ImageCard text={"Fresh, Healthier"} />
-          <ImageCard text={"Fresh, Healthier"} />
-          <ImageCard text={"Fresh, Healthier"} />
-        </ScrollView>
+
+        <StoryList/>
 
         <OfferSection />
 

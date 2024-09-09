@@ -5,10 +5,10 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from './productSmallCardStyle';
 import { useNavigation } from 'expo-router';
 
-const ProductCard = ({ product }: any) => {
+const ProductCard = ({ product,categoryName }: any) => {
     const navigation: any = useNavigation();
     const handleNavigate = () => {
-      navigation.navigate("wholesallersList",{productId:product?._id});
+      navigation.navigate("wholesallersList",{productId:product?._id,categoryName});
     };
     return (
         

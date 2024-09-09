@@ -1,34 +1,35 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView, RefreshControl, ActivityIndicator } from 'react-native';
-import OrderCard from '../../src/components/shared/orderCard/OrderCard';
-
-const dummyData = [
-  {
-    productImage: 'https://bazarpay.s3.ap-south-1.amazonaws.com/product_image/1717676087787.png',
-    productName: 'Product 1',
-    userName: 'User 1',
-    userAvatar: 'https://via.placeholder.com/24',
-    orderStatus: 'Pending',
-    orderDate: '2024-06-20',
-    orderId: '001',
-    quantity: 2,
-    price: 29.99,
-  },
-  {
-    productImage: 'https://bazarpay.s3.ap-south-1.amazonaws.com/product_image/1717676498312.png',
-    productName: 'Test product updated',
-    userName: 'User 4',
-    userAvatar: 'https://via.placeholder.com/24',
-    orderStatus: 'Pending',
-    orderDate: '2024-06-23',
-    orderId: '004',
-    quantity: 4,
-    price: 24.99,
-  },
-];
+import React, { useCallback, useContext, useEffect, useState } from "react";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  RefreshControl,
+  ActivityIndicator,
+} from "react-native";
+import OrderCard from "../../src/components/shared/orderCard/OrderCard";
+import { api } from "../../src/utils/api";
+import AuthContext from "../../src/contexts/authContext/authContext";
+import BasicOrderCard from "../../src/components/shared/orderCard/BasicOrderCard";
 
 const Pending = () => {
+  const { user } = useContext(AuthContext);
+  const [allOrder, setAllOrder] = useState<any[]>([]);
   const [isRefreshing, setIsRefreshing] = useState(false);
+
+  const getOrderList = useCallback(async () => {
+    try {
+      const filter = {
+        wholesaler_object_id: user?._id,
+        order_status: "PENDING",
+      };
+      const orders = await api.order.getOrderList(filter);
+      setAllOrder(orders);
+    } catch (error) {}
+  }, [user]);
+
+  useEffect(() => {
+    getOrderList();
+  }, [getOrderList]);
 
   const onRefresh = () => {
     setIsRefreshing(true);
@@ -45,14 +46,13 @@ const Pending = () => {
         <RefreshControl
           refreshing={isRefreshing}
           onRefresh={onRefresh}
-          colors={['#9Bd35A', '#689F38']}
+          colors={["#9Bd35A", "#689F38"]}
           progressBackgroundColor="#ffffff"
         />
       }
     >
-      {isRefreshing && <ActivityIndicator size="large" color="#0000ff" />}
-      {dummyData.map((order, index) => (
-        <OrderCard key={index} order={order} />
+      {allOrder.map((order, index) => (
+        <BasicOrderCard key={index} order={order} />
       ))}
     </ScrollView>
   );
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    backgroundColor:"white"
+    backgroundColor: "white",
   },
 });
 

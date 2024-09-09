@@ -9,6 +9,16 @@ export const globalStyle = StyleSheet.create({
     flex: 1,
     paddingBottom: 0,
   },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingTop: 40,
+    paddingBottom: 20,
+    paddingHorizontal: 10,
+    backgroundColor: Colors.light.background,
+    zIndex: 50,
+    width: windowWidth,
+  },
   googleIcon: {
     width: 24,
     height: 24,
@@ -51,22 +61,12 @@ export const globalStyle = StyleSheet.create({
     flexDirection: "row",
     marginTop: 15,
   },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 10,
-    paddingBottom: 20,
-    paddingHorizontal: 10,
-
-    backgroundColor: Colors.light.background,
-    zIndex: 50,
-    width: windowWidth,
-  },
+  
   productHeader: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
-    paddingTop: 20,
+    paddingTop: 10,
     paddingBottom:5,
     paddingLeft: 5,
     backgroundColor: Colors.light.background,

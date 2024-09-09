@@ -8,13 +8,13 @@ import Colors from "../../../../constants/Colors";
 import { useNavigation } from "expo-router";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ProductCartContext } from "../../../../contexts/productCartContext/Provider";
-const BuyerOptionsCards = ({ wholesaler }: any) => {
+const BuyerOptionsCards = ({ wholesaler ,categoryName}: any) => {
 
   const context = useContext(ProductCartContext);
   const navigation: any = useNavigation();
   const handleNavigate = () => {
     console.log(wholesaler?.wholesaler._id)
-    navigation.navigate("productDetailsPage", { wholesalerId: wholesaler?.wholesaler?._id });
+    navigation.navigate("productDetailsPage", { wholesalerId: wholesaler?.wholesaler?._id ,categoryName:categoryName});
   };
 
   return (

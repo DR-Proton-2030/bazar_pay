@@ -7,7 +7,7 @@ import { useNavigation } from 'expo-router';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AntDesign } from '@expo/vector-icons';
 
-const ProductOverView = () => {
+const ProductOverView = ({productDetails}:any) => {
     const navigation: any = useNavigation();
     const handleNavigate = () => {
         navigation.navigate("RatingsPage");
@@ -45,7 +45,7 @@ const ProductOverView = () => {
 
                             <Feather name="box" size={20} color="green" />
                             <Text style={{ fontWeight: "600", marginLeft: 5, fontSize: 13, color: "gray" }}>
-                                In Stock
+                               {productDetails?.selling_status}
                             </Text>
                         </View>
                         <View style={{ backgroundColor: Colors.light.grayBtn, width: "100%", height: 1 }} />

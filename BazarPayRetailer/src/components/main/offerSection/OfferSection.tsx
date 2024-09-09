@@ -72,9 +72,9 @@ const OfferSection = ({ backgroundColor }: any) => {
           </View>
         </>
       )}
-      <TouchableOpacity onPress={handleAllCategoriesPress}>
+      {/* <TouchableOpacity onPress={handleAllCategoriesPress}>
         <Text style={styles.allCategoriesText}>All Categories</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   );
 };
@@ -82,6 +82,7 @@ const OfferSection = ({ backgroundColor }: any) => {
 const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 10,
+    marginTop:10
   },
   row: {
     flexDirection: "row",
@@ -92,12 +93,11 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     marginBottom: 10,
-
     height: 80,
     overflow: "hidden", // Clip image overflow
     justifyContent: "space-between",
     flexDirection: "row",
-    elevation: 4, // Add elevation for drop shadow
+    elevation: 2, // Add elevation for drop shadow
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
   allCategoriesText: {
-    fontSize: 18,
+    fontSize: 14,
     fontWeight: "600",
     textAlign: "center",
     color: Colors.light.orange,

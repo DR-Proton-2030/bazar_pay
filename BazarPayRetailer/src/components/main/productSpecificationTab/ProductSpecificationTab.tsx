@@ -18,7 +18,7 @@ const BrandDetails = () => (
   </View>
 );
 
-const ProductSpecificationTab = () => {
+const ProductSpecificationTab = ({productDetails}:any) => {
   const [activeTab, setActiveTab] = useState('ProductSpecification');
 
   const renderContent = () => {
@@ -26,7 +26,7 @@ const ProductSpecificationTab = () => {
       case 'ProductSpecification':
         return <ProductSpecification />;
       case 'WholesalerDetails':
-        return <WholesalerDetails />;
+        return <WholesalerDetails wholesalerDetails={productDetails?.wholesaler}/>;
       case 'BrandDetails':
         return <BrandDetails />;
       default:

@@ -10,6 +10,7 @@ import WholesalerContextProvider from "../src/contexts/wholesalerContext/Provide
 import AuthContextProvider from "../src/contexts/authContext/Provider";
 import AuthContext from "../src/contexts/authContext/authContext";
 import WholesalerContext from "../src/contexts/wholesalerContext/wholesalerContext";
+import React from "react";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -84,7 +85,7 @@ function RootLayoutNav() {
       />
       <Stack.Screen
         name="homePage"
-        options={{ headerShown: false, statusBarStyle: "dark" }}
+        options={{ headerShown: false, statusBarStyle: "dark" ,statusBarTranslucent: true }}
       />
       <Stack.Screen
         name="stockPage"
@@ -123,18 +124,12 @@ function RootLayoutNav() {
         name="(orders)"
         options={{
           headerShown: true,
-          headerTitleAlign: "center",
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
           headerTitle: () => (
             <Text style={{ textAlign: "center", fontSize: 20 }}>
               Order List
             </Text>
-          ),
-          headerRight: () => (
-            <Entypo
-              name="dots-three-vertical"
-              size={20}
-              color={Colors.light.primary}
-            />
           ),
         }}
       />
@@ -175,6 +170,41 @@ function RootLayoutNav() {
         }}
       />
       <Stack.Screen
+        name="dueSavings"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              Due / Savings
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="orderDetails"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              Order Details
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="orderSuccess"
+        options={{
+          headerShown: false,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          
+        }}
+      />
+      <Stack.Screen
         name="subcategoryPage"
         options={{
           headerShown: true,
@@ -183,6 +213,19 @@ function RootLayoutNav() {
           headerTitle: () => (
             <Text style={{ textAlign: "center", fontSize: 20 }}>
               Choose Sub Category
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="paymentDue"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+            Payment Details
             </Text>
           ),
         }}

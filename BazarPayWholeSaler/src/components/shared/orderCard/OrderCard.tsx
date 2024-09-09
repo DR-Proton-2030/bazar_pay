@@ -1,23 +1,22 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Image, Animated } from 'react-native';
+import { View, StyleSheet, Image, Animated, TouchableOpacity } from 'react-native';
 import { Card, Text, Chip } from 'react-native-paper';
 import { MaterialIcons } from '@expo/vector-icons';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
+import { api } from '../../../utils/api';
 
 const OrderCard = ({ order }: any) => {
-  const { productImage, productName, orderStatus, orderDate, orderId, quantity, price } = order;
-
-  // Animated values for animation
+  const { product, order_status,_id, createdAt, order_quantity, wholesalerListedProduct } = order;
   const [translateX] = useState(new Animated.Value(0));
   const [opacity] = useState(new Animated.Value(1));
-  const [backgroundColor] = useState(new Animated.Value(0)); // For interpolating background color
+  const [backgroundColor] = useState(new Animated.Value(0));
 
-  // Get status icon based on order status
-  const getStatusIcon = (status: any) => {
-    switch (status) {
-      case 'Completed':
+
+  const getStatusIcon = (order_status: any) => {
+    switch (order_status) {
+      case 'CONFIRMED':
         return <MaterialIcons name="check-circle" size={20} color="green" />;
-      case 'Pending':
+      case 'PENDING':
         return <MaterialIcons name="pending" size={20} color="orange" />;
       case 'Cancelled':
         return <MaterialIcons name="cancel" size={20} color="red" />;
@@ -26,7 +25,18 @@ const OrderCard = ({ order }: any) => {
     }
   };
 
-  // Handle gesture events
+  const updateOrderStatus = async()=>{
+    try {
+      const payload ={
+        order_id:_id,
+        order_status:"CONFIRMED"
+      }
+      const updateStatus = await api.order.updateOrderStatus(payload)
+      console.log(updateStatus)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   const onGestureEvent = Animated.event(
     [{ nativeEvent: { translationX: translateX } }],
     { useNativeDriver: true }
@@ -51,6 +61,7 @@ const OrderCard = ({ order }: any) => {
           duration: 200,
           useNativeDriver: true,
         }).start();
+        updateOrderStatus()
       } else if (nativeEvent.translationX < -50) {
         // Swipe left animation (red background)
         Animated.timing(translateX, {
@@ -78,7 +89,16 @@ const OrderCard = ({ order }: any) => {
       }
     }
   };
-
+  function formatDate(dateString:any) {
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    
+    const date = new Date(dateString);
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+    
+    return `${day} ${month} ${year}`;
+  }
   // Interpolate background color based on translateX value
   const interpolatedBackgroundColor = backgroundColor.interpolate({
     inputRange: [-1, 0, 1],
@@ -90,23 +110,27 @@ const OrderCard = ({ order }: any) => {
       onGestureEvent={onGestureEvent}
       onHandlerStateChange={onHandlerStateChange}
     >
+    
       <Animated.View style={[styles.animatedCard, { transform: [{ translateX }], opacity, }]}>
+     
         <Card style={[styles.card,{backgroundColor: interpolatedBackgroundColor }]}>
           <Card.Content style={styles.cardContent}>
             <View style={styles.row}>
-              <Image source={{ uri: productImage }} style={styles.productImage} />
+              <Image source={{ uri: product?.product_image }} style={styles.productImage} />
               <View style={styles.infoContainer}>
-                <Text style={styles.productName}>{productName}</Text>
+                <Text style={styles.productName}>{product?.product_name}</Text>
                 <View style={styles.detailsRow}>
-                  <Text style={styles.details}>Order ID: {orderId}</Text>
-                  <Text style={styles.details}>Order Date: {orderDate}</Text>
+                  <Text style={styles.details}>Order Date: {formatDate(createdAt)}</Text>
                 </View>
                 <View style={styles.detailsRow}>
-                  <Text style={styles.details}>Quantity: {quantity}</Text>
-                  <Text style={styles.details}>Price: ৳{price}</Text>
+                  <Text style={styles.details}>Current Stock: {wholesalerListedProduct?.current_stock}</Text>
                 </View>
+                <View style={styles.detailsRow}>
+                  <Text style={styles.details}>Order Quantity: {order_quantity}</Text>
+                </View>
+                
                 <View style={styles.status}>
-                  <Chip icon={() => getStatusIcon(orderStatus)}>{orderStatus}</Chip>
+                  <Chip icon={() => getStatusIcon(order_status)}>{order_status}</Chip>
                 </View>
               </View>
             </View>

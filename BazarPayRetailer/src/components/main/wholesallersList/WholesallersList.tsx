@@ -6,11 +6,12 @@ import { useRoute } from "@react-navigation/native";
 import { api } from '../../../utils/api';
 import WholesallerCard from '../../shared/wholesallerCard/WholesallerCard';
 import BuyerOptionsCards from '../buyerOptions/buyerOptionsCards/BuyerOptionsCards';
-
+import LottieView from 'lottie-react-native';
+import ff from "../../../database/animation/success/Animation - 1721420607611.json"
 
 const WholesalersList = () => {
   const route = useRoute();
-  const { productId }: any = route.params;
+  const { productId ,categoryName}: any = route.params;
   const [wholesalerProduct,setWholesalerProduct]= useState<any[]>([])
   const getWholesalerList = async () => {
     try {
@@ -31,13 +32,29 @@ const WholesalersList = () => {
   
   return (
     <View style={styles.container}>
-      <AppHeader title={"Sellect Wholesaller"} />
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {wholesalerProduct.map((wholesaler:any, index) => (
-        //  <WholesallerCard productId={productId} wholesaler={wholesaler} index={index}/>
-        <BuyerOptionsCards wholesaler={wholesaler}/>
-        ))}
-      </ScrollView>
+      <AppHeader title={"Select Wholesaler"} />
+      {
+        wholesalerProduct.length <= 0 ?
+        <View style={{marginTop:100}}>
+          <LottieView
+        source={require('../../../database/animation/notfound/Animation - 1723892477680.json')}
+        autoPlay
+        loop={true}
+        style={styles.animation}
+      />
+      <Text style={{textAlign:"center",fontSize:20,fontWeight:600,marginTop:-50}}>
+        No Results Found
+      </Text>
+          </View>
+          :
+          <ScrollView contentContainerStyle={styles.scrollContainer}>
+          {wholesalerProduct.map((wholesaler:any, index) => (
+           <WholesallerCard wholesaler={wholesaler} categoryName={categoryName} index={index}/>
+          // <BuyerOptionsCards wholesaler={wholesaler} categoryName={categoryName}/>
+          ))}
+        </ScrollView>
+      }
+     
     </View>
   );
 };
@@ -47,13 +64,21 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f5f5',
   },
+  animation: {
+    width: 350,
+    height: 350,
+    marginLeft:"auto",
+    marginRight:"auto"
+    // marginTop:-100
+    // backgroundColor:"red"
+  },
   scrollContainer: {
-    paddingHorizontal: 10,
+    paddingHorizontal: 12,
     paddingVertical: 20,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent:'center',
-    gap:10
+    // flexDirection: 'row',
+    // flexWrap: 'wrap',
+    // justifyContent:'center',
+    // gap:4
   },
   
 });

@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
-import { View, StyleSheet, Animated, Text } from 'react-native';
+import { View, StyleSheet, Animated, Text, TouchableOpacity } from 'react-native';
 import { PanGestureHandler, State } from 'react-native-gesture-handler';
 import { Feather, FontAwesome } from '@expo/vector-icons';
 import Colors from '../../../constants/Colors';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
 
-const SliderButton = ({ price }: any) => {
+const SliderButton = ({ price,handleLogoutPress ,handlePlaceOrder}: any) => {
   const navigation: any = useNavigation();
   const handleNavigate = () => {
     navigation.navigate("payments");
@@ -35,8 +35,7 @@ const SliderButton = ({ price }: any) => {
   const onHandlerStateChange = (event:any) => {
     if (event.nativeEvent.state === State.END) {
       if (event.nativeEvent.translationX >= endPosition - 10) {
-        console.log('Slider reached end');
-        handleNavigate()
+        handlePlaceOrder()
       }
       Animated.spring(translateX, {
         toValue: 0,
@@ -61,14 +60,20 @@ const SliderButton = ({ price }: any) => {
 
         <View style={{ flexDirection: "row" }}>
           <MaterialIcons name="payment" size={24} color="black" />
-          <View style={{ marginBottom: 10 }}>
+          <View style={{ marginBottom: 10,flexDirection:"row",justifyContent:"space-between" ,width:"85%"}}>
+            
             <Text style={{ fontSize: 16, fontWeight: '500', alignItems: "center", marginBottom: 3 }}>Paymnet</Text>
-            <Text style={{ fontSize: 12, fontWeight: '600', alignItems: "center", color: '#00b300', width: 190 }}>Select a payment option and confirm your order</Text>
+            <TouchableOpacity onPress={handleLogoutPress} 
+            style={{justifyContent:"flex-end",alignItems:"flex-end"}}>
+              <Text style={{fontWeight:"700",color:Colors.light.orange}}>
+                Change Address
+              </Text>
+            </TouchableOpacity>
           </View>
       </View>
       <View style={styles.slider}>
       <Animated.Text style={[styles.payNowText, { opacity: textOpacity }]}>
-  Slide to pay | {price}
+  Confirm Order | ৳ {price}
 </Animated.Text>
 
         <PanGestureHandler
@@ -115,10 +120,11 @@ const SliderButton = ({ price }: any) => {
 
 const styles = StyleSheet.create({
   container: {
-    height: 150,
+    height: 120,
     backgroundColor: "white",
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
+    paddingLeft:10
   },
   label: {
     fontSize: 18,

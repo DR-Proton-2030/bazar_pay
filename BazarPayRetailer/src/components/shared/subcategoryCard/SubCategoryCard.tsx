@@ -3,10 +3,10 @@ import React from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Colors from "../../../constants/Colors";
 
-const SubCategoryCard = ({product,categoryId}:any) => {
+const SubCategoryCard = ({product,categoryId,categoryName}:any) => {
   const navigation: any = useNavigation();
   const handleNavigate = () => {
-    navigation.navigate("AllProducts",{subcategory:product,categoryId:categoryId});
+    navigation.navigate("AllProducts",{subcategory:product,categoryId:categoryId,categoryName:categoryName});
   };
   return (
     <TouchableOpacity onPress={handleNavigate} style={styles.container}>

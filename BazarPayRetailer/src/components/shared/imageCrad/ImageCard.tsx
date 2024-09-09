@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text, ImageBackground, StyleSheet } from "react-native";
 
-const ImageCard = ({ backgroundImage, text }: any) => {
+const ImageCard = ({ img, text }: any) => {
   return (
     <View style={styles.card}>
       <ImageBackground
         source={{
-          uri: "https://imgs.search.brave.com/mRap17Hf_cZEbimZ_bQytBmGOXmygxffHD_7NJ-_LBo/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9jZG4u/cGl4YWJheS5jb20v/cGhvdG8vMjAxNS8w/Ny8xMC8xNi8xNS9i/YWctODM5NjAyXzY0/MC5qcGc",
+          uri: img,
         }}
         style={styles.backgroundImage}
       >
@@ -27,6 +27,7 @@ const styles = StyleSheet.create({
     // margin: 10,
     marginVertical: 10,
     marginHorizontal: 5,
+    elevation:5
   },
   backgroundImage: {
     flex: 1,

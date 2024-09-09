@@ -10,4 +10,5 @@ export interface IOrder {
 	order_status: string;
 	possible_delivery_date: SchemaDefinitionProperty<Date>;
 	possible_delivery_time: string;
+	order_quantity: number
 }

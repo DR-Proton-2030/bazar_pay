@@ -8,7 +8,7 @@ import { useRoute } from "@react-navigation/native";
 const ProductList = () => {
   const [products, setProducts] = useState<any>([]);
   const route = useRoute();
-  const {  subcategory, categoryId  }:any = route.params;
+  const {  subcategory, categoryId ,categoryName }:any = route.params;
 const getAllProducts = async()=>{
   try {
     const filter={
@@ -32,7 +32,7 @@ useEffect(() => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.productContainer}>
           {products.map((product:any) => (
-            <ProductCard key={product._id} product={product} />
+            <ProductCard key={product._id} product={product} categoryName={categoryName}/>
           ))}
         </View>
       </ScrollView>

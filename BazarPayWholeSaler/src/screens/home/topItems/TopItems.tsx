@@ -41,6 +41,7 @@ const TopItems = () => {
         <SmallCard
           title={"Balance ৳1450"}
           subTitle="See Details"
+          handlePress={()=>  navigation.navigate("dueSavings")}
           icon={
             <View
               style={[

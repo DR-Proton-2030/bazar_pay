@@ -34,7 +34,8 @@ function RootLayoutNav() {
 
   return (
     <Stack>
-      <Stack.Screen name="index" options={{ headerShown: false ,statusBarTranslucent:false,statusBarStyle:"dark" }} />
+      <Stack.Screen name="index" options={{ headerShown: false ,statusBarTranslucent:true,statusBarStyle:"dark" }} />
+      <Stack.Screen name="homePage" options={{ headerShown: false ,statusBarTranslucent:true,statusBarStyle:"dark" }} />
       <Stack.Screen name="wellcomePage" options={{ headerShown: false }} />
       <Stack.Screen name="otpPage" options={{  headerShown: false ,statusBarTranslucent:false,statusBarStyle:"dark" }} />
       <Stack.Screen name="otpInput" options={{  headerShown: false ,statusBarTranslucent:false,statusBarStyle:"dark" }} />
@@ -63,13 +64,28 @@ function RootLayoutNav() {
         statusBarTranslucent: true,
         statusBarStyle: "dark",
       }} />
-      <Stack.Screen
-        name="homePage"
-        options={{ headerShown: false,statusBarTranslucent:false,statusBarStyle:"dark" }}
-      />
+      <Stack.Screen name="paymentSuccessPage"
+      options={{
+        headerShown: false,
+        statusBarTranslucent: true,
+        statusBarStyle: "dark",
+      }} />
+      <Stack.Screen name="paymentHistory"
+      options={{
+        headerShown: false,
+        statusBarTranslucent: true,
+        statusBarStyle: "dark",
+      }} />
+      <Stack.Screen name="orderDetails"
+      options={{
+        headerShown: false,
+        statusBarTranslucent: true,
+        statusBarStyle: "dark",
+      }} />
+      
       <Stack.Screen name="QrPage" options={{ headerShown: false }} />
-      <Stack.Screen name="profilePage" options={{ headerShown: false }} />
-      <Stack.Screen name="payments" options={{ headerShown: false }} />
+      <Stack.Screen name="profilePage" options={{ headerShown: false,statusBarTranslucent:false,statusBarStyle:"dark" }} />
+      <Stack.Screen name="payments" options={{ headerShown: false,statusBarTranslucent:false,statusBarStyle:"dark"  }} />
       <Stack.Screen name="cart" options={{ headerShown: false }} />
       <Stack.Screen
         name="productDetailsPage"

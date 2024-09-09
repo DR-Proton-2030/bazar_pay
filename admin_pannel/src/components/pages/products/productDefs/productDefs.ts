@@ -1,5 +1,7 @@
 import { ColDef } from "ag-grid-community";
 import ApproveCellRenderer from "../approveCellRenderer/ApproveCellRenderer";
+import BrandSeeDetails from "../../brand/brandSeeDetails/BrandSeeDetails";
+import ProductSeeDetails from "../../categoryDetails/products/productSeeDetails/ProductSeeDetails";
 
 export const ProductDefs : ColDef[] = [
   {
@@ -7,19 +9,12 @@ export const ProductDefs : ColDef[] = [
     headerName: "Product Name",
     suppressSizeToFit: true,
   },
-  { field: "wholesaler.wholesaler_name", headerName: "WholeSaler Name", suppressSizeToFit: true },
-  { field: "wholesaler.contact_full_name", headerName: "WholeSaler Contact Name", suppressSizeToFit: true },
-  { field: "wholesaler.contact_phone_number", headerName: "WholeSaler Contact Phone", suppressSizeToFit: true },
   {
     field: "product_description",
     headerName: "Description",
     suppressSizeToFit: true,
   },
-  {
-    field: "current_stock",
-    headerName: "Stock",
-    suppressSizeToFit: true,
-  },
+
   {
     field: "action",
     headerName: "Approve",
@@ -27,13 +22,18 @@ export const ProductDefs : ColDef[] = [
     suppressSizeToFit: true,
   },
   {
-    field: "product_buying_price",
-    headerName: "Product Buying Price",
+    field: "product_status",
+    headerName: "Product Status",
     suppressSizeToFit: true,
   },
   {
-    field: "product_saling_price",
-    headerName: "Product Selling Price",
+    field: "profit_percentage",
+    headerName: "Profit Percentage",
     suppressSizeToFit: true,
+  },
+  {
+    field: "See Details",
+    headerName: "Actions",
+    cellRenderer: ProductSeeDetails,
   },
 ];

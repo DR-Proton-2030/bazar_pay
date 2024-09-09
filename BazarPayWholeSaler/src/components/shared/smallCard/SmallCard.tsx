@@ -25,7 +25,7 @@ const SmallCard = ({
             style={{
               fontWeight: "500",
               fontSize: 16,
-              color: Colors.light.lightText,
+              color: Colors.light.text,
             }}
           >
             &nbsp;{title}

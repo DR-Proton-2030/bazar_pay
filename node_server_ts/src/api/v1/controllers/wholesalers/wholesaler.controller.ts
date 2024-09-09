@@ -53,9 +53,9 @@ export const createWholesaler = async (req: Request, res: Response) => {
 			!("logo" in req.files) ||
 			!("sign_board_photo" in req.files) ||
 			!("wholesaler_owner_photo" in req.files) ||
-			!("trade_licensce_photo" in req.files) ||
 			!("nid_photo" in req.files)
 		) {
+			console.log("====>not found");
 			return res.status(404).json({
 				message: MESSAGE.post.custom("img not found")
 			});
@@ -93,7 +93,6 @@ export const createWholesaler = async (req: Request, res: Response) => {
 			});
 		}
 		let payload = {};
-		console.log("====>before payload", payload);
 
 		try {
 			const logoUrl = logoBuffer ? await uploadImageService("logo", logoBuffer) : DEFAULT_IMAGE;
@@ -116,6 +115,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
 				status: "PENDING"
 			};
 		} catch (error) {
+			console.log("===>error", error);
 			return res.status(400).json({
 				message: MESSAGE.post.fail,
 				error
@@ -131,6 +131,7 @@ export const createWholesaler = async (req: Request, res: Response) => {
 			result: wholesalerInstance
 		});
 	} catch (error) {
+		console.log("===>error", error);
 		return res.status(400).json({
 			message: MESSAGE.post.fail,
 			error
@@ -140,9 +141,9 @@ export const createWholesaler = async (req: Request, res: Response) => {
 
 export const updateWholesalerStatus = async (req: Request, res: Response) => {
 	try {
-		const { id, status } = req.body;
+		const { id, approval_status } = req.body;
 
-		const updatedWholesaler = await WholesalerModel.findByIdAndUpdate(id, { status }, { new: true });
+		const updatedWholesaler = await WholesalerModel.findByIdAndUpdate(id, { approval_status }, { new: true });
 
 		if (!updatedWholesaler) {
 			return res.status(404).json({

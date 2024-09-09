@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import DataGrid from '../../../../shared/dataGrid/DataGrid'
 import { ListedProductsColDefs } from '../../../../../constants/listedProductColDefs.ts/ListedProductColDefs'
 
-const ListedProducts = () => {
-    const [rowData, setRowData] = useState([])
+const ListedProducts = ({productList}:any) => {
   return (
     <div>
-        <DataGrid rowData={rowData} colDefs={ListedProductsColDefs}/>
+        <DataGrid rowData={productList} colDefs={ListedProductsColDefs}/>
     </div>
   )
 }

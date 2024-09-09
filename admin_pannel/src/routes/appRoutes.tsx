@@ -141,7 +141,7 @@ const appRoutes: RouteType[] = [
     state: "category",
   },
   {
-    path: "/product-details",
+    path: "/product-list",
     element: <ProductDetails />,
     state: "category",
   },
@@ -165,6 +165,15 @@ const appRoutes: RouteType[] = [
       icon: <ShoppingCartOutlinedIcon />,
     },
   },
+  // {
+  //   path: "/productDetails",
+  //   element: <ProductDetails />,
+  //   state: "plots",
+  //   sidebarProps: {
+  //     displayText: "All Products",
+  //     icon: <ShoppingCartOutlinedIcon />,
+  //   },
+  // },
   {
     path: "/reports",
     element: <Reports />,

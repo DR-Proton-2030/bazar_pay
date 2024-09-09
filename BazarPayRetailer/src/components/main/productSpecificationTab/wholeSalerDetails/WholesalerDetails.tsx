@@ -1,29 +1,28 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
-const WholesalerDetails = () => {
+const WholesalerDetails = ({wholesalerDetails}:any) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={{ uri: 'https://graphicdesignfall16.wordpress.com/wp-content/uploads/2016/10/adobe-company-logo.jpg' }} // Replace with actual logo URL
+          source={{ uri: wholesalerDetails?.logo }} // Replace with actual logo URL
           style={styles.logo}
         />
-        <Text style={styles.name}>Wholesaler Name</Text>
+        <Text style={styles.name}>{wholesalerDetails?.owner_name}</Text>
       </View>
       <View style={styles.details}>
+       
         <Text style={styles.detailItem}>
-          <Text style={styles.label}>Address: </Text>123 Main Street, City, Country
+          <Text style={styles.label}>Contact: </Text>{wholesalerDetails?.owner_phone}
         </Text>
         <Text style={styles.detailItem}>
-          <Text style={styles.label}>Contact: </Text>+1234567890
+          <Text style={styles.label}>Email: </Text>{wholesalerDetails?.owner_email}
         </Text>
         <Text style={styles.detailItem}>
-          <Text style={styles.label}>Email: </Text>wholesaler@example.com
+          <Text style={styles.label}>Nid: </Text>{wholesalerDetails?.nid_number}
         </Text>
-        <Text style={styles.detailItem}>
-          <Text style={styles.label}>Business Hours: </Text>9:00 AM - 6:00 PM
-        </Text>
+       
       </View>
     </View>
   );
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 2,
     padding: 15,
     borderRadius: 10,
     // backgroundColor:"white"

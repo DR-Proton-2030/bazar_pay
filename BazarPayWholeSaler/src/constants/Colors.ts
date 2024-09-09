@@ -14,6 +14,7 @@ export default {
     cardColor: "#F4F4F4",
     grayBtn: "#D9D9D9",
     border: "#D9D9D9",
+    grayBg:"#f1f4ff",
     primary: "#316FF6",
     secondary: "#5F27FF",
     green:"#00C236",

@@ -60,15 +60,15 @@ export const DrawerContent = ({ onClose }: any) => {
         style={{ alignItems: "center", marginBottom: 20, flexDirection: "row" }}
       >
         <Image
-          source={{ uri: wholesaler?.owner_photo }}
+          source={{ uri: wholesaler?.wholesaler_owner_photo }}
           style={{ width: 80, height: 80, borderRadius: 50 }}
         />
         <View style={{ marginLeft: 10 }}>
           <Text style={{ fontSize: 18, fontWeight: "bold", marginTop: 10 }}>
-            {user?.full_name}
+            {user?.wholesaler_name}
           </Text>
           <Text style={{ fontSize: 14, marginTop: 5 }}>
-            {wholesaler?.contact_email}
+            {wholesaler?.owner_phone}
           </Text>
           <TouchableOpacity
             onPress={handleNavigatetoProfile}

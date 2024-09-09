@@ -16,7 +16,7 @@ const HeaderIcons: React.FC = () => {
       <AntDesign name="Trophy" size={24} color="black" />
       <TouchableOpacity onPress={handlenavigate}>
 
-      <Octicons name="bell-fill" size={24} color="black" />
+      <Octicons name="bell" size={24} color="black" />
       </TouchableOpacity>
     </View>
   );

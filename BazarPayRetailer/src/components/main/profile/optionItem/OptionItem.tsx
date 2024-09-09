@@ -2,27 +2,30 @@ import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Octicons, MaterialIcons } from "@expo/vector-icons";
 import Colors from "../../../../constants/Colors";
+import { useNavigation } from "expo-router";
 
 interface Option {
   iconName: string;
   iconColor: string;
   text: string;
-  onPress: () => void;
+  route: string;
+  
 }
 
 const OptionItem: React.FC<Option> = ({
   iconName,
   iconColor,
   text,
-  onPress,
+  route
 }) => {
   let IconComponent: any = Octicons; // Default icon component
   if (iconName === "chat-bubble-outline") {
     IconComponent = MaterialIcons; // Use MaterialIcons for "Message" option
   }
+  const navigation: any = useNavigation();
 
   return (
-    <TouchableOpacity onPress={onPress}>
+    <TouchableOpacity onPress={()=> navigation.navigate(route)}>
       <View style={{ alignItems: "center" }}>
         <View
           style={{

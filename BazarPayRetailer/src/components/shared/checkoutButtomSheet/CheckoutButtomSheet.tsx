@@ -1,33 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import Colors from '../../../constants/Colors';
+import { useNavigation } from 'expo-router';
 
-const CheckoutButtomSheet = () => {
+const CheckoutButtomSheet = ({Price,handleNavigate}:any) => {
     const [quantity, setQuantity] = useState(1);
-    const product = {
-        name: "Sample Product",
-        pricePerUnit: 200, // Price per unit
-        imageUrl: "https://via.placeholder.com/100" // Replace with actual image URL
-    };
-
     const increaseQuantity = () => setQuantity(prev => prev + 10);
     const decreaseQuantity = () => {
         console.log("first")
         setQuantity(prev => (prev > 10 ? prev - 10 : 10));
+        console.log(quantity)
     }
-
-    const totalPrice = quantity * product.pricePerUnit;
-
-    const handlePayment = () => {
-        // Implement payment navigation or action here
-        console.log('Proceed to payment');
-    };
-
+    const totalPrice = quantity * Price;
     return (
         <View style={styles.container}>
             <View style={styles.content}>
                 <View style={styles.details}>
-                    <View style={{backgroundColor:Colors.light.cardColor,paddingHorizontal:10,paddingVertical:15,borderRadius:20}}>
+                    <View style={{backgroundColor:Colors.light.cardColor,paddingHorizontal:10,paddingVertical:15,borderRadius:20,marginRight:5}}>
 
                         <Text style={styles.productName}>Total Unit of order</Text>
                         <View style={styles.quantityContainer}>
@@ -47,7 +36,7 @@ const CheckoutButtomSheet = () => {
                     </View>
                 </View>
             </View>
-            <TouchableOpacity onPress={handlePayment} style={styles.payButton}>
+            <TouchableOpacity onPress={()=>handleNavigate({quantity})} style={styles.payButton}>
                 <Text style={styles.payButtonText}>Go to payments</Text>
             </TouchableOpacity>
         </View>
@@ -117,14 +106,14 @@ const styles = StyleSheet.create({
         paddingHorizontal:5
     },
     totalPrice: {
-        fontSize: 28,
+        fontSize: 22,
         fontWeight: 'bold',
         marginTop: -5
     },
     payButton: {
         backgroundColor: Colors.light.orange,
-        paddingVertical: 10,
-        borderRadius: 10,
+        paddingVertical: 12,
+        borderRadius: 20,
         justifyContent: 'center',
         alignItems: 'center',
         margin: 20,

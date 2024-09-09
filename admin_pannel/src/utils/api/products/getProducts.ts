@@ -8,7 +8,7 @@ const { get, patch } = request;
 const initialRoute = "product";
 export const getProducts = async (filter: Params) => {
   try {
-    const endpoint = `${initialRoute}/get-product-list`;
+    const endpoint = `${initialRoute}/get-paginated-products`;
 
     const response = await get(
       endpoint,

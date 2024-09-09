@@ -7,29 +7,28 @@ const { post } = request;
 
 const initialRoute = "wholesaler";
 
-
 export const createWholesaler = async (formdata: any) => {
-	try {
-		const endpoint = `${initialRoute}/add-wholesaler`;
+  try {
+    const endpoint = `${initialRoute}/add-wholesaler`;
 
-		const response = await post(endpoint, formdata, {
-			...headers,
-			"Content-Type": "multipart/form-data"
-		});
-		if (response) {
-			const {
-				data: { message }
-			} = response;
-			if (message === MESSAGE.post.succ) {
-				const {
-					data: { result }
-				} = response;
-				return result;
-			}
-		}
-		throw new Error();
-	} catch (error: any) {
-		console.log(error);
-		throw error;
-	}
+    const response = await post(endpoint, formdata, {
+      ...headers,
+      "Content-Type": "multipart/form-data",
+    });
+    if (response) {
+      const {
+        data: { message },
+      } = response;
+      if (message === MESSAGE.post.succ) {
+        const {
+          data: { result },
+        } = response;
+        return result;
+      }
+    }
+    throw new Error();
+  } catch (error: any) {
+    console.log(error);
+    throw error;
+  }
 };

@@ -1,7 +1,6 @@
 import React from "react";
 import { View, TextInput, Text } from "react-native";
 import { ProductFirstInput } from "../../constants/form/productInput/ProductInput";
-import SelectDropdown from "react-native-select-dropdown";
 import { ITextinput } from "../../@types/types/TextInput.types";
 import { unitOptions } from "../../constants/unitOption/UnitOption";
 import { globalStyle } from "../../globalStyles/globalStyles";

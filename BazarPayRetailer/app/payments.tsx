@@ -1,5 +1,5 @@
 import React from 'react'
-import PaymentScreen from '../src/screens/payments/PaymentScreen'
+import { PaymentScreen } from '../src/screens/payments/PaymentScreen'
 
 const payments = () => {
   return (

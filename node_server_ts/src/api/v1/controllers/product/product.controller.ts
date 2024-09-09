@@ -81,6 +81,8 @@ export const getProductList = async (req: Request, res: Response) => {
 		const limit = currentPage > 0 ? 5 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
+		console.log("===>filter", filter);
+
 		const products = await productModel
 			.find(filter)
 			.populate("wholesaler")
@@ -178,4 +180,4 @@ export const updateProductStatus = async (req: Request, res: Response) => {
 	}
 };
 
-export const getProductListForRetailers = (req: Request, res: Response) => {};
+export const getProductListForRetailers = (req: Request, res: Response) => { };

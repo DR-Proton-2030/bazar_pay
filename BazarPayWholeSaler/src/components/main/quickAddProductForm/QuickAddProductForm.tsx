@@ -1,80 +1,128 @@
-import React, { useContext, useState } from 'react';
-import { View, StyleSheet, ScrollView, Image, Text, Alert } from 'react-native';
-import { TextInput, Button, Provider } from 'react-native-paper';
-import { api } from '../../../utils/api';
-import { styles } from './quickProductFormStyle';
-import { inputFields } from '../../../constants/quickProduct/inputField';
-import AuthContext from '../../../contexts/authContext/authContext';
+import React, { useContext, useState } from "react";
+import { View, StyleSheet, ScrollView, Image, Text, Alert } from "react-native";
+import { TextInput, Button, Provider } from "react-native-paper";
+import { api } from "../../../utils/api";
+import { styles } from "./quickProductFormStyle";
+import { inputFields } from "../../../constants/quickProduct/inputField";
+import AuthContext from "../../../contexts/authContext/authContext";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { globalStyle } from "../../../globalStyles/globalStyles";
 
-const QuickAddProductForm = ({productId}:any) => {
-  const [product, setProduct] = useState('');
-  const {user} = useContext(AuthContext)
+const QuickAddProductForm = ({ productId, productImage ,productPercent}: any) => {
+  const { user } = useContext(AuthContext);
   const [formValues, setFormValues] = useState<any>({
-    quantity: '',
-    buyingPrice: '',
-    markedPrice: '',
-    discount: '',
-    sellingPrice: '',
-    currentStock: '',
-    sellingStatus: '',
+    quantity: 0,
+    buyingPrice: 0,
+    markedPrice: 0,
+    discount: 0,
+    sellingPrice: 0,
+    currentStock: 0,
+    sellingStatus: "",
   });
 
   const handleInputChange = (key: string, value: string) => {
-    setFormValues((prevValues: any) => ({ ...prevValues, [key]: value }));
+    if (key === "discount") {
+      console.log("===>discount", value);
+      setFormValues(
+        Object.assign(
+          formValues,
+          {},
+          {
+            ["sellingPrice"]:
+              Number(formValues.markedPrice) * ((100 - Number(value)) / 100),
+          }
+        )
+      );
+    }
+    if (key === "markedPrice") {
+      console.log("====>", value);
+      setFormValues(
+        Object.assign(
+          formValues,
+          {},
+          {
+            ["sellingPrice"]:
+              Number(value) * ((100 - Number(formValues.discount)) / 100),
+          }
+        )
+      );
+    }
+    setFormValues(Object.assign({}, formValues, { [key]: value }));
   };
 
+  const AfterProfitSellingPrice = (price:number)=>{
+    const val = price+ (price * productPercent)/100
+    return val;
+  }
   const handleSubmit = async () => {
+
     const productToUpload = {
       product_object_id: productId,
       wholesaler_object_id: user?._id || "66866383cf6daa0537ad4d8d",
       buying_price: parseFloat(formValues.buyingPrice),
       marked_price: parseFloat(formValues.markedPrice),
       discount: parseFloat(formValues.discount),
-      selling_price: parseFloat(formValues.sellingPrice),
-      current_stock: parseInt(formValues.currentStock),
-      selling_status: formValues.sellingStatus || 'In Stock',
+      selling_price: AfterProfitSellingPrice(formValues.sellingPrice),
+      current_stock: parseInt(formValues.quantity),
+      selling_status: formValues.sellingStatus || "In Stock",
     };
 
     try {
-      const response = await api.wholesaler.WholesalerUploadProduct(productToUpload)
+      const response = await api.wholesaler.WholesalerUploadProduct(
+        productToUpload
+      );
       console.log("Product upload response:", response);
       // setFormValues({})
-      Alert.alert("seccess", "Product successfully uploaded")
+      Alert.alert("Success", "Product successfully uploaded");
     } catch (error) {
       console.error("Error uploading product:", error);
     }
   };
 
   return (
-    <Provider>
+    <SafeAreaView>
       <ScrollView contentContainerStyle={styles.container}>
-        <Image style={styles.logo} source={{ uri: "https://threedio-cdn.icons8.com/qydSCIbK16H3LBZ72EG3nWXgTacqfcQxsvEwye_IEVE/rs:fit:1024:1024/czM6Ly90aHJlZWRp/by1wcm9kL3ByZXZp/ZXdzLzkwNS8yMTYz/OTE0NS0wMWFhLTQ3/MmEtODliOC04M2Q3/OGQwYzNmMDkucG5n.png" }} />
-        <Text style={{ fontSize: 20, marginBottom: 20 }}>
-          Upload product selling details
-        </Text>
+        <Image
+          style={styles.logo}
+          source={{
+            uri: productImage,
+          }}
+        />
+        <Text style={{ fontSize: 20, marginBottom: 20 }}>Buy Product</Text>
 
         <View style={styles.inputContainer}>
-          {inputFields.map((field, index) => (
-            <View key={field.key} style={styles.inputWrapper}>
+          {inputFields.map((option, index) => (
+            <View key={option.field} style={styles.inputWrapper}>
               <TextInput
-                label={field.label}
-                value={formValues[field.key]}
-                onChangeText={(text) => handleInputChange(field.key, text)}
+                label={option.label}
+                value={formValues[option.field]}
+                keyboardType={option.keyboardType}
+                onChangeText={(text) => handleInputChange(option.field, text)}
                 style={styles.input}
-                mode='outlined'
+                mode="outlined"
               />
             </View>
           ))}
+          <TextInput
+            label="Selling Price (BDT)"
+            value={String(formValues.sellingPrice)}
+            keyboardType="numeric"
+            disabled={true}
+            style={{ width: "100%" }}
+            mode="outlined"
+          />
         </View>
 
-        <Button mode="contained" onPress={handleSubmit} style={styles.button}>
-          Add Product
+        <Button
+          mode="contained"
+          onPress={handleSubmit}
+          style={[globalStyle.blueButton, { width: "100%" }]}
+        >
+          Add to Stock
         </Button>
       </ScrollView>
-    </Provider>
+    </SafeAreaView>
   );
 };
-
-
 
 export default QuickAddProductForm;
