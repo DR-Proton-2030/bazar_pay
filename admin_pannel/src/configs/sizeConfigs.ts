@@ -1,6 +1,6 @@
 const sizeConfigs = {
   sidebar: {
-    width: "260px",
+    width: "250px",
   },
 };
 

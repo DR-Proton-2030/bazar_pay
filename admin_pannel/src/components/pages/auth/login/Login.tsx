@@ -8,7 +8,7 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 import Paper from "@mui/material/Paper";
-import image from "../../../../assets/images/house.jpg";
+import image from "../../../../assets/images/login.svg";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -117,23 +117,24 @@ export default function Login() {
           alignItems: "center",
           border: "2px",
           borderRadius: "15px",
+          gap: "40px"
         }}
       >
-        <div className="login_img" style={{ width: "500px", height: "500px" }}>
-          <img src={image} alt=""/>
+        <div className="login_img" >
+          <img src={image} alt="" style={{width: "500px"}}/>
         </div>
         <div className="login_content">
           <Paper elevation={5} style={paperStyles} id="form-paper">
             <div className="form">
               <div className="login_heading">
-                <h2 style={{ textAlign: "center" }}>Login to Find My House</h2>
+                <h2 style={{ textAlign: "center" }}>Welcome Back!</h2>
                 <AccountCircleIcon
                   style={{ marginTop: "10px", width: "48px", height: "48px" }}
                 />
               </div>
               <Box sx={{ minWidth: 120 }}>
                 <FormControl sx={{ marginTop: 2, marginLeft: 2, width: "90%" }}>
-                  <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                  <InputLabel id="demo-simple-select-label">Select Your Role</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
                     id="demo-simple-select"
@@ -141,8 +142,8 @@ export default function Login() {
                     label="Role"
                     onChange={handleRoleChange}
                   >
-                    <MenuItem value={"BUILDER_ADMIN"}>Company Admin</MenuItem>
-                    <MenuItem value={"Super-Admin"}>Super-Admin</MenuItem>
+                    <MenuItem value={"ADMIN"}>Admin</MenuItem>
+                    
                   </Select>
                 </FormControl>
               </Box>
@@ -171,7 +172,7 @@ export default function Login() {
                   marginTop: "15px",
                 }}
               >
-                <a style={{ textDecoration: "none" }} href="#">
+                <a style={{ textDecoration: "none", color: "blue" }} href="#">
                   Forgot password?
                 </a>
               </p>
@@ -184,7 +185,7 @@ export default function Login() {
                   width: "90%",
                   height: "50px",
                   fontFamily: "Railway, sans-serif",
-                  backgroundColor: "#004d99"
+                  backgroundColor: "#0066ff"
                 }}
                 onClick={handleSubmit}
               >
@@ -192,12 +193,12 @@ export default function Login() {
               </Button>
               <div
                 className="account_link"
-                style={{ textAlign: "left", margin: "20px" }}
+                style={{ textAlign: "left", margin: "20px"}}
               >
                 <p>
-                  Need an account?
-                  <a href="#" style={{ textDecoration: "none" }}>
-                    Create your account
+                  Don't have any account?
+                  <a href="#" style={{ textDecoration: "none" , color: "blue", fontWeight: "600", marginLeft: "5px"}}>
+                    Sign Up
                   </a>
                 </p>
               </div>

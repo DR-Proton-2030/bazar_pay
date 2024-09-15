@@ -18,9 +18,9 @@ const SidebarItem = ({ item }: Props) => {
       to={item.path}
       sx={{
         "&: hover": {
-          backgroundColor: "#265073",
+          backgroundColor: "#b3ecff",
         },
-        backgroundColor: appState === item.state ? "#2C74B3" : "unset",
+        backgroundColor: appState === item.state ? "#b3ccff" : "unset",
         paddingY: "12px",
         paddingX: "24px",
       }}
@@ -28,6 +28,7 @@ const SidebarItem = ({ item }: Props) => {
       <ListItemIcon
         sx={{
           color: colorConfigs.sidebar.color,
+          fontWeight: "bold"
         }}
       >
         {item.sidebarProps.icon && item.sidebarProps.icon}
