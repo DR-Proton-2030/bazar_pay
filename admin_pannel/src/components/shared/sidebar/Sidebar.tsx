@@ -132,7 +132,7 @@ const Sidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
             height: "90px",
             width: "90px",
           }}
-          {...stringAvatar(user?.full_name || "Super Admin")}
+          {...stringAvatar(user?.full_name || "Noman Roni")}
         />
 
         <h1
@@ -145,7 +145,7 @@ const Sidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
           }}
         >
           {/* {builderData?.builder_name} */}
-          {user?.full_name || "Super Admin"}
+        {user?.full_name || "Noman Roni"}
         </h1>
 
         {/* Sidebar content */}
