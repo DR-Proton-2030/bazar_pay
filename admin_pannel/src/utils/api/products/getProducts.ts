@@ -59,3 +59,32 @@ export const updateProductStatus = async (payload: Payload) => {
     throw error;
   }
 };
+
+export const getProductDetail = async (filter: Params) => {
+  try {
+    const endpoint = `${initialRoute}/get-product-byid`;
+
+    const response = await get(
+      endpoint,
+      {
+        ...headers,
+      },
+      filter
+    );
+    if (response) {
+      const {
+        data: { message },
+      } = response;
+      if (message === MESSAGE.get.succ) {
+        const {
+          data: { result },
+        } = response;
+        return result;
+      }
+    }
+    throw new Error();
+  } catch (error: any) {
+    console.log(error);
+    throw error;
+  }
+};

@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const ProductSeeDetails = ({ data }: { data: any }) => {
   const navigate = useNavigate();
   const handleRouteToProductDetails = () => {
-    navigate(`/product-detail?pid=${data._id}`);
+    navigate(`/product-detail-admin?pid=${data._id}`);
   };
   return (
     <Button

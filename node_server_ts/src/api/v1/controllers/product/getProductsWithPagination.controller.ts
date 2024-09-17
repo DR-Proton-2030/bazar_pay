@@ -44,3 +44,37 @@ export const getProducts = async (req: Request, res: Response) => {
 		});
 	}
 };
+
+
+export const getProductById = async (req: Request, res: Response) => {
+	try {
+		const { id } = req.query;
+
+		if (!id) {
+			return res.status(StatusCodes.BAD_REQUEST).json({
+				message: MESSAGE.get.fail,
+				error: "Product ID is required."
+			});
+		}
+
+		const product = await ProductModel.findById(id);
+
+		if (!product) {
+			return res.status(StatusCodes.NOT_FOUND).json({
+				message: MESSAGE.get.fail,
+				error: "Product not found."
+			});
+		}
+
+		res.status(StatusCodes.OK).json({
+			message: MESSAGE.get.succ,
+			result: product
+		});
+	} catch (error) {
+		console.error("Error fetching product by ID:", error);
+		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+			message: MESSAGE.get.fail,
+			error: "An error occurred while fetching the product."
+		});
+	}
+};

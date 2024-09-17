@@ -7,6 +7,7 @@ import {
 	updateProduct,
 	updateProductStatus
 } from "../../controllers/product/product.controller";
+import { getProductById } from "../../controllers/product/getProductsWithPagination.controller";
 
 const router = express.Router();
 

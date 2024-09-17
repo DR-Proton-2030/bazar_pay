@@ -52,6 +52,7 @@ import Wholesalers from "../components/pages/builders/Builders";
 import WholesalerDetails from "../components/pages/builders/wholesalerDetails/WholesalerDetails";
 import AdminManagement from "../components/pages/permission/adminManagement/AdminManagement";
 import AddAdminForm from "../components/pages/permission/adminManagement/addAdminForm/AddAdminForm";
+import ProductDetails_Form from "../components/pages/productDetails.tsx/ProductDetails";
 
 const appRoutes: RouteType[] = [
   {
@@ -139,6 +140,11 @@ const appRoutes: RouteType[] = [
     path: "/categories/category-details",
     element: <CategoryDetails />,
     state: "category",
+  },
+  {
+    path: "product-detail-admin",
+    element: <ProductDetails_Form />,
+    state: "product",
   },
   {
     path: "/product-list",

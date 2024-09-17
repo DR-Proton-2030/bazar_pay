@@ -3,7 +3,7 @@ import { headers } from "../../../configs/config";
 import { MESSAGE } from "../../../constants/api/message";
 import { Payload } from "../../../@types/api/api.types";
 
-const { post } = request;
+const { post,patch } = request;
 
 const initialRoute = "project";
 
