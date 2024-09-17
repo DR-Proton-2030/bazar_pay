@@ -29,4 +29,4 @@ router.route("/update_product").patch(
 	updateProduct
 );
 
-module.exports = router;
+export default router;	

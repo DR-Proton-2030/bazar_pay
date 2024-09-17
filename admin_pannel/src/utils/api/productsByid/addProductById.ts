@@ -5,7 +5,7 @@ import { Payload } from "../../../@types/api/api.types";
 
 const { post } = request;
 
-const initialRoute = "/product";
+const initialRoute = "product";
 
 export const createProductById = async (payload: Payload) => {
   try {

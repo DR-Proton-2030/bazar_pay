@@ -11,4 +11,4 @@ router.route("/login-wholesaler-employee").post(auth_controller_1.loginWholesale
 router.route("/login-admin").post(auth_controller_1.loginAdmin);
 router.route("/get-otp").get(otp_controller_1.getOtp);
 router.route("/get-otp-retailer").get(otp_controller_1.getOtpForRetailer);
-module.exports = router;
+exports.default = router;

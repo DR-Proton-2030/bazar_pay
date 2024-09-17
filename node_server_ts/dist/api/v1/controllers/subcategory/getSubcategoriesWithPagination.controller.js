@@ -28,7 +28,7 @@ const getSubcategories = (req, res) => __awaiter(void 0, void 0, void 0, functio
         delete filter.sortField;
         console.log("===>Sub Category Filter", filter);
         const totalCount = yield subcategory_model_1.default.countDocuments(filter);
-        const limit = currentPage > 0 ? 5 : totalCount;
+        const limit = currentPage > 0 ? 10 : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
         const builders = yield subcategory_model_1.default.find(filter)
             .sort({ [sortField]: -1 })

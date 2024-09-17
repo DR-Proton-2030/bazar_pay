@@ -36,7 +36,7 @@ const createBrand = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const logoBuffer = logo.buffer;
         let logoUrl = "";
         try {
-            logoUrl = yield (0, uploadImageService_1.uploadImageService)("logo", logoBuffer);
+            logoUrl = (yield (0, uploadImageService_1.uploadImageToS3Service)("logo", logoBuffer)) || "";
         }
         catch (error) {
             return res.status(400).json({
@@ -92,7 +92,7 @@ const getBrands = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         delete filter.sortField;
         console.log("===>filter", filter);
         const totalCount = yield brand_model_1.default.countDocuments(filter);
-        const limit = currentPage > 0 ? 5 : totalCount;
+        const limit = currentPage > 0 ? 10 : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
         const builders = yield brand_model_1.default.find(filter)
             .sort({ [sortField]: -1 })

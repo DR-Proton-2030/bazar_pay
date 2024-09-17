@@ -14,4 +14,4 @@ router
     .post(multer_middleware_1.upload.fields([{ name: "product_image", maxCount: 1 }]), createProductByAdmin_controller_1.createProductByAdmin);
 router.route("/get-paginated-products").get(getProductsWithPagination_controller_1.getProducts);
 router.route("/get-regex-products").get(getRegexProducts_controller_1.getRegexProducts);
-module.exports = router;
+exports.default = router;

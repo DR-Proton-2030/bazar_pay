@@ -7,4 +7,4 @@ router.route("/order-product").post(placeOrder);
 router.route("/get-order").get(getOrdersByRetailer);
 router.route("/update-order-status").patch(updateOrderStatus);
 
-module.exports = router;
+export default router;

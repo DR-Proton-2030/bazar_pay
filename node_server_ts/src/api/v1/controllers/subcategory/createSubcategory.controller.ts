@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { StatusCodes } from "http-status-codes";
 import { MESSAGE } from "../../../../constants/message";
-import { uploadImageService } from "../../../../services/uploadImageService";
+import { uploadImageToS3Service } from "../../../../services/uploadImageService";
 import CategoryModel from "../../../../models/category.model";
 import SubcategoryModel from "../../../../models/subcategory.model";
 
@@ -27,7 +27,7 @@ export const createSubCategory = async (req: Request, res: Response) => {
 		const subCategoryImageBuffer = subCategoryImage.buffer;
 		let subCategoryUrl: string = "";
 		try {
-			subCategoryUrl = await uploadImageService("subCategoryImage", subCategoryImageBuffer);
+			subCategoryUrl = await uploadImageToS3Service("subCategoryImage", subCategoryImageBuffer) || "";
 		} catch (error) {
 			return res.status(StatusCodes.BAD_REQUEST).json({
 				message: MESSAGE.post.fail

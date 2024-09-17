@@ -16,4 +16,4 @@ router
 router.route("/get-paginated-subcategories").get(getSubcategoriesWithPagination_controller_1.getSubcategories);
 router.route("/get-subcategory-with-filter").get(getSubcategory_controller_1.getSubcategory);
 router.route("/get-aggregated-subcategory").get(getAggregatedSubcategory_controller_1.getAggregatedSubcategory);
-module.exports = router;
+exports.default = router;

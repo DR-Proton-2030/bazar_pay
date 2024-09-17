@@ -14,26 +14,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const mongoose_1 = __importDefault(require("mongoose"));
 const config_1 = require("./config");
-console.log("NODE_ENV", String(config_1.NODE_ENV));
-const mongoURI = String(config_1.NODE_ENV) == "PROD"
+const mongoURI = String(config_1.NODE_ENV) === "PROD"
     ? config_1.MONGO_URI.PROD
-    : String(config_1.NODE_ENV) == "DEV"
+    : String(config_1.NODE_ENV) === "DEV"
         ? config_1.MONGO_URI.DEV
-        : String(config_1.NODE_ENV) == "LOCAL"
+        : String(config_1.NODE_ENV) === "LOCAL"
             ? config_1.MONGO_URI.LOCAL
             : "";
-console.log("MongoDB First Connection", mongoURI);
+console.log("MongoDB URI:", mongoURI);
 const connectDb = () => __awaiter(void 0, void 0, void 0, function* () {
+    if (!mongoURI) {
+        throw new Error("MongoDB URI is not defined.");
+    }
     try {
-        if (mongoURI) {
+        // Check if mongoose is already connected
+        if (mongoose_1.default.connection.readyState === 0) {
             const conn = yield mongoose_1.default.connect(mongoURI, {
-                serverSelectionTimeoutMS: 40000
+                serverSelectionTimeoutMS: 40000,
             });
-            console.log("MongoDB Second Connection -->", mongoURI);
-            console.log(`\x1b[34m \x1b[1m \x1b[4mMongoDB Connected: ${conn.connection.port}\x1b[0m`);
+            console.log("MongoDB Connected:", conn.connection.host);
+        }
+        else {
+            console.log("MongoDB already connected.");
         }
     }
     catch (error) {
+        console.error("MongoDB connection error:", error);
         throw error;
     }
 });

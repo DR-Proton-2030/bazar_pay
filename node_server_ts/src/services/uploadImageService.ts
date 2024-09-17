@@ -1,21 +1,26 @@
-import { bucketName } from "../config/aws.config";
-import { s3 } from "../config/aws.config";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
+import { bucketName, s3Client, s3Url } from "../config/aws.config";
 
-export const uploadImageService = async (key: string, thumbnailBuffer: Buffer): Promise<string> => {
-	const params = {
+export const uploadImageToS3Service = async (
+	key: string,
+	thumbnailBuffer: Buffer
+) => {
+	const photoKey = `${key}/${Date.now()}photo.png`
+	const command = new PutObjectCommand({
 		Bucket: bucketName,
-		Key: `${key}/${Date.now()}.png`, // Customize the key as needed
+		Key: photoKey,
 		Body: thumbnailBuffer,
-		ACL: "public-read" // Set the ACL as needed (e.g., public-read for public access)
-	};
-
-	return new Promise((resolve, reject) => {
-		s3.upload(params, (err: any, data: { Location: string | PromiseLike<string> }) => {
-			if (err) {
-				reject(err);
-			} else {
-				resolve(data.Location); // Returns the URL of the uploaded thumbnail
-			}
-		});
+		ACL: "public-read", // Set the ACL as needed (e.g., public-read for public access)
 	});
+
+	try {
+		const response = await s3Client.send(command);
+		console.log(response);
+		if (response) {
+			return `${s3Url}/${photoKey}`;
+		}
+		return null;
+	} catch (err) {
+		console.error(err);
+	}
 };

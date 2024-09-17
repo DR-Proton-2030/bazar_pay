@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { uploadImageService } from "../../../../services/uploadImageService";
+import { uploadImageToS3Service } from "../../../../services/uploadImageService";
 import productModel from "../../../../models/product.model";
 import { MESSAGE } from "../../../../constants/message";
 
@@ -23,8 +23,8 @@ export const createProduct = async (req: Request, res: Response) => {
 		let payload: any = {};
 
 		try {
-			const productImageUrl = await uploadImageService("product_image", productImageBuffer);
-			const barCodePhotoUrl = await uploadImageService("bar_code_photo", barCodePhotoBuffer);
+			const productImageUrl = await uploadImageToS3Service("product_image", productImageBuffer);
+			const barCodePhotoUrl = await uploadImageToS3Service("bar_code_photo", barCodePhotoBuffer);
 
 			payload = {
 				...productPayload,
@@ -78,7 +78,7 @@ export const getProductList = async (req: Request, res: Response) => {
 
 		const totalCount = await productModel.countDocuments(filter);
 
-		const limit = currentPage > 0 ? 5 : totalCount;
+		const limit = currentPage > 0 ? 10 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
 		console.log("===>filter", filter);
@@ -118,10 +118,10 @@ export const updateProduct = async (req: Request, res: Response) => {
 		const productImageBuffer = product_image ? product_image.buffer : null;
 		const barCodePhotoBuffer = bar_code_photo ? bar_code_photo.buffer : null;
 
-		const productImageUrl = productImageBuffer ? await uploadImageService("product_image", productImageBuffer) : "";
+		const productImageUrl = productImageBuffer ? await uploadImageToS3Service("product_image", productImageBuffer) : "";
 
 		const barCodePhotoUrl = barCodePhotoBuffer
-			? await uploadImageService("bar_code_photo", barCodePhotoBuffer)
+			? await uploadImageToS3Service("bar_code_photo", barCodePhotoBuffer)
 			: "";
 
 		const { productDetails, productId } = req.body;

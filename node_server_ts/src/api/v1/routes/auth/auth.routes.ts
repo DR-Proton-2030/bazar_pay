@@ -10,4 +10,4 @@ router.route("/login-admin").post(loginAdmin);
 router.route("/get-otp").get(getOtp);
 router.route("/get-otp-retailer").get(getOtpForRetailer);
 
-module.exports = router;
+export default router;

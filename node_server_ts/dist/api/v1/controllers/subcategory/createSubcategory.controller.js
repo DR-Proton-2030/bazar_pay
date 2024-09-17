@@ -37,7 +37,7 @@ const createSubCategory = (req, res) => __awaiter(void 0, void 0, void 0, functi
         const subCategoryImageBuffer = subCategoryImage.buffer;
         let subCategoryUrl = "";
         try {
-            subCategoryUrl = yield (0, uploadImageService_1.uploadImageService)("subCategoryImage", subCategoryImageBuffer);
+            subCategoryUrl = (yield (0, uploadImageService_1.uploadImageToS3Service)("subCategoryImage", subCategoryImageBuffer)) || "";
         }
         catch (error) {
             return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json({

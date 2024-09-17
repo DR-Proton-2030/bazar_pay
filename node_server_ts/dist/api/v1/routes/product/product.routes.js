@@ -17,4 +17,4 @@ router.route("/update_product").patch(multer_middleware_1.upload.fields([
     { name: "product_image", maxCount: 1 },
     { name: "bar_code_photo", maxCount: 1 }
 ]), product_controller_1.updateProduct);
-module.exports = router;
+exports.default = router;

@@ -21,7 +21,7 @@ export const getSubcategories = async (req: Request, res: Response) => {
 
 		const totalCount = await SubcategoryModel.countDocuments(filter);
 
-		const limit = currentPage > 0 ? 5 : totalCount;
+		const limit = currentPage > 0 ? 10 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
 		const builders = await SubcategoryModel.find(filter)

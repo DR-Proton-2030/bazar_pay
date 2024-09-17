@@ -1,8 +1,19 @@
-export {};
+export { };
 import express, { Request, Response, NextFunction } from "express";
 import { StatusCodes } from "http-status-codes";
 import bodyParser from "body-parser";
+import authRourer from "./api/v1/routes/auth/auth.routes";
 import cors from "cors";
+import adminRouter from "./api/v1/routes/admin/admin.routes";
+import wholesalerRouter from "./api/v1/routes/wholesaler/wholesaler.routes";
+import productByAdminRouter from "./api/v1/routes/product/productByAdmin.routes";
+import retailerRouter from "./api/v1/routes/reatiler/retailer.routes";
+import brandRouter from "./api/v1/routes/brand/brand.routes";
+import categoryRouter from "./api/v1/routes/category/category.routes";
+import orderRouter from "./api/v1/routes/order/order.routes";
+import subcategoryRouter from "./api/v1/routes/subcategory/subcategory.routes";
+import wholesalerListedProductsRouter from "./api/v1/routes/wholesalerListedProducts/wholesalerListedProducts.routes";
+import connectDb from "./config/db";
 
 const app = express();
 
@@ -20,31 +31,35 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 	next();
 });
 
-app.use(express.json({ limit: "100000kb" }));
+const options: cors.CorsOptions = {
+	allowedHeaders: ["sessionId", "Content-Type"],
+	exposedHeaders: ["sessionId"],
+	origin: "*",
+	methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+	preflightContinue: false,
+};
 
+app.use(cors(options));
+app.use(express.json({ limit: "100000kb" }));
 // Middleware
 app.use(bodyParser.json());
 
-app.use("/api/v1", require("./api/v1/routes"));
+app.use("/api/v1/auth", authRourer);
+app.use("/api/v1/admin", adminRouter);
+app.use("/api/v1/wholesaler", wholesalerRouter);
+// app.use("/api/v1/wholesaler-product", require("./product/product.routes"));
+app.use("/api/v1/product", productByAdminRouter);
+app.use("/api/v1/retailer", retailerRouter);
+app.use("/api/v1/brands", brandRouter);
+app.use("/api/v1/category", categoryRouter);
+app.use("/api/v1/order", orderRouter);
+app.use("/api/v1/subcategory", subcategoryRouter);
+app.use("/api/v1/wholesaler-listed-product", wholesalerListedProductsRouter);
 
-app.get("/", (req, res) => {
+app.get("/hello", (req, res) => {
 	res.send(`<h1>App Connected Successful!</h1>`);
 });
 
-// const options: cors.CorsOptions = {
-//   allowedHeaders: ["sessionId", "Content-Type"],
-//   exposedHeaders: ["sessionId"],
-//   origin: "*",
-//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//   preflightContinue: false,
-// };
-
-// app.use(cors(options));
-
-// const port = process.env.PORT || 8989;
-
-// app.listen(port, () => {
-//   console.log(`Server is running at http://localhost:${port}`);
-// });
+connectDb();
 
 export default app;

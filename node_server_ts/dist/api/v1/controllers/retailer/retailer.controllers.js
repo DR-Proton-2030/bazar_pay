@@ -64,13 +64,13 @@ const createRetailer = (req, res) => __awaiter(void 0, void 0, void 0, function*
         let payload = {};
         console.log("====>before payload", payload);
         try {
-            const signBoardUrl = yield (0, uploadImageService_1.uploadImageService)("sign_board_photo", signBoardBuffer);
-            const ownerPhotoUrl = yield (0, uploadImageService_1.uploadImageService)("retailer_owner_photo", ownerPhotoBuffer);
+            const signBoardUrl = yield (0, uploadImageService_1.uploadImageToS3Service)("sign_board_photo", signBoardBuffer);
+            const ownerPhotoUrl = yield (0, uploadImageService_1.uploadImageToS3Service)("retailer_owner_photo", ownerPhotoBuffer);
             const tradeLicensceUrl = tradeLicensceBuffer
-                ? yield (0, uploadImageService_1.uploadImageService)("trade_license_photo", tradeLicensceBuffer)
+                ? yield (0, uploadImageService_1.uploadImageToS3Service)("trade_license_photo", tradeLicensceBuffer)
                 : image_1.DEFAULT_IMAGE;
-            const nidUrl = yield (0, uploadImageService_1.uploadImageService)("nid_photo", nidBuffer);
-            const logoUrl = yield (0, uploadImageService_1.uploadImageService)("logo", logoBuffer);
+            const nidUrl = yield (0, uploadImageService_1.uploadImageToS3Service)("nid_photo", nidBuffer);
+            const logoUrl = yield (0, uploadImageService_1.uploadImageToS3Service)("logo", logoBuffer);
             payload = Object.assign(Object.assign({}, _payload), { sign_board_photo: signBoardUrl, retailer_owner_photo: ownerPhotoUrl, trade_license_photo: tradeLicensceUrl, nid_photo: nidUrl, logo: logoUrl });
         }
         catch (error) {

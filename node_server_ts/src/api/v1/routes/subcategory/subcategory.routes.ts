@@ -4,6 +4,7 @@ import { createSubCategory } from "../../controllers/subcategory/createSubcatego
 import { getSubcategories } from "../../controllers/subcategory/getSubcategoriesWithPagination.controller";
 import { getSubcategory } from "../../controllers/subcategory/getSubcategory.controller";
 import { getAggregatedSubcategory } from "../../controllers/subcategory/getAggregatedSubcategory.controller";
+import e from "express";
 
 const router = express.Router();
 
@@ -17,4 +18,4 @@ router.route("/get-subcategory-with-filter").get(getSubcategory);
 
 router.route("/get-aggregated-subcategory").get(getAggregatedSubcategory)
 
-module.exports = router;
+export default router;

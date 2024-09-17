@@ -3,7 +3,7 @@ import { Request, Response } from "express";
 import BrandModel from "../../../../models/brand.model";
 import { MESSAGE } from "../../../../constants/message";
 import { QUERY_PARAMS } from "../../../../constants/query";
-import { uploadImageService } from "../../../../services/uploadImageService";
+import { uploadImageToS3Service } from "../../../../services/uploadImageService";
 
 export const createBrand = async (req: Request, res: Response) => {
 	try {
@@ -25,7 +25,7 @@ export const createBrand = async (req: Request, res: Response) => {
 		const logoBuffer = logo.buffer;
 		let logoUrl: string = "";
 		try {
-			logoUrl = await uploadImageService("logo", logoBuffer);
+			logoUrl = await uploadImageToS3Service("logo", logoBuffer) || "";
 		} catch (error) {
 			return res.status(400).json({
 				message: MESSAGE.post.fail
@@ -87,7 +87,7 @@ export const getBrands = async (req: Request, res: Response) => {
 
 		const totalCount = await BrandModel.countDocuments(filter);
 
-		const limit = currentPage > 0 ? 5 : totalCount;
+		const limit = currentPage > 0 ? 10 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
 		const builders = await BrandModel.find(filter)

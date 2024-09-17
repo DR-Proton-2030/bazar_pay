@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { MESSAGE } from "../../../../constants/message";
-import { uploadImageService } from "../../../../services/uploadImageService";
+import { uploadImageToS3Service } from "../../../../services/uploadImageService";
 import { DEFAULT_IMAGE } from "../../../../constants/image";
 import WholesalerModel from "../../../../models/wholesaler.model";
 
@@ -22,7 +22,7 @@ export const getWholeSaler = async (req: Request, res: Response) => {
 
 		const totalCount = await WholesalerModel.countDocuments(filter);
 
-		const limit = currentPage > 0 ? 5 : totalCount;
+		const limit = currentPage > 0 ? 10 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
 		const builders = await WholesalerModel.find(filter)
@@ -95,14 +95,14 @@ export const createWholesaler = async (req: Request, res: Response) => {
 		let payload = {};
 
 		try {
-			const logoUrl = logoBuffer ? await uploadImageService("logo", logoBuffer) : DEFAULT_IMAGE;
-			const signBoardUrl = await uploadImageService("sign_board", signBoardBuffer);
-			const ownerPhotoUrl = await uploadImageService("owner_photo", ownerPhotoBuffer);
+			const logoUrl = logoBuffer ? await uploadImageToS3Service("logo", logoBuffer) : DEFAULT_IMAGE;
+			const signBoardUrl = await uploadImageToS3Service("sign_board", signBoardBuffer);
+			const ownerPhotoUrl = await uploadImageToS3Service("owner_photo", ownerPhotoBuffer);
 
 			const tradeLicensceUrl = tradeLicensceBuffer
-				? await uploadImageService("trade_licensce", tradeLicensceBuffer)
+				? await uploadImageToS3Service("trade_licensce", tradeLicensceBuffer)
 				: DEFAULT_IMAGE;
-			const nidUrl = await uploadImageService("nid", nidBuffer);
+			const nidUrl = await uploadImageToS3Service("nid", nidBuffer);
 
 			payload = {
 				..._payload,

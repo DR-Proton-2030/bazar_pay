@@ -9,25 +9,27 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.uploadImageService = void 0;
+exports.uploadImageToS3Service = void 0;
+const client_s3_1 = require("@aws-sdk/client-s3");
 const aws_config_1 = require("../config/aws.config");
-const aws_config_2 = require("../config/aws.config");
-const uploadImageService = (key, thumbnailBuffer) => __awaiter(void 0, void 0, void 0, function* () {
-    const params = {
+const uploadImageToS3Service = (key, thumbnailBuffer) => __awaiter(void 0, void 0, void 0, function* () {
+    const photoKey = `${key}/${Date.now()}photo.png`;
+    const command = new client_s3_1.PutObjectCommand({
         Bucket: aws_config_1.bucketName,
-        Key: `${key}/${Date.now()}.png`, // Customize the key as needed
+        Key: photoKey,
         Body: thumbnailBuffer,
-        ACL: "public-read" // Set the ACL as needed (e.g., public-read for public access)
-    };
-    return new Promise((resolve, reject) => {
-        aws_config_2.s3.upload(params, (err, data) => {
-            if (err) {
-                reject(err);
-            }
-            else {
-                resolve(data.Location); // Returns the URL of the uploaded thumbnail
-            }
-        });
+        ACL: "public-read", // Set the ACL as needed (e.g., public-read for public access)
     });
+    try {
+        const response = yield aws_config_1.s3Client.send(command);
+        console.log(response);
+        if (response) {
+            return `${aws_config_1.s3Url}/${photoKey}`;
+        }
+        return null;
+    }
+    catch (err) {
+        console.error(err);
+    }
 });
-exports.uploadImageService = uploadImageService;
+exports.uploadImageToS3Service = uploadImageToS3Service;

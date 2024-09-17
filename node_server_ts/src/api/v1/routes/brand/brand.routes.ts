@@ -9,4 +9,4 @@ router.route("/create-brand").post(upload.fields([{ name: "logo", maxCount: 1 }]
 router.route("/get-brand-list").get(getBrands);
 router.route("/get-brand-suggestion").get(getRegexBrands);
 
-module.exports = router;
+export default router;

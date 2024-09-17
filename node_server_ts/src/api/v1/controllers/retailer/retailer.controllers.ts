@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import { MESSAGE } from "../../../../constants/message";
 import retailerModel from "../../../../models/retailer.model";
-import { uploadImageService } from "../../../../services/uploadImageService";
+import { uploadImageToS3Service } from "../../../../services/uploadImageService";
 import { DEFAULT_IMAGE } from "../../../../constants/image";
 
 export const createRetailer = async (req: Request, res: Response) => {
@@ -56,13 +56,13 @@ export const createRetailer = async (req: Request, res: Response) => {
 		let payload = {};
 		console.log("====>before payload", payload);
 		try {
-			const signBoardUrl = await uploadImageService("sign_board_photo", signBoardBuffer);
-			const ownerPhotoUrl = await uploadImageService("retailer_owner_photo", ownerPhotoBuffer);
+			const signBoardUrl = await uploadImageToS3Service("sign_board_photo", signBoardBuffer);
+			const ownerPhotoUrl = await uploadImageToS3Service("retailer_owner_photo", ownerPhotoBuffer);
 			const tradeLicensceUrl = tradeLicensceBuffer
-				? await uploadImageService("trade_license_photo", tradeLicensceBuffer)
+				? await uploadImageToS3Service("trade_license_photo", tradeLicensceBuffer)
 				: DEFAULT_IMAGE;
-			const nidUrl = await uploadImageService("nid_photo", nidBuffer);
-			const logoUrl = await uploadImageService("logo", logoBuffer);
+			const nidUrl = await uploadImageToS3Service("nid_photo", nidBuffer);
+			const logoUrl = await uploadImageToS3Service("logo", logoBuffer);
 
 			payload = {
 				..._payload,

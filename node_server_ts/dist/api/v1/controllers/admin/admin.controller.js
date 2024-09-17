@@ -53,7 +53,7 @@ const getEmployeeList = (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         const filter = req.query;
         const currentPage = parseInt(String(filter.page || "1"));
-        const limit = 5;
+        const limit = 10;
         const startIndex = (currentPage - 1) * limit;
         const sortField = filter.sortField ? filter.sortField : "updatedAt";
         delete filter.page;

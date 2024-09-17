@@ -7,6 +7,7 @@ import {
 } from "../../controllers/wholesalers/wholesaler.controller";
 import { getOtpForLogin, getOtpForSignup } from "../../controllers/wholesalers/wholeslaer.otp.controller";
 import { getProductsByProductId, uploadProduct } from "../../controllers/wholesalers/wholesalerUploadProduct.controller";
+import e from "express";
 
 const router = express.Router();
 
@@ -31,4 +32,4 @@ router.route("/get-product").get(getProductsByProductId);
 
 // router.route("/get-builder-list").get(getBuilderNameWithID);
 
-module.exports = router;
+export default router;

@@ -7,4 +7,4 @@ const router = express.Router();
 router.route("/create-category").post(upload.fields([{ name: "logo", maxCount: 1 }]), createCategory);
 router.route("/get-category-list").get(getCategories);
 
-module.exports = router;
+export default router;

@@ -50,7 +50,7 @@ const createProductByAdmin = (req, res) => __awaiter(void 0, void 0, void 0, fun
         const productImageBuffer = productImage.buffer;
         let productUrl = "";
         try {
-            productUrl = yield (0, uploadImageService_1.uploadImageService)("productImage", productImageBuffer);
+            productUrl = (yield (0, uploadImageService_1.uploadImageToS3Service)("productImage", productImageBuffer)) || "";
         }
         catch (error) {
             return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json({

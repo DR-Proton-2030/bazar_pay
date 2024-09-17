@@ -8,9 +8,8 @@ import {
 } from "./booking/booking";
 import { getBrand } from "./brand/getBrand";
 import { createBrand } from "./brand/postBrand";
-import { getBuilder } from "./builders/getBuilder";
-import { getBuilderByID } from "./builders/getBuilderByID";
-import { addBuilder } from "./builders/postBuilder";
+import { getBuilderByID } from "./wholesalers/getWholealerByID";
+import { addWholesaler } from "./wholesalers/postWholesaler";
 import { getCategory } from "./category/getCategory";
 import { createCategory } from "./category/postCategory";
 import { getCustomer } from "./customer/getCustomer";
@@ -25,22 +24,23 @@ import {
   getProjectDetails,
 } from "./products/getAdminProjects";
 import { getProducts, updateProductStatus } from "./products/getProducts";
-import { updatePlotPostion } from "./products/updatePlotPosition";
 import { getWholesalerListedProducts } from "./products/wholesalersProducts";
 import { createProductById } from "./productsByid/addProductById";
 import { getProductbyId } from "./productsByid/getProductById";
 import { getSubcategory } from "./subcategory/getSubcategory";
 import { createSubcategory } from "./subcategory/postSubcategory";
 import { getWholesaler, updateWholesalerStatus } from "./wholesaler/WholeSaler";
+import { get } from "http";
 
 export const api = {
   customer: {
     getCustomer,
   },
-  builder: {
-    getBuilder,
-    addBuilder,
+  wholesaler: {
+    getWholesaler,
+    addWholesaler,
     getBuilderByID,
+    updateWholesalerStatus,
   },
   admin: {
     createAdmin,
@@ -57,7 +57,7 @@ export const api = {
   product: {
     getProducts,
     updateProductStatus,
-    getWholesalerListedProducts
+    getWholesalerListedProducts,
   },
   booking: {
     getBooking,
@@ -65,27 +65,23 @@ export const api = {
     getForwardEnquryList,
     updateEnquiryStatus,
   },
-  wholesaler: {
-    getWholesaler,
-    updateWholesalerStatus,
-  },
   category: {
     getCategory,
-    createCategory
+    createCategory,
   },
   subcategory: {
-getSubcategory,
-createSubcategory
+    getSubcategory,
+    createSubcategory,
   },
   brand: {
     getBrand,
-    createBrand
+    createBrand,
   },
-  productbyId:{
+  productbyId: {
     getProductbyId,
-    createProductById
+    createProductById,
   },
-  order:{
-    getOrderList
-  }
+  order: {
+    getOrderList,
+  },
 };

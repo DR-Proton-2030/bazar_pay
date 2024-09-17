@@ -31,8 +31,8 @@ const createProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const barCodePhotoBuffer = bar_code_photo.buffer;
         let payload = {};
         try {
-            const productImageUrl = yield (0, uploadImageService_1.uploadImageService)("product_image", productImageBuffer);
-            const barCodePhotoUrl = yield (0, uploadImageService_1.uploadImageService)("bar_code_photo", barCodePhotoBuffer);
+            const productImageUrl = yield (0, uploadImageService_1.uploadImageToS3Service)("product_image", productImageBuffer);
+            const barCodePhotoUrl = yield (0, uploadImageService_1.uploadImageToS3Service)("bar_code_photo", barCodePhotoBuffer);
             payload = Object.assign(Object.assign({}, productPayload), { product_image: productImageUrl, bar_code_photo: barCodePhotoUrl, wholesalerSaler_id });
         }
         catch (error) {
@@ -75,7 +75,7 @@ const getProductList = (req, res) => __awaiter(void 0, void 0, void 0, function*
         delete filter.sortField;
         console.log("===>filter", filter);
         const totalCount = yield product_model_1.default.countDocuments(filter);
-        const limit = currentPage > 0 ? 5 : totalCount;
+        const limit = currentPage > 0 ? 10 : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
         console.log("===>filter", filter);
         const products = yield product_model_1.default
@@ -111,9 +111,9 @@ const updateProduct = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         }
         const productImageBuffer = product_image ? product_image.buffer : null;
         const barCodePhotoBuffer = bar_code_photo ? bar_code_photo.buffer : null;
-        const productImageUrl = productImageBuffer ? yield (0, uploadImageService_1.uploadImageService)("product_image", productImageBuffer) : "";
+        const productImageUrl = productImageBuffer ? yield (0, uploadImageService_1.uploadImageToS3Service)("product_image", productImageBuffer) : "";
         const barCodePhotoUrl = barCodePhotoBuffer
-            ? yield (0, uploadImageService_1.uploadImageService)("bar_code_photo", barCodePhotoBuffer)
+            ? yield (0, uploadImageService_1.uploadImageToS3Service)("bar_code_photo", barCodePhotoBuffer)
             : "";
         const { productDetails, productId } = req.body;
         const _productPayload = JSON.parse(productDetails);

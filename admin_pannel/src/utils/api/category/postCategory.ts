@@ -5,7 +5,7 @@ import { Payload } from "../../../@types/api/api.types";
 
 const { post } = request;
 
-const initialRoute = "/category";
+const initialRoute = "category";
 
 export const createCategory = async (payload: Payload) => {
   try {

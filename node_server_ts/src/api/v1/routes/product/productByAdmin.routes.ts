@@ -14,4 +14,4 @@ router.route("/get-paginated-products").get(getProducts);
 
 router.route("/get-regex-products").get(getRegexProducts);
 
-module.exports = router;
+export default router;

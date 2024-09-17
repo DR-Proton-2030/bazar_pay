@@ -21,7 +21,7 @@ export const getProducts = async (req: Request, res: Response) => {
 
 		const totalCount = await ProductModel.countDocuments(filter);
 
-		const limit = currentPage > 0 ? 5 : totalCount;
+		const limit = currentPage > 0 ? 10 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
 		const builders = await ProductModel.find(filter)

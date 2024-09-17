@@ -23,4 +23,4 @@ router.route("/update-wholesaler-status").patch(wholesaler_controller_1.updateWh
 router.route("/upload-product").post(wholesalerUploadProduct_controller_1.uploadProduct);
 router.route("/get-product").get(wholesalerUploadProduct_controller_1.getProductsByProductId);
 // router.route("/get-builder-list").get(getBuilderNameWithID);
-module.exports = router;
+exports.default = router;

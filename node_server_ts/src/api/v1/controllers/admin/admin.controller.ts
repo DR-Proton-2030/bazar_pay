@@ -38,7 +38,7 @@ export const getEmployeeList = async (req: Request, res: Response) => {
 	try {
 		const filter: any = req.query;
 		const currentPage = parseInt(String(filter.page || "1"));
-		const limit = 5;
+		const limit = 10;
 		const startIndex = (currentPage - 1) * limit;
 		const sortField = filter.sortField ? filter.sortField : "updatedAt";
 

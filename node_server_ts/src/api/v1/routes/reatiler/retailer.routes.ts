@@ -22,4 +22,4 @@ router.route("/registerOtp-retailer").get(getOtpForSignup);
 router.route("/loginOtp-retailer").get(getOtpForLogin);
 router.route("/update-password-retailer").patch(updatePassword);
 
-module.exports = router;
+export default router;
