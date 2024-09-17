@@ -60,18 +60,18 @@ const BuilderForm = () => {
       if (uploadedFile) {
         formData.append("logo", uploadedFile);
       }
-      const response = await api.builder.addBuilder(formData);
-      if (response) {
-        console.log("ADDED__RESPONSE---->", response);
-        // alert("Data submitted successfully!");
-        setSnackbarOpen(true);
-        setSnackbarType("success");
-        setSnackbarMessage("Data submitted successfully!");
-      }
+      // const response = await api.builder.addBuilder(formData);
+      // if (response) {
+      //   console.log("ADDED__RESPONSE---->", response);
+      //   // alert("Data submitted successfully!");
+      //   setSnackbarOpen(true);
+      //   setSnackbarType("success");
+      //   setSnackbarMessage("Data submitted successfully!");
+      // }
 
-      if (!response) {
-        throw new Error(`API request failed with status ${response.status}`);
-      }
+      // if (!response) {
+      //   throw new Error(`API request failed with status ${response.status}`);
+      // }
 
       setBuilderDetails(defaultBuilderForm);
     } catch (error) {

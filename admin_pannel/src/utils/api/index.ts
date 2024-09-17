@@ -81,6 +81,8 @@ export const api = {
     getProductbyId,
     createProductById,
   },
+  builder:{
+  },
   order: {
     getOrderList,
   },

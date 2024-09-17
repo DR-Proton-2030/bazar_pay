@@ -79,10 +79,10 @@ const AdminSidebar: React.FC<SideBarProps> = ({ toggleSidebar, opens }) => {
       if (!builderId) {
         throw new Error("Builder ID is missing in the query parameters.");
       }
-      const response = await api.builder.getBuilderByID(builderId);
-      setBuilderData(response);
-      setBuilderDetails(response);
-      console.log("newResponse-->", response.builder_name);
+      // const response = await api.builder.getBuilderByID(builderId);
+      // setBuilderData(response);
+      // setBuilderDetails(response);
+      // console.log("newResponse-->", response.builder_name);
     } catch (error) {
       console.log("Error while fetching builderByID:")
     }

@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcryptjs";
 import AdminModel from "../../../../models/admin.model";
 import { MESSAGE } from "../../../../constants/message";
+import productModel from "../../../../models/product.model";
 
 export const createAdmin = async (req: Request, res: Response) => {
 	try {
@@ -64,6 +65,36 @@ export const getEmployeeList = async (req: Request, res: Response) => {
 		console.error("Error fetching bookings:", error);
 		res.status(400).json({
 			message: MESSAGE.get.fail
+		});
+	}
+};
+
+
+
+export const updateProfitPercentage = async (req: Request, res: Response) => {
+	try {
+		const { productId, profit_percentage } = req.body;
+
+		const updatedProduct = await productModel.findByIdAndUpdate(
+			productId,
+			{ profit_percentage },
+			{ new: true }
+		);
+
+		if (!updatedProduct) {
+			return res.status(404).json({
+				message: "Product not found",
+			});
+		}
+
+		return res.status(200).json({
+			message: MESSAGE.patch.succ,
+			result: updatedProduct,
+		});
+	} catch (error) {
+		return res.status(500).json({
+			message: MESSAGE.patch.fail,
+			error,
 		});
 	}
 };
