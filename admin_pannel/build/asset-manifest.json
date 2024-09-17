@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/static/css/main.de1cc6b1.css",
-    "main.js": "/static/js/main.38b779b7.js",
+    "main.js": "/static/js/main.afefa073.js",
     "static/js/453.eb32cec3.chunk.js": "/static/js/453.eb32cec3.chunk.js",
     "static/media/login.svg": "/static/media/login.50a3f1ae8699980c024c6c2dc16bc8b8.svg",
     "static/media/Scriptures.png": "/static/media/Scriptures.26cba31869c98849049b.png",
     "static/media/bazarpay-logo.svg": "/static/media/bazarpay-logo.b7c20b63f884fddf52b61bd1818c58b4.svg",
     "index.html": "/index.html",
     "main.de1cc6b1.css.map": "/static/css/main.de1cc6b1.css.map",
-    "main.38b779b7.js.map": "/static/js/main.38b779b7.js.map",
+    "main.afefa073.js.map": "/static/js/main.afefa073.js.map",
     "453.eb32cec3.chunk.js.map": "/static/js/453.eb32cec3.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.de1cc6b1.css",
-    "static/js/main.38b779b7.js"
+    "static/js/main.afefa073.js"
   ]
 }
