@@ -48,6 +48,7 @@ const AddProductsForm = () => {
     product_description: "",
     product_image: "",
     product_status: "",
+    profit_percentage:0,
     category_object_id: categoryId as string,
     subcategory_object_id: subcategoryId as string,
     brand_object_id: "",
@@ -140,7 +141,16 @@ const AddProductsForm = () => {
             required
           />
         </div>
-
+        <div className="flex-input">
+          <label>Profit Percentage:</label>
+          <TextField
+            className="mui-textfield"
+            value={productDetails.profit_percentage}
+            onChange={handleChange}
+            name="profit_percentage"
+            required
+          />
+        </div>
         <div className="flex-input">
           <label>Status:</label>
           <FormControl className="mui-textfield" fullWidth required>

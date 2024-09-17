@@ -8,4 +8,5 @@ export interface IProducts {
 	category_object_id: string;
 	subcategory_object_id: string;
 	brand_object_id: string;
+	profit_percentage:any;
 }
