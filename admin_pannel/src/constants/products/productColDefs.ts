@@ -16,6 +16,7 @@ export const ProductColDefs: ColDef[] = [
   { field: "product_description", headerName: "Product Details" },
   { field: "product_status", headerName: "Product Status" },
   { field: "unit", headerName: "Unit" },
+  { field: "profit_percentage", headerName: "Profit(%)" },
   {
     field: "createdAt",
     headerName: "Created On",
