@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useCallback, useContext, useEffect, useState } from "react";
 import UIContext from "../../../contexts/uiContext/UIContext";
 import { IPagination } from "../../../@types/props/pagination";
 import { IProduct } from "../../../@types/interface/product.interface";
@@ -185,7 +185,9 @@ const ProductList = () => {
             rowData={allProductList}
             key={2}
           ></DataGrid>
-          <BasicPagination />
+          <BasicPagination pageCount={0} currentPage={0} handlePageChange={function (event: ChangeEvent<unknown>, value: number): void {
+            throw new Error("Function not implemented.");
+          } } />
       </Box>
       </Box>
     </div>

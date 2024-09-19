@@ -10,38 +10,51 @@ import DataGrid from "../../shared/dataGrid/DataGrid";
 import UIContext from "../../../contexts/uiContext/UIContext";
 import { CategoryColDefs } from "../../../constants/categories/categoryColDefs";
 import { ICategory } from "../../../@types/interface/category.interface";
+import BasicPagination from "../../shared/basicPagination/BasicPagination";
+import { IPagination } from "../../../@types/props/pagination";
+import { current } from "@reduxjs/toolkit";
 
 const Categories = () => {
   const navigate = useNavigate();
   const { setDashboardHeader } = useContext(UIContext);
   const [rowData, setRowData] = useState<ICategory[]>([]);
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  // const [currentPage, setCurrentPage] = useState<number>(1);
+  const [categoryPagination, setCategoryPagination] = useState<IPagination>({
+    currentPage: 1,
+    pageCount: 1,
+  });
+
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setCategoryPagination(prev => ({
+      ...prev,
+      currentPage: value,
+    }));
+  };
+
 
   const getCategories = useCallback(
     async (filterQuery: any) => {
       try {
         const filter = {
           ...filterQuery,
-          page: currentPage,
+          page: categoryPagination.currentPage,
         };
         const response = await api.category.getCategory(filter);
         if (response) {
           setRowData(response);
+         
         }
       } catch (error) {
         console.error("Error while fetching data:", error);
       }
     },
-    [currentPage]
+    []
   );
 
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number
-  ) => {
-    setCurrentPage(value);
-  };
-
+  
   useEffect(() => {
     getCategories({});
   }, [getCategories]);
@@ -63,6 +76,8 @@ const Categories = () => {
         </Button>
       </div>
       <DataGrid colDefs={CategoryColDefs} rowData={rowData} key={0} />
+    
+      <BasicPagination pageCount={categoryPagination.pageCount} handlePageChange={handlePageChange} currentPage={categoryPagination.currentPage}/>
     </div>
   );
 };

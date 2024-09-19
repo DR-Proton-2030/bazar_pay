@@ -123,7 +123,7 @@ const Builders = () => {
         <Button
           variant="contained"
           className="blue-btn"
-          onClick={() => navigate("/add-builders")}
+          onClick={() => navigate("/add-wholesalers")}
         >
           Add Wholesaler
         </Button>

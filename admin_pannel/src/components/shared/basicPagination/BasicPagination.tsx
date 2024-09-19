@@ -3,11 +3,17 @@ import Pagination from "@mui/material/Pagination";
 import { green } from "@mui/material/colors";
 import "./pagination.css";
 
-const BasicPagination = ({
+interface PaginationProps {
+  pageCount: number;
+  currentPage: number;
+  handlePageChange: (event: React.ChangeEvent<unknown>, value: number) => void;
+}
+
+const BasicPagination : React.FC<PaginationProps> = ({
   currentPage,
   handlePageChange,
   pageCount,
-}: any) => {
+}) => {
   const color = green[900];
   return (
     <div
@@ -18,13 +24,13 @@ const BasicPagination = ({
         marginTop: "20px",
       }}
     >
-      {/* <Pagination
+      <Pagination
         count={pageCount}
         page={currentPage}
         variant="outlined"
         sx={{ color }}
         onChange={handlePageChange}
-      /> */}
+      />
     </div>
   );
 };

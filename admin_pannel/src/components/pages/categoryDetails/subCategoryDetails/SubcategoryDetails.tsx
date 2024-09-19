@@ -6,13 +6,22 @@ import { SubcategoryColDefs } from "../../../../constants/subCategory/subCategor
 import { ISubcategory } from "../../../../@types/interface/subcategory.interface";
 import { api } from "../../../../utils/api";
 import UIContext from "../../../../contexts/uiContext/UIContext";
+import BasicPagination from "../../../shared/basicPagination/BasicPagination";
+import { IPagination } from "../../../../@types/props/pagination";
 
 const SubcategoryDetails = () => {
   const navigate = useNavigate();
   const {setDashboardHeader} = useContext(UIContext)
   const [rowData, setRowData] = useState<ISubcategory[]>([]);
   // const [builderData, setBuilderData] = useState<I>();
-  const [currentPage, setCurrentPage] = useState<number>(1);
+  // const [currentPage, setCurrentPage] = useState<number>(1);
+  const [subcategoryPagination, setSubcategoryPagination] = useState<IPagination>(
+  {
+    currentPage: 1,
+    pageCount: 1,
+  }
+
+  )
   const queryParams = new URLSearchParams(window.location.search);
   const categoryId = queryParams.get("cid");
 
@@ -27,7 +36,7 @@ const SubcategoryDetails = () => {
           throw new Error("Builder ID is missing in the query parameters.");
         }
         const filter = {
-          page: currentPage,
+          page: subcategoryPagination.currentPage,
           category_object_id: categoryId
         };
         const response = await api.subcategory.getSubcategory(filter);
@@ -38,14 +47,17 @@ const SubcategoryDetails = () => {
         console.error("Error while fetching data:", error);
       }
     },
-    [currentPage, categoryId]
+    [subcategoryPagination.currentPage, categoryId]
   );
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    setCurrentPage(value);
+    setSubcategoryPagination(prev => ({
+      ...prev,
+      currentPage: value
+    }));
   };
 
   useEffect(() => {
@@ -68,6 +80,7 @@ const SubcategoryDetails = () => {
         </Button>
       </div>
       <DataGrid rowData={rowData} colDefs={SubcategoryColDefs} />
+      <BasicPagination pageCount={1} handlePageChange={handlePageChange} currentPage={1}/>
     </div>
   );
 };

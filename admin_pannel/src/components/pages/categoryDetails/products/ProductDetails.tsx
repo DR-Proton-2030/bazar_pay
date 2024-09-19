@@ -7,6 +7,7 @@ import { api } from '../../../../utils/api'
 import { IProduct } from '../../../../@types/interface/product.interface'
 import UIContext from '../../../../contexts/uiContext/UIContext'
 import { IProducts } from '../../../../@types/interface/products.interface'
+import BasicPagination from '../../../shared/basicPagination/BasicPagination'
 
 const Products = () => {
 const navigate = useNavigate()
@@ -65,6 +66,9 @@ const {setDashboardHeader} = useContext(UIContext)
         </Button>
       </div>
       <DataGrid rowData={rowData} colDefs={ProductColDefs}/>
+      <BasicPagination pageCount={0} currentPage={0} handlePageChange={function (event: React.ChangeEvent<unknown>, value: number): void {
+        throw new Error('Function not implemented.')
+      } }/>
     </div>
   )
 }

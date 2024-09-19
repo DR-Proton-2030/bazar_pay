@@ -13,7 +13,8 @@ export const getCategory = async (filterQuery: any) => {
       {
         ...headers,
       },
-      filterQuery
+      filterQuery,
+      
     );
     if (response) {
       const {
