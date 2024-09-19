@@ -1,10 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useCallback, useContext, useEffect, useState } from 'react'
 import UIContext from '../../../../contexts/uiContext/UIContext'
 import { Button, Chip, Paper, styled } from '@mui/material';
 import Textfield from '../../../shared/textField/Textfield';
 import { IWholesaler } from '../../../../@types/interface/wholesaler';
 import SendIcon from '@mui/icons-material/Send';
 import UploadIcon from '@mui/icons-material/Upload';
+import { api } from '../../../../utils/api';
 
 const VisuallyHiddenInput = styled("input")({
     clip: "rect(0 0 0 0)",
@@ -20,27 +21,81 @@ const VisuallyHiddenInput = styled("input")({
 
 const AddWholesalers = () => {
     const {setDashboardHeader} = useContext(UIContext);
-    const [wholesalerDetails, setWholesalerDetails] = useState<IWholesaler>();
+    const [wholesalerDetails, setWholesalerDetails] = useState<IWholesaler>({
+      _id: "",
+      name: "",
+      owner_name: "",
+      contact_phone: "",
+      contact_email: "",
+      trade_licence_number: "",
+      nid_number: "",
+      logo: "",
+      sign_board_photo: "",
+      trade_licence_photo: "",
+      nid_photo: "",
+      wholesaler_owner_photo: "",
+      status: "",
+      createdAt: "",
+      updatedAt: ""
+    }
+  
+    );
     const [logo, setLogo] = useState<File | null>(null);
     const [signBoardPhoto, setSignBoardPhoto] = useState<File | null>(null);
     const [tradeLicencePhoto, setTradeLicencePhoto] = useState<File | null>(null);
     const [nidPhoto, setNidPhoto] = useState<File | null>(null);
     const [ownerPhoto, setOwnerPhoto] = useState<File | null>(null);
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
-        const {name, value} = event.target;
-        setWholesalerDetails((prevDetails : any) => ({
-            ...prevDetails,
-            [name]:value
-        }))
+    
+const handleChange = useCallback(
+      (event: any) => {
+        const {
+          target: { name, value },
+        } = event;
+        setWholesalerDetails(Object.assign({}, wholesalerDetails, { [name]: value }));
+      },
+      [wholesalerDetails]
+    );
 
+    const handleSubmit = async (event : {preventDefault: () => void}) => {
+      event.preventDefault();
+      try {
+        const formData = new FormData();
+        formData.append("wholesalerDetails", JSON.stringify(wholesalerDetails));
+        if(logo){
+          formData.append("logo", logo);
+        }
+        if(signBoardPhoto){
+          formData.append("sign_board_photo", signBoardPhoto);
+        }
+        if(tradeLicencePhoto){
+          formData.append("trade_licence_photo", tradeLicencePhoto);
+        }
+        if(nidPhoto){
+          formData.append("nid_photo", nidPhoto);
+        }
+        const response = await api.wholesaler.addWholesaler(formData);
+        if(response){
+          alert("Wholesaler Added Successfully")
+        }
+        if (!response) {
+          throw new Error(`API request failed with status ${response.status}`);
+        }
+
+        setWholesalerDetails(wholesalerDetails);
+
+      } catch (error){
+        console.log("Error while adding");
+      alert("failed to create wholesaler");
+      }
     }
 
     useEffect(() => {
         setDashboardHeader("Add  Wholesalers")
     }, [setDashboardHeader])
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
+      <div>
         <h2 style={{fontWeight: "600", fontSize: "18px"}}>Add Wholesaler Details</h2>
         <Paper elevation={2} sx={{marginTop: "30px"}}>
         <div className="admin-form-container">
@@ -57,7 +112,7 @@ const AddWholesalers = () => {
             label={"Owner Name"}
             name={"owner_name"}
             width={"65%"}
-            type={"email"}
+            type={"text"}
             className={"text-input-field"}
             onChange={handleChange}
           />
@@ -338,6 +393,8 @@ const AddWholesalers = () => {
         </Button>
       </div>
     </div>
+    </form>
+    
   )
 }
 
