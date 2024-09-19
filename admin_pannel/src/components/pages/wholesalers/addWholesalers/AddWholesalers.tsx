@@ -117,7 +117,7 @@ const handleChange = useCallback(
             onChange={handleChange}
           />
            <div className='image-input-field'>
-            <label>Wholesaler Owner Photos:</label>
+            <label>Wholesaler Owner Photo:</label>
             <div style={{
                
               }}>
