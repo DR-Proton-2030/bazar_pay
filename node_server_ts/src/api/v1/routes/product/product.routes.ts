@@ -3,6 +3,7 @@ import express from "express";
 import { upload } from "../../../../middleware/multer.middleware";
 import {
 	createProduct,
+	deleteProductById,
 	getProductList,
 	updateProduct,
 	updateProductStatus
@@ -21,6 +22,7 @@ router.route("/add_product").post(
 
 router.route("/get-product-list").get(getProductList);
 router.route("/update-product-status").patch(updateProductStatus);
+router.route("/delete-product-by-id").delete(deleteProductById);
 
 router.route("/update_product").patch(
 	upload.fields([

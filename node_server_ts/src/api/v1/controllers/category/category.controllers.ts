@@ -3,6 +3,8 @@ import { MESSAGE } from "../../../../constants/message";
 import { QUERY_PARAMS } from "../../../../constants/query";
 import { uploadImageToS3Service } from "../../../../services/uploadImageService";
 import CategoryModel from "../../../../models/category.model";
+import SubcategoryModel from "../../../../models/subcategory.model";
+import ProductModel from "../../../../models/product.model";
 
 export const createCategory = async (req: Request, res: Response) => {
 	try {
@@ -25,7 +27,7 @@ export const createCategory = async (req: Request, res: Response) => {
 		const logoBuffer = logo.buffer;
 		let logoUrl: string = "";
 		try {
-			logoUrl = await uploadImageToS3Service("logo", logoBuffer) || "";
+			logoUrl = (await uploadImageToS3Service("logo", logoBuffer)) || "";
 		} catch (error) {
 			return res.status(400).json({
 				message: MESSAGE.post.fail
@@ -107,6 +109,49 @@ export const getCategories = async (req: Request, res: Response) => {
 		console.error("Error fetching categories:", error);
 		res.status(400).json({
 			message: MESSAGE.get.fail
+		});
+	}
+};
+
+export const deleteCategoryById = async (req: Request, res: Response) => {
+	try {
+		const { _id } = req.query;
+		const deletedCategoryInstance = await CategoryModel.findByIdAndDelete(_id);
+
+		if (!deletedCategoryInstance) {
+			return res.status(404).json({
+				message: "Category id not found"
+			});
+		}
+
+		const subcategoryPayload = {
+			category_object_id: _id
+		};
+
+		const subcategoryDeleteInstance = await SubcategoryModel.deleteMany(subcategoryPayload);
+
+		if (!subcategoryDeleteInstance) {
+			return res.status(400).json({
+				message: "Subcategory not found"
+			});
+		}
+
+		const productDeleteInstance = await ProductModel.deleteMany(subcategoryPayload);
+
+		if (!productDeleteInstance) {
+			return res.status(400).json({
+				message: "Product not found"
+			});
+		}
+
+		return res.status(200).json({
+			message: MESSAGE.delete.succ,
+			result: { deletedCategoryInstance, subcategoryDeleteInstance, productDeleteInstance }
+		});
+	} catch (error) {
+		return res.status(400).json({
+			message: MESSAGE.delete.fail,
+			error
 		});
 	}
 };

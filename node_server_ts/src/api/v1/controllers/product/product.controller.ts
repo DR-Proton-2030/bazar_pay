@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { uploadImageToS3Service } from "../../../../services/uploadImageService";
 import productModel from "../../../../models/product.model";
 import { MESSAGE } from "../../../../constants/message";
+import ProductModel from "../../../../models/product.model";
 
 export const createProduct = async (req: Request, res: Response) => {
 	try {
@@ -118,7 +119,9 @@ export const updateProduct = async (req: Request, res: Response) => {
 		const productImageBuffer = product_image ? product_image.buffer : null;
 		const barCodePhotoBuffer = bar_code_photo ? bar_code_photo.buffer : null;
 
-		const productImageUrl = productImageBuffer ? await uploadImageToS3Service("product_image", productImageBuffer) : "";
+		const productImageUrl = productImageBuffer
+			? await uploadImageToS3Service("product_image", productImageBuffer)
+			: "";
 
 		const barCodePhotoUrl = barCodePhotoBuffer
 			? await uploadImageToS3Service("bar_code_photo", barCodePhotoBuffer)
@@ -181,3 +184,26 @@ export const updateProductStatus = async (req: Request, res: Response) => {
 };
 
 export const getProductListForRetailers = (req: Request, res: Response) => { };
+
+export const deleteProductById = async (req: Request, res: Response) => {
+	try {
+		const { _id } = req.query;
+		const deletedProductInstance = await ProductModel.findByIdAndDelete(_id);
+
+		if (!deletedProductInstance) {
+			return res.status(400).json({
+				message: "Product not found"
+			});
+		}
+
+		return res.status(200).json({
+			message: MESSAGE.delete.succ,
+			result: deletedProductInstance
+		});
+	} catch (error) {
+		return res.status(400).json({
+			message: MESSAGE.delete.fail,
+			error
+		});
+	}
+};

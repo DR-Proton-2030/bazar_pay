@@ -3,6 +3,8 @@ import { Request, Response } from "express";
 import SubcategoryModel from "../../../../models/subcategory.model";
 import { MESSAGE } from "../../../../constants/message";
 import { QUERY_PARAMS } from "../../../../constants/query";
+import CategoryModel from "../../../../models/category.model";
+import ProductModel from "../../../../models/product.model";
 
 export const createSubcategory = async (req: Request, res: Response) => {
 	try {
@@ -114,3 +116,26 @@ export const getSubcategoryById = async (req: Request, res: Response) => {
 //     });
 //   }
 // };
+
+export const deleteSubcategoryById = async (req: Request, res: Response) => {
+	try {
+		const { _id } = req.query;
+		const deletedSubcategoryInstance = await SubcategoryModel.findByIdAndDelete(_id);
+
+		if (!deletedSubcategoryInstance) {
+			return res.status(404).json({
+				message: "Subcategory id not found"
+			});
+		}
+
+		return res.status(200).json({
+			message: MESSAGE.delete.succ,
+			result: deletedSubcategoryInstance
+		});
+	} catch (error) {
+		return res.status(400).json({
+			message: MESSAGE.delete.fail,
+			error
+		});
+	}
+};
