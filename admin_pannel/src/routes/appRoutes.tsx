@@ -54,6 +54,8 @@ import AdminManagement from "../components/pages/permission/adminManagement/Admi
 import AddAdminForm from "../components/pages/permission/adminManagement/addAdminForm/AddAdminForm";
 import ProductDetails_Form from "../components/pages/productDetails.tsx/ProductDetails";
 import AddWholesalers from "../components/pages/wholesalers/addWholesalers/AddWholesalers";
+import Retailers from "../components/pages/retailers/Retailers";
+import AddRetailerForm from "../components/pages/retailers/addRetailerForm/AddRetailerForm";
 
 const appRoutes: RouteType[] = [
   {
@@ -62,13 +64,18 @@ const appRoutes: RouteType[] = [
     state: "home",
   },
   {
-    path: "/all-customers",
-    element: <AllCustomersPage />,
-    state: "allcustomers",
+    path: "/retailers",
+    element: <Retailers />,
+    state: "retailers",
     sidebarProps: {
       displayText: "All Retailers",
       icon: <PeopleOutlineOutlinedIcon />,
     },
+  },
+  {
+    path: "/retailers/add-retailers",
+    element: <AddRetailerForm/>,
+    state: "retailers",
   },
   {
     path: "/wholesalers",
