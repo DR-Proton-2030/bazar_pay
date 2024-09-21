@@ -187,8 +187,8 @@ export const getProductListForRetailers = (req: Request, res: Response) => { };
 
 export const deleteProductById = async (req: Request, res: Response) => {
 	try {
-		const { _id } = req.query;
-		const deletedProductInstance = await ProductModel.findByIdAndDelete(_id);
+		const { productId } = req.params;
+		const deletedProductInstance = await ProductModel.findByIdAndDelete(productId);
 
 		if (!deletedProductInstance) {
 			return res.status(400).json({

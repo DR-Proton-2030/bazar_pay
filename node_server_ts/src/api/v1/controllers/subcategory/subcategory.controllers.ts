@@ -119,14 +119,20 @@ export const getSubcategoryById = async (req: Request, res: Response) => {
 
 export const deleteSubcategoryById = async (req: Request, res: Response) => {
 	try {
-		const { _id } = req.query;
-		const deletedSubcategoryInstance = await SubcategoryModel.findByIdAndDelete(_id);
+		const { subcategoryId } = req.params;
+		const deletedSubcategoryInstance = await SubcategoryModel.findByIdAndDelete(subcategoryId);
 
 		if (!deletedSubcategoryInstance) {
 			return res.status(404).json({
 				message: "Subcategory id not found"
 			});
 		}
+		const productPayload = {
+			subcategory_object_id: subcategoryId
+		};
+
+		const deletedProductInstance = await ProductModel.deleteMany(productPayload);
+
 
 		return res.status(200).json({
 			message: MESSAGE.delete.succ,
