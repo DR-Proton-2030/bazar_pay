@@ -50,26 +50,87 @@ export const createCategory = async (req: Request, res: Response) => {
 	}
 };
 
-export const getCategoryById = async (req: Request, res: Response) => {
+
+
+export const editCategoryById = async (req: Request, res: Response) => {
 	try {
-		const brandId = req.query[QUERY_PARAMS.id];
-		const category = await CategoryModel.findById(brandId);
-		if (!category) {
+		const { categoryId, categoryDetails } = req.body;
+		const categoryPayload = JSON.parse(categoryDetails);
+
+		const existingCategory = await CategoryModel.findById(categoryId);
+		if (!existingCategory) {
 			return res.status(404).json({
-				message: MESSAGE.get.fail
+				message: MESSAGE.custom(`Category not found.`),
 			});
 		}
+
+		if (req.files && "logo" in req.files) {
+			const logo = req.files["logo"][0];
+			const logoBuffer = logo.buffer;
+			let logoUrl: string = "";
+			try {
+				logoUrl = (await uploadImageToS3Service("logo", logoBuffer)) || "";
+			} catch (error) {
+				return res.status(400).json({
+					message: MESSAGE.patch.fail,
+				});
+			}
+			categoryPayload.logo = logoUrl;
+		}
+
+		const updatedCategory = await CategoryModel.findByIdAndUpdate(
+			categoryId,
+			{ $set: categoryPayload },
+			{ new: true }
+		);
+
+		if (!updatedCategory) {
+			return res.status(400).json({
+				message: MESSAGE.custom(`Failed to update category.`),
+			});
+		}
+
 		return res.status(200).json({
-			message: MESSAGE.get.succ,
-			result: category
+			message: MESSAGE.patch.succ,
+			result: updatedCategory,
 		});
 	} catch (error) {
 		return res.status(400).json({
-			message: MESSAGE.get.fail,
-			error
+			message: MESSAGE.patch.fail,
+			error,
 		});
 	}
 };
+export const getCategoryById = async (req: Request, res: Response) => {
+	try {
+		const { cid } = req.query;
+
+		if (!cid) {
+			return res.status(400).json({
+				message: MESSAGE.custom("Category ID (cid) is required."),
+			});
+		}
+
+		const category = await CategoryModel.findById(cid);
+
+		if (!category) {
+			return res.status(404).json({
+				message: MESSAGE.custom(`Category not found with ID: ${cid}`),
+			});
+		}
+
+		return res.status(200).json({
+			message: MESSAGE.get.succ,
+			result: category,
+		});
+	} catch (error) {
+		return res.status(500).json({
+			message: MESSAGE.get.fail,
+			error,
+		});
+	}
+};
+
 
 export const getCategories = async (req: Request, res: Response) => {
 	try {
@@ -112,6 +173,7 @@ export const getCategories = async (req: Request, res: Response) => {
 		});
 	}
 };
+
 
 export const deleteCategoryById = async (req: Request, res: Response) => {
 	try {

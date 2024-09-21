@@ -10,8 +10,8 @@ import { getBrand } from "./brand/getBrand";
 import { createBrand } from "./brand/postBrand";
 import { getBuilderByID } from "./wholesalers/getWholealerByID";
 import { addWholesaler } from "./wholesalers/postWholesaler";
-import { getCategory } from "./category/getCategory";
-import { createCategory } from "./category/postCategory";
+import { getCategory, getCategoryById } from "./category/getCategory";
+import { createCategory, editCategory } from "./category/postCategory";
 import { getCustomer } from "./customer/getCustomer";
 import { getEmployeeList } from "./employee/getEmployee";
 import { getOrderList } from "./order/order";
@@ -73,6 +73,8 @@ export const api = {
   category: {
     getCategory,
     createCategory,
+    editCategory,
+    getCategoryById
   },
   subcategory: {
     getSubcategory,

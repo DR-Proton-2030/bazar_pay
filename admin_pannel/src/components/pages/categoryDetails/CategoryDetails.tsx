@@ -8,6 +8,7 @@ import UIContext from "../../../contexts/uiContext/UIContext";
 import SubcategoryDetails from "./subCategoryDetails/SubcategoryDetails";
 import Products from "../products/Products";
 import ProductDetails from "./products/ProductDetails";
+import { EditCategory } from "./editCategory/EditCategory";
 
 const CategoryDetails = () => {
   const [value, setValue] = useState<number>(0);
@@ -17,10 +18,14 @@ const CategoryDetails = () => {
     setValue(newValue);
   };
   
-
+  const url = new URL(window.location.href);
+  const cid = url.searchParams.get("cid");
+  console.log(cid); 
+  
   
   useEffect(() => {
     setDashboardHeader("Category Details");
+    
   }, [setDashboardHeader]);
   return (
     <div>
@@ -48,6 +53,11 @@ const CategoryDetails = () => {
               {...a11yProps(1)}
               sx={{ fontFamily: "poppins, sans-serif" }}
             />
+             <Tab
+              label="Category Details"
+              {...a11yProps(2)}
+              sx={{ fontFamily: "poppins, sans-serif" }}
+            />
           </Tabs>
         </Box>
         <TabPanel value={value} index={0}>
@@ -56,6 +66,9 @@ const CategoryDetails = () => {
         </TabPanel>
         <TabPanel value={value} index={1}>
             <ProductDetails/>
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+            <EditCategory cat_id={cid}/>
         </TabPanel>
       </Box>
     </div>
