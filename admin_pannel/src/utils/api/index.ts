@@ -31,10 +31,14 @@ import { getSubcategory } from "./subcategory/getSubcategory";
 import { createSubcategory } from "./subcategory/postSubcategory";
 import { getWholesaler, updateWholesalerStatus } from "./wholesaler/WholeSaler";
 import { get } from "http";
+import { createRetailer } from "./retailer/createRetailer";
 
 export const api = {
   customer: {
     getCustomer,
+  },
+  retailer: {
+    createRetailer
   },
   wholesaler: {
     getWholesaler,

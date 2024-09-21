@@ -1,10 +1,11 @@
 import { Button, Chip, Paper, styled } from "@mui/material";
-import React, { useCallback, useContext, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import Textfield from "../../../shared/textField/Textfield";
 import UIContext from "../../../../contexts/uiContext/UIContext";
 import { IRetailers } from "../../../../@types/interface/retailer.interface";
 import SendIcon from "@mui/icons-material/Send";
 import UploadIcon from "@mui/icons-material/Upload";
+import { api } from "../../../../utils/api";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -24,7 +25,7 @@ const AddRetailerForm = () => {
   const [signBoardPhoto, setSignBoardPhoto] = useState<File | null>(null);
   const [tradeLicencePhoto, setTradeLicencePhoto] = useState<File | null>(null);
   const [nidPhoto, setNidPhoto] = useState<File | null>(null);
-  const [ownerPhoto, setOwnerPhoto] = useState<File | null>(null);
+  const [retailerOwnerPhoto, setRetailerOwnerPhoto] = useState<File | null>(null);
   const [retailerDetails, setRetailerDetails] = useState<IRetailers>({
     retailer_name: "",
     contact_name: "",
@@ -48,8 +49,48 @@ const AddRetailerForm = () => {
     },
     [retailerDetails]
   );
+
+  const handleSubmit = async (event : {preventDefault: () => void}) => {
+    event.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("retailerDetails", JSON.stringify(retailerDetails));
+      if(logo){
+        formData.append("logo", logo);
+      }
+      if(signBoardPhoto){
+        formData.append("sign_board_photo", signBoardPhoto);
+      }
+      if(tradeLicencePhoto){
+        formData.append("trade_license_photo", tradeLicencePhoto);
+      }
+      if(nidPhoto){
+        formData.append("nid_photo", nidPhoto);
+      }
+      if(retailerOwnerPhoto){
+        formData.append("retailer_owner_photo", retailerOwnerPhoto);
+      }
+      const response = await api.retailer.createRetailer(formData);
+      if(response){
+        alert("Retailer Added Successfully")
+      }
+      if (!response) {
+        throw new Error(`API request failed with status ${response.status}`);
+      }
+
+      setRetailerDetails(retailerDetails);
+
+    } catch (error){
+      console.log("Error while adding");
+    alert("failed to create wholesaler");
+    }
+  }
+
+  useEffect(() => {
+    setDashboardHeader("Add Retailer")
+  }, [setDashboardHeader])
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
     <div>
       <h2 style={{ fontWeight: "600", fontSize: "18px" }}>
         Add Retailer Details
@@ -87,16 +128,16 @@ const AddRetailerForm = () => {
                   onChange={event => {
                     const file = event.target.files?.[0];
                     if (file) {
-                      setOwnerPhoto(file);
+                      setRetailerOwnerPhoto(file);
                     }
                   }}
                   required
                 />
               </Button>
-              {ownerPhoto && (
+              {retailerOwnerPhoto && (
                 <Chip
-                  label={ownerPhoto.name}
-                  onDelete={() => setOwnerPhoto(null)}
+                  label={retailerOwnerPhoto.name}
+                  onDelete={() => setRetailerOwnerPhoto(null)}
                   variant="outlined"
                   sx={{ marginTop: 1, marginLeft: "20px" }}
                 />
