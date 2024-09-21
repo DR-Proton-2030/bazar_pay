@@ -27,7 +27,10 @@ export const addWholesaler = async (payload: Payload) => {
     }
     throw new Error();
   } catch (error: any) {
-    console.log(error);
+    console.log("===>error", error);
+    if (error.response.status === 409) {
+      alert("Wholesaler with this trade licensce already exists");
+    }
     throw error;
   }
 };
