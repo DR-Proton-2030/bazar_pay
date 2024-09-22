@@ -11,52 +11,45 @@ import { IPagination } from "../../../../@types/props/pagination";
 
 const SubcategoryDetails = () => {
   const navigate = useNavigate();
-  const {setDashboardHeader} = useContext(UIContext)
+  const { setDashboardHeader } = useContext(UIContext);
   const [rowData, setRowData] = useState<ISubcategory[]>([]);
-  // const [builderData, setBuilderData] = useState<I>();
-  // const [currentPage, setCurrentPage] = useState<number>(1);
-  const [subcategoryPagination, setSubcategoryPagination] = useState<IPagination>(
-  {
-    currentPage: 1,
-    pageCount: 1,
-  }
-
-  )
+  const [subcategoryPagination, setSubcategoryPagination] =
+    useState<IPagination>({
+      currentPage: 1,
+      pageCount: 1,
+    });
   const queryParams = new URLSearchParams(window.location.search);
   const categoryId = queryParams.get("cid");
 
-
-  const getSubcategories = useCallback(
-    async () => {
-      try {
-        const queryParams = new URLSearchParams(window.location.search);
-        const categoryId = queryParams.get("cid");
-        if (!categoryId) {
-          //add alert
-          throw new Error("Builder ID is missing in the query parameters.");
-        }
-        const filter = {
-          page: subcategoryPagination.currentPage,
-          category_object_id: categoryId
-        };
-        const response = await api.subcategory.getSubcategory(filter);
-        if (response) {
-          setRowData(response);
-        }
-      } catch (error) {
-        console.error("Error while fetching data:", error);
+  const getSubcategories = useCallback(async () => {
+    try {
+      const queryParams = new URLSearchParams(window.location.search);
+      const categoryId = queryParams.get("cid");
+      if (!categoryId) {
+        //add alert
+        throw new Error("Builder ID is missing in the query parameters.");
       }
-    },
-    [subcategoryPagination.currentPage, categoryId]
-  );
+      const filter = {
+        page: subcategoryPagination.currentPage,
+        category_object_id: categoryId,
+      };
+      const response = await api.subcategory.getSubcategory(filter);
+      if (response) {
+        setRowData(response.result);
+        setSubcategoryPagination(response.pagination);
+      }
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    }
+  }, [subcategoryPagination.currentPage]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    setSubcategoryPagination(prev => ({
+    setSubcategoryPagination((prev) => ({
       ...prev,
-      currentPage: value
+      currentPage: value,
     }));
   };
 
@@ -64,10 +57,9 @@ const SubcategoryDetails = () => {
     getSubcategories();
   }, []);
 
-
   useEffect(() => {
-    setDashboardHeader("All subcategories")
-  }, [setDashboardHeader])
+    setDashboardHeader("All subcategories");
+  }, [setDashboardHeader]);
   return (
     <div>
       <div className="add-btn">
@@ -80,7 +72,11 @@ const SubcategoryDetails = () => {
         </Button>
       </div>
       <DataGrid rowData={rowData} colDefs={SubcategoryColDefs} />
-      <BasicPagination pageCount={1} handlePageChange={handlePageChange} currentPage={1}/>
+      <BasicPagination
+        pageCount={1}
+        handlePageChange={handlePageChange}
+        currentPage={1}
+      />
     </div>
   );
 };

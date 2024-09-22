@@ -9,6 +9,7 @@ const createSubcategory_controller_1 = require("../../controllers/subcategory/cr
 const getSubcategoriesWithPagination_controller_1 = require("../../controllers/subcategory/getSubcategoriesWithPagination.controller");
 const getSubcategory_controller_1 = require("../../controllers/subcategory/getSubcategory.controller");
 const getAggregatedSubcategory_controller_1 = require("../../controllers/subcategory/getAggregatedSubcategory.controller");
+const subcategory_controllers_1 = require("../../controllers/subcategory/subcategory.controllers");
 const router = express_1.default.Router();
 router
     .route("/create-subcategory")
@@ -16,4 +17,5 @@ router
 router.route("/get-paginated-subcategories").get(getSubcategoriesWithPagination_controller_1.getSubcategories);
 router.route("/get-subcategory-with-filter").get(getSubcategory_controller_1.getSubcategory);
 router.route("/get-aggregated-subcategory").get(getAggregatedSubcategory_controller_1.getAggregatedSubcategory);
+router.route("/delete-subcategory-by-id").delete(subcategory_controllers_1.deleteSubcategoryById);
 exports.default = router;

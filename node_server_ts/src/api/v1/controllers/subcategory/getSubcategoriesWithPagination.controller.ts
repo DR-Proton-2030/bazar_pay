@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { MESSAGE } from "../../../../constants/message";
 import SubcategoryModel from "../../../../models/subcategory.model";
 import { StatusCodes } from "http-status-codes";
+import { IPagination } from "../../../../@types/types/pagination";
 
 export const getSubcategories = async (req: Request, res: Response) => {
 	try {
@@ -24,18 +25,20 @@ export const getSubcategories = async (req: Request, res: Response) => {
 		const limit = currentPage > 0 ? 10 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
-		const builders = await SubcategoryModel.find(filter)
+		const subcategories = await SubcategoryModel.find(filter)
 			.sort({ [sortField]: -1 })
 			.skip(startIndex)
 			.limit(limit);
 
+		const pagination: IPagination = {
+			currentPage: currentPage,
+			pageCount: Math.ceil(totalCount / limit)
+		}
+
 		res.status(StatusCodes.OK).json({
 			message: MESSAGE.get.succ,
-			pagination: {
-				total: totalCount,
-				currentPage: currentPage
-			},
-			result: builders
+			pagination: pagination,
+			result: subcategories
 		});
 	} catch (error) {
 		console.error("Error fetching categories:", error);

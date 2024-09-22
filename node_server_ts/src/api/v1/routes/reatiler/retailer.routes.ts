@@ -2,7 +2,7 @@ import express from "express";
 
 import { upload } from "../../../../middleware/multer.middleware";
 
-import { createRetailer, loginRetailer, updatePassword } from "../../controllers/retailer/retailer.controllers";
+import { createRetailer, getRetailer, loginRetailer, updatePassword } from "../../controllers/retailer/retailer.controllers";
 import { getOtpForLogin, getOtpForSignup } from "../../controllers/retailer/retailer.otp.controllers";
 
 const router = express.Router();
@@ -17,6 +17,7 @@ router.route("/add-retailer").post(
 	]),
 	createRetailer
 );
+router.route("/get-retailer").get(getRetailer);
 router.route("/login-retailer").post(loginRetailer);
 router.route("/registerOtp-retailer").get(getOtpForSignup);
 router.route("/loginOtp-retailer").get(getOtpForLogin);

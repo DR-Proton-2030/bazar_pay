@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getProducts = void 0;
+exports.getProductById = exports.getProducts = void 0;
 const message_1 = require("../../../../constants/message");
 const http_status_codes_1 = require("http-status-codes");
 const product_model_1 = __importDefault(require("../../../../models/product.model"));
@@ -51,3 +51,33 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getProducts = getProducts;
+const getProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { id } = req.query;
+        if (!id) {
+            return res.status(http_status_codes_1.StatusCodes.BAD_REQUEST).json({
+                message: message_1.MESSAGE.get.fail,
+                error: "Product ID is required."
+            });
+        }
+        const product = yield product_model_1.default.findById(id);
+        if (!product) {
+            return res.status(http_status_codes_1.StatusCodes.NOT_FOUND).json({
+                message: message_1.MESSAGE.get.fail,
+                error: "Product not found."
+            });
+        }
+        res.status(http_status_codes_1.StatusCodes.OK).json({
+            message: message_1.MESSAGE.get.succ,
+            result: product
+        });
+    }
+    catch (error) {
+        console.error("Error fetching product by ID:", error);
+        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            message: message_1.MESSAGE.get.fail,
+            error: "An error occurred while fetching the product."
+        });
+    }
+});
+exports.getProductById = getProductById;

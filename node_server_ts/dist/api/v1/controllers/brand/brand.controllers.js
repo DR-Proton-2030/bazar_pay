@@ -92,19 +92,20 @@ const getBrands = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         delete filter.sortField;
         console.log("===>filter", filter);
         const totalCount = yield brand_model_1.default.countDocuments(filter);
-        const limit = currentPage > 0 ? 10 : totalCount;
+        const limit = currentPage > 0 ? 5 : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
-        const builders = yield brand_model_1.default.find(filter)
+        const brands = yield brand_model_1.default.find(filter)
             .sort({ [sortField]: -1 })
             .skip(startIndex)
             .limit(limit);
+        const pagination = {
+            currentPage: currentPage,
+            pageCount: Math.ceil(totalCount / limit)
+        };
         res.status(200).json({
             message: message_1.MESSAGE.get.succ,
-            pagination: {
-                total: totalCount,
-                currentPage: currentPage
-            },
-            result: builders
+            pagination,
+            result: brands
         });
     }
     catch (error) {

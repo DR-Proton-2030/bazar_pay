@@ -17,20 +17,6 @@ import connectDb from "./config/db";
 
 const app = express();
 
-app.use((req: Request, res: Response, next: NextFunction) => {
-	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, token");
-	if (req.method === "OPTIONS") {
-		res.header("Access-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
-		res.header(
-			"Access-Control-Allow-Headers",
-			"Origin, X-Requested-With, Content-Type, Accept, Authorization, token"
-		);
-		return res.status(StatusCodes.OK).json({});
-	}
-	next();
-});
-
 const options: cors.CorsOptions = {
 	allowedHeaders: ["sessionId", "Content-Type"],
 	exposedHeaders: ["sessionId"],

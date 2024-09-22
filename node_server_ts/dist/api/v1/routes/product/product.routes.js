@@ -13,6 +13,7 @@ router.route("/add_product").post(multer_middleware_1.upload.fields([
 ]), product_controller_1.createProduct);
 router.route("/get-product-list").get(product_controller_1.getProductList);
 router.route("/update-product-status").patch(product_controller_1.updateProductStatus);
+router.route("/delete-product-by-id").delete(product_controller_1.deleteProductById);
 router.route("/update_product").patch(multer_middleware_1.upload.fields([
     { name: "product_image", maxCount: 1 },
     { name: "bar_code_photo", maxCount: 1 }

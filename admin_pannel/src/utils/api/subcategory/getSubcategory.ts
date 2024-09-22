@@ -21,9 +21,9 @@ export const getSubcategory = async (filterQuery: any) => {
       } = response;
       if (message === MESSAGE.get.succ) {
         const {
-          data: { result },
+          data: { result, pagination },
         } = response;
-        return result;
+        return { result, pagination };
       }
     }
     throw new Error();

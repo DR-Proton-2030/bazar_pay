@@ -4,6 +4,7 @@ import { MESSAGE } from "../../../../constants/message";
 import retailerModel from "../../../../models/retailer.model";
 import { uploadImageToS3Service } from "../../../../services/uploadImageService";
 import { DEFAULT_IMAGE } from "../../../../constants/image";
+import { IPagination } from "../../../../@types/types/pagination";
 
 export const createRetailer = async (req: Request, res: Response) => {
 	try {
@@ -89,6 +90,50 @@ export const createRetailer = async (req: Request, res: Response) => {
 		return res.status(400).json({
 			message: MESSAGE.post.fail,
 			error
+		});
+	}
+};
+
+export const getRetailer = async (req: Request, res: Response) => {
+	try {
+		const filter = req.query as unknown as any;
+
+		let currentPage = 0;
+		if (filter.page) {
+			currentPage = parseInt(String(filter.page)); // Parse page as integer
+		}
+
+		const sortField = filter.sortField ? filter.sortField : "updatedAt";
+
+		delete filter.page;
+		delete filter.sortField;
+
+		console.log("===>filter", filter);
+
+		const totalCount = await retailerModel.countDocuments(filter);
+
+		const limit = currentPage > 0 ? 10 : totalCount;
+		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
+
+		const retailers = await retailerModel.find(filter)
+			.sort({ [sortField]: -1 })
+			.skip(startIndex)
+			.limit(limit);
+
+		const pagination: IPagination = {
+			currentPage: currentPage,
+			pageCount: Math.ceil(totalCount / limit)
+		}
+
+		res.status(200).json({
+			message: MESSAGE.get.succ,
+			pagination,
+			result: retailers
+		});
+	} catch (error) {
+		console.error("Error fetching retailers:", error);
+		res.status(400).json({
+			message: MESSAGE.get.fail
 		});
 	}
 };

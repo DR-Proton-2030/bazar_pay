@@ -3,6 +3,7 @@ import { uploadImageToS3Service } from "../../../../services/uploadImageService"
 import productModel from "../../../../models/product.model";
 import { MESSAGE } from "../../../../constants/message";
 import ProductModel from "../../../../models/product.model";
+import { IPagination } from "../../../../@types/types/pagination";
 
 export const createProduct = async (req: Request, res: Response) => {
 	try {
@@ -82,8 +83,6 @@ export const getProductList = async (req: Request, res: Response) => {
 		const limit = currentPage > 0 ? 10 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
-		console.log("===>filter", filter);
-
 		const products = await productModel
 			.find(filter)
 			.populate("wholesaler")
@@ -91,12 +90,14 @@ export const getProductList = async (req: Request, res: Response) => {
 			.skip(startIndex)
 			.limit(limit);
 
+		const pagination: IPagination = {
+			currentPage: currentPage,
+			pageCount: Math.ceil(totalCount / limit)
+		}
+
 		res.status(200).json({
 			message: MESSAGE.get.succ,
-			pagination: {
-				total: totalCount,
-				currentPage: currentPage
-			},
+			pagination,
 			result: products
 		});
 	} catch (error) {

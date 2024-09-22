@@ -7,7 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import UIContextProvider from "./contexts/uiContext/Provider";
 import BuilderContextProvider from "./contexts/builderContext/Provider";
 import AuthContextProvider from "./contexts/authContext/Provider";
-import "./index.css"
+import "./index.css";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement

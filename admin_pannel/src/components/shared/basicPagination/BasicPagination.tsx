@@ -1,6 +1,6 @@
 import * as React from "react";
 import Pagination from "@mui/material/Pagination";
-import { green } from "@mui/material/colors";
+import { blue, green } from "@mui/material/colors";
 import "./pagination.css";
 
 interface PaginationProps {
@@ -9,12 +9,12 @@ interface PaginationProps {
   handlePageChange: (event: React.ChangeEvent<unknown>, value: number) => void;
 }
 
-const BasicPagination : React.FC<PaginationProps> = ({
+const BasicPagination: React.FC<PaginationProps> = ({
   currentPage,
   handlePageChange,
   pageCount,
 }) => {
-  const color = green[900];
+  const color = blue[900];
   return (
     <div
       style={{
