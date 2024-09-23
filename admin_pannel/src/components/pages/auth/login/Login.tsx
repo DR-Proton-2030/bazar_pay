@@ -1,15 +1,15 @@
 import { Theme, useTheme } from "@mui/material/styles";
 import { useState,useContext } from "react";
-
+import bazarpay from "../../../../assets/logo/bazarpay-logo.svg";
 import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
-
+import EmailIcon from '@mui/icons-material/Email';
 import Paper from "@mui/material/Paper";
 import image from "../../../../assets/images/login.svg";
-
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
@@ -20,6 +20,7 @@ import { useNavigate } from "react-router-dom";
 import AuthContext from "../../../../contexts/authContext/authContext";
 import "./login.css";
 import { ROLES } from "../../../../constants/roles/Roles";
+import { IconButton, InputAdornment, OutlinedInput } from "@mui/material";
 const paperStyles = {
   width: "390px",
   height: "500px",
@@ -46,8 +47,23 @@ export default function Login() {
   const {setUser} = useContext(AuthContext)
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [role, setRole] = useState("");
   const navigate = useNavigate();
+
+  const handleClickShowPassword = () => setShowPassword(show => !show);
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
+  const handleMouseUpPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
 
   const handleRoleChange = (event: {
     target: { value: React.SetStateAction<string> };
@@ -97,10 +113,9 @@ export default function Login() {
       className="login-container"
       style={{
         width: "full",
-        height: "100vh",
-        backgroundColor: "white",
         margin: "0 auto",
-        padding: "10px",
+        height: "100vh",
+        
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -117,23 +132,25 @@ export default function Login() {
           alignItems: "center",
           border: "2px",
           borderRadius: "15px",
-          gap: "40px"
+         
         }}
       >
         <div className="login_img" >
-          <img src={image} alt="" style={{width: "500px"}}/>
+          <img src={image} alt="" />
         </div>
         <div className="login_content">
-          <Paper elevation={5} style={paperStyles} id="form-paper">
+        <div className="bazarpay-logo-container">
+            <img src={bazarpay} alt="logo" style={{width: "30%"}}/>
+          </div>
+          <Paper elevation={0} style={paperStyles} id="form-paper">
             <div className="form">
               <div className="login_heading">
-                <h2 style={{ textAlign: "center" }}>Welcome Back!</h2>
-                <AccountCircleIcon
-                  style={{ marginTop: "10px", width: "48px", height: "48px" }}
-                />
+              <h1>Welcome <span style={{color: "#0066ff", fontWeight: "bold" }}>Back</span></h1>
+              <p style={{margin: 1, fontSize: "15px"}}>Please enter your login credentials to continue</p>
+                
               </div>
               <Box sx={{ minWidth: 120 }}>
-                <FormControl sx={{ marginTop: 2, marginLeft: 2, width: "90%" }}>
+                <FormControl sx={{ marginTop: 2,  width: "95%", backgroundColor: "#eff5f5" }} className="select-field">
                   <InputLabel id="demo-simple-select-label">Select Your Role</InputLabel>
                   <Select
                     labelId="demo-simple-select-label"
@@ -147,24 +164,58 @@ export default function Login() {
                   </Select>
                 </FormControl>
               </Box>
-              <TextField
-                type="text"
-                label="Email or phone"
-                placeholder="Enter your email or phone number"
-                sx={{ marginTop: 2, marginLeft: 2, width: "90%" }}
-                value={email}
-                onChange={handleEmailChange}
-                required
-              />
-              <TextField
-                label="Password"
-                type="password"
-                placeholder="Enter your password"
-                sx={{ marginTop: 2, marginLeft: 2, width: "90%" }}
-                value={password}
-                onChange={handlePasswordChange}
-                required
-              />
+             
+              <FormControl  variant="outlined" className="input-field-with-icon">
+             <InputLabel htmlFor="outlined-adornment-password">
+               Enter email or phone
+             </InputLabel>
+             <OutlinedInput
+               id="outlined-adornment-password"
+               type="text"
+               endAdornment={
+                 <InputAdornment position="end">
+                   <IconButton
+                    aria-label="toggle password visibility"
+                     edge="end"
+                   >
+                     <EmailIcon  />
+                   </IconButton>
+                 </InputAdornment>
+               }
+               label="Username"
+               value={email}
+               onChange={handleEmailChange}
+               required
+            />
+           </FormControl>
+             
+
+<FormControl variant="outlined"  className="input-field-with-icon">
+             <InputLabel htmlFor="outlined-adornment-password">
+               Enter Password
+             </InputLabel>
+             <OutlinedInput
+               id="outlined-adornment-password"
+               type={showPassword ? "text" : "password"}
+               endAdornment={
+                 <InputAdornment position="end">
+                   <IconButton
+                     aria-label="toggle password visibility"
+                     onClick={handleClickShowPassword}
+                     onMouseDown={handleMouseDownPassword}
+                     onMouseUp={handleMouseUpPassword}
+                     edge="end"
+                   >
+                     {showPassword ? <VisibilityOff /> : <Visibility />}
+                   </IconButton>
+                 </InputAdornment>
+               }
+               label="Password"
+               value={password}
+               onChange={handlePasswordChange}
+               required
+             />
+        </FormControl>
               <p
                 style={{
                   textAlign: "right",
@@ -178,7 +229,7 @@ export default function Login() {
               </p>
               <Button
                 variant="contained"
-                className="btn"
+                className="glowing-blue-button"
                 sx={{
                   marginLeft: 2,
                   marginTop: 2,
