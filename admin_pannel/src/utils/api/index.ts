@@ -39,6 +39,7 @@ import { createSubcategory } from "./subcategory/postSubcategory";
 import { getWholesaler, updateWholesalerStatus } from "./wholesaler/WholeSaler";
 import { get } from "http";
 import { createRetailer, getRetailers } from "./retailer/retailer.api";
+import { deleteCategory } from "./category/category.api";
 
 export const api = {
   customer: {
@@ -83,6 +84,7 @@ export const api = {
     createCategory,
     editCategory,
     getCategoryById,
+    deleteCategory,
   },
   subcategory: {
     getSubcategory,

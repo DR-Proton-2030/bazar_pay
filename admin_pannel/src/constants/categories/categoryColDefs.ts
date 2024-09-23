@@ -8,6 +8,7 @@ import SubcategoryCellRenderer from "../../components/pages/categoryDetails/subC
 import ProductCellRenderer from "./productdetailsCellRenderer/ProductDetailsCellRenderer";
 import SubcategoryDetailsCellRenderer from "./subcategoryDetailsCellRenderer/SubcategoryDetailsCellRenderer";
 import ProductDetailsCellRenderer from "./productdetailsCellRenderer/ProductDetailsCellRenderer";
+import DeleteCellRenderer from "../../components/pages/retailers/deleteCellRenderer/DeleteCellRenderer";
 
 export const CategoryColDefs: ColDef[] = [
   {
@@ -22,4 +23,5 @@ export const CategoryColDefs: ColDef[] = [
   { field: "action", headerName: "See Details" , cellRenderer: CategoryDetailsCellRenderer},
   { field: "action", headerName: "See Subcategories" , cellRenderer: SubcategoryDetailsCellRenderer},
   { field: "action", headerName: "See Products" , cellRenderer: ProductDetailsCellRenderer},
+  { field: "actions" , headerName: "Action", cellRenderer: DeleteCellRenderer},
 ];

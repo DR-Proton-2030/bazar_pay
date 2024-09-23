@@ -28,8 +28,8 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const AddRetailerForm = () => {
-  const { setDashboardHeader } = useContext(UIContext);
   const navigate = useNavigate();
+  const { setDashboardHeader } = useContext(UIContext);
   const [logo, setLogo] = useState<File | null>(null);
   const [signBoardPhoto, setSignBoardPhoto] = useState<File | null>(null);
   const [tradeLicencePhoto, setTradeLicencePhoto] = useState<File | null>(null);

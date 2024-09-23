@@ -192,22 +192,8 @@ export const deleteCategoryById = async (req: Request, res: Response) => {
 		const subcategoryPayload = {
 			category_object_id: categoryObjectId
 		};
-
 		const subcategoryDeleteInstance = await SubcategoryModel.deleteMany(subcategoryPayload);
-
-		// if (!subcategoryDeleteInstance) {
-		// 	return res.status(400).json({
-		// 		message: "Subcategory not found"
-		// 	});
-		// }
-
 		const productDeleteInstance = await ProductModel.deleteMany(subcategoryPayload);
-
-		// if (!productDeleteInstance) {
-		// 	return res.status(400).json({
-		// 		message: "Product not found"
-		// 	});
-		// }
 
 		return res.status(200).json({
 			message: MESSAGE.delete.succ,

@@ -5,6 +5,7 @@ import ImageCellRenderer from "../imageCellRenderer/ImageCellRenderer";
 import TLPcellRenderer from "../tradeCellRenderer/TLPcellRenderer";
 import NIDcellRenderer from "../nidCellRenderer/NIDcellRenderer";
 import OwnerCellRenderer from "../ownerCellRenderer/OwnerCellRenderer";
+import DeleteCellRenderer from "../deleteCellRenderer/DeleteCellRenderer";
 
 export const RetailerColDefs : ColDef[] = [
     { field: "retailer_name" , headerName: "Retailer Name", cellRenderer: RetailerLogoCellRenderer},
@@ -16,5 +17,6 @@ export const RetailerColDefs : ColDef[] = [
     { field: "sign_board_photo" , headerName: "Sign Board Photo", cellRenderer: ImageCellRenderer },
     { field: "retailer_owner_photo" , headerName: "Owner Photo", cellRenderer: OwnerCellRenderer},
     { field: "trade_license_photo" , headerName: "Trade License Photo", cellRenderer: TLPcellRenderer},
-    { field: "nid_photo" , headerName: "Nid Photo", cellRenderer: NIDcellRenderer}
+    { field: "nid_photo" , headerName: "Nid Photo", cellRenderer: NIDcellRenderer},
+    
 ]
