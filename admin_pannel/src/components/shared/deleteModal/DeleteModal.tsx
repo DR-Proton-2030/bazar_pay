@@ -6,28 +6,17 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import React, { useCallback } from "react";
+import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { IModalProps } from "../../../@types/props/modal.props";
-import { api } from "../../../utils/api";
 
 const DeleteModal: React.FC<IModalProps> = ({
   open,
   label,
   content,
   handleClose,
+  handleDelete,
 }) => {
- 
-    
-  const handleDelete = async (categoryId: any) => {
-    try {
-      const result = await api.category.deleteCategory(categoryId);
-      if (result) alert("Category Deleted Successfully");
-    } catch (error) {
-      alert("Failed to delete category");
-    }
-  };
-
   return (
     <div>
       <Dialog

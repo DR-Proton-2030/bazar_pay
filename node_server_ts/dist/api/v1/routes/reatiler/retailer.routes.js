@@ -15,6 +15,7 @@ router.route("/add-retailer").post(multer_middleware_1.upload.fields([
     { name: "nid_photo", maxCount: 1 },
     { name: "logo", maxCount: 1 }
 ]), retailer_controllers_1.createRetailer);
+router.route("/get-retailer").get(retailer_controllers_1.getRetailer);
 router.route("/login-retailer").post(retailer_controllers_1.loginRetailer);
 router.route("/registerOtp-retailer").get(retailer_otp_controllers_1.getOtpForSignup);
 router.route("/loginOtp-retailer").get(retailer_otp_controllers_1.getOtpForLogin);

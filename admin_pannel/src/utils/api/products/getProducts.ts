@@ -23,9 +23,9 @@ export const getProducts = async (filter: Params) => {
       } = response;
       if (message === MESSAGE.get.succ) {
         const {
-          data: { result },
+          data: { result, pagination },
         } = response;
-        return result;
+        return { result, pagination };
       }
     }
     throw new Error();

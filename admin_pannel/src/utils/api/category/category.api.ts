@@ -3,7 +3,7 @@ import { headers } from "../../../configs/config";
 import { MESSAGE } from "../../../constants/api/message";
 import { Payload } from "../../../@types/api/api.types";
 
-const { post ,patch} = request;
+const { post, patch, del } = request;
 
 const initialRoute = "category";
 
@@ -59,7 +59,6 @@ export const editCategory = async (payload: Payload) => {
 
 const { get } = request;
 
-
 export const getCategory = async (filterQuery: any) => {
   try {
     const endpoint = `${initialRoute}/get-category-list`;
@@ -68,8 +67,7 @@ export const getCategory = async (filterQuery: any) => {
       {
         ...headers,
       },
-      filterQuery,
-      
+      filterQuery
     );
     if (response) {
       const {
@@ -97,8 +95,7 @@ export const getCategoryById = async (filterQuery: any) => {
       {
         ...headers,
       },
-      filterQuery,
-      
+      filterQuery
     );
     if (response) {
       const {
@@ -118,28 +115,26 @@ export const getCategoryById = async (filterQuery: any) => {
   }
 };
 
-const {del} = request;
 export const deleteCategory = async (categoryId: string) => {
-    try {
-      const endpoint = `${initialRoute}/delete-category/${categoryId}`;
-      const response = await del(endpoint,{
-        ...headers,
-        
-      });
-      if (response) {
+  try {
+    const endpoint = `${initialRoute}/delete-category-by-id/${categoryId}`;
+    const response = await del(endpoint, {
+      ...headers,
+    });
+    if (response) {
+      const {
+        data: { message },
+      } = response;
+      if (message === MESSAGE.delete.succ) {
         const {
-          data: { message },
+          data: { result },
         } = response;
-        if (message === MESSAGE.delete.succ) {
-          const {
-            data: { result },
-          } = response;
-          return result;
-        }
+        return result;
       }
-      throw new Error();
-    } catch (error: any) {
-      console.log(error);
-      throw error;
     }
-  };
+    throw new Error();
+  } catch (error: any) {
+    console.log(error);
+    throw error;
+  }
+};

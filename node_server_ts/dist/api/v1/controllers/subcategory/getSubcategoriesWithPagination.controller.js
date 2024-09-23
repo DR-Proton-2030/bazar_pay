@@ -30,17 +30,18 @@ const getSubcategories = (req, res) => __awaiter(void 0, void 0, void 0, functio
         const totalCount = yield subcategory_model_1.default.countDocuments(filter);
         const limit = currentPage > 0 ? 10 : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
-        const builders = yield subcategory_model_1.default.find(filter)
+        const subcategories = yield subcategory_model_1.default.find(filter)
             .sort({ [sortField]: -1 })
             .skip(startIndex)
             .limit(limit);
+        const pagination = {
+            currentPage: currentPage,
+            pageCount: Math.ceil(totalCount / limit)
+        };
         res.status(http_status_codes_1.StatusCodes.OK).json({
             message: message_1.MESSAGE.get.succ,
-            pagination: {
-                total: totalCount,
-                currentPage: currentPage
-            },
-            result: builders
+            pagination: pagination,
+            result: subcategories
         });
     }
     catch (error) {

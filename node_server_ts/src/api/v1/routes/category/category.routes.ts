@@ -10,6 +10,6 @@ router.route("/edit-category").patch(upload.fields([{ name: "logo", maxCount: 1 
 router.route("/get-category-list").get(getCategories);
 
 router.route("/get-category-byId").get(getCategoryById);
-router.route("/delete-category-by-id").delete(deleteCategoryById);
+router.route("/delete-category-by-id/:categoryObjectId").delete(deleteCategoryById);
 
 export default router;

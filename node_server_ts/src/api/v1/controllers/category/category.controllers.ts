@@ -5,6 +5,7 @@ import { uploadImageToS3Service } from "../../../../services/uploadImageService"
 import CategoryModel from "../../../../models/category.model";
 import SubcategoryModel from "../../../../models/subcategory.model";
 import ProductModel from "../../../../models/product.model";
+import { IPagination } from "../../../../@types/types/pagination";
 
 export const createCategory = async (req: Request, res: Response) => {
 	try {
@@ -150,21 +151,23 @@ export const getCategories = async (req: Request, res: Response) => {
 
 		const totalCount = await CategoryModel.countDocuments(filter);
 
-		const limit = currentPage > 0 ? 10 : totalCount;
+		const limit = currentPage > 0 ? 5 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
-		const builders = await CategoryModel.find(filter)
+		const categories = await CategoryModel.find(filter)
 			.sort({ [sortField]: -1 })
 			.skip(startIndex)
 			.limit(limit);
 
+		const pagination: IPagination = {
+			currentPage: currentPage,
+			pageCount: Math.ceil(totalCount / limit)
+		};
+
 		res.status(200).json({
 			message: MESSAGE.get.succ,
-			pagination: {
-				total: totalCount,
-				currentPage: currentPage
-			},
-			result: builders
+			pagination,
+			result: categories
 		});
 	} catch (error) {
 		console.error("Error fetching categories:", error);
@@ -189,22 +192,8 @@ export const deleteCategoryById = async (req: Request, res: Response) => {
 		const subcategoryPayload = {
 			category_object_id: categoryObjectId
 		};
-
 		const subcategoryDeleteInstance = await SubcategoryModel.deleteMany(subcategoryPayload);
-
-		// if (!subcategoryDeleteInstance) {
-		// 	return res.status(400).json({
-		// 		message: "Subcategory not found"
-		// 	});
-		// }
-
 		const productDeleteInstance = await ProductModel.deleteMany(subcategoryPayload);
-
-		// if (!productDeleteInstance) {
-		// 	return res.status(400).json({
-		// 		message: "Product not found"
-		// 	});
-		// }
 
 		return res.status(200).json({
 			message: MESSAGE.delete.succ,

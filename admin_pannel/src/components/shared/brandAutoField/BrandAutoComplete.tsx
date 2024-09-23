@@ -4,32 +4,32 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { api } from "../../../utils/api";
 
-const AutocompleteInputField = ({setBrandId}:any) => {
+const AutocompleteInputField = ({ setBrandId }: any) => {
   const [options, setOptions] = useState([]);
 
   const defProps = {
     options: options,
-    getOptionLabel: (option:any) => `${option.name}`,
+    getOptionLabel: (option: any) => `${option.name}`,
   };
 
-  const getData = (data:any) => {
+  const getData = (data: any) => {
     console.log(data?._id);
-    setBrandId(data?._id)
+    setBrandId(data?._id);
   };
-const getBrandList = async()=>{
-  const filter ={
-    page:1
-  }
-try {
-  const result = await api.brand.getBrand(filter)
-  setOptions(result);
-} catch (error) {
-  console.log(error)
-}
-}
-  useEffect(() => {
-    getBrandList()
-  }, []);
+  // const getBrandList = async()=>{
+  //   const filter ={
+  //     page:1
+  //   }
+  // try {
+  //   const result = await api.brand.getBrand(filter)
+  //   setOptions(result);
+  // } catch (error) {
+  //   console.log(error)
+  // }
+  // }
+  //   useEffect(() => {
+  //     getBrandList()
+  //   }, []);
 
   return (
     <Autocomplete

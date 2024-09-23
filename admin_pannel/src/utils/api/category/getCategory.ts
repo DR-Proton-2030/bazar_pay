@@ -13,8 +13,7 @@ export const getCategory = async (filterQuery: any) => {
       {
         ...headers,
       },
-      filterQuery,
-      
+      filterQuery
     );
     if (response) {
       const {
@@ -22,9 +21,9 @@ export const getCategory = async (filterQuery: any) => {
       } = response;
       if (message === MESSAGE.get.succ) {
         const {
-          data: { result },
+          data: { result, pagination },
         } = response;
-        return result;
+        return { result, pagination };
       }
     }
     throw new Error();
@@ -42,8 +41,7 @@ export const getCategoryById = async (filterQuery: any) => {
       {
         ...headers,
       },
-      filterQuery,
-      
+      filterQuery
     );
     if (response) {
       const {

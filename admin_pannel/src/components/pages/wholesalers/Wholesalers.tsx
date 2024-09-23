@@ -8,15 +8,12 @@ import UIContext from "../../../contexts/uiContext/UIContext";
 import { IWholesaler } from "../../../@types/interface/wholesaler";
 import StatusCell from "../../shared/statusCell/StatusCell";
 import LogoCellRenderer from "./logoCellRenderer/LogoCellRenderer";
-import SignboardCellRenderer from "./signboardCell/SignboardCellRenderer";
 import FormattedDateCellRenderer from "../../shared/dateCellRenderer/FormattedDateCellRenderer";
-import SeeDetailsCellRenderer from "../products/seeDetailsCellRenderer/SeeDetailsCellRenderer";
 import WholesalerDetailsCellRenderer from "../products/seeDetailsCellRenderer/SeeDetailsCellRenderer";
 import TLPcellRenderer from "./tradeCellRenderer/TLPcellRenderer";
 import NIDcellRenderer from "./nidCellRenderer/NIDcellRenderer";
 import OwnerCellRenderer from "./ownerCellRenderer/OwnerCellRenderer";
 import ImageCellRenderer from "./imageCellRenderer/ImageCellRenderer";
-
 
 const Wholesalers = () => {
   const navigate = useNavigate();
@@ -26,7 +23,7 @@ const Wholesalers = () => {
 
   const handleRouteToAddWholesaler = () => {
     navigate("/add-wholesalers");
-  }
+  };
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,
@@ -139,4 +136,3 @@ const Wholesalers = () => {
 };
 
 export default Wholesalers;
-

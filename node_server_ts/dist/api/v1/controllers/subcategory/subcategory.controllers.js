@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSubcategoryById = exports.getAllSubcategories = exports.deleteSubcategory = exports.updateSubcategory = exports.createSubcategory = void 0;
+exports.deleteSubcategoryById = exports.getSubcategoryById = exports.getAllSubcategories = exports.deleteSubcategory = exports.updateSubcategory = exports.createSubcategory = void 0;
 const subcategory_model_1 = __importDefault(require("../../../../models/subcategory.model"));
 const message_1 = require("../../../../constants/message");
 const query_1 = require("../../../../constants/query");
+const product_model_1 = __importDefault(require("../../../../models/product.model"));
 const createSubcategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const payload = req.body;
@@ -131,3 +132,29 @@ exports.getSubcategoryById = getSubcategoryById;
 //     });
 //   }
 // };
+const deleteSubcategoryById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { subcategoryId } = req.params;
+        const deletedSubcategoryInstance = yield subcategory_model_1.default.findByIdAndDelete(subcategoryId);
+        if (!deletedSubcategoryInstance) {
+            return res.status(404).json({
+                message: "Subcategory id not found"
+            });
+        }
+        const productPayload = {
+            subcategory_object_id: subcategoryId
+        };
+        const deletedProductInstance = yield product_model_1.default.deleteMany(productPayload);
+        return res.status(200).json({
+            message: message_1.MESSAGE.delete.succ,
+            result: deletedSubcategoryInstance
+        });
+    }
+    catch (error) {
+        return res.status(400).json({
+            message: message_1.MESSAGE.delete.fail,
+            error
+        });
+    }
+});
+exports.deleteSubcategoryById = deleteSubcategoryById;

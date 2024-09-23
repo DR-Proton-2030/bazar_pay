@@ -1,6 +1,13 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import UIContext from "../../../../contexts/uiContext/UIContext";
-import { Button, Chip, Paper, styled } from "@mui/material";
+import {
+  Backdrop,
+  Button,
+  Chip,
+  CircularProgress,
+  Paper,
+  styled,
+} from "@mui/material";
 import Textfield from "../../../shared/textField/Textfield";
 import { IWholesaler } from "../../../../@types/interface/wholesaler";
 import SendIcon from "@mui/icons-material/Send";
@@ -42,6 +49,7 @@ const AddWholesalers = () => {
   const [tradeLicencePhoto, setTradeLicencePhoto] = useState<File | null>(null);
   const [nidPhoto, setNidPhoto] = useState<File | null>(null);
   const [ownerPhoto, setOwnerPhoto] = useState<File | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const handleChange = useCallback(
     (event: any) => {
@@ -58,6 +66,7 @@ const AddWholesalers = () => {
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append("wholesalerDetails", JSON.stringify(wholesalerDetails));
       if (logo) {
@@ -81,13 +90,12 @@ const AddWholesalers = () => {
         navigate("/wholesalers");
         
       }
-      if (!response) {
-        throw new Error(`API request failed with status ${response.status}`);
-      }
-
       setWholesalerDetails(wholesalerDetails);
-    } catch (error) {
-      console.log("Error while adding");
+    } catch (error: any) {
+      const errorMessage = error.response?.data?.message || "An error occurred";
+      alert(errorMessage);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -358,16 +366,25 @@ const AddWholesalers = () => {
             </div>
           </div>
         </Paper>
-        <div className="submit-btn-container">
-          <Button
-            variant="contained"
-            className="blue-btn"
-            endIcon={<SendIcon />}
-            type="submit"
+        {loading ? (
+          <Backdrop
+            sx={(theme) => ({ color: "#fff", zIndex: theme.zIndex.drawer + 1 })}
+            open={loading}
           >
-            Submit
-          </Button>
-        </div>
+            <CircularProgress color="inherit" />
+          </Backdrop>
+        ) : (
+          <div className="submit-btn-container">
+            <Button
+              variant="contained"
+              className="blue-btn"
+              endIcon={<SendIcon />}
+              type="submit"
+            >
+              Submit
+            </Button>
+          </div>
+        )}
       </div>
     </form>
   );

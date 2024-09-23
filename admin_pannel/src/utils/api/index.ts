@@ -23,15 +23,22 @@ import {
   getAssignedProjectList,
   getProjectDetails,
 } from "./products/getAdminProjects";
-import { getProductDetail, getProducts, updateProductStatus } from "./products/getProducts";
+import {
+  getProductDetail,
+  getProducts,
+  updateProductStatus,
+} from "./products/getProducts";
 import { getWholesalerListedProducts } from "./products/wholesalersProducts";
-import { createProductById, updateProduct } from "./productsByid/addProductById";
+import {
+  createProductById,
+  updateProduct,
+} from "./productsByid/addProductById";
 import { getProductbyId } from "./productsByid/getProductById";
 import { getSubcategory } from "./subcategory/getSubcategory";
 import { createSubcategory } from "./subcategory/postSubcategory";
 import { getWholesaler, updateWholesalerStatus } from "./wholesaler/WholeSaler";
 import { get } from "http";
-import { createRetailer } from "./retailer/createRetailer";
+import { createRetailer, getRetailers } from "./retailer/retailer.api";
 import { deleteCategory } from "./category/category.api";
 
 export const api = {
@@ -39,7 +46,8 @@ export const api = {
     getCustomer,
   },
   retailer: {
-    createRetailer
+    createRetailer,
+    getRetailers,
   },
   wholesaler: {
     getWholesaler,
@@ -76,7 +84,7 @@ export const api = {
     createCategory,
     editCategory,
     getCategoryById,
-    deleteCategory
+    deleteCategory,
   },
   subcategory: {
     getSubcategory,
@@ -89,10 +97,9 @@ export const api = {
   productbyId: {
     getProductbyId,
     createProductById,
-    updateProduct
+    updateProduct,
   },
-  builder:{
-  },
+  builder: {},
   order: {
     getOrderList,
   },

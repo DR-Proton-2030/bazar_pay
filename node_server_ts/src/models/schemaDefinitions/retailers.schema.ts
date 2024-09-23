@@ -11,7 +11,6 @@ const retailerSchema: Schema<IRetailer> = new Schema<IRetailer>(
 		contact_phone: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		trade_license_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		nid_number: SCHEMA_DEFINITION_PROPERTY.requiredString,
-
 		sign_board_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		retailer_owner_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		trade_license_photo: SCHEMA_DEFINITION_PROPERTY.requiredString,

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginRetailer = exports.updatePassword = exports.createRetailer = void 0;
+exports.loginRetailer = exports.updatePassword = exports.getRetailer = exports.createRetailer = void 0;
 const message_1 = require("../../../../constants/message");
 const retailer_model_1 = __importDefault(require("../../../../models/retailer.model"));
 const uploadImageService_1 = require("../../../../services/uploadImageService");
@@ -94,6 +94,42 @@ const createRetailer = (req, res) => __awaiter(void 0, void 0, void 0, function*
     }
 });
 exports.createRetailer = createRetailer;
+const getRetailer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const filter = req.query;
+        let currentPage = 0;
+        if (filter.page) {
+            currentPage = parseInt(String(filter.page)); // Parse page as integer
+        }
+        const sortField = filter.sortField ? filter.sortField : "updatedAt";
+        delete filter.page;
+        delete filter.sortField;
+        console.log("===>filter", filter);
+        const totalCount = yield retailer_model_1.default.countDocuments(filter);
+        const limit = currentPage > 0 ? 10 : totalCount;
+        const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
+        const retailers = yield retailer_model_1.default.find(filter)
+            .sort({ [sortField]: -1 })
+            .skip(startIndex)
+            .limit(limit);
+        const pagination = {
+            currentPage: currentPage,
+            pageCount: Math.ceil(totalCount / limit)
+        };
+        res.status(200).json({
+            message: message_1.MESSAGE.get.succ,
+            pagination,
+            result: retailers
+        });
+    }
+    catch (error) {
+        console.error("Error fetching retailers:", error);
+        res.status(400).json({
+            message: message_1.MESSAGE.get.fail
+        });
+    }
+});
+exports.getRetailer = getRetailer;
 const updatePassword = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { retailerId, newPassword } = req.body;

@@ -12,10 +12,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getEmployeeList = exports.createAdmin = void 0;
+exports.updateProfitPercentage = exports.getEmployeeList = exports.createAdmin = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const admin_model_1 = __importDefault(require("../../../../models/admin.model"));
 const message_1 = require("../../../../constants/message");
+const product_model_1 = __importDefault(require("../../../../models/product.model"));
 const createAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const userDetails = req.body;
@@ -80,3 +81,25 @@ const getEmployeeList = (req, res) => __awaiter(void 0, void 0, void 0, function
     }
 });
 exports.getEmployeeList = getEmployeeList;
+const updateProfitPercentage = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { productId, profit_percentage } = req.body;
+        const updatedProduct = yield product_model_1.default.findByIdAndUpdate(productId, { profit_percentage }, { new: true });
+        if (!updatedProduct) {
+            return res.status(404).json({
+                message: "Product not found",
+            });
+        }
+        return res.status(200).json({
+            message: message_1.MESSAGE.patch.succ,
+            result: updatedProduct,
+        });
+    }
+    catch (error) {
+        return res.status(500).json({
+            message: message_1.MESSAGE.patch.fail,
+            error,
+        });
+    }
+});
+exports.updateProfitPercentage = updateProfitPercentage;
