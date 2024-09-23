@@ -1,13 +1,14 @@
 import { request } from "../api";
 import { headers } from "../../../configs/config";
 import { MESSAGE } from "../../../constants/api/message";
+import { Payload } from "../../../@types/api/api.types";
 
-const { get, patch, del } = request;
+const { get, post, del } = request;
 
-const initialRoute = "wholesaler";
-export const getWholesaler = async (filterQuery: any, page: any) => {
+const initialRoute = "brands";
+export const getBrand = async (filterQuery: any) => {
   try {
-    const endpoint = `${initialRoute}/get-wholesaler?page=${page}`;
+    const endpoint = `${initialRoute}/get-brand-list`;
     const response = await get(
       endpoint,
       {
@@ -21,9 +22,9 @@ export const getWholesaler = async (filterQuery: any, page: any) => {
       } = response;
       if (message === MESSAGE.get.succ) {
         const {
-          data: { result },
+          data: { result, pagination },
         } = response;
-        return result;
+        return { result, pagination };
       }
     }
     throw new Error();
@@ -33,17 +34,18 @@ export const getWholesaler = async (filterQuery: any, page: any) => {
   }
 };
 
-export const updateWholesalerStatus = async (payload: any) => {
+export const createBrand = async (payload: Payload) => {
   try {
-    const endpoint = `${initialRoute}/update-wholesaler-status`;
-    const response = await patch(endpoint, payload, {
+    const endpoint = `${initialRoute}/create-brand`;
+    const response = await post(endpoint, payload, {
       ...headers,
+      "Content-Type": "multipart/form-data",
     });
     if (response) {
       const {
         data: { message },
       } = response;
-      if (message === MESSAGE.patch.succ) {
+      if (message === MESSAGE.post.succ) {
         const {
           data: { result },
         } = response;
@@ -57,9 +59,9 @@ export const updateWholesalerStatus = async (payload: any) => {
   }
 };
 
-export const deleteWholesaler = async (wholesalerId: string) => {
+export const deleteBrand = async (brandId: string) => {
   try {
-    const endpoint = `${initialRoute}/delete-wholesaler-by-id/${wholesalerId}`;
+    const endpoint = `${initialRoute}/delete-brand-by-id/${brandId}`;
     const response = await del(endpoint, {
       ...headers,
     });

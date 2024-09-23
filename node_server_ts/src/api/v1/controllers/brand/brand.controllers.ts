@@ -113,3 +113,24 @@ export const getBrands = async (req: Request, res: Response) => {
 		});
 	}
 };
+
+export const deleteBrand = async (req: Request, res: Response) => {
+	try {
+		const { brandId } = req.params;
+		const brand = await BrandModel.findByIdAndDelete(brandId);
+		if (!brand) {
+			return res.status(404).json({
+				message: MESSAGE.delete.fail
+			});
+		}
+		return res.status(200).json({
+			message: MESSAGE.delete.succ,
+			result: brand
+		});
+	} catch (error) {
+		return res.status(400).json({
+			message: MESSAGE.delete.fail,
+			error
+		});
+	}
+};

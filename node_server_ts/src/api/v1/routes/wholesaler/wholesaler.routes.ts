@@ -2,6 +2,7 @@ import express from "express";
 import { upload } from "../../../../middleware/multer.middleware";
 import {
 	createWholesaler,
+	deleteWholesaler,
 	getWholeSaler,
 	updateWholesalerStatus
 } from "../../controllers/wholesalers/wholesaler.controller";
@@ -29,6 +30,7 @@ router.route("/get-otp-login").get(getOtpForLogin);
 router.route("/update-wholesaler-status").patch(updateWholesalerStatus);
 router.route("/upload-product").post(uploadProduct);
 router.route("/get-product").get(getProductsByProductId);
+router.route("/delete-wholesaler-by-id/:wholesalerId").delete(deleteWholesaler);
 
 // router.route("/get-builder-list").get(getBuilderNameWithID);
 

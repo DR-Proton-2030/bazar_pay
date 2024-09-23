@@ -6,8 +6,6 @@ import {
   getForwardEnquryList,
   updateEnquiryStatus,
 } from "./booking/booking";
-import { getBrand } from "./brand/getBrand";
-import { createBrand } from "./brand/postBrand";
 import { getBuilderByID } from "./wholesalers/getWholealerByID";
 import { addWholesaler } from "./wholesalers/postWholesaler";
 import { getCategory, getCategoryById } from "./category/getCategory";
@@ -18,11 +16,6 @@ import { getOrderList } from "./order/order";
 import { createAdmin } from "./permission/userManagement/createAdmin";
 import { getBuilderList } from "./permission/userManagement/getBuilderList";
 import { adminAssignProject } from "./products/assignProject";
-import {
-  getAdminPlots,
-  getAssignedProjectList,
-  getProjectDetails,
-} from "./products/getAdminProjects";
 import {
   getProductDetail,
   getProducts,
@@ -36,10 +29,14 @@ import {
 import { getProductbyId } from "./productsByid/getProductById";
 import { getSubcategory } from "./subcategory/getSubcategory";
 import { createSubcategory } from "./subcategory/postSubcategory";
-import { getWholesaler, updateWholesalerStatus } from "./wholesaler/WholeSaler";
-import { get } from "http";
+import {
+  deleteWholesaler,
+  getWholesaler,
+  updateWholesalerStatus,
+} from "./wholesaler/WholeSaler";
 import { createRetailer, getRetailers } from "./retailer/retailer.api";
 import { deleteCategory } from "./category/category.api";
+import { createBrand, getBrand, deleteBrand } from "./brand/brand.api";
 
 export const api = {
   customer: {
@@ -54,6 +51,7 @@ export const api = {
     addWholesaler,
     getBuilderByID,
     updateWholesalerStatus,
+    deleteWholesaler,
   },
   admin: {
     createAdmin,
@@ -93,13 +91,13 @@ export const api = {
   brand: {
     getBrand,
     createBrand,
+    deleteBrand,
   },
   productbyId: {
     getProductbyId,
     createProductById,
     updateProduct,
   },
-  builder: {},
   order: {
     getOrderList,
   },

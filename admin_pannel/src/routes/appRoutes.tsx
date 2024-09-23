@@ -1,9 +1,6 @@
 import HomePage from "../components/pages/home/HomePage";
 import { RouteType } from "./config";
 import DashboardIndex from "../components/pages/bookings/DashboardIndex";
-import SupervisedUserCircleIcon from "@mui/icons-material/SupervisedUserCircle";
-import AllCustomersPage from "../components/pages/allCustomers/AllCustomersPage";
-import CategoryIcon from "@mui/icons-material/Category";
 import PeopleOutlineOutlinedIcon from "@mui/icons-material/PeopleOutlineOutlined";
 import SellOutlinedIcon from "@mui/icons-material/SellOutlined";
 import AdminPanelSettingsOutlinedIcon from "@mui/icons-material/AdminPanelSettingsOutlined";
@@ -11,30 +8,11 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import CategoryOutlinedIcon from "@mui/icons-material/CategoryOutlined";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import BookmarksOutlinedIcon from "@mui/icons-material/BookmarksOutlined";
-import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
-import Builders from "../components/pages/builders/Builders";
-import BuilderForm from "../components/pages/builders/builderForm/BuilderForm";
 import PermissionPage from "../components/pages/permission/PermissionPage";
 import TelecallerManagement from "../components/pages/permission/telecallerManagement/TelecallerManagement";
-import BuilderManagement from "../components/pages/permission/advertisement/Advertisement";
 
-import {
-  AdminPanelSettings,
-  Book,
-  Construction,
-  People,
-  PermIdentity,
-  ScatterPlotSharp,
-  Settings,
-  SettingsAccessibility,
-  SettingsAccessibilityRounded,
-  ShoppingBag,
-  ShoppingCart,
-  WheelchairPickup,
-} from "@mui/icons-material";
 import Reports from "../components/pages/reports/Reports";
 import Advertisement from "../components/pages/permission/advertisement/Advertisement";
-import AddAdvertisement from "../components/pages/permission/advertisement/addBanner/AddBanner";
 import AddBanner from "../components/pages/permission/advertisement/addBanner/AddBanner";
 import ProductList from "../components/pages/products/Products";
 import Categories from "../components/pages/categories/Categories";
@@ -48,14 +26,14 @@ import Details from "../components/pages/categoryDetails/subCategoryDetails/deta
 import AddProductsForm from "../components/pages/categoryDetails/products/addProducts/AddProductsForm";
 import ProductDetails from "../components/pages/categoryDetails/products/ProductDetails";
 import BrandProducts from "../components/pages/brand/productDetails/BrandProducts";
-import Wholesalers from "../components/pages/builders/Builders";
-import WholesalerDetails from "../components/pages/builders/wholesalerDetails/WholesalerDetails";
 import AdminManagement from "../components/pages/permission/adminManagement/AdminManagement";
 import AddAdminForm from "../components/pages/permission/adminManagement/addAdminForm/AddAdminForm";
 import ProductDetails_Form from "../components/pages/productDetails.tsx/ProductDetails";
 import AddWholesalers from "../components/pages/wholesalers/addWholesalers/AddWholesalers";
 import Retailers from "../components/pages/retailers/Retailers";
 import AddRetailerForm from "../components/pages/retailers/addRetailerForm/AddRetailerForm";
+import Wholesalers from "../components/pages/wholesalers/Wholesalers";
+import WholesalerDetails from "../components/pages/wholesalers/wholesalerDetails/WholesalerDetails";
 
 const appRoutes: RouteType[] = [
   {
@@ -74,7 +52,7 @@ const appRoutes: RouteType[] = [
   },
   {
     path: "/retailers/add-retailers",
-    element: <AddRetailerForm/>,
+    element: <AddRetailerForm />,
     state: "retailers",
   },
   {
@@ -136,7 +114,7 @@ const appRoutes: RouteType[] = [
   },
   {
     path: "/add-wholesalers",
-    element: <AddWholesalers/>,
+    element: <AddWholesalers />,
     state: "wholesalers",
   },
   {
@@ -179,15 +157,6 @@ const appRoutes: RouteType[] = [
       icon: <ShoppingCartOutlinedIcon />,
     },
   },
-  // {
-  //   path: "/productDetails",
-  //   element: <ProductDetails />,
-  //   state: "plots",
-  //   sidebarProps: {
-  //     displayText: "All Products",
-  //     icon: <ShoppingCartOutlinedIcon />,
-  //   },
-  // },
   {
     path: "/reports",
     element: <Reports />,

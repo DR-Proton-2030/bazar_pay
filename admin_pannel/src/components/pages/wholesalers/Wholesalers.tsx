@@ -14,6 +14,7 @@ import TLPcellRenderer from "./tradeCellRenderer/TLPcellRenderer";
 import NIDcellRenderer from "./nidCellRenderer/NIDcellRenderer";
 import OwnerCellRenderer from "./ownerCellRenderer/OwnerCellRenderer";
 import ImageCellRenderer from "./imageCellRenderer/ImageCellRenderer";
+import DeleteCellRenderer from "./deleteCellRenderer/DeleteCellRenderer";
 
 const Wholesalers = () => {
   const navigate = useNavigate();
@@ -109,6 +110,11 @@ const Wholesalers = () => {
       field: "actions",
       cellRenderer: WholesalerDetailsCellRenderer,
     },
+    {
+      field: "delete",
+      headerName: "Delete",
+      cellRenderer: DeleteCellRenderer,
+    },
   ];
 
   useEffect(() => {
@@ -120,7 +126,7 @@ const Wholesalers = () => {
   }, [fetchWholesalers]);
 
   return (
-    <div className="builders-container">
+    <div>
       <div className="add-btn">
         <Button
           variant="contained"

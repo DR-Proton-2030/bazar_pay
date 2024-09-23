@@ -164,3 +164,29 @@ export const updateWholesalerStatus = async (req: Request, res: Response) => {
 		});
 	}
 };
+
+export const deleteWholesaler = async (req: Request, res: Response) => {
+	try {
+		const { wholesalerId } = req.params;
+
+		const deletedWholesaler = await WholesalerModel.findByIdAndDelete(wholesalerId);
+
+		if (!deletedWholesaler) {
+			return res.status(404).json({
+				message: MESSAGE.delete.fail,
+				error: "Wholesaler not found"
+			});
+		}
+
+		res.status(200).json({
+			message: MESSAGE.delete.succ,
+			result: deletedWholesaler
+		});
+	} catch (error) {
+		console.error("Error deleting wholesaler:", error);
+		res.status(400).json({
+			message: MESSAGE.delete.fail,
+			error
+		});
+	}
+};
