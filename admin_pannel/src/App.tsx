@@ -4,6 +4,7 @@ import { routes } from "./routes";
 import Login from "./components/pages/auth/login/Login";
 import "./app.css";
 import AgentLogin from "./components/pages/auth/login/Login";
+import Categories from "./components/pages/categories/Categories";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           {routes}
         </Route> */}
         <Route path="/admin/login" element={<Login/>} />
+        <Route path="/categories" element={<Categories/>} />
         {/* <Route path="/upoad-layout" element={<UploadLayout />} /> */}
       </Routes>
     </BrowserRouter>

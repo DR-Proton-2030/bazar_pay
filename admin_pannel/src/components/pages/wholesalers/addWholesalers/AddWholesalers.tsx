@@ -6,6 +6,7 @@ import { IWholesaler } from "../../../../@types/interface/wholesaler";
 import SendIcon from "@mui/icons-material/Send";
 import UploadIcon from "@mui/icons-material/Upload";
 import { api } from "../../../../utils/api";
+import { useNavigate } from "react-router-dom";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -20,6 +21,7 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const AddWholesalers = () => {
+  const navigate = useNavigate();
   const { setDashboardHeader } = useContext(UIContext);
   const [wholesalerDetails, setWholesalerDetails] = useState<IWholesaler>({
     wholesaler_name: "",
@@ -76,6 +78,8 @@ const AddWholesalers = () => {
       const response = await api.wholesaler.addWholesaler(formData);
       if (response) {
         alert("Wholesaler Added Successfully");
+        navigate("/wholesalers");
+        
       }
       if (!response) {
         throw new Error(`API request failed with status ${response.status}`);

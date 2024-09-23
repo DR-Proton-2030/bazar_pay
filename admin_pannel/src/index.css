@@ -197,3 +197,19 @@ body {
   margin-left: 40px !important;
   margin-right: 40px !important;
 }
+.delete-button{
+  background-color: rgb(220, 56, 56) !important;
+  text-transform: capitalize !important;
+  font-size: 16px !important;
+  margin-right: 10px !important;
+  /* margin-bottom: 10px !important; */
+}
+.gray-outlined-button{
+  color: gray !important;
+  font-weight: 600 !important;
+  border: 1px solid gray !important;
+  text-transform: capitalize !important;
+  font-size: 16px !important;
+  margin: 10px !important;
+  margin-bottom: 10px !important;
+}

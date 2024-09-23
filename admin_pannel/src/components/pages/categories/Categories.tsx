@@ -44,8 +44,9 @@ const Categories = () => {
         };
         const response = await api.category.getCategory(filter);
         if (response) {
-          setRowData(response);
-         
+          setRowData(response)
+          
+        
         }
       } catch (error) {
         console.error("Error while fetching data:", error);

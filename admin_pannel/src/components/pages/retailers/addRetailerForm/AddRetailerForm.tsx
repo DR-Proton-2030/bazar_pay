@@ -6,6 +6,7 @@ import { IRetailers } from "../../../../@types/interface/retailer.interface";
 import SendIcon from "@mui/icons-material/Send";
 import UploadIcon from "@mui/icons-material/Upload";
 import { api } from "../../../../utils/api";
+import { useNavigate } from "react-router-dom";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -20,6 +21,7 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const AddRetailerForm = () => {
+  const navigate = useNavigate();
   const { setDashboardHeader } = useContext(UIContext);
   const [logo, setLogo] = useState<File | null>(null);
   const [signBoardPhoto, setSignBoardPhoto] = useState<File | null>(null);
@@ -73,6 +75,7 @@ const AddRetailerForm = () => {
       const response = await api.retailer.createRetailer(formData);
       if(response){
         alert("Retailer Added Successfully")
+        navigate('/retailers');
       }
       if (!response) {
         throw new Error(`API request failed with status ${response.status}`);

@@ -24,6 +24,7 @@ import { ICategory } from "../../../../@types/interface/category.interface";
 import { api } from "../../../../utils/api";
 import { CountryLists } from "../../../shared/countries/CountryList";
 import { IBrand } from "../../../../@types/interface/brand.interface";
+import { useNavigate } from "react-router-dom";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -38,6 +39,7 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const AddBrandForm = () => {
+  const navigate = useNavigate();
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   
   const [brandDetails, setBrandDetails] = useState<IBrand>({
@@ -70,6 +72,8 @@ const AddBrandForm = () => {
       const response = await api.brand.createBrand(formData);
       if (response) {
         alert("Brand Details created successfully");
+        navigate("/brand")
+        
       }
       if (!response) {
         throw new Error(`API request failed with status ${response.status}`);

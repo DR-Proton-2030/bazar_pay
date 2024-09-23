@@ -15,6 +15,8 @@ import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { ICategory } from "../../../../@types/interface/category.interface";
 import { api } from "../../../../utils/api";
+import { useNavigate } from "react-router-dom";
+import Categories from "../Categories";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -29,6 +31,7 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const AddCategoryForm = () => {
+  const navigate = useNavigate()
   const [uploadedFile, setUploadedFile] = useState<File | null>(null);
   const [categoryDetails, setCategoryDetails] = useState<ICategory>({
     name: "",
@@ -37,6 +40,10 @@ const AddCategoryForm = () => {
   });
   const { setDashboardHeader } = useContext(UIContext);
 
+
+  const handleRouteToCategory = () => {
+    navigate("/categories")
+  }
   const handleChange = useCallback(
     (event: any) => {
       const {
@@ -59,6 +66,9 @@ const AddCategoryForm = () => {
       const response = await api.category.createCategory(formData);
       if (response) {
         alert("category created successfully");
+        navigate("/categories");
+        
+        
       }
       if (!response) {
         throw new Error(`API request failed with status ${response.status}`);
@@ -144,6 +154,7 @@ const AddCategoryForm = () => {
               className="blue-btn"
               variant="contained"
               type="submit"
+              onClick={handleSubmit}
               sx={{
                 fontFamily: "poppins, sans-serif",
                 fontWeight: "500",
@@ -154,6 +165,9 @@ const AddCategoryForm = () => {
             >
               Submit
             </Button>
+
+
+
             </div>
             
          
@@ -161,6 +175,8 @@ const AddCategoryForm = () => {
         
       
     </form>
+
+  
   );
 };
 
