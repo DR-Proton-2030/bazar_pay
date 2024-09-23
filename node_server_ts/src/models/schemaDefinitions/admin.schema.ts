@@ -11,8 +11,7 @@ const adminSchema: Schema<IAdmin> = new Schema<IAdmin>(
 		password: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		is_disabled: SCHEMA_DEFINITION_PROPERTY.optionalBoolean,
 		role: SCHEMA_DEFINITION_PROPERTY.requiredString,
-		has_all_state_access: SCHEMA_DEFINITION_PROPERTY.optionalBoolean,
-		has_company_all_access: SCHEMA_DEFINITION_PROPERTY.optionalBoolean,
+
 		last_login_date: SCHEMA_DEFINITION_PROPERTY.optionalNullDate
 	},
 	{
