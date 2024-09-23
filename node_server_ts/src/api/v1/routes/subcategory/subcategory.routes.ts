@@ -20,6 +20,6 @@ router.route("/get-subcategory-with-filter").get(getSubcategory);
 
 router.route("/get-aggregated-subcategory").get(getAggregatedSubcategory);
 
-router.route("/delete-subcategory-by-id").delete(deleteSubcategoryById);
+router.route("/delete-subcategory-by-id/:subcategoryId").delete(deleteSubcategoryById);
 
 export default router;

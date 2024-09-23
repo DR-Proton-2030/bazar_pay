@@ -37,6 +37,8 @@ import {
 import { createRetailer, getRetailers } from "./retailer/retailer.api";
 import { deleteCategory } from "./category/category.api";
 import { createBrand, getBrand, deleteBrand } from "./brand/brand.api";
+import { deleteSubcategory } from "./subcategory/deleteSubcategory";
+
 
 export const api = {
   customer: {
@@ -87,6 +89,7 @@ export const api = {
   subcategory: {
     getSubcategory,
     createSubcategory,
+    deleteSubcategory
   },
   brand: {
     getBrand,
