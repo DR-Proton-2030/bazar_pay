@@ -9,11 +9,17 @@ import { CategoryColDefs } from "../../../constants/categories/categoryColDefs";
 import { ICategory } from "../../../@types/interface/category.interface";
 import BasicPagination from "../../shared/basicPagination/BasicPagination";
 import { IPagination } from "../../../@types/props/pagination";
+import { FilterModel } from "ag-grid-community";
+import { formatFilters } from "../../../utils/commonFunction/formatApiFilters";
+
 
 const Categories = () => {
   const navigate = useNavigate();
   const { setDashboardHeader } = useContext(UIContext);
   const [rowData, setRowData] = useState<ICategory[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [filters, setFilters] = useState([]);
   const [categoryPagination, setCategoryPagination] = useState<IPagination>({
     currentPage: 1,
     pageCount: 1,
@@ -29,11 +35,28 @@ const Categories = () => {
     }));
   };
 
+
+  const handleFilterChange = (filterModel: FilterModel) => {
+		setFilters((prevFilters) => {
+			const sanitizedFilters = { ...prevFilters };
+			Object.keys(sanitizedFilters).forEach((key: any) => {
+				if (!filterModel[key]) {
+					delete sanitizedFilters[key];
+				}
+			});
+			const updatedFilters = { ...sanitizedFilters, ...filterModel };
+			console.log("Updated Filters-->", updatedFilters);
+			return updatedFilters;
+		});
+	};
   const getCategories = useCallback(
-    async (filterQuery: any) => {
+    async () => {
       try {
+        const formattedFilter = formatFilters(filters);
+        console.log("Formatted filters-->", formattedFilter);
+          setLoading(true);
         const filter = {
-          ...filterQuery,
+          ...formattedFilter,
           page: categoryPagination.currentPage,
         };
         const response = await api.category.getCategory(filter);
@@ -45,11 +68,11 @@ const Categories = () => {
         console.error("Error while fetching data:", error);
       }
     },
-    [categoryPagination.currentPage]
+    [categoryPagination.currentPage , filters]
   );
 
   useEffect(() => {
-    getCategories({});
+    getCategories();
   }, [getCategories]);
 
   useEffect(() => {
@@ -71,7 +94,7 @@ const Categories = () => {
           Add Category
         </Button>
       </div>
-      <DataGrid colDefs={CategoryColDefs} rowData={rowData} key={0} />
+      <DataGrid colDefs={CategoryColDefs} rowData={rowData} key={0} onFilterChange={handleFilterChange} />
 
       <BasicPagination
         pageCount={categoryPagination.pageCount}

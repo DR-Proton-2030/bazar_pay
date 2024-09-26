@@ -6,7 +6,9 @@ const TsrList = () => {
     const [rowData,setRowData] = useState([])
   return (
     <div>
-        <DataGrid rowData={rowData} colDefs={TsrColDefs}/>
+        <DataGrid rowData={rowData} colDefs={TsrColDefs} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number } }): void {
+        throw new Error('Function not implemented.')
+      } }/>
     </div>
   )
 }

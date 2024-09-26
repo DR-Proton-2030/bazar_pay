@@ -65,7 +65,9 @@ const {setDashboardHeader} = useContext(UIContext)
           Add Products
         </Button>
       </div>
-      <DataGrid rowData={rowData} colDefs={ProductColDefs}/>
+      <DataGrid rowData={rowData} colDefs={ProductColDefs} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number } }): void {
+        throw new Error('Function not implemented.')
+      } }/>
       <BasicPagination pageCount={0} currentPage={0} handlePageChange={function (event: React.ChangeEvent<unknown>, value: number): void {
         throw new Error('Function not implemented.')
       } }/>

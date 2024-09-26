@@ -54,7 +54,9 @@ const AllCustomersPage = () => {
 
   return (
     <div>
-      <DataGrid colDefs={CustomerColDefs} rowData={customerData} key={0} />
+      <DataGrid colDefs={CustomerColDefs} rowData={customerData} key={0} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number; }; }): void {
+        throw new Error("Function not implemented.");
+      } } />
     </div>
   );
 };

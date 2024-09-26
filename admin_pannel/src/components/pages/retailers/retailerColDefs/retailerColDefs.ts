@@ -11,16 +11,44 @@ export const RetailerColDefs: ColDef[] = [
   {
     field: "retailer_name",
     headerName: "Retailer Name",
+    suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
     cellRenderer: RetailerLogoCellRenderer,
   },
-  { field: "contact_name", headerName: "Contact Name" },
-  { field: "contact_phone", headerName: "Contact Phone" },
-  { field: "contact_email", headerName: "Contact Email" },
-  { field: "trade_license_number", headerName: "Trade License Number" },
+  {
+    field: "contact_name",
+    headerName: "Contact Name",
+    suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
+  },
+  {
+    field: "contact_phone",
+    headerName: "Contact Phone",
+    suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
+  },
+  {
+    field: "contact_email",
+    headerName: "Contact Email",
+    suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
+  },
+  {
+    field: "trade_license_number",
+    headerName: "Trade License Number",
+    suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
+  },
   { field: "nid_number", headerName: "Nid Number" },
   {
     field: "sign_board_photo",
     headerName: "Sign Board Photo",
+
     cellRenderer: ImageCellRenderer,
   },
   {

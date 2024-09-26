@@ -8,11 +8,16 @@ import { useNavigate } from "react-router-dom";
 import { api } from "../../../utils/api";
 import { IPagination } from "../../../@types/props/pagination";
 import BasicPagination from "../../shared/basicPagination/BasicPagination";
+import { formatFilters } from "../../../utils/commonFunction/formatApiFilters";
+import { FilterModel } from "ag-grid-community";
 
 const Retailers = () => {
   const navigate = useNavigate();
   const { setDashboardHeader } = useContext(UIContext);
   const [retailerList, setRetailerList] = useState<IRetailers[]>([]);
+  const [filters, setFilters] = useState([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const [pagination, setPagination] = useState<IPagination>({
     currentPage: 1,
     pageCount: 1,
@@ -26,11 +31,31 @@ const Retailers = () => {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    setPagination({ ...pagination, currentPage: value });
+    setPagination((prev) => ({
+      ...prev,
+      currentPage: value,
+    }));
   };
+
+  const handleFilterChange = (filterModel: FilterModel) => {
+		setFilters((prevFilters) => {
+			const sanitizedFilters = { ...prevFilters };
+			Object.keys(sanitizedFilters).forEach((key: any) => {
+				if (!filterModel[key]) {
+					delete sanitizedFilters[key];
+				}
+			});
+			const updatedFilters = { ...sanitizedFilters, ...filterModel };
+			console.log("Updated Filters-->", updatedFilters);
+			return updatedFilters;
+		});
+	};
 
   const getRetailers = useCallback(async () => {
     try {
+      const formattedFilter = formatFilters(filters);
+        console.log("Formatted filters-->", formattedFilter);
+          setLoading(true);
       const response = await api.retailer.getRetailers({});
       if (response) {
         setRetailerList(response.result);
@@ -64,7 +89,7 @@ const Retailers = () => {
           Add Retailer
         </Button>
       </div>
-      <DataGrid rowData={retailerList} colDefs={RetailerColDefs} />
+      <DataGrid rowData={retailerList} colDefs={RetailerColDefs} onFilterChange={handleFilterChange} />
       <BasicPagination
         currentPage={pagination.currentPage}
         pageCount={pagination.pageCount}

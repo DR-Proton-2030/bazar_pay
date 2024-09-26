@@ -23,7 +23,9 @@ const AdminManagement = () => {
           Add Admin
         </Button>
       </div>
-      <DataGrid rowData={adminDetails} colDefs={AdminColDefs} />
+      <DataGrid rowData={adminDetails} colDefs={AdminColDefs} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number; }; }): void {
+        throw new Error("Function not implemented.");
+      } } />
     </div>
   );
 };

@@ -24,7 +24,9 @@ const Advertisement = () => {
           Add Banner
         </Button>
       </div>
-      <DataGrid colDefs={AdColDefs} rowData={[]} key={0} />
+      <DataGrid colDefs={AdColDefs} rowData={[]} key={0} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number; }; }): void {
+        throw new Error("Function not implemented.");
+      } } />
     </div>
   );
 };

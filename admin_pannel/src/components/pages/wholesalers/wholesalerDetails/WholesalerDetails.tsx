@@ -31,8 +31,9 @@ const WholesalerDetails = () => {
         const filter={
           _id:wid
         }
-          const wholesalerDetail = await api.wholesaler.getWholesaler(filter,1)
-          setWholesalerDetail(wholesalerDetail[0])
+          const wholesalerList = await api.wholesaler.getWholesaler(filter)
+          const wholesaler = wholesalerList.result[0]
+          setWholesalerDetail(wholesaler)
       } catch (error) {
           console.log(error)
       }

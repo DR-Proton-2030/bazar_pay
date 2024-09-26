@@ -1,6 +1,5 @@
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-
 import { useCallback, useContext, useEffect, useState } from "react";
 import { api } from "../../../utils/api";
 import DataGrid from "../../shared/dataGrid/DataGrid";
@@ -15,12 +14,24 @@ import NIDcellRenderer from "./nidCellRenderer/NIDcellRenderer";
 import OwnerCellRenderer from "./ownerCellRenderer/OwnerCellRenderer";
 import ImageCellRenderer from "./imageCellRenderer/ImageCellRenderer";
 import DeleteCellRenderer from "./deleteCellRenderer/DeleteCellRenderer";
+import { FilterModel } from "ag-grid-community";
+import { formatFilters } from "../../../utils/commonFunction/formatApiFilters";
+import { IPagination } from "../../../@types/props/pagination";
+import BasicPagination from "../../shared/basicPagination/BasicPagination";
 
 const Wholesalers = () => {
   const navigate = useNavigate();
   const { setDashboardHeader } = useContext(UIContext);
   const [rowData, setRowData] = useState<IWholesaler[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [filters, setFilters] = useState([]);
+  const [wholesalerPagination, setWholesalerPagination] = useState<IPagination>(
+    {
+      currentPage: 1,
+      pageCount: 1,
+    }
+  );
 
   const handleRouteToAddWholesaler = () => {
     navigate("/add-wholesalers");
@@ -30,18 +41,47 @@ const Wholesalers = () => {
     event: React.ChangeEvent<unknown>,
     value: number
   ) => {
-    setCurrentPage(value);
+    setWholesalerPagination((prev) => ({
+      ...prev,
+      currentPage: value,
+    }));
+  };
+
+  const handleFilterChange = (filterModel: FilterModel) => {
+    setFilters(prevFilters => {
+      const sanitizedFilters = { ...prevFilters };
+      Object.keys(sanitizedFilters).forEach((key: any) => {
+        if (!filterModel[key]) {
+          delete sanitizedFilters[key];
+        }
+      });
+      const updatedFilters = { ...sanitizedFilters, ...filterModel };
+      console.log("Updated Filters-->", updatedFilters);
+      return updatedFilters;
+    });
   };
 
   const fetchWholesalers = useCallback(async () => {
-    const filter = {};
     try {
-      const response = await api.wholesaler.getWholesaler(filter, currentPage);
-      setRowData(response);
+      const formattedFilter = formatFilters(filters);
+      console.log("Formatted filters-->", formattedFilter);
+      setLoading(true);
+
+      const filter = {
+        ...formattedFilter,
+        page: wholesalerPagination.currentPage,
+      };
+
+      const response = await api.wholesaler.getWholesaler(filter);
+      if (response) {
+        setRowData(response.result);
+        setWholesalerPagination(response.pagination);
+      }
+      
     } catch (error) {
       console.error("Error fetching wholesalers:", error);
     }
-  }, [currentPage]);
+  }, [wholesalerPagination.currentPage, filters]);
 
   const handleSwitchChange = async (id: string, checked: boolean) => {
     const newStatus = checked ? "ACTIVE" : "REJECTED";
@@ -60,49 +100,91 @@ const Wholesalers = () => {
     {
       headerName: "Wholesaler Name",
       field: "wholesaler_name",
+      suppressSizeToFit: true,
+      filter: "agTextColumnFilter",
+      floatingFilter: true,
       cellRenderer: LogoCellRenderer,
     },
     {
       headerName: "Owner Name",
       field: "owner_name",
+      suppressSizeToFit: true,
+      filter: "agTextColumnFilter",
+      floatingFilter: true,
       cellRenderer: OwnerCellRenderer,
     },
-    { headerName: "Owner Phone", field: "owner_phone" },
-    { headerName: "Owner Email", field: "owner_email" },
+    {
+      headerName: "Owner Phone",
+      field: "owner_phone",
+      suppressSizeToFit: true,
+      filter: "agTextColumnFilter",
+      floatingFilter: true,
+    },
+    {
+      headerName: "Owner Email",
+      field: "owner_email",
+      suppressSizeToFit: true,
+      filter: "agTextColumnFilter",
+      floatingFilter: true,
+    },
     {
       headerName: "Status",
       field: "approval_status",
+      suppressSizeToFit: true,
+      filter: "agTextColumnFilter",
+      floatingFilter: true,
       cellRenderer: (params: any) => (
         <StatusCell {...params} handleSwitchChange={handleSwitchChange} />
       ),
     },
-    { headerName: "Trade License Number", field: "trade_licensce_number" },
-    { headerName: "NID Number", field: "nid_number" },
+    {
+      headerName: "Trade License Number",
+      field: "trade_licensce_number",
+      suppressSizeToFit: true,
+      filter: "agTextColumnFilter",
+      floatingFilter: true,
+    },
+    {
+      headerName: "NID Number",
+      field: "nid_number",
+      suppressSizeToFit: true,
+      filter: "agTextColumnFilter",
+      floatingFilter: true,
+    },
 
     {
       headerName: "Sign Board Photo",
       field: "sign_board_photo",
       cellRenderer: ImageCellRenderer,
+      
     },
     {
       headerName: "Trade License Photo",
       field: "trade_license_photo",
       cellRenderer: TLPcellRenderer,
+     
     },
     {
       headerName: "NID Photo",
       field: "nid_photo",
       cellRenderer: NIDcellRenderer,
+      
     },
 
     {
       headerName: "Created On",
       field: "createdAt",
+      suppressSizeToFit: true,
+      filter: "agTextColumnFilter",
+      floatingFilter: true,
       cellRenderer: FormattedDateCellRenderer,
     },
     {
       headerName: "Last Edited On",
       field: "updatedAt",
+      suppressSizeToFit: true,
+      filter: "agTextColumnFilter",
+      floatingFilter: true,
       cellRenderer: FormattedDateCellRenderer,
     },
     {
@@ -136,7 +218,17 @@ const Wholesalers = () => {
           Add Wholesaler
         </Button>
       </div>
-      <DataGrid rowData={rowData} colDefs={colDefs} />
+      <DataGrid
+        rowData={rowData}
+        colDefs={colDefs}
+        onFilterChange={handleFilterChange}
+      />
+
+{/* <BasicPagination
+        pageCount={wholesalerPagination.pageCount}
+        handlePageChange={handlePageChange}
+        currentPage={wholesalerPagination.currentPage}
+      /> */}
     </div>
   );
 };

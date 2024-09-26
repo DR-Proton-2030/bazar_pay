@@ -9,11 +9,15 @@ import { IBrand } from "../../../@types/interface/brand.interface";
 import { api } from "../../../utils/api";
 import { IPagination } from "../../../@types/props/pagination";
 import BasicPagination from "../../shared/basicPagination/BasicPagination";
+import { FilterModel } from "ag-grid-community";
+import { formatFilters } from "../../../utils/commonFunction/formatApiFilters";
 
 const Brand = () => {
   const { setDashboardHeader } = useContext(UIContext);
   const [rowData, setRowData] = useState<IBrand[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [filters, setFilters] = useState([]);
   const navigate = useNavigate();
 
   const [pagination, setPagination] = useState<IPagination>({
@@ -21,12 +25,31 @@ const Brand = () => {
     pageCount: 1,
   });
 
+  const handleFilterChange = (filterModel: FilterModel) => {
+		setFilters((prevFilters) => {
+			const sanitizedFilters = { ...prevFilters };
+			Object.keys(sanitizedFilters).forEach((key: any) => {
+				if (!filterModel[key]) {
+					delete sanitizedFilters[key];
+				}
+			});
+			const updatedFilters = { ...sanitizedFilters, ...filterModel };
+			console.log("Updated Filters-->", updatedFilters);
+			return updatedFilters;
+		});
+	};
+
+
   const getBrandList = useCallback(
-    async (filterQuery: any) => {
+    async () => {
       try {
+        const formattedFilter = formatFilters(filters);
+			console.log("Formatted filters-->", formattedFilter);
         setLoading(true);
+
+       
         const filter = {
-          ...filterQuery,
+          ...formattedFilter,
           page: pagination.currentPage,
         };
         const response = await api.brand.getBrand(filter);
@@ -40,7 +63,7 @@ const Brand = () => {
         setLoading(false);
       }
     },
-    [pagination.currentPage]
+    [pagination.currentPage, filters]
   );
 
   const handlePageChange = useCallback(
@@ -54,12 +77,14 @@ const Brand = () => {
   );
 
   useEffect(() => {
-    getBrandList({});
+    getBrandList();
   }, [getBrandList]);
 
   useEffect(() => {
     setDashboardHeader("Brand List");
   }, [setDashboardHeader]);
+
+  console.log("brandlist",rowData)
   return (
     <div>
       <div className="add-btn">
@@ -76,7 +101,7 @@ const Brand = () => {
           Add Brand
         </Button>
       </div>
-      <DataGrid rowData={rowData} colDefs={BrandColDefs} />
+      <DataGrid rowData={rowData} colDefs={BrandColDefs} onFilterChange={handleFilterChange} />
       {loading ? (
         <div>Loading...</div>
       ) : (

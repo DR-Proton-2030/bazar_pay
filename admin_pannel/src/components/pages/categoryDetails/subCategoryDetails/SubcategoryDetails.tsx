@@ -71,7 +71,9 @@ const SubcategoryDetails = () => {
           Add Sub Category
         </Button>
       </div>
-      <DataGrid rowData={rowData} colDefs={SubcategoryColDefs} />
+      <DataGrid rowData={rowData} colDefs={SubcategoryColDefs} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number; }; }): void {
+        throw new Error("Function not implemented.");
+      } } />
       <BasicPagination
         pageCount={1}
         handlePageChange={handlePageChange}

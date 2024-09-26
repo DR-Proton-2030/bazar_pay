@@ -14,18 +14,29 @@ export const CategoryColDefs: ColDef[] = [
   {
     field: "name",
     headerName: "Category Name",
+    suppressSizeToFit: true,
+		filter: "agTextColumnFilter",
+		floatingFilter: true,
     cellRenderer: CategoryCellRenderer,
   },
 
-  { field: "description", headerName: "Details" },
+  { field: "description", headerName: "Details", suppressSizeToFit: true,
+		filter: "agTextColumnFilter",
+		floatingFilter: true, },
   {
     field: "createdAt",
     headerName: "Created On",
+    suppressSizeToFit: true,
+		filter: "agTextColumnFilter",
+		floatingFilter: true,
     cellRenderer: FormattedDateCellRenderer,
   },
   {
     field: "updatedAt",
     headerName: "Last Updated On",
+    suppressSizeToFit: true,
+		filter: "agTextColumnFilter",
+		floatingFilter: true,
     cellRenderer: FormattedDateCellRenderer,
   },
   {

@@ -5,7 +5,9 @@ import { ListedProductsColDefs } from '../../../../../constants/listedProductCol
 const ListedProducts = ({productList}:any) => {
   return (
     <div>
-        <DataGrid rowData={productList} colDefs={ListedProductsColDefs}/>
+        <DataGrid rowData={productList} colDefs={ListedProductsColDefs} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number } }): void {
+        throw new Error('Function not implemented.')
+      } }/>
     </div>
   )
 }

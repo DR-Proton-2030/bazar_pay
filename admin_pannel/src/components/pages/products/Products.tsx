@@ -54,8 +54,9 @@ const ProductList = () => {
           <DataGrid
             colDefs={ProductDefs}
             rowData={allProductList}
-            key={2}
-          ></DataGrid>
+            key={2} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number; }; }): void {
+              throw new Error("Function not implemented.");
+            } }          ></DataGrid>
           <BasicPagination
             pageCount={0}
             currentPage={0}

@@ -5,9 +5,9 @@ import { MESSAGE } from "../../../constants/api/message";
 const { get, patch, del } = request;
 
 const initialRoute = "wholesaler";
-export const getWholesaler = async (filterQuery: any, page: any) => {
+export const getWholesaler = async (filterQuery: any) => {
   try {
-    const endpoint = `${initialRoute}/get-wholesaler?page=${page}`;
+    const endpoint = `${initialRoute}/get-wholesaler`;
     const response = await get(
       endpoint,
       {
@@ -21,9 +21,9 @@ export const getWholesaler = async (filterQuery: any, page: any) => {
       } = response;
       if (message === MESSAGE.get.succ) {
         const {
-          data: { result },
+          data: { result , pagination},
         } = response;
-        return result;
+        return {result , pagination};
       }
     }
     throw new Error();
