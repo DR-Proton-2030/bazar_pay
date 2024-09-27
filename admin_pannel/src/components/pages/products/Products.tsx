@@ -13,18 +13,40 @@ import DataGrid from "../../shared/dataGrid/DataGrid";
 import { ProductDefs } from "./productDefs/productDefs";
 import BasicPagination from "../../shared/basicPagination/BasicPagination";
 import { api } from "../../../utils/api";
+import { FilterModel } from "ag-grid-community";
+import { formatFilters } from "../../../utils/commonFunction/formatApiFilters";
 
 const ProductList = () => {
   const { setDashboardHeader } = useContext(UIContext);
+  const [filters, setFilters] = useState([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [pagination, setPagination] = useState<IPagination>({
     currentPage: 1,
     pageCount: 1,
   });
   const [allProductList, setAllProductList] = useState<IProduct[]>([]);
 
+
+  const handleFilterChange = (filterModel: FilterModel) => {
+		setFilters((prevFilters) => {
+			const sanitizedFilters = { ...prevFilters };
+			Object.keys(sanitizedFilters).forEach((key: any) => {
+				if (!filterModel[key]) {
+					delete sanitizedFilters[key];
+				}
+			});
+			const updatedFilters = { ...sanitizedFilters, ...filterModel };
+			console.log("Updated Filters-->", updatedFilters);
+			return updatedFilters;
+		});
+	};
   const getAllProjects = useCallback(async () => {
     try {
+      const formattedFilter = formatFilters(filters);
+        console.log("Formatted filters-->", formattedFilter);
+          setLoading(true);
       const filter = {
+        ...formattedFilter,
         page: pagination.currentPage,
       };
       const response = await api.product.getProducts(filter);
@@ -36,7 +58,7 @@ const ProductList = () => {
     } catch (error) {
       console.error("Error while fetching data:", error);
     }
-  }, [pagination.currentPage]);
+  }, [pagination.currentPage, filters]);
 
   useEffect(() => {
     getAllProjects();
@@ -54,9 +76,7 @@ const ProductList = () => {
           <DataGrid
             colDefs={ProductDefs}
             rowData={allProductList}
-            key={2} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number; }; }): void {
-              throw new Error("Function not implemented.");
-            } }          ></DataGrid>
+            key={2} onFilterChange={handleFilterChange}></DataGrid>
           <BasicPagination
             pageCount={0}
             currentPage={0}

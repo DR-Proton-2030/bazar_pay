@@ -15,21 +15,40 @@ export const SubcategoryColDefs: ColDef[] = [
   {
     field: "name",
     headerName: "Sub category Name",
+    suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
     cellRenderer: SubcategoryCellRenderer,
   },
 
-  { field: "description", headerName: "Details" },
+  {
+    field: "description",
+    headerName: "Details",
+    suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
+  },
   {
     field: "createdAt",
     headerName: "Created On",
+    suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
     cellRenderer: FormattedDateCellRenderer,
   },
   {
     field: "updatedAt",
     headerName: "Last Updated On",
+    suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
     cellRenderer: FormattedDateCellRenderer,
   },
   { field: "action", headerName: "Action", cellRenderer: SeeDetails },
   { field: "action", headerName: "Action", cellRenderer: SeeProducts },
-  {field: "action", headerName: "Action", cellRenderer: SubcategoryDeleteCellRenderer}
+  {
+    field: "action",
+    headerName: "Action",
+    cellRenderer: SubcategoryDeleteCellRenderer,
+  },
 ];

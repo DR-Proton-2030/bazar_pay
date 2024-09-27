@@ -26,7 +26,7 @@ const Products = () => {
         };
         const response = await api.productbyId.getProductbyId(filter);
         if (response) {
-          setRowData(response);
+          setRowData(response.result);
         }
       } catch (error) {
         console.error("Error while fetching data:", error);

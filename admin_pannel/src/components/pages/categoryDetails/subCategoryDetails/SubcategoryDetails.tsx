@@ -8,6 +8,8 @@ import { api } from "../../../../utils/api";
 import UIContext from "../../../../contexts/uiContext/UIContext";
 import BasicPagination from "../../../shared/basicPagination/BasicPagination";
 import { IPagination } from "../../../../@types/props/pagination";
+import { FilterModel } from "ag-grid-community";
+import { formatFilters } from "../../../../utils/commonFunction/formatApiFilters";
 
 const SubcategoryDetails = () => {
   const navigate = useNavigate();
@@ -18,8 +20,37 @@ const SubcategoryDetails = () => {
       currentPage: 1,
       pageCount: 1,
     });
+    const [loading, setLoading] = useState<boolean>(false);
+  const [filters, setFilters] = useState([]);
+  
+
   const queryParams = new URLSearchParams(window.location.search);
+
   const categoryId = queryParams.get("cid");
+  const handlePageChange = (
+    event: React.ChangeEvent<unknown>,
+    value: number
+  ) => {
+    setSubcategoryPagination((prev) => ({
+      ...prev,
+      currentPage: value,
+    }));
+  };
+
+
+  const handleFilterChange = (filterModel: FilterModel) => {
+		setFilters((prevFilters) => {
+			const sanitizedFilters = { ...prevFilters };
+			Object.keys(sanitizedFilters).forEach((key: any) => {
+				if (!filterModel[key]) {
+					delete sanitizedFilters[key];
+				}
+			});
+			const updatedFilters = { ...sanitizedFilters, ...filterModel };
+			console.log("Updated Filters-->", updatedFilters);
+			return updatedFilters;
+		});
+	};
 
   const getSubcategories = useCallback(async () => {
     try {
@@ -29,7 +60,12 @@ const SubcategoryDetails = () => {
         //add alert
         throw new Error("Builder ID is missing in the query parameters.");
       }
+
+      const formattedFilter = formatFilters(filters);
+      console.log("Formatted filters-->", formattedFilter);
+        setLoading(true);
       const filter = {
+        ...formattedFilter,
         page: subcategoryPagination.currentPage,
         category_object_id: categoryId,
       };
@@ -41,21 +77,12 @@ const SubcategoryDetails = () => {
     } catch (error) {
       console.error("Error while fetching data:", error);
     }
-  }, [subcategoryPagination.currentPage]);
+  }, [subcategoryPagination.currentPage, filters]);
 
-  const handlePageChange = (
-    event: React.ChangeEvent<unknown>,
-    value: number
-  ) => {
-    setSubcategoryPagination((prev) => ({
-      ...prev,
-      currentPage: value,
-    }));
-  };
 
   useEffect(() => {
     getSubcategories();
-  }, []);
+  }, [getSubcategories]);
 
   useEffect(() => {
     setDashboardHeader("All subcategories");
@@ -71,13 +98,11 @@ const SubcategoryDetails = () => {
           Add Sub Category
         </Button>
       </div>
-      <DataGrid rowData={rowData} colDefs={SubcategoryColDefs} onFilterChange={function (filterModel: { [key: string]: { filterType: string; type?: string; filter?: string | number; }; }): void {
-        throw new Error("Function not implemented.");
-      } } />
+      <DataGrid rowData={rowData} colDefs={SubcategoryColDefs} onFilterChange={handleFilterChange} />
       <BasicPagination
-        pageCount={1}
+        pageCount={subcategoryPagination.pageCount}
         handlePageChange={handlePageChange}
-        currentPage={1}
+        currentPage={subcategoryPagination.currentPage}
       />
     </div>
   );

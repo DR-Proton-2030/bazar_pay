@@ -8,11 +8,17 @@ export const ProductDefs : ColDef[] = [
     field: "product_name",
     headerName: "Product Name",
     suppressSizeToFit: true,
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
+   
   },
   {
     field: "product_description",
     headerName: "Description",
     suppressSizeToFit: true,
+    
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
   },
 
   {
@@ -25,11 +31,17 @@ export const ProductDefs : ColDef[] = [
     field: "product_status",
     headerName: "Product Status",
     suppressSizeToFit: true,
+    
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
   },
   {
     field: "profit_percentage",
     headerName: "Profit Percentage",
     suppressSizeToFit: true,
+    
+    filter: "agTextColumnFilter",
+    floatingFilter: true,
   },
   {
     field: "See Details",
