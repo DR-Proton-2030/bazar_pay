@@ -154,6 +154,8 @@ export const getCategories = async (req: Request, res: Response) => {
 		const limit = currentPage > 0 ? 5 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
+		console.log("===>filter", filter);
+
 		const categories = await CategoryModel.find(filter)
 			.sort({ [sortField]: -1 })
 			.skip(startIndex)

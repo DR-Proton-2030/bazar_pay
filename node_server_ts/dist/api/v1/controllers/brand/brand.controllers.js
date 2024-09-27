@@ -111,7 +111,8 @@ const getBrands = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     catch (error) {
         console.error("Error fetching brands:", error);
         res.status(400).json({
-            message: message_1.MESSAGE.get.fail
+            message: message_1.MESSAGE.get.fail,
+            error: error
         });
     }
 });

@@ -35,12 +35,13 @@ const getWholeSaler = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             .sort({ [sortField]: -1 })
             .skip(startIndex)
             .limit(limit);
+        const pagination = {
+            currentPage,
+            pageCount: Math.ceil(totalCount / limit)
+        };
         res.status(200).json({
             message: message_1.MESSAGE.get.succ,
-            pagination: {
-                total: totalCount,
-                currentPage: currentPage
-            },
+            pagination,
             result: builders
         });
     }

@@ -21,9 +21,9 @@ export const getWholesaler = async (filterQuery: any) => {
       } = response;
       if (message === MESSAGE.get.succ) {
         const {
-          data: { result , pagination},
+          data: { result, pagination },
         } = response;
-        return {result , pagination};
+        return { result, pagination };
       }
     }
     throw new Error();

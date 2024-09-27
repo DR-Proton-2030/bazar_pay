@@ -109,7 +109,8 @@ export const getBrands = async (req: Request, res: Response) => {
 	} catch (error) {
 		console.error("Error fetching brands:", error);
 		res.status(400).json({
-			message: MESSAGE.get.fail
+			message: MESSAGE.get.fail,
+			error: error
 		});
 	}
 };

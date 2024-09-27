@@ -2,7 +2,7 @@ import express from "express";
 
 import { upload } from "../../../../middleware/multer.middleware";
 
-import { createRetailer, getRetailer, loginRetailer, updatePassword } from "../../controllers/retailer/retailer.controllers";
+import { createRetailer, deleteRetailer, getRetailer, loginRetailer, updatePassword } from "../../controllers/retailer/retailer.controllers";
 import { getOtpForLogin, getOtpForSignup } from "../../controllers/retailer/retailer.otp.controllers";
 
 const router = express.Router();
@@ -22,5 +22,6 @@ router.route("/login-retailer").post(loginRetailer);
 router.route("/registerOtp-retailer").get(getOtpForSignup);
 router.route("/loginOtp-retailer").get(getOtpForLogin);
 router.route("/update-password-retailer").patch(updatePassword);
+router.route("/delete-retailer-by-id/:retailerId").delete(deleteRetailer);
 
 export default router;

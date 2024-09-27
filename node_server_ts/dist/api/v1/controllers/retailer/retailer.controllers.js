@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginRetailer = exports.updatePassword = exports.getRetailer = exports.createRetailer = void 0;
+exports.deleteRetailer = exports.loginRetailer = exports.updatePassword = exports.getRetailer = exports.createRetailer = void 0;
 const message_1 = require("../../../../constants/message");
 const retailer_model_1 = __importDefault(require("../../../../models/retailer.model"));
 const uploadImageService_1 = require("../../../../services/uploadImageService");
@@ -187,3 +187,25 @@ const loginRetailer = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.loginRetailer = loginRetailer;
+const deleteRetailer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { retailerId } = req.params;
+        const deleteRetailerInstance = yield retailer_model_1.default.findByIdAndDelete(retailerId);
+        if (!deleteRetailerInstance) {
+            return res.status(404).json({
+                message: message_1.MESSAGE.delete.fail
+            });
+        }
+        return res.status(200).json({
+            message: message_1.MESSAGE.delete.succ,
+            result: deleteRetailerInstance
+        });
+    }
+    catch (error) {
+        return res.status(400).json({
+            message: message_1.MESSAGE.delete.fail,
+            error
+        });
+    }
+});
+exports.deleteRetailer = deleteRetailer;

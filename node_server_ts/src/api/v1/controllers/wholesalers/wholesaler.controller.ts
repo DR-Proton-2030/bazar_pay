@@ -3,6 +3,7 @@ import { MESSAGE } from "../../../../constants/message";
 import { uploadImageToS3Service } from "../../../../services/uploadImageService";
 import { DEFAULT_IMAGE } from "../../../../constants/image";
 import WholesalerModel from "../../../../models/wholesaler.model";
+import { IPagination } from "../../../../@types/types/pagination";
 
 export const getWholeSaler = async (req: Request, res: Response) => {
 	try {
@@ -30,12 +31,14 @@ export const getWholeSaler = async (req: Request, res: Response) => {
 			.skip(startIndex)
 			.limit(limit);
 
+		const pagination: IPagination = {
+			currentPage,
+			pageCount: Math.ceil(totalCount / limit)
+		}
+
 		res.status(200).json({
 			message: MESSAGE.get.succ,
-			pagination: {
-				total: totalCount,
-				currentPage: currentPage
-			},
+			pagination,
 			result: builders
 		});
 	} catch (error) {

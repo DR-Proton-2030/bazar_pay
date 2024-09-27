@@ -20,4 +20,5 @@ router.route("/login-retailer").post(retailer_controllers_1.loginRetailer);
 router.route("/registerOtp-retailer").get(retailer_otp_controllers_1.getOtpForSignup);
 router.route("/loginOtp-retailer").get(retailer_otp_controllers_1.getOtpForLogin);
 router.route("/update-password-retailer").patch(retailer_controllers_1.updatePassword);
+router.route("/delete-retailer-by-id/:retailerId").delete(retailer_controllers_1.deleteRetailer);
 exports.default = router;

@@ -143,6 +143,7 @@ const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         const totalCount = yield category_model_1.default.countDocuments(filter);
         const limit = currentPage > 0 ? 5 : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
+        console.log("===>filter", filter);
         const categories = yield category_model_1.default.find(filter)
             .sort({ [sortField]: -1 })
             .skip(startIndex)

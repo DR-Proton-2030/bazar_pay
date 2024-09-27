@@ -3,7 +3,7 @@ import { headers } from "../../../configs/config";
 import { MESSAGE } from "../../../constants/api/message";
 import { Params, Payload } from "../../../@types/api/api.types";
 
-const { post } = request;
+const { post, del } = request;
 
 const initialRoute = "retailer";
 
@@ -51,6 +51,30 @@ export const getRetailers = async (params: Params) => {
           data: { result, pagination },
         } = response;
         return { result, pagination };
+      }
+    }
+    throw new Error();
+  } catch (error: any) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const deleteRetailer = async (retailerId: string) => {
+  try {
+    const endpoint = `${initialRoute}/delete-retailer-by-id/${retailerId}`;
+    const response = await del(endpoint, {
+      ...headers,
+    });
+    if (response) {
+      const {
+        data: { message },
+      } = response;
+      if (message === MESSAGE.delete.succ) {
+        const {
+          data: { result },
+        } = response;
+        return result;
       }
     }
     throw new Error();

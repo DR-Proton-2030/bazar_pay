@@ -201,3 +201,27 @@ export const loginRetailer = async (req: Request, res: Response) => {
 		});
 	}
 };
+
+export const deleteRetailer = async (req: Request, res: Response) => {
+	try {
+		const { retailerId } = req.params;
+
+		const deleteRetailerInstance = await retailerModel.findByIdAndDelete(retailerId);
+
+		if (!deleteRetailerInstance) {
+			return res.status(404).json({
+				message: MESSAGE.delete.fail
+			});
+		}
+
+		return res.status(200).json({
+			message: MESSAGE.delete.succ,
+			result: deleteRetailerInstance
+		});
+	} catch (error) {
+		return res.status(400).json({
+			message: MESSAGE.delete.fail,
+			error
+		});
+	}
+};

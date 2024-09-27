@@ -48,7 +48,7 @@ const Wholesalers = () => {
   };
 
   const handleFilterChange = (filterModel: FilterModel) => {
-    setFilters(prevFilters => {
+    setFilters((prevFilters) => {
       const sanitizedFilters = { ...prevFilters };
       Object.keys(sanitizedFilters).forEach((key: any) => {
         if (!filterModel[key]) {
@@ -77,7 +77,6 @@ const Wholesalers = () => {
         setRowData(response.result);
         setWholesalerPagination(response.pagination);
       }
-      
     } catch (error) {
       console.error("Error fetching wholesalers:", error);
     }
@@ -156,19 +155,16 @@ const Wholesalers = () => {
       headerName: "Sign Board Photo",
       field: "sign_board_photo",
       cellRenderer: ImageCellRenderer,
-      
     },
     {
       headerName: "Trade License Photo",
       field: "trade_license_photo",
       cellRenderer: TLPcellRenderer,
-     
     },
     {
       headerName: "NID Photo",
       field: "nid_photo",
       cellRenderer: NIDcellRenderer,
-      
     },
 
     {
@@ -224,7 +220,7 @@ const Wholesalers = () => {
         onFilterChange={handleFilterChange}
       />
 
-{/* <BasicPagination
+      {/* <BasicPagination
         pageCount={wholesalerPagination.pageCount}
         handlePageChange={handlePageChange}
         currentPage={wholesalerPagination.currentPage}

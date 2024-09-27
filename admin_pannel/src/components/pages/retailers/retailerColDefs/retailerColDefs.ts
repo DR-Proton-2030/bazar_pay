@@ -1,11 +1,10 @@
 import { ColDef } from "ag-grid-community";
 import RetailerLogoCellRenderer from "../RetailerlogoCellRenderer/RetailerLogoCellRenderer";
-import SignboardCellRenderer from "../signboardCell/SignboardCellRenderer";
 import ImageCellRenderer from "../imageCellRenderer/ImageCellRenderer";
 import TLPcellRenderer from "../tradeCellRenderer/TLPcellRenderer";
 import NIDcellRenderer from "../nidCellRenderer/NIDcellRenderer";
 import OwnerCellRenderer from "../ownerCellRenderer/OwnerCellRenderer";
-import DeleteCellRenderer from "../../categories/deleteCellRenderer/DeleteCellRenderer";
+import DeleteCellRenderer from "../deleteCellRenderer/DeleteCellRenderer";
 
 export const RetailerColDefs: ColDef[] = [
   {
@@ -65,5 +64,10 @@ export const RetailerColDefs: ColDef[] = [
     field: "nid_photo",
     headerName: "Nid Photo",
     cellRenderer: NIDcellRenderer,
+  },
+  {
+    field: "delete",
+    headerName: "Delete",
+    cellRenderer: DeleteCellRenderer,
   },
 ];
