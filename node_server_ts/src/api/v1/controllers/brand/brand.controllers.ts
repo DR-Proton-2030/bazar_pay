@@ -72,7 +72,7 @@ export const getBrandById = async (req: Request, res: Response) => {
 
 export const getBrands = async (req: Request, res: Response) => {
 	try {
-		const filter = req.query as unknown as any;
+		const filter = JSON.parse(req.query as unknown as any);
 
 		let currentPage = 0;
 		if (filter.page) {
@@ -86,7 +86,9 @@ export const getBrands = async (req: Request, res: Response) => {
 
 		console.log("===>filter", filter);
 
-		const totalCount = await BrandModel.countDocuments(filter);
+		const _filter = filter;
+
+		const totalCount = await BrandModel.countDocuments(_filter);
 
 		const limit = currentPage > 0 ? 5 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;

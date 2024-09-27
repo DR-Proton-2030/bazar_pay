@@ -13,7 +13,8 @@ export const getProductbyId = async (filterQuery: any) => {
       {
         ...headers,
       },
-      filterQuery
+      filterQuery,
+      "API_GATEWAY"
     );
     if (response) {
       const {
@@ -23,7 +24,7 @@ export const getProductbyId = async (filterQuery: any) => {
         const {
           data: { result, pagination },
         } = response;
-        return {result , pagination};
+        return { result, pagination };
       }
     }
     throw new Error();

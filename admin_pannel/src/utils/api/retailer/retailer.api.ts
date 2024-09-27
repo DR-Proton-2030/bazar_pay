@@ -40,7 +40,8 @@ export const getRetailers = async (params: Params) => {
       {
         ...headers,
       },
-      params
+      params,
+      "API_GATEWAY"
     );
     if (response) {
       const {

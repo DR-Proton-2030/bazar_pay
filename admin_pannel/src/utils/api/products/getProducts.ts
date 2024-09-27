@@ -15,7 +15,8 @@ export const getProducts = async (filter: Params) => {
       {
         ...headers,
       },
-      filter
+      filter,
+      "API_GATEWAY"
     );
     if (response) {
       const {

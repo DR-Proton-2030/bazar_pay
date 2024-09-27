@@ -14,7 +14,8 @@ export const getBrand = async (filterQuery: any) => {
       {
         ...headers,
       },
-      filterQuery
+      filterQuery,
+      "API_GATEWAY"
     );
     if (response) {
       const {

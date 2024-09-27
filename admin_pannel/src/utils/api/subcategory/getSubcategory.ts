@@ -13,7 +13,8 @@ export const getSubcategory = async (filterQuery: any) => {
       {
         ...headers,
       },
-      filterQuery
+      filterQuery,
+      "API_GATEWAY"
     );
     if (response) {
       const {

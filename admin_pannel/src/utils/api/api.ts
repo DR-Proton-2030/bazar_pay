@@ -1,17 +1,23 @@
 import axios from "axios";
 import { Endpoint, Headers, Params, Payload } from "../../@types/api/api.types";
-import { url, version } from "../../configs/config";
+import { API_GATEWAY_URL, LAMBDA_URL, version } from "../../configs/config";
 
 const get = async (
   endpoint: Endpoint,
   headers: Headers,
-  params: Params = {}
+  params: Params = {},
+  type: "API_GATEWAY" | "LAMBDA" = "LAMBDA"
 ) => {
   try {
-    const response = await axios.get(`${url}/api/${version}/${endpoint}`, {
-      headers,
-      params,
-    });
+    const response = await axios.get(
+      `${
+        type === "API_GATEWAY" ? API_GATEWAY_URL : LAMBDA_URL
+      }/api/${version}/${endpoint}`,
+      {
+        headers,
+        params,
+      }
+    );
     const { status } = response;
     if (status === 200) {
       return response;
@@ -22,10 +28,17 @@ const get = async (
   }
 };
 
-const post = async (endpoint: Endpoint, payload: Payload, headers: Headers) => {
+const post = async (
+  endpoint: Endpoint,
+  payload: Payload,
+  headers: Headers,
+  type: "API_GATEWAY" | "LAMBDA" = "LAMBDA"
+) => {
   try {
     const response = await axios.post(
-      `${url}/api/${version}/${endpoint}`,
+      `${
+        type === "API_GATEWAY" ? API_GATEWAY_URL : LAMBDA_URL
+      }/api/${version}/${endpoint}`,
       payload,
       {
         headers,
@@ -41,10 +54,17 @@ const post = async (endpoint: Endpoint, payload: Payload, headers: Headers) => {
   }
 };
 
-const put = async (endpoint: Endpoint, payload: Payload, headers: Headers) => {
+const put = async (
+  endpoint: Endpoint,
+  payload: Payload,
+  headers: Headers,
+  type: "API_GATEWAY" | "LAMBDA" = "LAMBDA"
+) => {
   try {
     const response = await axios.put(
-      `${url}/api/${version}/${endpoint}`,
+      `${
+        type === "API_GATEWAY" ? API_GATEWAY_URL : LAMBDA_URL
+      }/api/${version}/${endpoint}`,
       payload,
       {
         headers,
@@ -63,11 +83,14 @@ const put = async (endpoint: Endpoint, payload: Payload, headers: Headers) => {
 const patch = async (
   endpoint: Endpoint,
   payload: Payload,
-  headers: Headers
+  headers: Headers,
+  type: "API_GATEWAY" | "LAMBDA" = "LAMBDA"
 ) => {
   try {
     const response = await axios.patch(
-      `${url}/api/${version}/${endpoint}`,
+      `${
+        type === "API_GATEWAY" ? API_GATEWAY_URL : LAMBDA_URL
+      }/api/${version}/${endpoint}`,
       payload,
       {
         headers,
@@ -83,11 +106,20 @@ const patch = async (
   }
 };
 
-const del = async (endpoint: Endpoint, headers: Headers) => {
+const del = async (
+  endpoint: Endpoint,
+  headers: Headers,
+  type: "API_GATEWAY" | "LAMBDA" = "LAMBDA"
+) => {
   try {
-    const response = await axios.delete(`${url}/api/${version}/${endpoint}`, {
-      headers,
-    });
+    const response = await axios.delete(
+      `${
+        type === "API_GATEWAY" ? API_GATEWAY_URL : LAMBDA_URL
+      }/api/${version}/${endpoint}`,
+      {
+        headers,
+      }
+    );
     const { status } = response;
     if (status === 200) {
       return response;
