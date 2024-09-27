@@ -7,6 +7,7 @@
 		"start:dev": "ts-node-dev --files --inspect --respawn src/index.ts",
 		"build": "tsc",
 		"start": "node dist/lambda.js",
+		"start:dist": "node dist/index.js",
 		"lint": "eslint .",
 		"format": "prettier --write .",
 		"lint:fix": "eslint --fix ."
