@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.updateWholesalerStatus = exports.createWholesaler = exports.getWholeSaler = void 0;
+exports.deleteWholesaler = exports.updateWholesalerStatus = exports.createWholesaler = exports.getWholeSaler = void 0;
 const message_1 = require("../../../../constants/message");
 const uploadImageService_1 = require("../../../../services/uploadImageService");
 const image_1 = require("../../../../constants/image");
@@ -154,3 +154,27 @@ const updateWholesalerStatus = (req, res) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.updateWholesalerStatus = updateWholesalerStatus;
+const deleteWholesaler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { wholesalerId } = req.params;
+        const deletedWholesaler = yield wholesaler_model_1.default.findByIdAndDelete(wholesalerId);
+        if (!deletedWholesaler) {
+            return res.status(404).json({
+                message: message_1.MESSAGE.delete.fail,
+                error: "Wholesaler not found"
+            });
+        }
+        res.status(200).json({
+            message: message_1.MESSAGE.delete.succ,
+            result: deletedWholesaler
+        });
+    }
+    catch (error) {
+        console.error("Error deleting wholesaler:", error);
+        res.status(400).json({
+            message: message_1.MESSAGE.delete.fail,
+            error
+        });
+    }
+});
+exports.deleteWholesaler = deleteWholesaler;

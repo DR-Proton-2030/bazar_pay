@@ -178,17 +178,7 @@ const deleteCategoryById = (req, res) => __awaiter(void 0, void 0, void 0, funct
             category_object_id: categoryObjectId
         };
         const subcategoryDeleteInstance = yield subcategory_model_1.default.deleteMany(subcategoryPayload);
-        // if (!subcategoryDeleteInstance) {
-        // 	return res.status(400).json({
-        // 		message: "Subcategory not found"
-        // 	});
-        // }
         const productDeleteInstance = yield product_model_1.default.deleteMany(subcategoryPayload);
-        // if (!productDeleteInstance) {
-        // 	return res.status(400).json({
-        // 		message: "Product not found"
-        // 	});
-        // }
         return res.status(200).json({
             message: message_1.MESSAGE.delete.succ,
             result: { deletedCategoryInstance, subcategoryDeleteInstance, productDeleteInstance }

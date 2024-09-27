@@ -4,7 +4,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const http_status_codes_1 = require("http-status-codes");
 const body_parser_1 = __importDefault(require("body-parser"));
 const auth_routes_1 = __importDefault(require("./api/v1/routes/auth/auth.routes"));
 const cors_1 = __importDefault(require("cors"));
@@ -19,16 +18,6 @@ const subcategory_routes_1 = __importDefault(require("./api/v1/routes/subcategor
 const wholesalerListedProducts_routes_1 = __importDefault(require("./api/v1/routes/wholesalerListedProducts/wholesalerListedProducts.routes"));
 const db_1 = __importDefault(require("./config/db"));
 const app = (0, express_1.default)();
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, token");
-    if (req.method === "OPTIONS") {
-        res.header("Access-Control-Allow-Methods", "PUT, POST, GET, PATCH, DELETE");
-        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, token");
-        return res.status(http_status_codes_1.StatusCodes.OK).json({});
-    }
-    next();
-});
 const options = {
     allowedHeaders: ["sessionId", "Content-Type"],
     exposedHeaders: ["sessionId"],

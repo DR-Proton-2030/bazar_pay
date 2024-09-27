@@ -22,5 +22,6 @@ router.route("/get-otp-login").get(wholeslaer_otp_controller_1.getOtpForLogin);
 router.route("/update-wholesaler-status").patch(wholesaler_controller_1.updateWholesalerStatus);
 router.route("/upload-product").post(wholesalerUploadProduct_controller_1.uploadProduct);
 router.route("/get-product").get(wholesalerUploadProduct_controller_1.getProductsByProductId);
+router.route("/delete-wholesaler-by-id/:wholesalerId").delete(wholesaler_controller_1.deleteWholesaler);
 // router.route("/get-builder-list").get(getBuilderNameWithID);
 exports.default = router;

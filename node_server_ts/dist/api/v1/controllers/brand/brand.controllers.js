@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getBrands = exports.getBrandById = exports.createBrand = void 0;
+exports.deleteBrand = exports.getBrands = exports.getBrandById = exports.createBrand = void 0;
 const brand_model_1 = __importDefault(require("../../../../models/brand.model"));
 const message_1 = require("../../../../constants/message");
 const query_1 = require("../../../../constants/query");
@@ -116,3 +116,25 @@ const getBrands = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getBrands = getBrands;
+const deleteBrand = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { brandId } = req.params;
+        const brand = yield brand_model_1.default.findByIdAndDelete(brandId);
+        if (!brand) {
+            return res.status(404).json({
+                message: message_1.MESSAGE.delete.fail
+            });
+        }
+        return res.status(200).json({
+            message: message_1.MESSAGE.delete.succ,
+            result: brand
+        });
+    }
+    catch (error) {
+        return res.status(400).json({
+            message: message_1.MESSAGE.delete.fail,
+            error
+        });
+    }
+});
+exports.deleteBrand = deleteBrand;

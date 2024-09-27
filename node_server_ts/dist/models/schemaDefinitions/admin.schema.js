@@ -13,8 +13,6 @@ const adminSchema = new mongoose_1.Schema({
     password: model_constant_1.default.requiredString,
     is_disabled: model_constant_1.default.optionalBoolean,
     role: model_constant_1.default.requiredString,
-    has_all_state_access: model_constant_1.default.optionalBoolean,
-    has_company_all_access: model_constant_1.default.optionalBoolean,
     last_login_date: model_constant_1.default.optionalNullDate
 }, Object.assign(Object.assign({}, schemaOption_1.GENERAL_SCHEMA_OPTIONS), { toJSON: { virtuals: true }, toObject: { virtuals: true } }));
 exports.default = adminSchema;

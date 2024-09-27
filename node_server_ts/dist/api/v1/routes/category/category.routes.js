@@ -11,5 +11,5 @@ router.route("/create-category").post(multer_middleware_1.upload.fields([{ name:
 router.route("/edit-category").patch(multer_middleware_1.upload.fields([{ name: "logo", maxCount: 1 }]), category_controllers_1.editCategoryById);
 router.route("/get-category-list").get(category_controllers_1.getCategories);
 router.route("/get-category-byId").get(category_controllers_1.getCategoryById);
-router.route("/delete-category-by-id").delete(category_controllers_1.deleteCategoryById);
+router.route("/delete-category-by-id/:categoryObjectId").delete(category_controllers_1.deleteCategoryById);
 exports.default = router;
