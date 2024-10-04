@@ -98,10 +98,10 @@ const AddProductsForm = () => {
     setDashboardHeader("Add Products");
   }, [setDashboardHeader]);
 
-  const handleBrandSelect = (brandId: string) => {
+  const handleBrandSelect = (brandId: string | null) => {
     setProductDetails((prevDetails) => ({
       ...prevDetails,
-      brand_object_id: brandId,
+      brand_object_id: brandId || "",
     }));
   };
 
