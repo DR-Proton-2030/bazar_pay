@@ -44,7 +44,7 @@ const SubcategoryAutoComplete: React.FC<SubcategoryAutoCompleteProps> = ({ setSu
     setLoading(true);
     const filter = {
       page,
-      ...(categoryId && { category_object_id: categoryId}),
+      category_object_id: categoryId,
       ...(search && { name: { $regex: `^${search}`, $options: "i" } }),
     };
     try {
