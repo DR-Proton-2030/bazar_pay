@@ -22,7 +22,8 @@ router.route("/add_product").post(
 
 router.route("/get-product-list").get(getProductList);
 router.route("/update-product-status").patch(updateProductStatus);
-router.route("/delete-product-by-id/:productId").delete(deleteProductById);
+router.route("/delete-product-by-id").delete(deleteProductById);
+
 
 router.route("/update_product").patch(
 	upload.fields([

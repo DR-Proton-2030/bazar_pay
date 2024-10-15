@@ -70,17 +70,65 @@ export const getBrandById = async (req: Request, res: Response) => {
 	}
 };
 
+// export const getBrands = async (req: Request, res: Response) => {
+// 	try {
+// 		const filter = JSON.parse(req.query as unknown as any);
+
+// 		let currentPage = 0;
+// 		if (filter.page) {
+// 			currentPage = parseInt(String(filter.page)); // Parse page as integer
+// 		}
+
+// 		const sortField = filter.sortField ? filter.sortField : "updatedAt";
+
+// 		delete filter.page;
+// 		delete filter.sortField;
+
+// 		console.log("===>filter", filter);
+
+// 		const _filter = filter;
+
+// 		const totalCount = await BrandModel.countDocuments(_filter);
+
+// 		const limit = currentPage > 0 ? 5 : totalCount;
+// 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
+
+// 		const brands = await BrandModel.find(filter)
+// 			.sort({ [sortField]: -1 })
+// 			.skip(startIndex)
+// 			.limit(limit);
+
+// 		const pagination: IPagination = {
+// 			currentPage: currentPage,
+// 			pageCount: Math.ceil(totalCount / limit)
+// 		}
+
+// 		res.status(200).json({
+// 			message: MESSAGE.get.succ,
+// 			pagination,
+// 			result: brands
+// 		});
+// 	} catch (error) {
+// 		console.error("Error fetching brands:", error);
+// 		res.status(400).json({
+// 			message: MESSAGE.get.fail,
+// 			error: error
+// 		});
+// 	}
+// };
 export const getBrands = async (req: Request, res: Response) => {
 	try {
-		const filter = JSON.parse(req.query as unknown as any);
+		// Instead of JSON.parse, we check the type of req.query and handle it accordingly
+		const filter = { ...req.query }; // Spread req.query to create a filter object
 
 		let currentPage = 0;
 		if (filter.page) {
-			currentPage = parseInt(String(filter.page)); // Parse page as integer
+			currentPage = parseInt(String(filter.page)); // Parse page as an integer
 		}
 
 		const sortField = filter.sortField ? filter.sortField : "updatedAt";
 
+		// Clean up filter object to remove pagination and sorting-related properties
 		delete filter.page;
 		delete filter.sortField;
 
@@ -88,31 +136,35 @@ export const getBrands = async (req: Request, res: Response) => {
 
 		const _filter = filter;
 
+		// Fetch total count of documents based on the filter
 		const totalCount = await BrandModel.countDocuments(_filter);
 
+		// Pagination logic
 		const limit = currentPage > 0 ? 5 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
-		const brands = await BrandModel.find(filter)
-			.sort({ [sortField]: -1 })
+		// Fetch the brands from the database
+		const brands = await BrandModel.find(_filter)
+			.sort({ [sortField as string]: -1 })
 			.skip(startIndex)
 			.limit(limit);
 
 		const pagination: IPagination = {
 			currentPage: currentPage,
-			pageCount: Math.ceil(totalCount / limit)
-		}
+			pageCount: Math.ceil(totalCount / limit),
+		};
 
+		// Send the response with brands and pagination info
 		res.status(200).json({
 			message: MESSAGE.get.succ,
 			pagination,
-			result: brands
+			result: brands,
 		});
 	} catch (error) {
 		console.error("Error fetching brands:", error);
 		res.status(400).json({
 			message: MESSAGE.get.fail,
-			error: error
+			error: (error as Error).message, // Include the error message for better debugging
 		});
 	}
 };

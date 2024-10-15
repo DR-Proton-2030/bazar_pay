@@ -188,7 +188,15 @@ export const getProductListForRetailers = (req: Request, res: Response) => { };
 
 export const deleteProductById = async (req: Request, res: Response) => {
 	try {
-		const { productId } = req.params;
+		const { productId } = req.query;  // Extract productId from the query string
+
+		if (!productId) {
+			return res.status(400).json({
+				message: "Product ID is required"
+			});
+		}
+
+		// Find and delete the product by the given productId
 		const deletedProductInstance = await ProductModel.findByIdAndDelete(productId);
 
 		if (!deletedProductInstance) {
@@ -198,13 +206,13 @@ export const deleteProductById = async (req: Request, res: Response) => {
 		}
 
 		return res.status(200).json({
-			message: MESSAGE.delete.succ,
-			result: deletedProductInstance
+			message: ({ message: MESSAGE.patch.succ, result: deletedProductInstance }),
 		});
 	} catch (error) {
 		return res.status(400).json({
-			message: MESSAGE.delete.fail,
+			message: ({ message: MESSAGE.patch.fail, error }),
 			error
 		});
 	}
 };
+
