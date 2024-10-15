@@ -23,6 +23,8 @@ import { api } from "../../../../../utils/api";
 import { IProducts } from "../../../../../@types/interface/products.interface";
 import { getProductbyId } from "../../../../../utils/api/productsByid/getProductById";
 import BrandAutoComplete from "../../../../shared/brandAutoField/BrandAutoComplete";
+import SubcategoryAutoComplete from "../../../../shared/subcategoryAutoField/SubcategoryAutoComplete";
+import CategoryAutoComplete from "../../../../shared/categoryAutoComplete/CategoryAutoComplete";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -48,26 +50,23 @@ const AddProductsForm = () => {
     product_description: "",
     product_image: "",
     product_status: "",
-    profit_percentage:0,
+    profit_percentage: 0,
     category_object_id: categoryId as string,
-    subcategory_object_id: subcategoryId as string,
+    subcategory_object_id: "",
     brand_object_id: "",
   });
 
   const { setDashboardHeader } = useContext(UIContext);
 
-  const handleChange = useCallback(
-    (event: any) => {
-      const {
-        target: { name, value },
-      } = event;
-      setProductDetails((prevDetails) => ({
-        ...prevDetails,
-        [name]: value,
-      }));
-    },
-    []
-  );
+  const handleChange = useCallback((event: any) => {
+    const {
+      target: { name, value },
+    } = event;
+    setProductDetails(prevDetails => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  }, []);
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -99,12 +98,24 @@ const AddProductsForm = () => {
   }, [setDashboardHeader]);
 
   const handleBrandSelect = (brandId: string | null) => {
-    setProductDetails((prevDetails) => ({
+    setProductDetails(prevDetails => ({
       ...prevDetails,
       brand_object_id: brandId || "",
     }));
   };
+  const handleSelectSubcategory = (subcategoryId: string | null) => {
+    setProductDetails(prevDetails => ({
+      ...prevDetails,
+      subcategory_object_id: subcategoryId || "",
+    }));
+  };
 
+  const handleSelectCategory = () => {
+    setProductDetails(prevDetails => ({
+      ...prevDetails,
+      category_object_id: categoryId || ""
+    }))
+  }
   return (
     <form onSubmit={handleSubmit}>
       <h3>Add Product Details</h3>
@@ -167,10 +178,21 @@ const AddProductsForm = () => {
           </FormControl>
         </div>
 
-        <div className="flex-input">
-          <label>Select Brand:</label>
-          <BrandAutoComplete setBrandId={handleBrandSelect} />
-        </div>
+     {categoryId === "null" ? <div className="flex-input"><label>Select Category:</label><CategoryAutoComplete setCategoryId={handleSelectCategory}  /></div> : null}
+
+        {subcategoryId === "null" ? (
+          <div className="flex-input">
+            <label>Select Subcategory:</label>
+            <SubcategoryAutoComplete
+              setSubcategoryId={handleSelectSubcategory}
+            />
+          </div>
+        ) : null}
+
+<div className="flex-input">
+            <label>Select Brand:</label>
+            <BrandAutoComplete setBrandId={handleBrandSelect} />
+          </div>
 
         <div className="flex-input">
           <label>Product Image:</label>
@@ -186,7 +208,7 @@ const AddProductsForm = () => {
               Upload Image
               <VisuallyHiddenInput
                 type="file"
-                onChange={(event) => {
+                onChange={event => {
                   const file = event.target.files?.[0];
                   if (file) {
                     setUploadedFile(file);
@@ -207,7 +229,13 @@ const AddProductsForm = () => {
           </div>
         </div>
       </Paper>
-      <div style={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "right",
+          alignItems: "right",
+        }}
+      >
         <Button
           className="blue-btn"
           variant="contained"

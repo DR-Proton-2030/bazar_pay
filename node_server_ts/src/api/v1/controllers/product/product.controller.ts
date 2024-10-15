@@ -192,7 +192,7 @@ export const deleteProductById = async (req: Request, res: Response) => {
 		const deletedProductInstance = await ProductModel.findByIdAndDelete(productId);
 
 		if (!deletedProductInstance) {
-			return res.status(400).json({
+			return res.status(404).json({
 				message: "Product not found"
 			});
 		}

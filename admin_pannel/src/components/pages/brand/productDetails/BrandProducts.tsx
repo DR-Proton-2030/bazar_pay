@@ -14,6 +14,9 @@ const Products = () => {
   const [rowData, setRowData] = useState<IProducts[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const queryParams = new URLSearchParams(window.location.search);
+  const categoryId = queryParams.get("cid");
+  const subcategoryId = queryParams.get("scid");
+ 
   const brandId = queryParams.get("bid");
 
   const getProducts = useCallback(

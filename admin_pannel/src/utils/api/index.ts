@@ -42,6 +42,7 @@ import {
 import { deleteCategory } from "./category/category.api";
 import { createBrand, getBrand, deleteBrand } from "./brand/brand.api";
 import { deleteSubcategory } from "./subcategory/deleteSubcategory";
+import { deleteProductById } from "./products/deleteProduct";
 
 
 export const api = {
@@ -77,6 +78,7 @@ export const api = {
     updateProductStatus,
     getWholesalerListedProducts,
     getProductDetail,
+    deleteProductById
   },
   booking: {
     getBooking,

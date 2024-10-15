@@ -5,6 +5,7 @@ import SeeDetailsCellRenderer from "../../components/pages/products/seeDetailsCe
 
 import FormattedDateCellRenderer from "../../components/shared/dateCellRenderer/FormattedDateCellRenderer";
 import ProductCellRenderer from "../../components/pages/categoryDetails/products/productCellRenderer/ProductCellRenderer";
+import DeleteCellRenderer from "../../components/pages/products/productDefs/deleteCellRenderer/DeleteCellRenderer";
 
 export const ProductColDefs: ColDef[] = [
   {
@@ -60,4 +61,5 @@ export const ProductColDefs: ColDef[] = [
     floatingFilter: true,
     cellRenderer: FormattedDateCellRenderer,
   },
+  
 ];

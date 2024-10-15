@@ -8,25 +8,33 @@ import {
 import UIContext from "../../../contexts/uiContext/UIContext";
 import { IPagination } from "../../../@types/props/pagination";
 import { IProduct } from "../../../@types/interface/product.interface";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 import DataGrid from "../../shared/dataGrid/DataGrid";
 import { ProductDefs } from "./productDefs/productDefs";
 import BasicPagination from "../../shared/basicPagination/BasicPagination";
 import { api } from "../../../utils/api";
 import { FilterModel } from "ag-grid-community";
 import { formatFilters } from "../../../utils/commonFunction/formatApiFilters";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
+  const navigate = useNavigate();
   const { setDashboardHeader } = useContext(UIContext);
   const [filters, setFilters] = useState([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const queryParams = new URLSearchParams(window.location.search);
+  const categoryId = queryParams.get("cid");
+  const subcategoryId = queryParams.get("scid");
+  
   const [pagination, setPagination] = useState<IPagination>({
     currentPage: 1,
     pageCount: 1,
   });
   const [allProductList, setAllProductList] = useState<IProduct[]>([]);
 
-
+const handleRouteToAddProduct = () => {
+  navigate(`/add-products?cid=${categoryId}&scid=${subcategoryId}`)
+}
   const handleFilterChange = (filterModel: FilterModel) => {
 		setFilters((prevFilters) => {
 			const sanitizedFilters = { ...prevFilters };
@@ -73,6 +81,11 @@ const ProductList = () => {
     <div>
       <Box sx={{ width: "100%" }}>
         <Box>
+          <div style={{display:"flex", justifyContent: "right", alignItems: "right", marginBottom: "20px"}}>
+            <Button variant="contained" className="blue-btn" onClick={handleRouteToAddProduct}>
+              Add Products
+            </Button>
+          </div>
           <DataGrid
             colDefs={ProductDefs}
             rowData={allProductList}
