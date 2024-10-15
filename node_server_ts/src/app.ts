@@ -34,7 +34,7 @@ app.use(bodyParser.json());
 app.use("/api/v1/auth", authRourer);
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/wholesaler", wholesalerRouter);
-app.use("/api/v1/wholesaler-product", productRouter);
+app.use("/api/v1/products", productRouter);
 app.use("/api/v1/product", productByAdminRouter);
 app.use("/api/v1/retailer", retailerRouter);
 app.use("/api/v1/brands", brandRouter);

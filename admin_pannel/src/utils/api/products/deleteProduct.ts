@@ -13,7 +13,7 @@ const initialRoute = "products";
 
 export const deleteProductById = async (productId: string) => {
     try {
-      const endpoint = `${initialRoute}/delete-product-by-id/${productId}`;
+      const endpoint = `${initialRoute}/delete-product-by-id?productId=${productId}`;
       const response = await del(endpoint, {
         ...headers,
       });

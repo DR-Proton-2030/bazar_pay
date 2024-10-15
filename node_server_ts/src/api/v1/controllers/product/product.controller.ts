@@ -206,11 +206,11 @@ export const deleteProductById = async (req: Request, res: Response) => {
 		}
 
 		return res.status(200).json({
-			message: ({ message: MESSAGE.patch.succ, result: deletedProductInstance }),
+			message: ({ message: MESSAGE.delete.succ, result: deletedProductInstance }),
 		});
 	} catch (error) {
 		return res.status(400).json({
-			message: ({ message: MESSAGE.patch.fail, error }),
+			message: ({ message: MESSAGE.delete.fail, error }),
 			error
 		});
 	}

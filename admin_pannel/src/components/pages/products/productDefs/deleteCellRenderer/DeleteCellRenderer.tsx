@@ -5,9 +5,7 @@ import DeleteModal from "../../../../shared/deleteModal/DeleteModal";
 import { api } from "../../../../../utils/api";
 import { IProduct } from "../../../../../@types/interface/product.interface";
 
-
-
-const DeleteCellRenderer = ({ data }: { data: IProduct }) => {
+const DeleteCellRenderer = ({ data }: { data: any }) => {
   const [open, setOpen] = React.useState(false);
   // const queryParams = new URLSearchParams(window.location.search);
   // const productObjectId = queryParams.get("pid");
@@ -23,15 +21,9 @@ const DeleteCellRenderer = ({ data }: { data: IProduct }) => {
   const handleDelete = async () => {
     try {
       const productId = data._id;
-      if (!productId) {
-        alert("Product ID is invalid");
-        return;
-      }
 
-      // console.log("product ID:", productId);
-     
-      const result = await api.product.deleteProductById(productId);
-      console.log("Delete API response:", result);
+      const result = await api.products.deleteProductById(productId);
+
       if (result) {
         alert("Product Deleted Successfully");
         handleClose();
@@ -52,8 +44,9 @@ const DeleteCellRenderer = ({ data }: { data: IProduct }) => {
         open={open}
         label={"Are You Sure you want to delete this product?"}
         handleDelete={handleDelete}
-
-        handleClose={handleClose} content={""}      />
+        handleClose={handleClose}
+        content={""}
+      />
     </React.Fragment>
   );
 };

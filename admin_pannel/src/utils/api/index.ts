@@ -78,8 +78,13 @@ export const api = {
     updateProductStatus,
     getWholesalerListedProducts,
     getProductDetail,
+
+    
+  },
+  products: {
     deleteProductById
   },
+  
   booking: {
     getBooking,
     forwardEnqury,
