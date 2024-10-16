@@ -24,7 +24,7 @@ export const getProducts = async (req: Request, res: Response) => {
 		const limit = currentPage > 0 ? 10 : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
-		const builders = await ProductModel.find(filter)
+		const products = await ProductModel.find(filter)
 			.sort({ [sortField]: -1 })
 			.skip(startIndex)
 			.limit(limit);
@@ -32,10 +32,10 @@ export const getProducts = async (req: Request, res: Response) => {
 		res.status(StatusCodes.OK).json({
 			message: MESSAGE.get.succ,
 			pagination: {
-				total: totalCount,
+				pageCount: Math.ceil(totalCount / limit),
 				currentPage: currentPage
 			},
-			result: builders
+			result: products
 		});
 	} catch (error) {
 		console.error("Error fetching categories:", error);

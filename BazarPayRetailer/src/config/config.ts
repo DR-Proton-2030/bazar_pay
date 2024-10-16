@@ -1,6 +1,6 @@
-export const url = "http://192.168.7.155:8989";
+export const url =
+  "https://ikaf5l6ufysc65bsxbnhb6hxzi0ykubx.lambda-url.ap-south-1.on.aws";
 // export const local_url = "http://192.168.1.33:4009";
-export const port = "4009";
 
 export const ADMIN_ENV: "PROD" | "DEV" | "LOCAL" = "LOCAL";
 
@@ -11,4 +11,4 @@ export const headers = {
   "Content-Type": "application/json",
 };
 
-export const LINK = `${url}:${port}/api/v1`;
+export const LINK = `${url}/api/v1`;

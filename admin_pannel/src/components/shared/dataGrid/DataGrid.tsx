@@ -10,41 +10,41 @@ interface DataGridProps {
 }
 
 type FilterModel = {
-	[key: string]: {
-		filterType: string;
-		type?: string;
-		filter?: string | number;
-	};
+  [key: string]: {
+    filterType: string;
+    type?: string;
+    filter?: string | number;
+  };
 };
 
-const DataGrid = ({ rowData, colDefs , onFilterChange}: DataGridProps) => {
+const DataGrid = ({ rowData, colDefs, onFilterChange }: DataGridProps) => {
   const gridApi = useRef<any>(null);
-	const defaultColDef = useMemo(
-		() => ({
-			filterParams: {
-				debounceMs: 500
-			}
-		}),
-		[]
-	);
-	const onFilterChanged = useCallback(() => {
-		if (gridApi.current) {
-			const filterModel = gridApi.current.getFilterModel();
-			onFilterChange(filterModel);
-		}
-	}, [onFilterChange]);
+  const defaultColDef = useMemo(
+    () => ({
+      filterParams: {
+        debounceMs: 500,
+      },
+    }),
+    []
+  );
+  const onFilterChanged = useCallback(() => {
+    if (gridApi.current) {
+      const filterModel = gridApi.current.getFilterModel();
+      onFilterChange(filterModel);
+    }
+  }, [onFilterChange]);
   return (
     <div className="ag-theme-alpine" style={{ height: 300 }}>
       <AgGridReact
-      onGridReady={(params) => {
-        gridApi.current = params.api;
-      }}
+        onGridReady={(params) => {
+          gridApi.current = params.api;
+        }}
         animateRows={true}
         rowSelection="multiple"
         rowData={rowData}
         columnDefs={colDefs}
         defaultColDef={defaultColDef}
-				onFilterChanged={onFilterChanged}
+        onFilterChanged={onFilterChanged}
       />
     </div>
   );

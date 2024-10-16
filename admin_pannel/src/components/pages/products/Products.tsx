@@ -25,34 +25,34 @@ const ProductList = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const categoryId = queryParams.get("cid");
   const subcategoryId = queryParams.get("scid");
-  
+
   const [pagination, setPagination] = useState<IPagination>({
     currentPage: 1,
     pageCount: 1,
   });
   const [allProductList, setAllProductList] = useState<IProduct[]>([]);
 
-const handleRouteToAddProduct = () => {
-  navigate(`/add-products?cid=${categoryId}&scid=${subcategoryId}`)
-}
+  const handleRouteToAddProduct = () => {
+    navigate(`/add-products?cid=${categoryId}&scid=${subcategoryId}`);
+  };
   const handleFilterChange = (filterModel: FilterModel) => {
-		setFilters((prevFilters) => {
-			const sanitizedFilters = { ...prevFilters };
-			Object.keys(sanitizedFilters).forEach((key: any) => {
-				if (!filterModel[key]) {
-					delete sanitizedFilters[key];
-				}
-			});
-			const updatedFilters = { ...sanitizedFilters, ...filterModel };
-			console.log("Updated Filters-->", updatedFilters);
-			return updatedFilters;
-		});
-	};
+    setFilters((prevFilters) => {
+      const sanitizedFilters = { ...prevFilters };
+      Object.keys(sanitizedFilters).forEach((key: any) => {
+        if (!filterModel[key]) {
+          delete sanitizedFilters[key];
+        }
+      });
+      const updatedFilters = { ...sanitizedFilters, ...filterModel };
+      console.log("Updated Filters-->", updatedFilters);
+      return updatedFilters;
+    });
+  };
   const getAllProjects = useCallback(async () => {
     try {
       const formattedFilter = formatFilters(filters);
-        console.log("Formatted filters-->", formattedFilter);
-          setLoading(true);
+      console.log("Formatted filters-->", formattedFilter);
+      setLoading(true);
       const filter = {
         ...formattedFilter,
         page: pagination.currentPage,
@@ -68,6 +68,16 @@ const handleRouteToAddProduct = () => {
     }
   }, [pagination.currentPage, filters]);
 
+  const handlePageChange = useCallback(
+    (event: React.ChangeEvent<unknown>, value: number) => {
+      setPagination((prevPagination) => ({
+        ...prevPagination,
+        currentPage: value,
+      }));
+    },
+    []
+  );
+
   useEffect(() => {
     getAllProjects();
   }, [getAllProjects]);
@@ -81,24 +91,32 @@ const handleRouteToAddProduct = () => {
     <div>
       <Box sx={{ width: "100%" }}>
         <Box>
-          <div style={{display:"flex", justifyContent: "right", alignItems: "right", marginBottom: "20px"}}>
-            <Button variant="contained" className="blue-btn" onClick={handleRouteToAddProduct}>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "right",
+              alignItems: "right",
+              marginBottom: "20px",
+            }}
+          >
+            <Button
+              variant="contained"
+              className="blue-btn"
+              onClick={handleRouteToAddProduct}
+            >
               Add Products
             </Button>
           </div>
           <DataGrid
             colDefs={ProductDefs}
             rowData={allProductList}
-            key={2} onFilterChange={handleFilterChange}></DataGrid>
+            key={2}
+            onFilterChange={handleFilterChange}
+          ></DataGrid>
           <BasicPagination
-            pageCount={0}
-            currentPage={0}
-            handlePageChange={function (
-              event: ChangeEvent<unknown>,
-              value: number
-            ): void {
-              throw new Error("Function not implemented.");
-            }}
+            pageCount={pagination.pageCount}
+            currentPage={pagination.currentPage}
+            handlePageChange={handlePageChange}
           />
         </Box>
       </Box>

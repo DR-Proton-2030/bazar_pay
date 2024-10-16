@@ -3,7 +3,7 @@ export const headers = {
   "Content-Type": "application/json",
 };
 
-export const base_url = "http://192.168.7.155";
-export const port = "8989";
+export const base_url =
+  "https://ikaf5l6ufysc65bsxbnhb6hxzi0ykubx.lambda-url.ap-south-1.on.aws";
 export const version = "v1";
-export const url = base_url + ":" + port;
+export const url = base_url;

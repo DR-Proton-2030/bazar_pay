@@ -2,7 +2,7 @@
   "expo": {
     "name": "bazar_pay_app",
     "scheme": "bazar_pay_app",
-    "slug": "bazar_pay_app",
+    "slug": "bazarpay-retailer",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -12,7 +12,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -21,7 +23,12 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.tuhin08123.bazar_pay_app"
+      "package": "com.tuhin08123.bazar_pay_app",
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png",
@@ -34,7 +41,6 @@
         {
           "photosPermission": "The app accesses your photos to let you share them with your friends."
         }
-        
       ],
       [
         "expo-location",
@@ -48,8 +54,9 @@
         "origin": false
       },
       "eas": {
-        "projectId": "3a7873dd-995c-4054-ab9a-226e40867f37"
+        "projectId": "0b87b29f-e2c8-4b41-9f25-bb71f105c271"
       }
-    }
+    },
+    "owner": "anik2030"
   }
 }

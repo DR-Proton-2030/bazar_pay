@@ -30,17 +30,17 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         const totalCount = yield product_model_1.default.countDocuments(filter);
         const limit = currentPage > 0 ? 10 : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
-        const builders = yield product_model_1.default.find(filter)
+        const products = yield product_model_1.default.find(filter)
             .sort({ [sortField]: -1 })
             .skip(startIndex)
             .limit(limit);
         res.status(http_status_codes_1.StatusCodes.OK).json({
             message: message_1.MESSAGE.get.succ,
             pagination: {
-                total: totalCount,
+                pageCount: Math.ceil(totalCount / limit),
                 currentPage: currentPage
             },
-            result: builders
+            result: products
         });
     }
     catch (error) {
