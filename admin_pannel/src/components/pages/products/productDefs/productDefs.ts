@@ -2,6 +2,7 @@ import { ColDef } from "ag-grid-community";
 import ApproveCellRenderer from "../approveCellRenderer/ApproveCellRenderer";
 import BrandSeeDetails from "../../brand/brandSeeDetails/BrandSeeDetails";
 import ProductSeeDetails from "../../categoryDetails/products/productSeeDetails/ProductSeeDetails";
+import DeleteCellRenderer from "./deleteCellRenderer/DeleteCellRenderer";
 
 export const ProductDefs : ColDef[] = [
   {
@@ -48,4 +49,9 @@ export const ProductDefs : ColDef[] = [
     headerName: "Actions",
     cellRenderer: ProductSeeDetails,
   },
+  {
+    field: "actions", 
+    headerName: "Action",
+    cellRenderer: DeleteCellRenderer
+  }
 ];

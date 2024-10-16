@@ -12,6 +12,7 @@ const wholesaler_routes_1 = __importDefault(require("./api/v1/routes/wholesaler/
 const productByAdmin_routes_1 = __importDefault(require("./api/v1/routes/product/productByAdmin.routes"));
 const retailer_routes_1 = __importDefault(require("./api/v1/routes/reatiler/retailer.routes"));
 const brand_routes_1 = __importDefault(require("./api/v1/routes/brand/brand.routes"));
+const product_routes_1 = __importDefault(require("./api/v1/routes/product/product.routes"));
 const category_routes_1 = __importDefault(require("./api/v1/routes/category/category.routes"));
 const order_routes_1 = __importDefault(require("./api/v1/routes/order/order.routes"));
 const subcategory_routes_1 = __importDefault(require("./api/v1/routes/subcategory/subcategory.routes"));
@@ -32,7 +33,7 @@ app.use(body_parser_1.default.json());
 app.use("/api/v1/auth", auth_routes_1.default);
 app.use("/api/v1/admin", admin_routes_1.default);
 app.use("/api/v1/wholesaler", wholesaler_routes_1.default);
-// app.use("/api/v1/wholesaler-product", require("./product/product.routes"));
+app.use("/api/v1/products", product_routes_1.default);
 app.use("/api/v1/product", productByAdmin_routes_1.default);
 app.use("/api/v1/retailer", retailer_routes_1.default);
 app.use("/api/v1/brands", brand_routes_1.default);

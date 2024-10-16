@@ -1,6 +1,11 @@
 import axios from "axios";
 import { Endpoint, Headers, Params, Payload } from "../../@types/api/api.types";
-import { API_GATEWAY_URL, LAMBDA_URL, version } from "../../configs/config";
+import {
+  API_GATEWAY_URL,
+  LAMBDA_URL,
+  url,
+  version,
+} from "../../configs/config";
 
 const get = async (
   endpoint: Endpoint,
@@ -109,13 +114,11 @@ const patch = async (
 const del = async (
   endpoint: Endpoint,
   headers: Headers,
-  type: "API_GATEWAY" | "LAMBDA" = "LAMBDA"
+  type: "API_GATEWAY" | "LAMBDA" | "LOCAL" = "LOCAL"
 ) => {
   try {
     const response = await axios.delete(
-      `${
-        type === "API_GATEWAY" ? API_GATEWAY_URL : LAMBDA_URL
-      }/api/${version}/${endpoint}`,
+      `${type === "LOCAL" ? url : LAMBDA_URL}/api/${version}/${endpoint}`,
       {
         headers,
       }

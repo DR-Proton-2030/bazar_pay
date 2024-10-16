@@ -16,7 +16,6 @@ const Brand = () => {
   const { setDashboardHeader } = useContext(UIContext);
   const [rowData, setRowData] = useState<IBrand[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
-  const [currentPage, setCurrentPage] = useState<number>(1);
   const [filters, setFilters] = useState([]);
   const navigate = useNavigate();
 
@@ -26,45 +25,40 @@ const Brand = () => {
   });
 
   const handleFilterChange = (filterModel: FilterModel) => {
-		setFilters((prevFilters) => {
-			const sanitizedFilters = { ...prevFilters };
-			Object.keys(sanitizedFilters).forEach((key: any) => {
-				if (!filterModel[key]) {
-					delete sanitizedFilters[key];
-				}
-			});
-			const updatedFilters = { ...sanitizedFilters, ...filterModel };
-			console.log("Updated Filters-->", updatedFilters);
-			return updatedFilters;
-		});
-	};
-
-
-  const getBrandList = useCallback(
-    async () => {
-      try {
-        const formattedFilter = formatFilters(filters);
-			console.log("Formatted filters-->", formattedFilter);
-        setLoading(true);
-
-       
-        const filter = {
-          ...formattedFilter,
-          page: pagination.currentPage,
-        };
-        const response = await api.brand.getBrand(filter);
-        if (response) {
-          setRowData(response.result);
-          setPagination(response.pagination);
+    setFilters((prevFilters) => {
+      const sanitizedFilters = { ...prevFilters };
+      Object.keys(sanitizedFilters).forEach((key: any) => {
+        if (!filterModel[key]) {
+          delete sanitizedFilters[key];
         }
-      } catch (error) {
-        console.error("Error while fetching data:", error);
-      } finally {
-        setLoading(false);
+      });
+      const updatedFilters = { ...sanitizedFilters, ...filterModel };
+      console.log("Updated Filters-->", updatedFilters);
+      return updatedFilters;
+    });
+  };
+
+  const getBrandList = useCallback(async () => {
+    try {
+      const formattedFilter = formatFilters(filters);
+      console.log("Formatted filters-->", formattedFilter);
+      setLoading(true);
+
+      const filter = {
+        ...formattedFilter,
+        page: pagination.currentPage,
+      };
+      const response = await api.brand.getBrand(filter);
+      if (response) {
+        setRowData(response.result);
+        setPagination(response.pagination);
       }
-    },
-    [pagination.currentPage, filters]
-  );
+    } catch (error) {
+      console.error("Error while fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [pagination.currentPage, filters]);
 
   const handlePageChange = useCallback(
     (event: React.ChangeEvent<unknown>, value: number) => {
@@ -84,7 +78,7 @@ const Brand = () => {
     setDashboardHeader("Brand List");
   }, [setDashboardHeader]);
 
-  console.log("brandlist",rowData)
+  console.log("brandlist", rowData);
   return (
     <div>
       <div className="add-btn">
@@ -101,7 +95,11 @@ const Brand = () => {
           Add Brand
         </Button>
       </div>
-      <DataGrid rowData={rowData} colDefs={BrandColDefs} onFilterChange={handleFilterChange} />
+      <DataGrid
+        rowData={rowData}
+        colDefs={BrandColDefs}
+        onFilterChange={handleFilterChange}
+      />
       {loading ? (
         <div>Loading...</div>
       ) : (

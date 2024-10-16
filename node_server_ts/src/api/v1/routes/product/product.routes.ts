@@ -24,6 +24,7 @@ router.route("/get-product-list").get(getProductList);
 router.route("/update-product-status").patch(updateProductStatus);
 router.route("/delete-product-by-id").delete(deleteProductById);
 
+
 router.route("/update_product").patch(
 	upload.fields([
 		{ name: "product_image", maxCount: 1 },

@@ -3,6 +3,8 @@ export const LAMBDA_URL =
 export const API_GATEWAY_URL =
   "https://0pwg9twyag.execute-api.ap-south-1.amazonaws.com";
 
+export const url = LAMBDA_URL;
+
 export const port = "8989";
 export const version = "v1";
 

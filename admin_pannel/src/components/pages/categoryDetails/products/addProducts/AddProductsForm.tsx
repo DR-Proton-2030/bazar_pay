@@ -26,6 +26,8 @@ import BrandAutoComplete from "../../../../shared/brandAutoField/BrandAutoComple
 import GalleryAccordion from "./GalleryAccordian";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
+import SubcategoryAutoComplete from "../../../../shared/subcategoryAutoField/SubcategoryAutoComplete";
+import CategoryAutoComplete from "../../../../shared/categoryAutoComplete/CategoryAutoComplete";
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -54,25 +56,23 @@ const AddProductsForm = () => {
     product_image: "",
     product_status: "",
     profit_percentage: 0,
+    profit_percentage: 0,
     category_object_id: categoryId as string,
-    subcategory_object_id: subcategoryId as string,
-    brand_object_id: "66e9c4ed19b9fff9d8b3ede8",
+    subcategory_object_id: "",
+    brand_object_id: "",
   });
 
   const { setDashboardHeader } = useContext(UIContext);
 
-  const handleChange = useCallback(
-    (event: any) => {
-      const {
-        target: { name, value },
-      } = event;
-      setProductDetails((prevDetails) => ({
-        ...prevDetails,
-        [name]: value,
-      }));
-    },
-    []
-  );
+  const handleChange = useCallback((event: any) => {
+    const {
+      target: { name, value },
+    } = event;
+    setProductDetails(prevDetails => ({
+      ...prevDetails,
+      [name]: value,
+    }));
+  }, []);
 
   const handleSubmit = async (event: { preventDefault: () => void }) => {
     event.preventDefault();
@@ -110,13 +110,25 @@ const AddProductsForm = () => {
     setDashboardHeader("Add Products");
   }, [setDashboardHeader]);
 
-  const handleBrandSelect = (brandId: string) => {
-    setProductDetails((prevDetails) => ({
+  const handleBrandSelect = (brandId: string | null) => {
+    setProductDetails(prevDetails => ({
       ...prevDetails,
-      brand_object_id: brandId,
+      brand_object_id: brandId || "",
+    }));
+  };
+  const handleSelectSubcategory = (subcategoryId: string | null) => {
+    setProductDetails(prevDetails => ({
+      ...prevDetails,
+      subcategory_object_id: subcategoryId || "",
     }));
   };
 
+  const handleSelectCategory = () => {
+    setProductDetails(prevDetails => ({
+      ...prevDetails,
+      category_object_id: categoryId || ""
+    }))
+  }
   return (
     <form onSubmit={handleSubmit}>
       <h3>Add Product Details</h3>
@@ -181,10 +193,21 @@ page== 0?
           </FormControl>
         </div>
 
-        <div className="flex-input">
-          <label>Select Brand:</label>
-          <BrandAutoComplete setBrandId={handleBrandSelect} />
-        </div>
+     {categoryId === "null" ? <div className="flex-input"><label>Select Category:</label><CategoryAutoComplete setCategoryId={handleSelectCategory}  /></div> : null}
+
+        {subcategoryId === "null" ? (
+          <div className="flex-input">
+            <label>Select Subcategory:</label>
+            <SubcategoryAutoComplete
+              setSubcategoryId={handleSelectSubcategory}
+            />
+          </div>
+        ) : null}
+
+<div className="flex-input">
+            <label>Select Brand:</label>
+            <BrandAutoComplete setBrandId={handleBrandSelect} />
+          </div>
 
         <div className="flex-input">
           {/* <label>Product Image:</label>
@@ -200,7 +223,7 @@ page== 0?
               Upload Image
               <VisuallyHiddenInput
                 type="file"
-                onChange={(event) => {
+                onChange={event => {
                   const file = event.target.files?.[0];
                   if (file) {
                     setUploadedFile(file);

@@ -162,10 +162,16 @@ const getProductListForRetailers = (req, res) => { };
 exports.getProductListForRetailers = getProductListForRetailers;
 const deleteProductById = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { productId } = req.params;
+        const { productId } = req.query; // Extract productId from the query string
+        if (!productId) {
+            return res.status(400).json({
+                message: "Product ID is required"
+            });
+        }
+        // Find and delete the product by the given productId
         const deletedProductInstance = yield product_model_2.default.findByIdAndDelete(productId);
         if (!deletedProductInstance) {
-            return res.status(400).json({
+            return res.status(404).json({
                 message: "Product not found"
             });
         }
