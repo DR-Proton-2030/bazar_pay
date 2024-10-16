@@ -56,9 +56,8 @@ const AddProductsForm = () => {
     product_image: "",
     product_status: "",
     profit_percentage: 0,
-    profit_percentage: 0,
     category_object_id: categoryId as string,
-    subcategory_object_id: "",
+    subcategory_object_id: subcategoryId as string,
     brand_object_id: "",
   });
 

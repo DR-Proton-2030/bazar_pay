@@ -23,26 +23,26 @@ export const createProductByAdmin = async (req: Request, res: Response) => {
 
 		const subCategoryInstance: any = await SubcategoryModel.findOne({ _id: productPayload.subcategory_object_id });
 
-		if (!subCategoryInstance) {
-			return res.status(StatusCodes.NOT_FOUND).json({
-				message: MESSAGE.custom("Sub Category not found!")
-			});
-		}
+		// if (!subCategoryInstance) {
+		// 	return res.status(StatusCodes.NOT_FOUND).json({
+		// 		message: MESSAGE.custom("Sub Category not found!")
+		// 	});
+		// }
 
 		// Checking the Category Id of the Product details with Sub Category Details
-		if (String(productPayload.category_object_id) !== String(subCategoryInstance.category_object_id)) {
-			return res.status(StatusCodes.NOT_FOUND).json({
-				message: MESSAGE.custom("Category not matched with sub category!")
-			});
-		}
+		// if (String(productPayload.category_object_id) !== String(subCategoryInstance.category_object_id)) {
+		// 	return res.status(StatusCodes.NOT_FOUND).json({
+		// 		message: MESSAGE.custom("Category not matched with sub category!")
+		// 	});
+		// }
 
 		const brandInstance: any = await BrandModel.findOne({ _id: productPayload.brand_object_id });
 
-		if (!brandInstance) {
-			return res.status(StatusCodes.NOT_FOUND).json({
-				message: MESSAGE.custom("Brand not found!")
-			});
-		}
+		// if (!brandInstance) {
+		// 	return res.status(StatusCodes.NOT_FOUND).json({
+		// 		message: MESSAGE.custom("Brand not found!")
+		// 	});
+		// }
 
 		// const productImage = req.files["product_image"][0];
 		// const productImageBuffer = productImage.buffer;
