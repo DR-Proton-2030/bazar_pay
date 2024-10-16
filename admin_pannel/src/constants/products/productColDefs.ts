@@ -61,5 +61,10 @@ export const ProductColDefs: ColDef[] = [
     floatingFilter: true,
     cellRenderer: FormattedDateCellRenderer,
   },
+  {
+    field: "actions",
+    headerName: "Actions",
+    cellRenderer: DeleteCellRenderer
+  }
   
 ];
