@@ -23,6 +23,9 @@ import { api } from "../../../../../utils/api";
 import { IProducts } from "../../../../../@types/interface/products.interface";
 import { getProductbyId } from "../../../../../utils/api/productsByid/getProductById";
 import BrandAutoComplete from "../../../../shared/brandAutoField/BrandAutoComplete";
+import GalleryAccordion from "./GalleryAccordian";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -37,7 +40,9 @@ const VisuallyHiddenInput = styled("input")({
 });
 
 const AddProductsForm = () => {
-  const [uploadedFile, setUploadedFile] = useState<File | null>(null);
+  const [uploadedFile, setUploadedFile] = useState<(File | null)[]>([]);
+
+  const [page, setPage] =  useState(0);
   const queryParams = new URLSearchParams(window.location.search);
   const categoryId = queryParams.get("cid");
   const subcategoryId = queryParams.get("scid");
@@ -48,10 +53,10 @@ const AddProductsForm = () => {
     product_description: "",
     product_image: "",
     product_status: "",
-    profit_percentage:0,
+    profit_percentage: 0,
     category_object_id: categoryId as string,
     subcategory_object_id: subcategoryId as string,
-    brand_object_id: "",
+    brand_object_id: "66e9c4ed19b9fff9d8b3ede8",
   });
 
   const { setDashboardHeader } = useContext(UIContext);
@@ -75,9 +80,16 @@ const AddProductsForm = () => {
     try {
       const formData = new FormData();
       formData.append("productDetails", JSON.stringify(productDetails));
-      if (uploadedFile) {
-        formData.append("product_image", uploadedFile);
-      }
+      // if (uploadedFile) {
+      //   formData.append("product_image", uploadedFile);
+      // }
+      uploadedFile.forEach((photo) => {
+        if (photo) {
+          formData.append("product_image", photo);
+        }
+      });
+      
+      console.log(uploadedFile[0])
       const response = await api.productbyId.createProductById(formData);
       if (response) {
         alert("Product created successfully");
@@ -108,7 +120,9 @@ const AddProductsForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <h3>Add Product Details</h3>
-      <Paper sx={{ marginTop: "20px", padding: "30px" }} elevation={3}>
+      {
+page== 0?
+<Paper sx={{ marginTop: "20px", padding: "30px" }} elevation={3}>
         <div className="flex-input">
           <label>Product Name:</label>
           <TextField
@@ -173,7 +187,7 @@ const AddProductsForm = () => {
         </div>
 
         <div className="flex-input">
-          <label>Product Image:</label>
+          {/* <label>Product Image:</label>
           <div className="flex-btn-chip">
             <Button
               className="blue-btn"
@@ -204,10 +218,49 @@ const AddProductsForm = () => {
                 sx={{ marginTop: 1 }}
               />
             )}
-          </div>
+          </div> */}
+         
         </div>
+        <div style={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
+        <Button
+          className="blue-btn"
+          variant="contained"
+         onClick={()=>setPage(1)}
+          sx={{
+            fontFamily: "poppins, sans-serif",
+            fontWeight: "500",
+            fontSize: "13px",
+            marginTop: "20px",
+          }}
+          endIcon={<SendOutlinedIcon />}
+        >
+         Next
+        </Button>
+      </div>
       </Paper>
-      <div style={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
+      : 
+      <Paper sx={{ marginTop: "20px", padding: "30px" }} elevation={3}>
+    <div style={{ display: "flex", justifyContent: "left", alignItems: "left" }}>
+        <Button
+          className="black-btn"
+          variant="contained"
+         onClick={()=>setPage(0)}
+          sx={{
+            fontFamily: "poppins, sans-serif",
+            fontWeight: "500",
+            fontSize: "13px",
+            marginTop: "20px",
+            background:"black"
+          }}
+          startIcon={<ArrowBackIcon />}
+        >
+         Back
+        </Button>
+      </div>
+<GalleryAccordion galleryPhotos={uploadedFile}
+            setGalleryPhotos={setUploadedFile}
+            tittle={"Upload Product Images"} />
+               <div style={{ display: "flex", justifyContent: "right", alignItems: "right" }}>
         <Button
           className="blue-btn"
           variant="contained"
@@ -223,6 +276,12 @@ const AddProductsForm = () => {
           Submit
         </Button>
       </div>
+      </Paper>
+      }
+      
+
+     
+   
     </form>
   );
 };

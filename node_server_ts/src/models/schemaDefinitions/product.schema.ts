@@ -13,7 +13,7 @@ const productSchema: Schema<IProduct> = new Schema<IProduct>(
 		product_name: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
 		unit: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
 		product_description: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
-		product_image: SCHEMA_DEFINITION_PROPERTY.optionalNullString,
+		product_image: [SCHEMA_DEFINITION_PROPERTY.optionalNullString],
 		brand_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
 		subcategory_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
 		category_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
