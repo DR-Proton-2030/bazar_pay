@@ -2,7 +2,6 @@
 import { useNavigation } from "expo-router";
 import React from "react";
 import { View, Image, Text, StyleSheet, TouchableOpacity } from "react-native";
-import productImg from "../../../../assets/images/product.png";
 
 const ProductCard = ({product}:any) => {
   const navigation: any = useNavigation();
@@ -11,7 +10,7 @@ const ProductCard = ({product}:any) => {
   };
   return (
     <TouchableOpacity onPress={handleNavigate} style={styles.container}>
-      <Image source={{uri:product?.product_image} || productImg} style={styles.image} />
+      {/* <Image source={{uri:product?.product_image[0]}} style={styles.image} /> */}
       <Text style={styles.price}>৳{product?.Total || 0}</Text>
       <Text style={styles.description}>{product?.product_name}</Text>
       <Text style={styles.amount}>{product?.current_stock}&nbsp;{product?.unit || "Unit"}</Text>

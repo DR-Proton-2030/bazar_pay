@@ -3,6 +3,7 @@ import { getLoginOtp, getOtp } from "./auth/otp";
 import { SignUp } from "./auth/signUp";
 import { getOrderHIstory, placeOrder, updateOrderStatus } from "./order/order";
 import { getProductList } from "./products/Products";
+import { getProductListBySearch } from "./products/searchedProducts";
 import { getSubcategoryList } from "./subcategory/getSubcategory";
 import { getWholesalerProductDetails } from "./wholesallerProduct/productDetaiils";
 import { getWholesalerProductList } from "./wholesallerProduct/wholesalerProduct";
@@ -17,7 +18,8 @@ export const api = {
 	product: {
 		getProductList,
 		getWholesalerProductList,
-		getWholesalerProductDetails
+		getWholesalerProductDetails,
+		getProductListBySearch
 	},
 	subcategory: {
 		getSubcategoryList

@@ -5,21 +5,29 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import { styles } from './productSmallCardStyle';
 import { useNavigation } from 'expo-router';
 
-const ProductCard = ({ product,categoryName }: any) => {
+const ProductCard = ({ product,categoryName,product_image }: any) => {
     const navigation: any = useNavigation();
     const handleNavigate = () => {
       navigation.navigate("wholesallersList",{productId:product?._id,categoryName});
     };
+    console.log("first", Array.isArray(product?.product_image) ? product.product_image[0] : product?.product_image);
+
     return (
         
         <View style={styles.card}>
             <TouchableOpacity onPress={handleNavigate}>
-            <Image source={{ uri: product.product_image }} style={styles.image} />
+                {
+                    Array.isArray(product?.product_image) ?
+                    <Image source={{ uri: product.product_image[0]  }} style={styles.image} />
+                    :
+                    <Image source={{ uri: product?.product_image }} style={styles.image} />
+                }
+          
             <Text style={styles.status}>
                 Available
             </Text>
             <Text style={styles.name}>{product.product_name}</Text>
-            {/* <Text style={styles.description}>{product.product_description}</Text> */}
+            <Text style={styles.description}>{categoryName}</Text>
         </TouchableOpacity>
         </View>
     );

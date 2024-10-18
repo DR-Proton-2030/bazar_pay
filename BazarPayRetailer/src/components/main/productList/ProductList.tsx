@@ -32,7 +32,7 @@ useEffect(() => {
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <View style={styles.productContainer}>
           {products.map((product:any) => (
-            <ProductCard key={product._id} product={product} categoryName={categoryName}/>
+            <ProductCard key={product._id} product={product} product_image={product?.product_image[0]} categoryName={categoryName}/>
           ))}
         </View>
       </ScrollView>

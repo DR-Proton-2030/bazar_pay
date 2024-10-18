@@ -52,6 +52,7 @@ function RootLayoutNav() {
         }}
       />
       <Stack.Screen name="wholesallersList" options={{ headerShown: false, statusBarTranslucent: true, statusBarStyle: "dark" }} />
+      <Stack.Screen name="search" options={{ headerShown: false, statusBarTranslucent: true, statusBarStyle: "light" }} />
       <Stack.Screen name="AllProducts" options={{ headerShown: false, statusBarTranslucent: true, statusBarStyle: "dark" }} />
       <Stack.Screen name="paymentSuccessPage" options={{ headerShown: false, statusBarTranslucent: true, statusBarStyle: "dark" }} />
       <Stack.Screen name="paymentHistory" options={{ headerShown: false, statusBarTranslucent: true, statusBarStyle: "dark" }} />
