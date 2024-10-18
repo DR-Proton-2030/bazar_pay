@@ -84,13 +84,6 @@ export default function HomePage() {
 
         <ProductSection />
 
-        {/* <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
-          <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
-          <ImageBanner backgroundColor="FEDE27" imageUri={veg} />
-        </ScrollView> */}
-
-        {/* <ProductSection /> */}
       </ScrollView>
     </>
   );

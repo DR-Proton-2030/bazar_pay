@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     width:80,
     alignItems: "center",
+    marginRight:7
   },
   image: {
     width: 70,

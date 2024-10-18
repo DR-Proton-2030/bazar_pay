@@ -8,7 +8,7 @@ import AuthContext from "../src/contexts/authContext/authContext";
 
 const index = () => {
   const {user}= useContext(AuthContext)
-  if (user===null) {
+  if (!user===null) {
     return <WellcomeScreen />;
   } else {
     return <Dashboard />;
