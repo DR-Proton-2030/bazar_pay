@@ -1,12 +1,10 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList, TextInput, Button } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../../utils/api";
 import SmallBox from "../../components/shared/smallBox/SmallBox";
 import { ICategory } from "../../@types/props/ICategory";
-import { ScrollView } from "react-native-gesture-handler";
 import { IPagination } from "../../@types/types/pagination";
-import { get } from "react-native/Libraries/TurboModule/TurboModuleRegistry";
 
 const AllCategoryList: React.FC = () => {
   const [categoryList, setCategoryList] = useState<ICategory[]>([]);
@@ -15,11 +13,13 @@ const AllCategoryList: React.FC = () => {
     currentPage: 1,
     pageCount: 1,
   });
+  const [searchText, setSearchText] = useState('');
 
   const getAllCategory = useCallback(async () => {
     const filter = {
       page: pagination.currentPage,
       limit: 10,
+      name: searchText,
     };
     try {
       const result = await api.category.getCategoryList(filter);
@@ -32,14 +32,22 @@ const AllCategoryList: React.FC = () => {
         ]);
       }
       setPagination(result.pagination);
+      console.log("first")
     } catch (error) {
       console.log("error in getAllCategory", error);
     }
-  }, [pagination.currentPage]);
+  }, [pagination.currentPage, searchText]); // Include searchText in the dependency array
+
+  const handleSearchButtonPress =() => {
+     setCategoryList([])
+    setPagination((prev) => ({ ...prev, currentPage: 1 }));
+    getAllCategory(); 
+  };
 
   const handleNavigate = (id: string) => {
     navigation.navigate("subcategoryPage", { categoryId: id });
   };
+
 
   const handleLoadMore = () => {
     if (pagination.currentPage < pagination.pageCount) {
@@ -55,9 +63,21 @@ const AllCategoryList: React.FC = () => {
   }, [getAllCategory]);
 
   return (
-    <FlatList
+    <>
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search categories..."
+          value={searchText}
+          onChangeText={(text) => setSearchText(text)}
+        />
+        <Button title="Search" onPress={handleSearchButtonPress} />
+      </View>
+
+
+       <FlatList
       data={categoryList}
-      keyExtractor={(item) => item._id}
+     keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.5}
       renderItem={({ item }) => (
@@ -73,6 +93,7 @@ const AllCategoryList: React.FC = () => {
       )}
       contentContainerStyle={styles.container}
     />
+    </>
   );
 };
 
@@ -83,14 +104,31 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
   },
+  searchContainer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginTop: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  searchInput: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 8,
+    marginRight: 10,
+    borderRadius: 5,
+    backgroundColor:"#fff"
+  },
   categoryItem: {
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
-  },
-  categoryText: {
-    fontSize: 16,
-    color: "black",
+    flex:1
   },
 });
 

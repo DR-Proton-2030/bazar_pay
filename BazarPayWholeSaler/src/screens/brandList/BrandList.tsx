@@ -7,6 +7,8 @@ import {
   FlatList,
   NativeSyntheticEvent,
   NativeScrollEvent,
+  TextInput,
+  Button,
 } from "react-native";
 import { api } from "../../utils/api";
 import SmallBox from "../../components/shared/smallBox/SmallBox";
@@ -24,25 +26,33 @@ const BrandList: React.FC = () => {
     currentPage: 1,
     pageCount: 1,
   });
+  const [searchText, setSearchText] = useState<any>(null);
 
-  const getAllBrandList = useCallback(async () => {
-    const filter = {
-      page: pagination.currentPage,
-      limit: 10,
-    };
-    try {
-      const result = await api.brands.getBrandList(filter);
-      if (pagination.currentPage === 1) {
-        setBrandList(result.result);
+  const getAllBrandList = useCallback(
+    async (searchQuery: string | null = null) => {
+      const filter = {
+        page: searchQuery ? 1 : pagination.currentPage,
+        limit: 10,
+        name: searchQuery,
+      };
+      try {
+        const result = await api.brands.getBrandList(filter);
+         if (pagination.currentPage === 1) {
+          setBrandList(result.result);
       } else {
-        setBrandList((prevBrandList) => [...prevBrandList, ...result.result]);
+        setBrandList((prevSubCategoryList) => [
+          ...prevSubCategoryList,
+          ...result.result,
+        ]);
       }
-      setPagination(result.pagination);
-    } catch (error) {
-      console.log("error in getAllCategory", error);
-    }
-  }, [pagination.currentPage]);
-
+        setPagination(result.pagination);
+      } catch (error) {
+        console.log("error in getAllCategory", error);
+      }
+    },
+    [pagination.currentPage,searchText]
+  );
+  
   const handleNavigate = (id: string) => {
     navigation.navigate("quickProductList", {
       subcategoryId: subcategoryId,
@@ -52,9 +62,15 @@ const BrandList: React.FC = () => {
     console.log("first");
   };
 
+  const handleSearchButtonPress = () => {
+    setBrandList([]);
+    const searchQuery = searchText.trim() === '' ? null : searchText.trim();
+    setPagination((prev) => ({ ...prev, currentPage: 1 }));
+    getAllBrandList(searchQuery); 
+  };
+
   const handleLoadMore = () => {
     if (pagination.currentPage < pagination.pageCount) {
-      console.log("===>called the handleLoadMore");
       setPagination((prevPagination) => ({
         ...prevPagination,
         currentPage: prevPagination.currentPage + 1,
@@ -64,12 +80,22 @@ const BrandList: React.FC = () => {
 
   useEffect(() => {
     getAllBrandList();
-  }, [getAllBrandList]);
+  }, []);
 
   return (
+    <>
+     <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search Brands..."
+          value={searchText}
+          onChangeText={(text) => setSearchText(text)}
+        />
+        <Button title="Search" onPress={handleSearchButtonPress} />
+      </View>
     <FlatList
       data={brandList}
-      keyExtractor={(item) => item._id}
+      keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
       renderItem={({ item }) => (
         <View style={styles.brandItem}>
           <SmallBox
@@ -84,7 +110,8 @@ const BrandList: React.FC = () => {
       contentContainerStyle={styles.container}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.5}
-    />
+      />
+      </>
   );
 };
 
@@ -100,6 +127,26 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "#f0f0f0",
     borderRadius: 5,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginTop: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  searchInput: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 8,
+    marginRight: 10,
+    borderRadius: 5,
+    backgroundColor:"#fff"
   },
   brandText: {
     fontSize: 16,

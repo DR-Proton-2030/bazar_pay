@@ -80,7 +80,7 @@ export const getBrands = async (req: Request, res: Response) => {
 			currentPage = parseInt(String(filter.page)); // Parse page as an integer
 		}
 
-		const sortField = filter.sortField ? filter.sortField : "updatedAt";
+		const sortField: any = filter.sortField ? filter.sortField : "updatedAt";
 		const _limit = filter.limit ? parseInt(String(filter.limit)) : 5;
 
 		// Clean up filter object to remove pagination and sorting-related properties
@@ -95,15 +95,32 @@ export const getBrands = async (req: Request, res: Response) => {
 		// Fetch total count of documents based on the filter
 		const totalCount = await BrandModel.countDocuments(_filter);
 
+		let brands;
+
 		// Pagination logic
 		const limit = currentPage > 0 ? _limit : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
-		// Fetch the brands from the database
-		const brands = await BrandModel.find(_filter)
-			.sort({ [sortField as string]: -1 })
-			.skip(startIndex)
-			.limit(limit);
+
+		if (filter.name) {
+			const searchTerm = (filter.name as string).trim();
+			const regex = new RegExp(searchTerm, 'i');
+			const searchConditions = filter.name
+				? { ...filter, name: { $regex: new RegExp((filter.name as string).trim(), 'i') } }
+				: filter;
+
+			brands = await BrandModel.find(searchConditions)
+				.sort({ [sortField]: -1 })
+				.skip(startIndex)
+				.limit(limit);
+		} else {
+			brands = await BrandModel.find(_filter)
+				.sort({ [sortField]: -1 })
+				.skip(startIndex)
+				.limit(limit);
+		}
+
+
 
 		const pagination: IPagination = {
 			currentPage: currentPage,

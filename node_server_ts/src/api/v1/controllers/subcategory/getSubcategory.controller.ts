@@ -27,3 +27,52 @@ export const getSubcategory = async (req: Request, res: Response) => {
 		});
 	}
 };
+
+
+
+export const searchBySubCategory = async (req: Request, res: Response) => {
+	try {
+		const { name, page = 1, limit = 10 } = req.query;
+
+		const pageNumber = parseInt(page as string, 10) || 1;
+		const limitNumber = parseInt(limit as string, 10) || 10;
+		const skip = (pageNumber - 1) * limitNumber;
+
+		let searchResult;
+		let totalResults = 0;
+
+
+		if (name) {
+			const searchTerm = (name as string).trim();
+			const regex = new RegExp(searchTerm, 'i');
+			totalResults = await SubcategoryModel.countDocuments({ name: { $regex: regex } });
+			searchResult = await SubcategoryModel.find({ name: { $regex: regex } })
+				.skip(skip)
+				.limit(limitNumber);
+		} else {
+			totalResults = await SubcategoryModel.countDocuments({});
+			searchResult = await SubcategoryModel.find({})
+				.skip(skip)
+				.limit(limitNumber);
+		}
+
+
+
+		res.status(StatusCodes.OK).json({
+			message: MESSAGE.get.succ,
+			pagination: {
+				page: pageNumber,
+				limit: limitNumber,
+				totalResults,
+				totalPages: Math.ceil(totalResults / limitNumber),
+			},
+			result: searchResult
+		});
+	} catch (error) {
+		console.error("Error searching for wholesaler products:", error);
+		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+			message: MESSAGE.get.fail,
+			error: "An error occurred while searching for products."
+		});
+	}
+};

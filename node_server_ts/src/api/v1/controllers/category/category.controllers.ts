@@ -6,6 +6,7 @@ import CategoryModel from "../../../../models/category.model";
 import SubcategoryModel from "../../../../models/subcategory.model";
 import ProductModel from "../../../../models/product.model";
 import { IPagination } from "../../../../@types/types/pagination";
+import { StatusCodes } from "http-status-codes";
 
 export const createCategory = async (req: Request, res: Response) => {
 	try {
@@ -203,6 +204,55 @@ export const deleteCategoryById = async (req: Request, res: Response) => {
 		return res.status(400).json({
 			message: MESSAGE.delete.fail,
 			error
+		});
+	}
+};
+
+
+
+export const searchByCategory = async (req: Request, res: Response) => {
+	try {
+		const { name, page = 1, limit = 10 } = req.query;
+
+		const pageNumber = parseInt(page as string, 10) || 1;
+		const limitNumber = parseInt(limit as string, 10) || 10;
+		const skip = (pageNumber - 1) * limitNumber;
+
+		let searchResult;
+		let totalResults = 0;
+
+
+		if (name) {
+			const searchTerm = (name as string).trim();
+			const regex = new RegExp(searchTerm, 'i');
+			totalResults = await CategoryModel.countDocuments({ name: { $regex: regex } });
+			searchResult = await CategoryModel.find({ name: { $regex: regex } })
+				.skip(skip)
+				.limit(limitNumber);
+		} else {
+			totalResults = await CategoryModel.countDocuments({});
+			searchResult = await CategoryModel.find({})
+				.skip(skip)
+				.limit(limitNumber);
+		}
+
+
+
+		res.status(StatusCodes.OK).json({
+			message: MESSAGE.get.succ,
+			pagination: {
+				page: pageNumber,
+				limit: limitNumber,
+				totalResults,
+				totalPages: Math.ceil(totalResults / limitNumber),
+			},
+			result: searchResult
+		});
+	} catch (error) {
+		console.error("Error searching for wholesaler products:", error);
+		res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({
+			message: MESSAGE.get.fail,
+			error: "An error occurred while searching for products."
 		});
 	}
 };

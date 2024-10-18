@@ -2,7 +2,7 @@ import express from "express";
 import { upload } from "../../../../middleware/multer.middleware";
 import { createSubCategory } from "../../controllers/subcategory/createSubcategory.controller";
 import { getSubcategories } from "../../controllers/subcategory/getSubcategoriesWithPagination.controller";
-import { getSubcategory } from "../../controllers/subcategory/getSubcategory.controller";
+import { getSubcategory, searchBySubCategory } from "../../controllers/subcategory/getSubcategory.controller";
 import { getAggregatedSubcategory } from "../../controllers/subcategory/getAggregatedSubcategory.controller";
 import e from "express";
 import { deleteCategoryById } from "../../controllers/category/category.controllers";
@@ -17,6 +17,8 @@ router
 router.route("/get-paginated-subcategories").get(getSubcategories);
 
 router.route("/get-subcategory-with-filter").get(getSubcategory);
+
+router.route("/search-subcategory-with-filter").get(searchBySubCategory);
 
 router.route("/get-aggregated-subcategory").get(getAggregatedSubcategory);
 

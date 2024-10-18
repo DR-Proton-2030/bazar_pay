@@ -72,34 +72,72 @@ export const searchProductByName = async (req: Request, res: Response) => {
 };
 
 
-
-
 export const searchWholesalerProduct = async (req: Request, res: Response) => {
 	try {
-		const { name, type } = req.query;
+		const { name, type, page = 1, limit = 10 } = req.query;
 
-		if (!name || !type) {
+		if (!type) {
 			return res.status(StatusCodes.BAD_REQUEST).json({
 				message: MESSAGE.get.fail,
-				error: "Both 'name' and 'type' are required."
+				error: "'type' is required."
 			});
 		}
 
-		const searchTerm = (name as string).trim();
-		const regex = new RegExp(searchTerm, 'i');
-		let searchResult;
+		const pageNumber = parseInt(page as string, 10) || 1;
+		const limitNumber = parseInt(limit as string, 10) || 10;
+		const skip = (pageNumber - 1) * limitNumber;
 
+		let searchResult;
+		let totalResults = 0;
+
+		// Check the type and whether to search by name or fetch all
 		switch (type) {
 			case 'brand':
-				searchResult = await BrandModel.find({ name: { $regex: regex } });
+				if (name) {
+					const searchTerm = (name as string).trim();
+					const regex = new RegExp(searchTerm, 'i');
+					totalResults = await BrandModel.countDocuments({ name: { $regex: regex } });
+					searchResult = await BrandModel.find({ name: { $regex: regex } })
+						.skip(skip)
+						.limit(limitNumber);
+				} else {
+					totalResults = await BrandModel.countDocuments({});
+					searchResult = await BrandModel.find({})
+						.skip(skip)
+						.limit(limitNumber);
+				}
 				break;
 
 			case 'category':
-				searchResult = await CategoryModel.find({ name: { $regex: regex } });
+				if (name) {
+					const searchTerm = (name as string).trim();
+					const regex = new RegExp(searchTerm, 'i');
+					totalResults = await CategoryModel.countDocuments({ name: { $regex: regex } });
+					searchResult = await CategoryModel.find({ name: { $regex: regex } })
+						.skip(skip)
+						.limit(limitNumber);
+				} else {
+					totalResults = await CategoryModel.countDocuments({});
+					searchResult = await CategoryModel.find({})
+						.skip(skip)
+						.limit(limitNumber);
+				}
 				break;
 
 			case 'subcategory':
-				searchResult = await SubcategoryModel.find({ name: { $regex: regex } });
+				if (name) {
+					const searchTerm = (name as string).trim();
+					const regex = new RegExp(searchTerm, 'i');
+					totalResults = await SubcategoryModel.countDocuments({ name: { $regex: regex } });
+					searchResult = await SubcategoryModel.find({ name: { $regex: regex } })
+						.skip(skip)
+						.limit(limitNumber);
+				} else {
+					totalResults = await SubcategoryModel.countDocuments({});
+					searchResult = await SubcategoryModel.find({})
+						.skip(skip)
+						.limit(limitNumber);
+				}
 				break;
 
 			default:
@@ -109,9 +147,14 @@ export const searchWholesalerProduct = async (req: Request, res: Response) => {
 				});
 		}
 
-
 		res.status(StatusCodes.OK).json({
 			message: MESSAGE.get.succ,
+			pagination: {
+				page: pageNumber,
+				limit: limitNumber,
+				totalResults,
+				totalPages: Math.ceil(totalResults / limitNumber),
+			},
 			result: searchResult
 		});
 	} catch (error) {

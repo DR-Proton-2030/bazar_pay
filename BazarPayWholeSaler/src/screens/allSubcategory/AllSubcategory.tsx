@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, StyleSheet, Text, FlatList } from "react-native";
+import { View, StyleSheet, Text, FlatList, Button, TextInput } from "react-native";
 import { useRoute, RouteProp } from "@react-navigation/native";
 import { api } from "../../utils/api";
 import SmallBox from "../../components/shared/smallBox/SmallBox";
@@ -24,11 +24,15 @@ const AllSubcategory: React.FC = () => {
     pageCount: 1,
   });
 
+  const [searchText, setSearchText] = useState<any>(null);
+
+
   const getAllSubCategory = useCallback(async () => {
     const filter = {
       page: pagination.currentPage,
       limit: 10,
       category_object_id: categoryId,
+      name:searchText
     };
     try {
       const result = await api.subcategory.getSubategoryList(filter);
@@ -45,7 +49,7 @@ const AllSubcategory: React.FC = () => {
     } catch (error) {
       console.log("error in getAllCategory", error);
     }
-  }, [pagination.currentPage]);
+  }, [pagination.currentPage,searchText]);
 
   const handleLoadMore = () => {
     if (pagination.currentPage < pagination.pageCount) {
@@ -55,6 +59,12 @@ const AllSubcategory: React.FC = () => {
       }));
     }
   };
+  const handleSearchButtonPress =() => {
+    setSubcategoryList([])
+   setPagination((prev) => ({ ...prev, currentPage: 1 }));
+   getAllSubCategory(); 
+ };
+
 
   const handleNavigate = (id: string) => {
     navigation.navigate("brandPage", {
@@ -69,6 +79,16 @@ const AllSubcategory: React.FC = () => {
   }, []);
 
   return (
+    <>
+    <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search Subcategories..."
+          value={searchText}
+          onChangeText={(text) => setSearchText(text)}
+        />
+        <Button title="Search" onPress={handleSearchButtonPress} />
+      </View>
     <FlatList
       data={subcategoryList}
       keyExtractor={(item) => item._id}
@@ -86,7 +106,8 @@ const AllSubcategory: React.FC = () => {
       contentContainerStyle={styles.container}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.5}
-    />
+      />
+      </>
   );
 };
 
@@ -96,6 +117,26 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     flexDirection: "row",
     flexWrap: "wrap",
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    marginBottom: 10,
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    marginTop: 20,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  searchInput: {
+    flex: 1,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 8,
+    marginRight: 10,
+    borderRadius: 5,
+    backgroundColor:"#fff"
   },
   subcategoryItem: {
     padding: 10,

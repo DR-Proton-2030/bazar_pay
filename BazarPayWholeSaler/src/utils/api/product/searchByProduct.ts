@@ -6,11 +6,11 @@ import { Params } from "../../../@types/api/api.types";
 
 const { get } = request;
 
-const initialRoute = "category";
+const initialRoute = "products";
 
-export const getCategoryList = async (filterQuery: any) => {
+export const getByAnyProduct = async (filterQuery: Params) => {
   try {
-    const endpoint = `${initialRoute}/search-category-list`;
+    const endpoint = `${initialRoute}/search-product-byWholesaler`;
     const response = await get(
       endpoint,
       {
@@ -35,3 +35,5 @@ export const getCategoryList = async (filterQuery: any) => {
     throw error;
   }
 };
+
+
