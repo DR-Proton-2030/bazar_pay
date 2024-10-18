@@ -125,15 +125,17 @@ const getBrands = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             currentPage = parseInt(String(filter.page)); // Parse page as an integer
         }
         const sortField = filter.sortField ? filter.sortField : "updatedAt";
+        const _limit = filter.limit ? parseInt(String(filter.limit)) : 5;
         // Clean up filter object to remove pagination and sorting-related properties
         delete filter.page;
         delete filter.sortField;
+        delete filter.limit;
         console.log("===>filter", filter);
         const _filter = filter;
         // Fetch total count of documents based on the filter
         const totalCount = yield brand_model_1.default.countDocuments(_filter);
         // Pagination logic
-        const limit = currentPage > 0 ? 5 : totalCount;
+        const limit = currentPage > 0 ? _limit : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
         // Fetch the brands from the database
         const brands = yield brand_model_1.default.find(_filter)

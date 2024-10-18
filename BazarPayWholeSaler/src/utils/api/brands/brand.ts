@@ -8,32 +8,30 @@ const { get } = request;
 
 const initialRoute = "brands";
 
-
-export const getBrandList = async (filterQuery:any) => {
-    try {
-      const endpoint = `${initialRoute}/get-brand-list`;
-      const response = await get(
-        endpoint,
-        {
-          ...headers,
-        },
-        filterQuery
-      );
-      if (response) {
+export const getBrandList = async (filterQuery: any) => {
+  try {
+    const endpoint = `${initialRoute}/get-brand-list`;
+    const response = await get(
+      endpoint,
+      {
+        ...headers,
+      },
+      filterQuery
+    );
+    if (response) {
+      const {
+        data: { message },
+      } = response;
+      if (message === MESSAGE.get.succ) {
         const {
-          data: { message }
+          data: { result, pagination },
         } = response;
-        if (message === MESSAGE.get.succ) {
-          const {
-            data: { result }
-          } = response;
-          return result;
-        }
+        return { result, pagination };
       }
-      throw new Error();
-    } catch (error: unknown) {
-      console.log(error);
-      throw error;
     }
-  };
-  
+    throw new Error();
+  } catch (error: unknown) {
+    console.log(error);
+    throw error;
+  }
+};

@@ -13,7 +13,7 @@ export interface IProduct {
   product_image: string;
   unit: string;
   product_status: string;
-  profit_percentage:number;
+  profit_percentage: number;
 }
 
 const QuickProductList: React.FC = () => {
@@ -38,11 +38,15 @@ const QuickProductList: React.FC = () => {
     }
   }, [categoryId, subcategoryId, brandId]);
 
-  const handleNavigate = (productId: string, productImage: string,profit_percentage:number) => {
+  const handleNavigate = (
+    productId: string,
+    productImage: string,
+    profit_percentage: number
+  ) => {
     navigation.navigate("QuickAddProduct", {
       productId: productId,
       productImage: productImage,
-      productPercent : profit_percentage
+      productPercent: profit_percentage,
     });
     console.log("Navigating to QuickAddProduct with productId:", productId);
   };
@@ -64,7 +68,11 @@ const QuickProductList: React.FC = () => {
           icon={undefined}
           textColor={""}
           handleNavigate={() =>
-            handleNavigate(product._id, product.product_image,product?.profit_percentage)
+            handleNavigate(
+              product._id,
+              product.product_image,
+              product?.profit_percentage
+            )
           }
         />
         // </View>

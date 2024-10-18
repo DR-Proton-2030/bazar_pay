@@ -137,11 +137,13 @@ const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             currentPage = parseInt(String(filter.page)); // Parse page as integer
         }
         const sortField = filter.sortField ? filter.sortField : "updatedAt";
+        const _limit = filter.limit ? parseInt(String(filter.limit)) : 5;
         delete filter.page;
         delete filter.sortField;
+        delete filter.limit;
         console.log("===>filter", filter);
         const totalCount = yield category_model_1.default.countDocuments(filter);
-        const limit = currentPage > 0 ? 5 : totalCount;
+        const limit = currentPage > 0 ? _limit : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
         console.log("===>filter", filter);
         const categories = yield category_model_1.default.find(filter)
