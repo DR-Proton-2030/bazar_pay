@@ -127,10 +127,12 @@ export const getBrands = async (req: Request, res: Response) => {
 		}
 
 		const sortField = filter.sortField ? filter.sortField : "updatedAt";
+		const _limit = filter.limit ? parseInt(String(filter.limit)) : 5;
 
 		// Clean up filter object to remove pagination and sorting-related properties
 		delete filter.page;
 		delete filter.sortField;
+		delete filter.limit;
 
 		console.log("===>filter", filter);
 
@@ -140,7 +142,7 @@ export const getBrands = async (req: Request, res: Response) => {
 		const totalCount = await BrandModel.countDocuments(_filter);
 
 		// Pagination logic
-		const limit = currentPage > 0 ? 5 : totalCount;
+		const limit = currentPage > 0 ? _limit : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
 		// Fetch the brands from the database

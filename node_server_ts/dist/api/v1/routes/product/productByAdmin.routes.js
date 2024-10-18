@@ -12,7 +12,7 @@ const product_controller_1 = require("../../controllers/product/product.controll
 const router = express_1.default.Router();
 router
     .route("/create-product-by-admin")
-    .post(multer_middleware_1.upload.fields([{ name: "product_image", maxCount: 1 }]), createProductByAdmin_controller_1.createProductByAdmin);
+    .post(multer_middleware_1.upload.fields([{ name: "product_image", maxCount: 10 }]), createProductByAdmin_controller_1.createProductByAdmin);
 router.route("/get-paginated-products").get(getProductsWithPagination_controller_1.getProducts);
 router.route("/get-product-byid").get(getProductsWithPagination_controller_1.getProductById);
 router.route("/get-regex-products").get(getRegexProducts_controller_1.getRegexProducts);

@@ -72,15 +72,17 @@ export const getProductList = async (req: Request, res: Response) => {
 		}
 
 		const sortField = filter.sortField ? filter.sortField : "updatedAt";
+		const _limit = filter.limit ? parseInt(String(filter.limit)) : 10;
 
 		delete filter.page;
 		delete filter.sortField;
+		delete filter.limit;
 
 		console.log("===>filter", filter);
 
 		const totalCount = await productModel.countDocuments(filter);
 
-		const limit = currentPage > 0 ? 10 : totalCount;
+		const limit = currentPage > 0 ? _limit : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
 		const products = await productModel
