@@ -51,8 +51,6 @@ export const createCategory = async (req: Request, res: Response) => {
 	}
 };
 
-
-
 export const editCategoryById = async (req: Request, res: Response) => {
 	try {
 		const { categoryId, categoryDetails } = req.body;
@@ -132,7 +130,6 @@ export const getCategoryById = async (req: Request, res: Response) => {
 	}
 };
 
-
 export const getCategories = async (req: Request, res: Response) => {
 	try {
 		const filter = req.query as unknown as any;
@@ -150,8 +147,8 @@ export const getCategories = async (req: Request, res: Response) => {
 		console.log("===>filter", filter);
 
 		const totalCount = await CategoryModel.countDocuments(filter);
-
-		const limit = currentPage > 0 ? 5 : totalCount;
+		const _limit = filter.limit ? parseInt(String(filter.limit)) : 5;
+		const limit = currentPage > 0 ? _limit : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
 		console.log("===>filter", filter);

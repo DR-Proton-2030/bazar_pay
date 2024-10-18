@@ -80,7 +80,8 @@ export const getProductList = async (req: Request, res: Response) => {
 
 		const totalCount = await productModel.countDocuments(filter);
 
-		const limit = currentPage > 0 ? 10 : totalCount;
+		const _limit = filter.limit ? parseInt(String(filter.limit)) : 10;
+		const limit = currentPage > 0 ? _limit : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
 		const products = await productModel
