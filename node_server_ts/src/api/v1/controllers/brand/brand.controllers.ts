@@ -70,52 +70,6 @@ export const getBrandById = async (req: Request, res: Response) => {
 	}
 };
 
-// export const getBrands = async (req: Request, res: Response) => {
-// 	try {
-// 		const filter = JSON.parse(req.query as unknown as any);
-
-// 		let currentPage = 0;
-// 		if (filter.page) {
-// 			currentPage = parseInt(String(filter.page)); // Parse page as integer
-// 		}
-
-// 		const sortField = filter.sortField ? filter.sortField : "updatedAt";
-
-// 		delete filter.page;
-// 		delete filter.sortField;
-
-// 		console.log("===>filter", filter);
-
-// 		const _filter = filter;
-
-// 		const totalCount = await BrandModel.countDocuments(_filter);
-
-// 		const limit = currentPage > 0 ? 5 : totalCount;
-// 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
-
-// 		const brands = await BrandModel.find(filter)
-// 			.sort({ [sortField]: -1 })
-// 			.skip(startIndex)
-// 			.limit(limit);
-
-// 		const pagination: IPagination = {
-// 			currentPage: currentPage,
-// 			pageCount: Math.ceil(totalCount / limit)
-// 		}
-
-// 		res.status(200).json({
-// 			message: MESSAGE.get.succ,
-// 			pagination,
-// 			result: brands
-// 		});
-// 	} catch (error) {
-// 		console.error("Error fetching brands:", error);
-// 		res.status(400).json({
-// 			message: MESSAGE.get.fail,
-// 			error: error
-// 		});
-// 	}
-// };
 export const getBrands = async (req: Request, res: Response) => {
 	try {
 		// Instead of JSON.parse, we check the type of req.query and handle it accordingly

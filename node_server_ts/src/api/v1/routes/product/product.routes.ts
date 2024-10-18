@@ -9,7 +9,7 @@ import {
 	updateProductStatus
 } from "../../controllers/product/product.controller";
 import { getProductById } from "../../controllers/product/getProductsWithPagination.controller";
-import { searchProductByName } from "../../controllers/product/searchProduct.controller";
+import { searchProductByName, searchWholesalerProduct } from "../../controllers/product/searchProduct.controller";
 
 const router = express.Router();
 
@@ -22,6 +22,7 @@ router.route("/add_product").post(
 );
 
 router.route("/get-product-list").get(getProductList);
+router.route("/search-product-byWholesaler").get(searchWholesalerProduct);
 router.route("/search-product").get(searchProductByName);
 router.route("/update-product-status").patch(updateProductStatus);
 router.route("/delete-product-by-id").delete(deleteProductById);
