@@ -16,6 +16,7 @@ import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { IBrand } from "../../@types/props/IBrand";
 import { IPagination } from "../../@types/types/pagination";
+import { ActivityIndicator } from "react-native-paper";
 
 const BrandList: React.FC = () => {
   const route = useRoute<any>();
@@ -37,22 +38,23 @@ const BrandList: React.FC = () => {
       };
       try {
         const result = await api.brands.getBrandList(filter);
-         if (pagination.currentPage === 1) {
+        if (pagination.currentPage === 1) {
           setBrandList(result.result);
-      } else {
-        setBrandList((prevSubCategoryList) => [
-          ...prevSubCategoryList,
-          ...result.result,
-        ]);
-      }
+        } else {
+          console.log("===>called brands", result.result);
+          setBrandList((prevSubCategoryList) => [
+            ...prevSubCategoryList,
+            ...result.result,
+          ]);
+        }
         setPagination(result.pagination);
       } catch (error) {
         console.log("error in getAllCategory", error);
       }
     },
-    [pagination.currentPage,searchText]
+    [pagination.currentPage, searchText]
   );
-  
+
   const handleNavigate = (id: string) => {
     navigation.navigate("quickProductList", {
       subcategoryId: subcategoryId,
@@ -64,13 +66,14 @@ const BrandList: React.FC = () => {
 
   const handleSearchButtonPress = () => {
     setBrandList([]);
-    const searchQuery = searchText.trim() === '' ? null : searchText.trim();
+    const searchQuery = searchText.trim() === "" ? null : searchText.trim();
     setPagination((prev) => ({ ...prev, currentPage: 1 }));
-    getAllBrandList(searchQuery); 
+    getAllBrandList(searchQuery);
   };
 
   const handleLoadMore = () => {
     if (pagination.currentPage < pagination.pageCount) {
+      console.log("===>called brands");
       setPagination((prevPagination) => ({
         ...prevPagination,
         currentPage: prevPagination.currentPage + 1,
@@ -84,7 +87,7 @@ const BrandList: React.FC = () => {
 
   return (
     <>
-     <View style={styles.searchContainer}>
+      <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
           placeholder="Search Brands..."
@@ -93,25 +96,32 @@ const BrandList: React.FC = () => {
         />
         <Button title="Search" onPress={handleSearchButtonPress} />
       </View>
-    <FlatList
-      data={brandList}
-      keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
-      renderItem={({ item }) => (
-        <View style={styles.brandItem}>
-          <SmallBox
-            title={item.name}
-            logo={item.logo}
-            icon={undefined}
-            textColor={""}
-            handleNavigate={() => handleNavigate(item._id)}
-          />
-        </View>
-      )}
-      contentContainerStyle={styles.container}
-      onEndReached={handleLoadMore}
-      onEndReachedThreshold={0.5}
+      <FlatList
+        data={brandList}
+        keyExtractor={(item, index) =>
+          item._id ? `${item._id}-${index}` : index.toString()
+        }
+        renderItem={({ item }) => (
+          <View style={styles.brandItem}>
+            <SmallBox
+              title={item.name}
+              logo={item.logo}
+              icon={undefined}
+              textColor={""}
+              handleNavigate={() => handleNavigate(item._id)}
+            />
+          </View>
+        )}
+        contentContainerStyle={styles.container}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.5}
+        ListFooterComponent={
+          pagination.currentPage < pagination.pageCount ? (
+            <ActivityIndicator size="small" color="#0000ff" animating={true} />
+          ) : null
+        }
       />
-      </>
+    </>
   );
 };
 
@@ -129,9 +139,9 @@ const styles = StyleSheet.create({
     borderRadius: 5,
   },
   searchContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: 10,
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: 20,
     marginTop: 20,
     shadowColor: "#000",
@@ -142,11 +152,11 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     padding: 8,
     marginRight: 10,
     borderRadius: 5,
-    backgroundColor:"#fff"
+    backgroundColor: "#fff",
   },
   brandText: {
     fontSize: 16,
