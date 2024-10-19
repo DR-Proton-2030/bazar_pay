@@ -7,6 +7,7 @@ import { useNavigation } from "expo-router";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { ISubcategory } from "../../@types/props/ISubcategory";
 import { IPagination } from "../../@types/types/pagination";
+import Colors from "../../constants/Colors";
 
 type ParamList = {
   subcategoryPage: {
@@ -27,14 +28,15 @@ const AllSubcategory: React.FC = () => {
   const [searchText, setSearchText] = useState<any>(null);
 
 
-  const getAllSubCategory = useCallback(async () => {
-    const filter = {
-      page: pagination.currentPage,
-      limit: 10,
-      category_object_id: categoryId,
-      name:searchText
-    };
-    try {
+  const getAllSubCategory = useCallback(
+    async (searchQuery: string | null = null) => {
+      const filter = {
+        page: searchQuery ? 1 : pagination.currentPage,
+        limit: 10,
+        category_object_id: categoryId,
+        name: searchQuery,
+      };
+    try {  
       const result = await api.subcategory.getSubategoryList(filter);
       console.log("===>result", result);
       if (pagination.currentPage === 1) {
@@ -61,8 +63,9 @@ const AllSubcategory: React.FC = () => {
   };
   const handleSearchButtonPress =() => {
     setSubcategoryList([])
+    const searchQuery = searchText.trim() === '' ? null : searchText.trim();
    setPagination((prev) => ({ ...prev, currentPage: 1 }));
-   getAllSubCategory(); 
+   getAllSubCategory(searchQuery); 
  };
 
 
@@ -89,6 +92,28 @@ const AllSubcategory: React.FC = () => {
         />
         <Button title="Search" onPress={handleSearchButtonPress} />
       </View>
+
+      {
+        searchText &&
+        <View style={{
+          justifyContent: "space-between",
+          flexDirection: "row", paddingHorizontal: 20, paddingBottom: 10
+        }}>
+          <Text style={{ fontWeight: "600" }}>
+            Search Results for <Text style={{ color: Colors.light.blue }}>{searchText}</Text>
+          </Text>
+          <TouchableOpacity onPress={() => {
+            setSearchText(null)
+            setSubcategoryList([])
+            getAllSubCategory(null);
+          }}>
+            <Text style={{ fontWeight: "600" }}>
+              X clear search
+            </Text>
+          </TouchableOpacity>
+
+        </View>
+      }
     <FlatList
       data={subcategoryList}
       keyExtractor={(item) => item._id}

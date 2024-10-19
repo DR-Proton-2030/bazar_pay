@@ -1,10 +1,12 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { View, StyleSheet, FlatList, TextInput, Button } from "react-native";
+import { View, StyleSheet, FlatList, TextInput, Button, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { api } from "../../utils/api";
 import SmallBox from "../../components/shared/smallBox/SmallBox";
 import { ICategory } from "../../@types/props/ICategory";
 import { IPagination } from "../../@types/types/pagination";
+import Colors from "../../constants/Colors";
+import { TouchableOpacity } from "react-native-gesture-handler";
 
 const AllCategoryList: React.FC = () => {
   const [categoryList, setCategoryList] = useState<ICategory[]>([]);
@@ -13,7 +15,7 @@ const AllCategoryList: React.FC = () => {
     currentPage: 1,
     pageCount: 1,
   });
-  const [searchText, setSearchText] = useState('');
+  const [searchText, setSearchText] = useState<any>();
 
   const getAllCategory = useCallback(async () => {
     const filter = {
@@ -38,10 +40,10 @@ const AllCategoryList: React.FC = () => {
     }
   }, [pagination.currentPage, searchText]); // Include searchText in the dependency array
 
-  const handleSearchButtonPress =() => {
-     setCategoryList([])
+  const handleSearchButtonPress = () => {
+    setCategoryList([])
     setPagination((prev) => ({ ...prev, currentPage: 1 }));
-    getAllCategory(); 
+    getAllCategory();
   };
 
   const handleNavigate = (id: string) => {
@@ -60,7 +62,7 @@ const AllCategoryList: React.FC = () => {
 
   useEffect(() => {
     getAllCategory();
-  }, [getAllCategory]);
+  }, []);
 
   return (
     <>
@@ -73,26 +75,46 @@ const AllCategoryList: React.FC = () => {
         />
         <Button title="Search" onPress={handleSearchButtonPress} />
       </View>
+      {
+        searchText &&
+        <View style={{
+          justifyContent: "space-between",
+          flexDirection: "row", paddingHorizontal: 20, paddingBottom: 10
+        }}>
+          <Text style={{ fontWeight: "600" }}>
+            Search Results for <Text style={{ color: Colors.light.blue }}>{searchText}</Text>
+          </Text>
+          <TouchableOpacity onPress={() => {
+            setSearchText(null)
+            setCategoryList([])
+            getAllCategory();
+          }}>
+            <Text style={{ fontWeight: "600" }}>
+              X clear search
+            </Text>
+          </TouchableOpacity>
 
-
-       <FlatList
-      data={categoryList}
-     keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
-      onEndReached={handleLoadMore}
-      onEndReachedThreshold={0.5}
-      renderItem={({ item }) => (
-        <View style={styles.categoryItem}>
-          <SmallBox
-            title={item.name}
-            logo={item.logo}
-            icon={undefined}
-            textColor={""}
-            handleNavigate={() => handleNavigate(item._id)}
-          />
         </View>
-      )}
-      contentContainerStyle={styles.container}
-    />
+      }
+
+      <FlatList
+        data={categoryList}
+        keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
+        onEndReached={handleLoadMore}
+        onEndReachedThreshold={0.5}
+        renderItem={({ item }) => (
+          <View style={styles.categoryItem}>
+            <SmallBox
+              title={item.name}
+              logo={item.logo}
+              icon={undefined}
+              textColor={""}
+              handleNavigate={() => handleNavigate(item._id)}
+            />
+          </View>
+        )}
+        contentContainerStyle={styles.container}
+      />
     </>
   );
 };
@@ -122,13 +144,13 @@ const styles = StyleSheet.create({
     padding: 8,
     marginRight: 10,
     borderRadius: 5,
-    backgroundColor:"#fff"
+    backgroundColor: "#fff"
   },
   categoryItem: {
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
-    flex:1
+    flex: 1
   },
 });
 

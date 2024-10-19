@@ -16,6 +16,7 @@ import { useRoute } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import { IBrand } from "../../@types/props/IBrand";
 import { IPagination } from "../../@types/types/pagination";
+import Colors from "../../constants/Colors";
 
 const BrandList: React.FC = () => {
   const route = useRoute<any>();
@@ -93,6 +94,27 @@ const BrandList: React.FC = () => {
         />
         <Button title="Search" onPress={handleSearchButtonPress} />
       </View>
+      {
+        searchText &&
+        <View style={{
+          justifyContent: "space-between",
+          flexDirection: "row", paddingHorizontal: 20, paddingBottom: 10
+        }}>
+          <Text style={{ fontWeight: "600" }}>
+            Search Results for <Text style={{ color: Colors.light.blue }}>{searchText}</Text>
+          </Text>
+          <TouchableOpacity onPress={() => {
+            setSearchText(null)
+            setBrandList([])
+            getAllBrandList(null);
+          }}>
+            <Text style={{ fontWeight: "600" }}>
+              X clear search
+            </Text>
+          </TouchableOpacity>
+
+        </View>
+      }
     <FlatList
       data={brandList}
       keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
