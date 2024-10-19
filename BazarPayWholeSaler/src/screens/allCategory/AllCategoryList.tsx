@@ -26,6 +26,7 @@ const AllCategoryList: React.FC = () => {
     try {
       const result = await api.category.getCategoryList(filter);
       if (pagination.currentPage === 1) {
+        console.log("===>called category", result.result.length);
         setCategoryList(result.result);
       } else {
         setCategoryList((prevCategoryList) => [
@@ -34,7 +35,7 @@ const AllCategoryList: React.FC = () => {
         ]);
       }
       setPagination(result.pagination);
-      console.log("first")
+      // console.log("first");
     } catch (error) {
       console.log("error in getAllCategory", error);
     }
@@ -49,7 +50,6 @@ const AllCategoryList: React.FC = () => {
   const handleNavigate = (id: string) => {
     navigation.navigate("subcategoryPage", { categoryId: id });
   };
-
 
   const handleLoadMore = () => {
     if (pagination.currentPage < pagination.pageCount) {
@@ -71,7 +71,7 @@ const AllCategoryList: React.FC = () => {
           style={styles.searchInput}
           placeholder="Search categories..."
           value={searchText}
-          onChangeText={(text) => setSearchText(text)}
+          onChangeText={handleChangeText}
         />
         <Button title="Search" onPress={handleSearchButtonPress} />
       </View>
@@ -127,9 +127,9 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   searchContainer: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: 10,
-    alignItems: 'center',
+    alignItems: "center",
     paddingHorizontal: 20,
     marginTop: 20,
     shadowColor: "#000",
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: "#ccc",
     padding: 8,
     marginRight: 10,
     borderRadius: 5,

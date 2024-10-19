@@ -30,12 +30,25 @@ const getSubcategories = (req, res) => __awaiter(void 0, void 0, void 0, functio
         delete filter.limit;
         console.log("===>Sub Category Filter", filter);
         const totalCount = yield subcategory_model_1.default.countDocuments(filter);
+        let subcategories;
         const limit = currentPage > 0 ? _limit : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
-        const subcategories = yield subcategory_model_1.default.find(filter)
-            .sort({ [sortField]: -1 })
-            .skip(startIndex)
-            .limit(limit);
+        if (filter.name) {
+            const searchTerm = filter.name.trim();
+            const regex = new RegExp(searchTerm, 'i');
+            const searchConditions = filter.name
+                ? Object.assign(Object.assign({}, filter), { name: { $regex: new RegExp(filter.name.trim(), 'i') } }) : filter;
+            subcategories = yield subcategory_model_1.default.find(searchConditions)
+                .sort({ [sortField]: -1 })
+                .skip(startIndex)
+                .limit(limit);
+        }
+        else {
+            subcategories = yield subcategory_model_1.default.find(filter)
+                .sort({ [sortField]: -1 })
+                .skip(startIndex)
+                .limit(limit);
+        }
         const pagination = {
             currentPage,
             pageCount: Math.ceil(totalCount / limit)

@@ -16,6 +16,7 @@ router
     .post(multer_middleware_1.upload.fields([{ name: "sub_category_image", maxCount: 1 }]), createSubcategory_controller_1.createSubCategory);
 router.route("/get-paginated-subcategories").get(getSubcategoriesWithPagination_controller_1.getSubcategories);
 router.route("/get-subcategory-with-filter").get(getSubcategory_controller_1.getSubcategory);
+router.route("/search-subcategory-with-filter").get(getSubcategory_controller_1.searchBySubCategory);
 router.route("/get-aggregated-subcategory").get(getAggregatedSubcategory_controller_1.getAggregatedSubcategory);
 router.route("/delete-subcategory-by-id/:subcategoryId").delete(subcategory_controllers_1.deleteSubcategoryById);
 exports.default = router;
