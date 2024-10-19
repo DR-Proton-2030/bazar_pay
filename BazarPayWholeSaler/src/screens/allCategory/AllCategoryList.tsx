@@ -44,7 +44,7 @@ const AllCategoryList: React.FC = () => {
   const handleSearchButtonPress = () => {
     setCategoryList([])
     setPagination((prev) => ({ ...prev, currentPage: 1 }));
-    getAllCategory();
+    getAllCategory(); 
   };
 
   const handleNavigate = (id: string) => {
@@ -71,50 +71,30 @@ const AllCategoryList: React.FC = () => {
           style={styles.searchInput}
           placeholder="Search categories..."
           value={searchText}
-          onChangeText={handleChangeText}
+          onChangeText={(text) => setSearchText(text)}
         />
         <Button title="Search" onPress={handleSearchButtonPress} />
       </View>
-      {
-        searchText &&
-        <View style={{
-          justifyContent: "space-between",
-          flexDirection: "row", paddingHorizontal: 20, paddingBottom: 10
-        }}>
-          <Text style={{ fontWeight: "600" }}>
-            Search Results for <Text style={{ color: Colors.light.blue }}>{searchText}</Text>
-          </Text>
-          <TouchableOpacity onPress={() => {
-            setSearchText(null)
-            setCategoryList([])
-            getAllCategory();
-          }}>
-            <Text style={{ fontWeight: "600" }}>
-              X clear search
-            </Text>
-          </TouchableOpacity>
 
+
+       <FlatList
+      data={categoryList}
+     keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
+      onEndReached={handleLoadMore}
+      onEndReachedThreshold={0.5}
+      renderItem={({ item }) => (
+        <View style={styles.categoryItem}>
+          <SmallBox
+            title={item.name}
+            logo={item.logo}
+            icon={undefined}
+            textColor={""}
+            handleNavigate={() => handleNavigate(item._id)}
+          />
         </View>
-      }
-
-      <FlatList
-        data={categoryList}
-        keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
-        onEndReached={handleLoadMore}
-        onEndReachedThreshold={0.5}
-        renderItem={({ item }) => (
-          <View style={styles.categoryItem}>
-            <SmallBox
-              title={item.name}
-              logo={item.logo}
-              icon={undefined}
-              textColor={""}
-              handleNavigate={() => handleNavigate(item._id)}
-            />
-          </View>
-        )}
-        contentContainerStyle={styles.container}
-      />
+      )}
+      contentContainerStyle={styles.container}
+    />
     </>
   );
 };
@@ -144,13 +124,13 @@ const styles = StyleSheet.create({
     padding: 8,
     marginRight: 10,
     borderRadius: 5,
-    backgroundColor: "#fff"
+    backgroundColor:"#fff"
   },
   categoryItem: {
     padding: 10,
     marginBottom: 10,
     borderRadius: 5,
-    flex: 1
+    flex:1
   },
 });
 
