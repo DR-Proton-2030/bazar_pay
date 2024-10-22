@@ -7,6 +7,7 @@ import { ICategory } from "../../@types/props/ICategory";
 import { IPagination } from "../../@types/types/pagination";
 import Colors from "../../constants/Colors";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import { ActivityIndicator } from "react-native-paper";
 
 const AllCategoryList: React.FC = () => {
   const [categoryList, setCategoryList] = useState<ICategory[]>([]);
@@ -15,18 +16,32 @@ const AllCategoryList: React.FC = () => {
     currentPage: 1,
     pageCount: 1,
   });
-  const [searchText, setSearchText] = useState<any>();
+  const [searchText, setSearchText] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  const getAllCategory = useCallback(async () => {
+
+  const handleLoadMore = () => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: pagination.currentPage+1,
+    }));
+    console.log(pagination.currentPage)
+};
+
+
+  const getAllCategory = useCallback(async (reset = false) => {
+    if (loading) return; 
+    setLoading(true);
+    console.log(pagination.currentPage)
     const filter = {
-      page: pagination.currentPage,
+      page: reset ? 1 : pagination.currentPage,
       limit: 10,
       name: searchText,
     };
+    
     try {
       const result = await api.category.getCategoryList(filter);
-      if (pagination.currentPage === 1) {
-        console.log("===>called category", result.result.length);
+      if (reset) {
         setCategoryList(result.result);
       } else {
         setCategoryList((prevCategoryList) => [
@@ -34,36 +49,27 @@ const AllCategoryList: React.FC = () => {
           ...result.result,
         ]);
       }
-      setPagination(result.pagination);
-      // console.log("first");
+      
     } catch (error) {
-      console.log("error in getAllCategory", error);
+      console.log("Error in getAllCategory:", error);
+    } finally {
+      setLoading(false);
     }
-  }, [pagination.currentPage, searchText]); // Include searchText in the dependency array
+  }, [pagination.currentPage, searchText, loading]);
 
   const handleSearchButtonPress = () => {
-    setCategoryList([])
-    setPagination((prev) => ({ ...prev, currentPage: 1 }));
-    getAllCategory(); 
+    getAllCategory(true); 
   };
 
   const handleNavigate = (id: string) => {
     navigation.navigate("subcategoryPage", { categoryId: id });
   };
 
-  const handleLoadMore = () => {
-    if (pagination.currentPage < pagination.pageCount) {
-      setPagination((prevPagination) => ({
-        ...prevPagination,
-        currentPage: prevPagination.currentPage + 1,
-      }));
-    }
-  };
+
 
   useEffect(() => {
-    getAllCategory();
-  }, []);
-
+    getAllCategory(); 
+  }, [pagination.currentPage]);
   return (
     <>
       <View style={styles.searchContainer}>
@@ -75,13 +81,38 @@ const AllCategoryList: React.FC = () => {
         />
         <Button title="Search" onPress={handleSearchButtonPress} />
       </View>
+      {
+        searchText &&
+        <View style={{
+          justifyContent: "space-between",
+          flexDirection: "row", paddingHorizontal: 20, paddingBottom: 20,zIndex:50
+        }}>
+          <Text style={{ fontWeight: "600" }}>
+            Search Results for <Text style={{ color: Colors.light.blue }}>{searchText}</Text>
+          </Text>
+          {/* <TouchableOpacity  onPress={() => {
+            setSearchText(null)
+            setCategoryList([])
+            getAllCategory(true);
+          }}>
+            <Text style={{ fontWeight: "600" }}>
+              X clear search
+            </Text>
+          </TouchableOpacity> */}
 
+        </View>
+      }
 
-       <FlatList
+{
+ pagination?.currentPage===1 &&  loading?
+  <ActivityIndicator></ActivityIndicator>
+  :
+  <FlatList
       data={categoryList}
      keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
-      onEndReached={handleLoadMore}
-      onEndReachedThreshold={0.5}
+      onEndReached={searchText ? null : handleLoadMore}
+      onEndReachedThreshold={0.2}
+      
       renderItem={({ item }) => (
         <View style={styles.categoryItem}>
           <SmallBox
@@ -94,7 +125,10 @@ const AllCategoryList: React.FC = () => {
         </View>
       )}
       contentContainerStyle={styles.container}
+      ListFooterComponent={loading ? <ActivityIndicator/>: null}
     />
+}
+     
     </>
   );
 };

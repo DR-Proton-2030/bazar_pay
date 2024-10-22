@@ -14,7 +14,7 @@ import { getSubategoryList } from "./subcategory/subcategory";
 import { getBrandList } from "./brands/brand";
 import { WholesalerUploadProduct } from "./wholesalerListedProducts/wholesalerListedProducts";
 import { getOrderList, updateOrderStatus } from "./order/order";
-import { getWholesalerListedProducts } from "./wholesalerListedProducts/getWholesaleListedProduct";
+import { getWholesalerListedProducts, getWholesalerStockListedProducts } from "./wholesalerListedProducts/getWholesaleListedProduct";
 import { getByAnyProduct } from "./product/searchByProduct";
 
 export const api = {
@@ -45,6 +45,7 @@ export const api = {
   },
   wholesalerListedProducts: {
     getWholesalerListedProducts,
+    getWholesalerStockListedProducts
   },
   order: {
     getOrderList,

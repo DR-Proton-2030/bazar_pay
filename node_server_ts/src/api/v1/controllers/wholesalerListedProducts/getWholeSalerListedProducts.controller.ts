@@ -5,10 +5,10 @@ import WholesalerListedProductModel from "../../../../models/wholesalerListedpro
 
 export const getEachWholesalerListedProducts = async (req: Request, res: Response) => {
 	try {
-		const filter = req.query;
+		const { filter } = req.query;
 
 		let wholesalerListedProductInstance: any = await WholesalerListedProductModel
-			.findOne(filter)
+			.findOne({ filter })
 			.populate("wholesaler")
 			.populate({			// Populating Fields from Product Model which has reference in Product Model
 				path: 'product',
@@ -81,6 +81,55 @@ export const getAllListedProducts = async (req: Request, res: Response) => {
 		return res.status(400).json({
 			message: MESSAGE.get.fail,
 			error
+		});
+	}
+};
+export const getLowestStockProductsByWholesaler = async (req: Request, res: Response) => {
+	try {
+		// Extract wholesalerId from query parameters
+		const { wholesalerId }: any = req.query;
+
+		// Ensure wholesalerId is provided
+		if (!wholesalerId) {
+			return res.status(400).json({
+				message: "Wholesaler ID is required."
+			});
+		}
+
+		// Create a filter object based on wholesalerId
+		const filter = { wholesaler_object_id: wholesalerId }; // Adjust this if the field name differs
+
+		// Log the filter to verify its structure
+		console.log("Filter:", filter);
+		const ProductList = await WholesalerListedProductModel.aggregate([
+			{ $match: filter },
+			{ $sort: { current_stock: 1 } },
+			{ $limit: 10 },
+			{
+				$lookup: {
+					from: 'products',
+					localField: 'product',
+					foreignField: '_id',
+					as: 'productDetails', // Changed to productDetails
+				}
+			},
+			{
+				$project: {
+					current_stock: 1,
+					productDetails: 1 // Include the necessary fields
+				}
+			}
+		]);
+
+		return res.status(200).json({
+			message: MESSAGE.get.succ,
+			result: ProductList,
+		});
+	} catch (error) {
+		console.error("Error:", error); // Log error for debugging
+		return res.status(400).json({
+			message: MESSAGE.get.fail,
+			error,
 		});
 	}
 };

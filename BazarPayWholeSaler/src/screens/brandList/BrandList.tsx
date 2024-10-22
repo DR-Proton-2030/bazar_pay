@@ -17,6 +17,7 @@ import { useNavigation } from "expo-router";
 import { IBrand } from "../../@types/props/IBrand";
 import { IPagination } from "../../@types/types/pagination";
 import Colors from "../../constants/Colors";
+import { ActivityIndicator } from "react-native-paper";
 
 const BrandList: React.FC = () => {
   const route = useRoute<any>();
@@ -28,17 +29,34 @@ const BrandList: React.FC = () => {
     pageCount: 1,
   });
   const [searchText, setSearchText] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+
+
+
+  const handleLoadMore = () => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: pagination.currentPage+1,
+    }));
+    console.log(pagination.currentPage)
+};
+
 
   const getAllBrandList = useCallback(
-    async (searchQuery: string | null = null) => {
+    async  (reset = false)=> {
+      if (loading) return; 
+    setLoading(true);
+
       const filter = {
-        page: searchQuery ? 1 : pagination.currentPage,
+        page: reset ? 1 : pagination.currentPage,
         limit: 10,
-        name: searchQuery,
+        name: searchText,
       };
+
       try {
         const result = await api.brands.getBrandList(filter);
-        if (pagination.currentPage === 1) {
+        if (reset) {
           setBrandList(result.result);
         } else {
           console.log("===>called brands", result.result);
@@ -47,12 +65,13 @@ const BrandList: React.FC = () => {
             ...result.result,
           ]);
         }
-        setPagination(result.pagination);
+         setLoading(false);
       } catch (error) {
         console.log("error in getAllCategory", error);
+        setLoading(false);
       }
     },
-    [pagination.currentPage, searchText]
+    [pagination.currentPage, searchText,]
   );
 
   const handleNavigate = (id: string) => {
@@ -66,24 +85,14 @@ const BrandList: React.FC = () => {
 
   const handleSearchButtonPress = () => {
     setBrandList([]);
-    const searchQuery = searchText.trim() === "" ? null : searchText.trim();
-    setPagination((prev) => ({ ...prev, currentPage: 1 }));
-    getAllBrandList(searchQuery);
-  };
-
-  const handleLoadMore = () => {
-    if (pagination.currentPage < pagination.pageCount) {
-      console.log("===>called brands");
-      setPagination((prevPagination) => ({
-        ...prevPagination,
-        currentPage: prevPagination.currentPage + 1,
-      }));
-    }
+    setPagination({currentPage: 1,
+      pageCount: 1});
+    getAllBrandList(true);
   };
 
   useEffect(() => {
     getAllBrandList();
-  }, []);
+  }, [pagination.currentPage]);
 
   return (
     <>
@@ -105,18 +114,24 @@ const BrandList: React.FC = () => {
           <Text style={{ fontWeight: "600" }}>
             Search Results for <Text style={{ color: Colors.light.blue }}>{searchText}</Text>
           </Text>
-          <TouchableOpacity onPress={() => {
+          {/* <TouchableOpacity onPress={() => {
             setSearchText(null)
             setBrandList([])
-            getAllBrandList(null);
+            getAllBrandList(true);
           }}>
             <Text style={{ fontWeight: "600" }}>
               X clear search
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
         </View>
       }
+
+{
+ pagination?.currentPage===1 &&  loading?
+  <ActivityIndicator></ActivityIndicator>
+  :
+  
     <FlatList
       data={brandList}
       keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
@@ -134,7 +149,9 @@ const BrandList: React.FC = () => {
       contentContainerStyle={styles.container}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.5}
+      ListFooterComponent={loading ? <ActivityIndicator/>: null}
       />
+    }
     </>
   );
 };

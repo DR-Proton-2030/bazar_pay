@@ -157,6 +157,20 @@ function RootLayoutNav() {
         }}
       />
       <Stack.Screen
+        name="lowStock"
+        options={{
+          headerShown: true,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+          headerTitle: () => (
+            <Text style={{ textAlign: "center", fontSize: 20 }}>
+              
+              Upload Product
+            </Text>
+          ),
+        }}
+      />
+      <Stack.Screen
         name="categoryPage"
         options={{
           headerShown: true,

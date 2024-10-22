@@ -8,6 +8,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { ISubcategory } from "../../@types/props/ISubcategory";
 import { IPagination } from "../../@types/types/pagination";
 import Colors from "../../constants/Colors";
+import { ActivityIndicator } from "react-native-paper";
 
 type ParamList = {
   subcategoryPage: {
@@ -24,48 +25,52 @@ const AllSubcategory: React.FC = () => {
     currentPage: 1,
     pageCount: 1,
   });
+  const [loading, setLoading] = useState<boolean>(false);
 
   const [searchText, setSearchText] = useState<any>(null);
 
+  const handleLoadMore = () => {
+    setPagination((prevPagination) => ({
+      ...prevPagination,
+      currentPage: pagination.currentPage+1,
+    }));
+    console.log(pagination.currentPage)
+};
 
   const getAllSubCategory = useCallback(
-    async (searchQuery: string | null = null) => {
+    async (reset = false) => {
+      setLoading(true);
       const filter = {
-        page: searchQuery ? 1 : pagination.currentPage,
+        page: reset ? 1 : pagination.currentPage,
         limit: 10,
         category_object_id: categoryId,
-        name: searchQuery,
+        name: searchText,
       };
     try {  
       const result = await api.subcategory.getSubategoryList(filter);
-      console.log("===>result", result);
-      if (pagination.currentPage === 1) {
+      if (reset) {
         setSubcategoryList(result.result);
+
       } else {
         setSubcategoryList((prevSubCategoryList) => [
           ...prevSubCategoryList,
           ...result.result,
         ]);
       }
-      setPagination(result.pagination);
+      setLoading(false);
     } catch (error) {
       console.log("error in getAllCategory", error);
+       setLoading(true);
     }
-  }, [pagination.currentPage,searchText]);
+  }, [pagination.currentPage]);
 
-  const handleLoadMore = () => {
-    if (pagination.currentPage < pagination.pageCount) {
-      setPagination((prevPagination) => ({
-        ...prevPagination,
-        currentPage: prevPagination.currentPage + 1,
-      }));
-    }
-  };
+
   const handleSearchButtonPress =() => {
     setSubcategoryList([])
-    const searchQuery = searchText.trim() === '' ? null : searchText.trim();
-   setPagination((prev) => ({ ...prev, currentPage: 1 }));
-   getAllSubCategory(searchQuery); 
+    setPagination({currentPage: 1,
+      pageCount: 1});
+    
+   getAllSubCategory(true); 
  };
 
 
@@ -79,7 +84,7 @@ const AllSubcategory: React.FC = () => {
 
   useEffect(() => {
     getAllSubCategory();
-  }, []);
+  }, [pagination.currentPage]);
 
   return (
     <>
@@ -102,21 +107,26 @@ const AllSubcategory: React.FC = () => {
           <Text style={{ fontWeight: "600" }}>
             Search Results for <Text style={{ color: Colors.light.blue }}>{searchText}</Text>
           </Text>
-          <TouchableOpacity onPress={() => {
+          {/* <TouchableOpacity onPress={() => {
             setSearchText(null)
             setSubcategoryList([])
-            getAllSubCategory(null);
+            getAllSubCategory(true);
           }}>
             <Text style={{ fontWeight: "600" }}>
               X clear search
             </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
 
         </View>
       }
+
+{
+ pagination?.currentPage===1 &&  loading?
+  <ActivityIndicator></ActivityIndicator>
+  :
     <FlatList
       data={subcategoryList}
-      keyExtractor={(item) => item._id}
+      keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
       renderItem={({ item }) => (
         <View style={styles.subcategoryItem}>
           <SmallBox
@@ -131,7 +141,9 @@ const AllSubcategory: React.FC = () => {
       contentContainerStyle={styles.container}
       onEndReached={handleLoadMore}
       onEndReachedThreshold={0.5}
+      ListFooterComponent={loading ? <ActivityIndicator/>: null}
       />
+    }
       </>
   );
 };
