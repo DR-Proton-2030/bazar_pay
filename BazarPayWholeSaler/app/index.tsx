@@ -4,7 +4,7 @@ import AddProduct from "../src/screens/addProduct/AddProduct";
 import HomePage from "../src/screens/home/Home";
 
 const index = () => {
-  return <HomePage />;
+  return <SplashScreen />;
 };
 
 export default index;

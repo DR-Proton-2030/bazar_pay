@@ -44,7 +44,7 @@ export const DrawerContent = ({ onClose }: any) => {
   const confirmLogout = () => {
     setUser(null);
     onClose();
-    navigation.navigate("signInPage");
+    navigation.navigate("wellcomePage");
   };
 
   return (

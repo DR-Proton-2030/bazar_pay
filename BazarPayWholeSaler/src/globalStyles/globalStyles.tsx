@@ -212,6 +212,17 @@ export const globalStyle = StyleSheet.create({
     paddingVertical: 15,
     marginBottom: 15,
   },
+  Textinput: {
+    paddingVertical: 15,
+    fontSize:18
+  },
+  inputContainerView: {
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 55,
+    paddingHorizontal: 15,
+    marginBottom: 15,
+  },
   passwordContainer: {
     flexDirection: "row",
     alignItems: "center",

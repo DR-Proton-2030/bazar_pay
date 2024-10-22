@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, TouchableOpacity, Text, StyleSheet, Alert, BackHandler } from "react-native";
 import {
   Feather,
   MaterialCommunityIcons,
   FontAwesome6,
 } from "@expo/vector-icons";
+import * as Updates from 'expo-updates';
 
 import HomePage from "../home/Home";
 import Colors from "../../constants/Colors";
@@ -26,6 +27,31 @@ const Dashboard: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    const backAction = () => {
+      if (activeScreen === "Home") { // Check if it's the main dashboard screen
+        Alert.alert("Exit App", "Are you sure you want to exit?", [
+          {
+            text: "Cancel",
+            onPress: () => null,
+            style: "cancel"
+          },
+          { text: "YES", onPress: () => BackHandler.exitApp() } // Close the app
+        ]);
+        return true;
+      }
+      return false;
+    };
+  
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+  
+    return () => backHandler.remove();
+  }, [activeScreen]);
+
+  
   return (
     <View style={styles.container}>
       <View style={styles.screen}>{renderScreen()}</View>
