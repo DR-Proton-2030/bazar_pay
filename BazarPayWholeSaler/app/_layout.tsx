@@ -165,7 +165,7 @@ function RootLayoutNav() {
           headerTitle: () => (
             <Text style={{ textAlign: "center", fontSize: 20 }}>
               
-              Upload Product
+             Low Stock Product
             </Text>
           ),
         }}
