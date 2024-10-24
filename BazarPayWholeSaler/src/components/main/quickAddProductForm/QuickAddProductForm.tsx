@@ -88,7 +88,7 @@ const QuickAddProductForm = ({ productId, productImage ,productPercent}: any) =>
             uri: productImage,
           }}
         />
-        <Text style={{ fontSize: 20, marginBottom: 20 }}>Buy Product</Text>
+        <Text style={{ fontSize: 20, marginBottom: 20 }}>Product Selling Details</Text>
 
         <View style={styles.inputContainer}>
           {inputFields.map((option, index) => (

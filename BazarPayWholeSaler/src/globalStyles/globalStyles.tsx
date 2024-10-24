@@ -62,6 +62,9 @@ export const globalStyle = StyleSheet.create({
     zIndex: 50,
     width: windowWidth,
   },
+  gradient:{
+
+  },
   congratsModalContainer: {
     flex: 1,
     justifyContent: "center",

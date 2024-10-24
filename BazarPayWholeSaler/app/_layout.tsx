@@ -79,6 +79,14 @@ function RootLayoutNav() {
           statusBarStyle: "dark",
         }}
       />
+       <Stack.Screen
+        name="productAddOption"
+        options={{
+          headerShown: false,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+        }}
+      />
       <Stack.Screen
         name="passwordSet"
         options={{ headerShown: false, statusBarTranslucent: true }}
@@ -136,6 +144,10 @@ function RootLayoutNav() {
 
       <Stack.Screen
         name="productDetailsPage"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+      <Stack.Screen
+        name="newProductCreate"
         options={{ headerShown: false, statusBarTranslucent: true }}
       />
       <Stack.Screen
