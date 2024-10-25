@@ -14,7 +14,7 @@ const productSchema = new mongoose_1.Schema({
     product_name: model_constant_1.default.optionalNullString,
     unit: model_constant_1.default.optionalNullString,
     product_description: model_constant_1.default.optionalNullString,
-    product_image: model_constant_1.default.optionalNullString,
+    product_image: [model_constant_1.default.optionalNullString],
     brand_object_id: model_constant_1.default.requiredObjectId,
     subcategory_object_id: model_constant_1.default.requiredObjectId,
     category_object_id: model_constant_1.default.requiredObjectId,

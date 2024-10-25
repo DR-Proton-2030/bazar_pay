@@ -9,12 +9,13 @@ import { getLoginOtp, getOtp } from "./auth/otp.api";
 import { createProduct } from "./product/addProduct";
 import { getProductList } from "./product/getProduct";
 import { updateProduct } from "./product/updateProduct";
-import { getCategoryList } from "./category/category";
-import { getSubategoryList } from "./subcategory/subcategory";
-import { getBrandList } from "./brands/brand";
+import { createCategory, getCategoryList } from "./category/category";
+import { createSubCategory, getSubategoryList } from "./subcategory/subcategory";
+import { createBrand, getBrandList } from "./brands/brand";
 import { WholesalerUploadProduct } from "./wholesalerListedProducts/wholesalerListedProducts";
 import { getOrderList, updateOrderStatus } from "./order/order";
-import { getWholesalerListedProducts } from "./wholesalerListedProducts/getWholesaleListedProduct";
+import { getWholesalerListedProducts, getWholesalerStockListedProducts } from "./wholesalerListedProducts/getWholesaleListedProduct";
+import { getByAnyProduct } from "./product/searchByProduct";
 
 export const api = {
   auth: {
@@ -28,21 +29,26 @@ export const api = {
     createProduct,
     getProductList,
     updateProduct,
+    getByAnyProduct
   },
   category: {
     getCategoryList,
+    createCategory,
   },
   subcategory: {
     getSubategoryList,
+    createSubCategory,
   },
   brands: {
     getBrandList,
+    createBrand,
   },
   wholesaler: {
     WholesalerUploadProduct,
   },
   wholesalerListedProducts: {
     getWholesalerListedProducts,
+    getWholesalerStockListedProducts
   },
   order: {
     getOrderList,

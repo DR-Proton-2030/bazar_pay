@@ -62,6 +62,9 @@ export const globalStyle = StyleSheet.create({
     zIndex: 50,
     width: windowWidth,
   },
+  gradient:{
+
+  },
   congratsModalContainer: {
     flex: 1,
     justifyContent: "center",
@@ -210,6 +213,17 @@ export const globalStyle = StyleSheet.create({
     borderRadius: 40,
     paddingHorizontal: 15,
     paddingVertical: 15,
+    marginBottom: 15,
+  },
+  Textinput: {
+    paddingVertical: 15,
+    fontSize:18
+  },
+  inputContainerView: {
+    borderWidth: 1,
+    borderColor: "gray",
+    borderRadius: 55,
+    paddingHorizontal: 15,
     marginBottom: 15,
   },
   passwordContainer: {

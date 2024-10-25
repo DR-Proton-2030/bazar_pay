@@ -13,7 +13,7 @@ export interface IProduct {
   product_image: string;
   unit: string;
   product_status: string;
-  profit_percentage:number;
+  profit_percentage: number;
 }
 
 const QuickProductList: React.FC = () => {
@@ -31,20 +31,24 @@ const QuickProductList: React.FC = () => {
     try {
       console.log("filter===>", filter);
       const { result } = await api.product.getProductList(filter);
-      console.log("=====>products", result);
+      // console.log("=====>products", result);
       setProductList(result);
     } catch (error) {
       console.log("error in getAllProducts", error);
     }
   }, [categoryId, subcategoryId, brandId]);
 
-  const handleNavigate = (productId: string, productImage: string,profit_percentage:number) => {
+  const handleNavigate = (
+    productId: string,
+    productImage: string,
+    profit_percentage: number
+  ) => {
     navigation.navigate("QuickAddProduct", {
       productId: productId,
       productImage: productImage,
-      productPercent : profit_percentage
+      productPercent: profit_percentage,
     });
-    console.log("Navigating to QuickAddProduct with productId:", productId);
+    console.log("Navigating to QuickAddProduct with productId:", productImage);
   };
 
   useEffect(() => {
@@ -57,17 +61,19 @@ const QuickProductList: React.FC = () => {
       contentContainerStyle={styles.scrollViewContainer}
     >
       {productList.map((product) => (
-        // <View key={product._id} style={styles.productItem}>
         <SmallBox
           title={product?.product_name}
           logo={product?.product_image}
-          icon={undefined}
+          icon={""}
           textColor={""}
           handleNavigate={() =>
-            handleNavigate(product._id, product.product_image,product?.profit_percentage)
+            handleNavigate(
+              product._id,
+              product.product_image,
+              product?.profit_percentage
+            )
           }
         />
-        // </View>
       ))}
     </ScrollView>
   );

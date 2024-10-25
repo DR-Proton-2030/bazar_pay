@@ -5,6 +5,10 @@ import { uploadImageToS3Service } from "../../../../services/uploadImageService"
 import SubcategoryModel from "../../../../models/subcategory.model";
 import BrandModel from "../../../../models/brand.model";
 import ProductModel from "../../../../models/product.model";
+import DataURIParser from "datauri/parser";
+
+
+const parser = new DataURIParser();
 
 export const createProductByAdmin = async (req: Request, res: Response) => {
 	try {
@@ -19,41 +23,50 @@ export const createProductByAdmin = async (req: Request, res: Response) => {
 
 		const subCategoryInstance: any = await SubcategoryModel.findOne({ _id: productPayload.subcategory_object_id });
 
-		if (!subCategoryInstance) {
-			return res.status(StatusCodes.NOT_FOUND).json({
-				message: MESSAGE.custom("Sub Category not found!")
-			});
-		}
+		// if (!subCategoryInstance) {
+		// 	return res.status(StatusCodes.NOT_FOUND).json({
+		// 		message: MESSAGE.custom("Sub Category not found!")
+		// 	});
+		// }
 
 		// Checking the Category Id of the Product details with Sub Category Details
-		if (String(productPayload.category_object_id) !== String(subCategoryInstance.category_object_id)) {
-			return res.status(StatusCodes.NOT_FOUND).json({
-				message: MESSAGE.custom("Category not matched with sub category!")
-			});
-		}
+		// if (String(productPayload.category_object_id) !== String(subCategoryInstance.category_object_id)) {
+		// 	return res.status(StatusCodes.NOT_FOUND).json({
+		// 		message: MESSAGE.custom("Category not matched with sub category!")
+		// 	});
+		// }
 
 		const brandInstance: any = await BrandModel.findOne({ _id: productPayload.brand_object_id });
 
-		if (!brandInstance) {
-			return res.status(StatusCodes.NOT_FOUND).json({
-				message: MESSAGE.custom("Brand not found!")
-			});
-		}
+		// if (!brandInstance) {
+		// 	return res.status(StatusCodes.NOT_FOUND).json({
+		// 		message: MESSAGE.custom("Brand not found!")
+		// 	});
+		// }
 
-		const productImage = req.files["product_image"][0];
-		const productImageBuffer = productImage.buffer;
-		let productUrl: string = "";
-		try {
-			productUrl = await uploadImageToS3Service("productImage", productImageBuffer) || "";
-		} catch (error) {
-			return res.status(StatusCodes.BAD_REQUEST).json({
-				message: MESSAGE.post.fail
-			});
-		}
+		// const productImage = req.files["product_image"][0];
+		// const productImageBuffer = productImage.buffer;
+		// let productUrl: string = "";
+		// try {
+		// 	productUrl = await uploadImageToS3Service("productImage", productImageBuffer) || "";
+		// } catch (error) {
+		// 	return res.status(StatusCodes.BAD_REQUEST).json({
+		// 		message: MESSAGE.post.fail
+		// 	});
+		// }
+
+
+		const images = await Promise.all(
+			(req.files["product_image"] as Express.Multer.File[]).map(async (file: Express.Multer.File) => {
+				const productUrl = await uploadImageToS3Service("productImage", file.buffer) || "";
+				return productUrl;
+			})
+		);
+
 
 		const productInstancePayload = {
 			...productPayload,
-			product_image: productUrl,
+			product_image: images,
 			category_object_id: subCategoryInstance.category_object_id,
 			brand_object_id: brandInstance._id,
 			subcategory_object_id: subCategoryInstance._id

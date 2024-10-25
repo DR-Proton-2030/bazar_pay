@@ -9,7 +9,7 @@ const router = express.Router();
 
 router
 	.route("/create-product-by-admin")
-	.post(upload.fields([{ name: "product_image", maxCount: 1 }]), createProductByAdmin);
+	.post(upload.fields([{ name: "product_image", maxCount: 10 }]), createProductByAdmin);
 
 router.route("/get-paginated-products").get(getProducts);
 router.route("/get-product-byid").get(getProductById);

@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
   logo: {
     height: 200,
     width: 200,
+    borderRadius:40
   },
   inputContainer: {
     flexDirection: "row",

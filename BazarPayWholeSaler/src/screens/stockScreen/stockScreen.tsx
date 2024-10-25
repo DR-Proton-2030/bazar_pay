@@ -12,6 +12,7 @@ import ProductItem from "../../components/shared/productDetail/ProductItem";
 import ProductCard from "../../components/shared/productCard/ProductCard";
 import { stockScreenStyles } from "./StockScreen.styles";
 import CommonHeader from "../../components/shared/commonHeader/CommonHeader";
+import { useNavigation } from "expo-router";
 // import { stockScreenstockScreenStyles } from "./StockScreen.stockScreenStyles";
 // const data = [
 //   { id: "1", title: "লো স্টক" },
@@ -45,6 +46,10 @@ const products = [
 const StockScreen = () => {
   const handleButton1Press = () => {
     console.log("Button 1 pressed");
+  };
+  const navigation: any = useNavigation<any>();
+  const handleNavigate = () => {
+    navigation.navigate("lowStock");
   };
 
   const handleButton2Press = () => {
@@ -151,10 +156,11 @@ const StockScreen = () => {
           }}
         >
           <View style={{ marginTop: 20 }}>
-            <SmallBox title={"লো স্টক"} icon={undefined} textColor={""} />
+            <SmallBox title={"লো স্টক"} icon={undefined} textColor={""} handleNavigate={handleNavigate} />
           </View>
           <View style={{ marginTop: 20 }}>
-            <SmallBox title={"ড্যামেজ স্টক"} icon={undefined} textColor={""} />
+            <SmallBox title={"ড্যামেজ স্টক"} icon={undefined} textColor={""}
+             handleNavigate={()=>navigation.navigate("stockPage")} />
           </View>
           <View style={{ marginTop: 15 }}>
             <SmallBox
@@ -266,7 +272,7 @@ const StockScreen = () => {
 
         {/* Product section  */}
         <View style={{ marginTop: 10 }}>
-          <ProductCard title={""} buyingPrice={0} sellingPrice={0} stock={0} />
+          {/* <ProductCard title={""} buyingPrice={0} sellingPrice={0} stock={0} /> */}
         </View>
         {/* See all Product */}
         <TouchableOpacity

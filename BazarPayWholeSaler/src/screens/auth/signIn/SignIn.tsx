@@ -11,6 +11,9 @@ import {
   StyleSheet,
   ScrollView,
   Alert,
+  TextInput,
+  KeyboardAvoidingView,
+  Platform,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useNavigation, useRoute } from "@react-navigation/native";
@@ -49,18 +52,25 @@ const SignIn = () => {
 
   const handleSignIn = async () => {
     if (step === "phone") {
-    setLoading(true)
 
       try {
-        const payload = { phone };
-        const response = await api.auth.getLoginOtp(payload);
-        setServerOtp(response?.otp);
-        setTempUser(response?.result)
-        setLoading(false)
-        setStep("otp")
+        if(phone.length===0 ){
+          Alert.alert("Error", "Please enter your phone number");
+        }else{
+      setLoading(true)
+
+          const payload = { phone };
+          const response = await api.auth.getLoginOtp(payload);
+          setServerOtp(response?.otp);
+          setTempUser(response?.result)
+          setLoading(false)
+          setStep("otp")
+        }
+        
       } catch (error: any) {
         console.log(error);
-        Alert.alert("Error", error.response?.data?.message || error.message);
+        setLoading(false)
+        Alert.alert("Wrong Credentials","Please enter your Phone number correctly");
       }
     } else if (step === "otp") {
 
@@ -81,7 +91,11 @@ const SignIn = () => {
   };
 
   return (
-    <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }}>
+    <KeyboardAvoidingView
+    behavior={Platform.OS === "ios" ? "padding" : "height"}
+    style={{ flex: 1,}}
+  >
+    <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }} keyboardShouldPersistTaps="handled"  contentContainerStyle={{ flexGrow: 1 }}>
       <View style={{ flexDirection: "column" }}>
         <Image
           style={{ width: "100%", height: screenHeight / 1.9 }}
@@ -94,18 +108,27 @@ const SignIn = () => {
           ]}
         >
           <Header isSignup={false} />
-          <View style={{ paddingHorizontal: 20, paddingTop: 20 }}>
+          <View style={{ paddingHorizontal: 20, paddingVertical: 20,flex:1 }}>
             {step === "phone" ? (
               <>
-                <InputField
-                  placeholder="Phone number"
-                  onChangeText={setPhone}
-                  value={phone}
-                />
+
+                <View style={[globalStyle.inputContainerView,{alignItems:"center",flexDirection:"row",justifyContent:"flex-start",gap:10}]} >
+                  <Text style={{fontSize:18,color:Colors.light.blue}}>
+                    +880
+                  </Text>
+
+                  <TextInput
+                    placeholder={"Enter your Phone number"}
+                    onChangeText={setPhone}
+                    value={phone}
+                    keyboardType="number-pad"
+                    style={globalStyle.Textinput}
+                  />
+                </View>
                 <Button style={[globalStyle.blueButton, { marginTop: 10 }]} onPress={handleSignIn}>
                   {
-                    loading ?
-                      <ActivityIndicator color="white"/>
+                  loading ?
+                      <ActivityIndicator color="white" />
                       :
                       <Text style={globalStyle.signInButtonText}>
                         Get Otp</Text>
@@ -133,7 +156,7 @@ const SignIn = () => {
                   />
                 </View>
                 <Button style={[globalStyle.blueButton, { marginTop: 10 }]} onPress={handleSignIn}>
-                  <Text style={globalStyle.signInButtonText}>Get Otp</Text>
+                  <Text style={globalStyle.signInButtonText}>Verify Otp</Text>
                 </Button>
                 <Button style={[globalStyle.lightVioletButton, { marginTop: 10 }]} onPress={() => setStep("phone")}>
                   <Text style={globalStyle.lightVioletButtonText}>Back</Text>
@@ -145,6 +168,7 @@ const SignIn = () => {
       </View>
       {/* <SignInCongratsModal isCongratsModalVisible={isCongratsModalVisible} setIsCongratsModalVisible={setIsCongratsModalVisible} /> */}
     </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 

@@ -1,10 +1,11 @@
-import React, { useState } from "react";
-import { View, TouchableOpacity, Text, StyleSheet } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, TouchableOpacity, Text, StyleSheet, Alert, BackHandler } from "react-native";
 import {
   Feather,
   MaterialCommunityIcons,
   FontAwesome6,
 } from "@expo/vector-icons";
+import * as Updates from 'expo-updates';
 
 import HomePage from "../home/Home";
 import Colors from "../../constants/Colors";

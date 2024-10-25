@@ -12,12 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCategoryById = exports.getCategories = exports.getCategoryById = exports.editCategoryById = exports.createCategory = void 0;
+exports.searchByCategory = exports.deleteCategoryById = exports.getCategories = exports.getCategoryById = exports.editCategoryById = exports.createCategory = void 0;
 const message_1 = require("../../../../constants/message");
 const uploadImageService_1 = require("../../../../services/uploadImageService");
 const category_model_1 = __importDefault(require("../../../../models/category.model"));
 const subcategory_model_1 = __importDefault(require("../../../../models/subcategory.model"));
 const product_model_1 = __importDefault(require("../../../../models/product.model"));
+const http_status_codes_1 = require("http-status-codes");
 const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         if (!req.files || !("logo" in req.files)) {
@@ -137,11 +138,13 @@ const getCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             currentPage = parseInt(String(filter.page)); // Parse page as integer
         }
         const sortField = filter.sortField ? filter.sortField : "updatedAt";
+        const _limit = filter.limit ? parseInt(String(filter.limit)) : 5;
         delete filter.page;
         delete filter.sortField;
+        delete filter.limit;
         console.log("===>filter", filter);
         const totalCount = yield category_model_1.default.countDocuments(filter);
-        const limit = currentPage > 0 ? 5 : totalCount;
+        const limit = currentPage > 0 ? _limit : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
         console.log("===>filter", filter);
         const categories = yield category_model_1.default.find(filter)
@@ -193,3 +196,45 @@ const deleteCategoryById = (req, res) => __awaiter(void 0, void 0, void 0, funct
     }
 });
 exports.deleteCategoryById = deleteCategoryById;
+const searchByCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { name, page = 1, limit = 10 } = req.query;
+        const pageNumber = parseInt(page, 10) || 1;
+        const limitNumber = parseInt(limit, 10) || 10;
+        const skip = (pageNumber - 1) * limitNumber;
+        let searchResult;
+        let totalResults = 0;
+        if (name) {
+            const searchTerm = name.trim();
+            const regex = new RegExp(searchTerm, 'i');
+            totalResults = yield category_model_1.default.countDocuments({ name: { $regex: regex } });
+            searchResult = yield category_model_1.default.find({ name: { $regex: regex } })
+                .skip(skip)
+                .limit(limitNumber);
+        }
+        else {
+            totalResults = yield category_model_1.default.countDocuments({});
+            searchResult = yield category_model_1.default.find({})
+                .skip(skip)
+                .limit(limitNumber);
+        }
+        res.status(http_status_codes_1.StatusCodes.OK).json({
+            message: message_1.MESSAGE.get.succ,
+            pagination: {
+                page: pageNumber,
+                limit: limitNumber,
+                totalResults,
+                totalPages: Math.ceil(totalResults / limitNumber),
+            },
+            result: searchResult
+        });
+    }
+    catch (error) {
+        console.error("Error searching for wholesaler products:", error);
+        res.status(http_status_codes_1.StatusCodes.INTERNAL_SERVER_ERROR).json({
+            message: message_1.MESSAGE.get.fail,
+            error: "An error occurred while searching for products."
+        });
+    }
+});
+exports.searchByCategory = searchByCategory;

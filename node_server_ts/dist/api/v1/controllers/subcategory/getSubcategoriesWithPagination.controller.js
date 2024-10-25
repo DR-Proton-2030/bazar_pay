@@ -24,18 +24,33 @@ const getSubcategories = (req, res) => __awaiter(void 0, void 0, void 0, functio
             currentPage = parseInt(String(filter.page)); // Parse page as integer
         }
         const sortField = filter.sortField ? filter.sortField : "updatedAt";
+        const _limit = filter.limit ? parseInt(String(filter.limit)) : 10;
         delete filter.page;
         delete filter.sortField;
+        delete filter.limit;
         console.log("===>Sub Category Filter", filter);
         const totalCount = yield subcategory_model_1.default.countDocuments(filter);
-        const limit = currentPage > 0 ? 10 : totalCount;
+        let subcategories;
+        const limit = currentPage > 0 ? _limit : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
-        const subcategories = yield subcategory_model_1.default.find(filter)
-            .sort({ [sortField]: -1 })
-            .skip(startIndex)
-            .limit(limit);
+        if (filter.name) {
+            const searchTerm = filter.name.trim();
+            const regex = new RegExp(searchTerm, 'i');
+            const searchConditions = filter.name
+                ? Object.assign(Object.assign({}, filter), { name: { $regex: new RegExp(filter.name.trim(), 'i') } }) : filter;
+            subcategories = yield subcategory_model_1.default.find(searchConditions)
+                .sort({ [sortField]: -1 })
+                .skip(startIndex)
+                .limit(limit);
+        }
+        else {
+            subcategories = yield subcategory_model_1.default.find(filter)
+                .sort({ [sortField]: -1 })
+                .skip(startIndex)
+                .limit(limit);
+        }
         const pagination = {
-            currentPage: currentPage,
+            currentPage,
             pageCount: Math.ceil(totalCount / limit)
         };
         res.status(http_status_codes_1.StatusCodes.OK).json({

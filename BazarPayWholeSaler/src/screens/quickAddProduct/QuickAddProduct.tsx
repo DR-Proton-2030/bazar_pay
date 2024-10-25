@@ -7,9 +7,13 @@ const QuickAddProductPage = () => {
   const route = useRoute<any>();
   const navigation = useNavigation<any>();
   const { productId, productImage ,productPercent }: any = route.params;
+
+  const logoSource = Array.isArray(productImage) ? productImage[0] : productImage;
+
+
   return (
     <View style={{ flex: 1, backgroundColor: "#fff", paddingHorizontal: 10 }}>
-      <QuickAddProductForm productId={productId} productImage={productImage} productPercent={productPercent} />
+      <QuickAddProductForm productId={productId} productImage={logoSource} productPercent={productPercent} />
     </View>
   );
 };

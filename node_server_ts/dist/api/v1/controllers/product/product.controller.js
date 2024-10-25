@@ -72,11 +72,13 @@ const getProductList = (req, res) => __awaiter(void 0, void 0, void 0, function*
             currentPage = parseInt(String(filter.page)); // Parse page as integer
         }
         const sortField = filter.sortField ? filter.sortField : "updatedAt";
+        const _limit = filter.limit ? parseInt(String(filter.limit)) : 10;
         delete filter.page;
         delete filter.sortField;
+        delete filter.limit;
         console.log("===>filter", filter);
         const totalCount = yield product_model_1.default.countDocuments(filter);
-        const limit = currentPage > 0 ? 10 : totalCount;
+        const limit = currentPage > 0 ? _limit : totalCount;
         const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
         const products = yield product_model_1.default
             .find(filter)

@@ -14,24 +14,41 @@ export const getSubcategories = async (req: Request, res: Response) => {
 		}
 
 		const sortField = filter.sortField ? filter.sortField : "updatedAt";
+		const _limit = filter.limit ? parseInt(String(filter.limit)) : 10;
 
 		delete filter.page;
 		delete filter.sortField;
+		delete filter.limit;
 
 		console.log("===>Sub Category Filter", filter);
 
 		const totalCount = await SubcategoryModel.countDocuments(filter);
+		let subcategories;
 
-		const limit = currentPage > 0 ? 10 : totalCount;
+		const limit = currentPage > 0 ? _limit : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
-		const subcategories = await SubcategoryModel.find(filter)
-			.sort({ [sortField]: -1 })
-			.skip(startIndex)
-			.limit(limit);
+		if (filter.name) {
+			const searchTerm = (filter.name as string).trim();
+			const regex = new RegExp(searchTerm, 'i');
+			const searchConditions = filter.name
+				? { ...filter, name: { $regex: new RegExp((filter.name as string).trim(), 'i') } }
+				: filter;
+
+			subcategories = await SubcategoryModel.find(searchConditions)
+				.sort({ [sortField]: -1 })
+				.skip(startIndex)
+				.limit(limit);
+		} else {
+			subcategories = await SubcategoryModel.find(filter)
+				.sort({ [sortField]: -1 })
+				.skip(startIndex)
+				.limit(limit);
+		}
+
 
 		const pagination: IPagination = {
-			currentPage: currentPage,
+			currentPage,
 			pageCount: Math.ceil(totalCount / limit)
 		}
 

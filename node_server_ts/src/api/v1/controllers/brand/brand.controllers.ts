@@ -70,52 +70,6 @@ export const getBrandById = async (req: Request, res: Response) => {
 	}
 };
 
-// export const getBrands = async (req: Request, res: Response) => {
-// 	try {
-// 		const filter = JSON.parse(req.query as unknown as any);
-
-// 		let currentPage = 0;
-// 		if (filter.page) {
-// 			currentPage = parseInt(String(filter.page)); // Parse page as integer
-// 		}
-
-// 		const sortField = filter.sortField ? filter.sortField : "updatedAt";
-
-// 		delete filter.page;
-// 		delete filter.sortField;
-
-// 		console.log("===>filter", filter);
-
-// 		const _filter = filter;
-
-// 		const totalCount = await BrandModel.countDocuments(_filter);
-
-// 		const limit = currentPage > 0 ? 5 : totalCount;
-// 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
-
-// 		const brands = await BrandModel.find(filter)
-// 			.sort({ [sortField]: -1 })
-// 			.skip(startIndex)
-// 			.limit(limit);
-
-// 		const pagination: IPagination = {
-// 			currentPage: currentPage,
-// 			pageCount: Math.ceil(totalCount / limit)
-// 		}
-
-// 		res.status(200).json({
-// 			message: MESSAGE.get.succ,
-// 			pagination,
-// 			result: brands
-// 		});
-// 	} catch (error) {
-// 		console.error("Error fetching brands:", error);
-// 		res.status(400).json({
-// 			message: MESSAGE.get.fail,
-// 			error: error
-// 		});
-// 	}
-// };
 export const getBrands = async (req: Request, res: Response) => {
 	try {
 		// Instead of JSON.parse, we check the type of req.query and handle it accordingly
@@ -126,11 +80,13 @@ export const getBrands = async (req: Request, res: Response) => {
 			currentPage = parseInt(String(filter.page)); // Parse page as an integer
 		}
 
-		const sortField = filter.sortField ? filter.sortField : "updatedAt";
+		const sortField: any = filter.sortField ? filter.sortField : "updatedAt";
+		const _limit = filter.limit ? parseInt(String(filter.limit)) : 5;
 
 		// Clean up filter object to remove pagination and sorting-related properties
 		delete filter.page;
 		delete filter.sortField;
+		delete filter.limit;
 
 		console.log("===>filter", filter);
 
@@ -139,15 +95,32 @@ export const getBrands = async (req: Request, res: Response) => {
 		// Fetch total count of documents based on the filter
 		const totalCount = await BrandModel.countDocuments(_filter);
 
+		let brands;
+
 		// Pagination logic
-		const limit = currentPage > 0 ? 5 : totalCount;
+		const limit = currentPage > 0 ? _limit : totalCount;
 		const startIndex = currentPage > 0 ? (currentPage - 1) * limit : 0;
 
-		// Fetch the brands from the database
-		const brands = await BrandModel.find(_filter)
-			.sort({ [sortField as string]: -1 })
-			.skip(startIndex)
-			.limit(limit);
+
+		if (filter.name) {
+			const searchTerm = (filter.name as string).trim();
+			const regex = new RegExp(searchTerm, 'i');
+			const searchConditions = filter.name
+				? { ...filter, name: { $regex: new RegExp((filter.name as string).trim(), 'i') } }
+				: filter;
+
+			brands = await BrandModel.find(searchConditions)
+				.sort({ [sortField]: -1 })
+				.skip(startIndex)
+				.limit(limit);
+		} else {
+			brands = await BrandModel.find(_filter)
+				.sort({ [sortField]: -1 })
+				.skip(startIndex)
+				.limit(limit);
+		}
+
+
 
 		const pagination: IPagination = {
 			currentPage: currentPage,

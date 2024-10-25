@@ -10,7 +10,7 @@ import { useNavigation } from "expo-router";
 const TopItems = () => {
   const navigation: any = useNavigation<any>();
   const handleNavigate = () => {
-    navigation.navigate("stockPage");
+    navigation.navigate("lowStock");
   };
   return (
     <>
