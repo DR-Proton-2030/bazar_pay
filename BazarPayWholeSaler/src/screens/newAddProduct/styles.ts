@@ -34,12 +34,13 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0,0,0,0.5)', // Dim background effect
       },
       searchBox: {
-        marginVertical: 10,
         borderRadius: 10,
         paddingHorizontal: 10,
         backgroundColor: '#F0F0F0',
         flexDirection:"row",
         alignItems:"center",
+        height:55,
+        fontSize:20
       },
       modalInput: {
         borderBottomWidth: 1,
@@ -63,7 +64,8 @@ const styles = StyleSheet.create({
         paddingHorizontal: 20,
         maxHeight: '50%',
         paddingBottom:20,
-        paddingTop:25
+        paddingTop:25,
+        minHeight:350
       },
       modalTitle: {
         fontSize: 25,
@@ -73,6 +75,9 @@ const styles = StyleSheet.create({
       },
       modalItem: {
         paddingVertical: 8,
+        flexDirection:"row",
+        alignItems: 'center',
+        
       },
       modalItemText: {
         fontSize: 20,
@@ -192,7 +197,7 @@ selectedImage: {
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
-        paddingVertical: 15,
+        paddingVertical: 10,
         paddingHorizontal: 20,
         borderWidth: 1,
         backgroundColor: '#075eec',

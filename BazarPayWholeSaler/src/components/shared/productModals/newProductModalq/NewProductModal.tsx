@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 import { Ionicons } from '@expo/vector-icons';
 import { styles } from '../../../../screens/newAddProduct/styles';
 import Colors from '../../../../constants/Colors';
+import { api } from '../../../../utils/api';
 
-export const NewProductModal = ({ type, name, setName, description, setDescription, handleCreateNew }: any) => {
-  const [images, setImages] = useState<string[]>([]); // To store selected image URIs
+export const NewProductModal = ({ images, setImages , type, name, setName, description, setDescription, handleCreateNew }: any) => {
+ 
 
-  // Function to pick an image from the gallery
   const pickImage = async () => {
     let result: any = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -18,44 +18,51 @@ export const NewProductModal = ({ type, name, setName, description, setDescripti
     });
 
     if (!result.canceled) {
-      setImages([...images, result.assets[0].uri]); // Add the selected image URI to the state
+      setImages([...images, result.assets[0].uri]); 
     }
   };
 
-  // Function to remove an image
   const removeImage = (imageToRemove: string) => {
-    const updatedImages = images.filter(image => image !== imageToRemove);
-    setImages(updatedImages); // Update the images after removing one
+    const updatedImages = images.filter((image: any) => image !== imageToRemove);
+    setImages(updatedImages); 
   };
 
   return (
     <View style={styles.modalOverlay}>
       <View style={styles.modalContent}>
-        <Text style={styles.modalTitle}>Create New {type}</Text>
+      {
+            type === "BRAND" ?
+              <Text style={styles.modalTitle}>নতুন ব্র্যান্ড তৈরি করুন</Text>
+              :
+              type === "CATEGORY" ?
+                <Text style={styles.modalTitle}>নতুন ক্যাটেগরি তৈরি করুন</Text>
+                :
+                type === "SUBCATEGORY" ?
+                  <Text style={styles.modalTitle}>নতুন সাবক্যাটেগরি তৈরি করুন</Text>
+                  : null
+          }
         
         <TextInput
           style={styles.modalInput}
-          placeholder="Brand Name"
+          placeholder="Name"
           value={name}
           onChangeText={setName}
         />
         
         <TextInput
           style={styles.modalInput}
-          placeholder="Brand Description"
+          placeholder="Description"
           value={description}
           onChangeText={setDescription}
         />
 
-        {/* Image Picker Button */}
         <TouchableOpacity style={customStyles.imagePickerButton} onPress={pickImage}>
           <Ionicons name="image-outline" size={30} color={Colors.light.primary} />
-          <Text style={customStyles.imagePickerText}>Add Image</Text>
+          <Text style={customStyles.imagePickerText}>ছবি আপলোড করুন</Text>
         </TouchableOpacity>
 
-        {/* Display selected images */}
         <View style={customStyles.imageList}>
-          {images.map((imageUri, index) => (
+          {images.map((imageUri:any, index:any) => (
             <View key={index} style={customStyles.imageContainer}>
               <Image source={{ uri: imageUri }} style={customStyles.image} />
               <TouchableOpacity onPress={() => removeImage(imageUri)} style={customStyles.removeButton}>
@@ -67,7 +74,17 @@ export const NewProductModal = ({ type, name, setName, description, setDescripti
 
         <TouchableOpacity onPress={handleCreateNew}>
           <View style={styles.btn}>
-            <Text style={styles.btnText}>Create {type}</Text>
+          {
+            type === "BRAND" ?
+              <Text style={styles.btnText}>ব্র্যান্ড তৈরি করুন</Text>
+              :
+              type === "CATEGORY" ?
+                <Text style={styles.btnText}>ক্যাটেগরি তৈরি করুন</Text>
+                :
+                type === "SUBCATEGORY" ?
+                  <Text style={styles.btnText}>সাবক্যাটেগরি তৈরি করুন</Text>
+                  : null
+          }
           </View>
         </TouchableOpacity>
       </View>
@@ -75,7 +92,6 @@ export const NewProductModal = ({ type, name, setName, description, setDescripti
   );
 };
 
-// Custom styles for image picker and display
 const customStyles = StyleSheet.create({
   imagePickerButton: {
     flexDirection: 'row',

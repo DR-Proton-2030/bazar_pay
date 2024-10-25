@@ -36,7 +36,7 @@ const ProductDetailsOne = ({ form, setForm, setPage }: any) => {
         </View>
         <Text style={styles.title}>পণ্যের বিবরণ দিন!</Text>
         <Text style={styles.subtitle}>
-          Fill in the fields below to get started with your new account.
+          Fill in the fields below to get started with your new Product.
         </Text>
       </View>
 
