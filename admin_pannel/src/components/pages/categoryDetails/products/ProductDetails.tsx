@@ -88,7 +88,7 @@ const {setDashboardHeader} = useContext(UIContext)
         <Button
           variant="contained"
           className="blue-btn"
-          onClick={() => navigate(`/add-products?cid=${categoryId}&scid=${subcategoryId}`)}
+          onClick={() => navigate(`/add-products?bid=${brandId}&cid=${categoryId}&scid=${subcategoryId}`)}
         >
           Add Products
         </Button>

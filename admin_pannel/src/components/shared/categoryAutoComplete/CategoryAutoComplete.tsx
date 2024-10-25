@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Autocomplete, { AutocompleteRenderInputParams } from "@mui/material/Autocomplete";
@@ -22,7 +22,7 @@ const CategoryAutoComplete: React.FC<CategoryAutoCompleteProps> = ({ setCategory
     name: string;
   }
   
-  const [options, setOptions] = useState<Category[]>([]);
+  const [options, setOptions] = useState<Subcategory[]>([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
   const [selectedSubcategory, setSelectedSubcategory] = useState<Subcategory | null>(null);
@@ -44,25 +44,30 @@ const CategoryAutoComplete: React.FC<CategoryAutoCompleteProps> = ({ setCategory
     setCategoryId(data?._id ?? null);
   };
 
-  const getCategoryList = async (search = "", page = 1) => {
-    setLoading(true);
-    const filter = {
-      page,
-      
-      ...(search && { name: { $regex: `^${search}`, $options: "i" } }),
-    };
-    try {
-      const response = await api.category.getCategory(filter);
-      setOptions((prevOptions) => [...prevOptions, ...response.result]);
-      setHasMore(response.result.length === PAGE_SIZE); // Check if more data is available
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const getCategoryList = useCallback(
+    async (search = "", page = 1) => {
+      setLoading(true);
+      const filter = {
+        page,
+        
+        ...(search && { name: { $regex: `^${search}`, $options: "i" } }),
+      };
+      try {
+        const response = await api.category.getCategory(filter);
+        setOptions((prevOptions) => [...prevOptions, ...response.result]);
+        setHasMore(response.result.length === PAGE_SIZE); // Check if more data is available
+        console.log(categoryId)
+      } catch (error) {
+        console.log(error);
+        
+        
+      } finally {
+        setLoading(false);
+      }
+    },[]
+  )
 
-  const getSubcategoryList = async (search = "", page = 1) => {
+  const getSubcategoryList = useCallback(async (search = "", page = 1) => {
     setLoading(true);
     if(selectedCategory) 
         try {
@@ -83,8 +88,8 @@ const CategoryAutoComplete: React.FC<CategoryAutoCompleteProps> = ({ setCategory
     } finally {
       setLoading(false);
     }
-  };
-
+  }, [selectedCategory]
+)
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
     const bottom = target.scrollHeight === target.scrollTop + target.clientHeight;
@@ -104,7 +109,7 @@ const CategoryAutoComplete: React.FC<CategoryAutoCompleteProps> = ({ setCategory
 
   useEffect(() => {
     getSubcategoryList(searchQuery, page)
-  }, [searchQuery, page]);
+  }, [searchQuery, page, getCategoryList]);
   return (
     //autocomplete for category
     <>
