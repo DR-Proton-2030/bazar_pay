@@ -148,7 +148,7 @@ function RootLayoutNav() {
       />
       <Stack.Screen
         name="newProductCreate"
-        options={{ headerShown: false, statusBarTranslucent: true }}
+        options={{ headerShown: false, statusBarTranslucent: true ,statusBarStyle:"dark"}}
       />
       <Stack.Screen
         name="ManualAddProduct"

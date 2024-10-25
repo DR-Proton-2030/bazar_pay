@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginRight: 10,
     position: 'relative',
-    marginTop:10
+    marginTop:10,
   },
   image: {
     width: 80,
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: Colors.light.grayBg,
     borderRadius: 10,
-    paddingVertical:5,
+    paddingVertical:12,
     marginBottom:20,
     paddingHorizontal:5
   },

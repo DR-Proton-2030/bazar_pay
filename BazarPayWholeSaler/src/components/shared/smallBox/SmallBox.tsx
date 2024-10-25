@@ -6,7 +6,6 @@ import babelConfig from "../../../../babel.config";
 import Colors from "../../../constants/Colors";
 
 const SmallBox = ({ title, icon, logo, backgroundColor, textColor, handleNavigate }: ISmallBoxProps) => {
-  console.log("======>logo", logo);
 
   // Determine the image source: either logo[0] if it's an array, or logo itself if it's a string
   const logoSource = Array.isArray(logo) ? logo[0] : logo;
