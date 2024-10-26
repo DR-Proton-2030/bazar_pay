@@ -4,8 +4,8 @@ import { Ionicons } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import Colors from '../../../constants/Colors';
 
-const CustomImagePicker = () => {
-  const [images, setImages] = useState<string[]>([]);
+const CustomImagePicker = ({images,setImages}:any) => {
+ 
 
   const pickImages = async () => {
     let result: any = await ImagePicker.launchImageLibraryAsync({

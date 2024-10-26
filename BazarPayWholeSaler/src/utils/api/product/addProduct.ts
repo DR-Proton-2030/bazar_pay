@@ -9,7 +9,7 @@ const initialRoute = "product";
 
 export const createProduct = async (formdata: any) => {
 	try {
-		const endpoint = `${initialRoute}/add_product`;
+		const endpoint = `${initialRoute}/create-product-by-admin`;
 
 		const response = await post(endpoint, formdata, {
 			...headers,

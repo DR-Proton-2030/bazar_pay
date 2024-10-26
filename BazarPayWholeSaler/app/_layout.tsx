@@ -157,15 +157,10 @@ function RootLayoutNav() {
       <Stack.Screen
         name="QuickAddProduct"
         options={{
-          headerShown: true,
+          headerShown: false,
           statusBarTranslucent: true,
           statusBarStyle: "dark",
-          headerTitle: () => (
-            <Text style={{ textAlign: "center", fontSize: 20 }}>
-              
-              Upload Product
-            </Text>
-          ),
+        
         }}
       />
       <Stack.Screen

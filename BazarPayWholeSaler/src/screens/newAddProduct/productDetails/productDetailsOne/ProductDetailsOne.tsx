@@ -15,10 +15,12 @@ import { styles } from '../../styles';
 import ImageUploader from '../../../../components/shared/ImageUploader/ImageUploader';
 import CustomImagePicker from '../../../../components/shared/imagePicker/ImagePicker';
 
-const ProductDetailsOne = ({ form, setForm, setPage }: any) => {
+const ProductDetailsOne = ({ form, setForm, page,setPage,images, setImages }:
+    { images: string[], setImages: React.Dispatch<React.SetStateAction<string[]>>,
+      form:IProduct, setForm:any, setPage:any ,page:any}) => {
   const [unitModalVisible, setUnitModalVisible] = useState(false);
   const [selectedUnit, setSelectedUnit] = useState('');
-  const [image,setImage] = useState();
+  // const [image,setImage] = useState<string[]>([]);
 
   const units = ['Piece', 'Kg', 'Litre', 'Box']; // Example units
 
@@ -45,11 +47,11 @@ const ProductDetailsOne = ({ form, setForm, setPage }: any) => {
           <Text style={styles.inputLabel}>পণ্যের নাম</Text>
           <TextInput
             clearButtonMode="while-editing"
-            onChangeText={name => setForm({ ...form, name })}
+            onChangeText={product_name => setForm({ ...form, product_name })}
             placeholder="এখানে পণ্যের নাম লিখুন"
             placeholderTextColor="#6b7280"
             style={styles.inputControl}
-            value={form.name}
+            value={form.product_name}
           />
         </View>
 
@@ -59,11 +61,11 @@ const ProductDetailsOne = ({ form, setForm, setPage }: any) => {
             autoCapitalize="none"
             autoCorrect={false}
             clearButtonMode="while-editing"
-            onChangeText={email => setForm({ ...form, email })}
+            onChangeText={product_description => setForm({ ...form, product_description })}
             placeholder="এই পণ্যের সম্পর্কে কিছু লিখুন"
             placeholderTextColor="#6b7280"
             style={styles.inputControl}
-            value={form.email}
+            value={form.product_description}
           />
         </View>
 
@@ -84,14 +86,14 @@ const ProductDetailsOne = ({ form, setForm, setPage }: any) => {
 
         <View style={styles.input}>
           <Text style={styles.inputLabel}>পণ্য ছবিগুলি আপলোড করুন</Text>
-          <CustomImagePicker/>
+          <CustomImagePicker images={images} setImages={setImages}/>
         </View>
 
         <View style={styles.formAction}>
           <TouchableOpacity
             onPress={() => {
               setPage(1);
-              console.log("first")
+              console.log('====>First page form',form)
             }}
             style={styles.btn}
           >
@@ -115,7 +117,11 @@ const ProductDetailsOne = ({ form, setForm, setPage }: any) => {
               keyExtractor={(item) => item}
               renderItem={({ item }) => (
                 <TouchableOpacity
-                  onPress={() => handleUnitSelect(item)}
+                  onPress={() => 
+                    {
+                      handleUnitSelect(item)
+                      setForm({ ...form, unit:item })
+                    }}
                   style={styles.modalItem}
                 >
                   <Text style={styles.modalItemText}>{item}</Text>

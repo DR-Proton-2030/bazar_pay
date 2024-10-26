@@ -94,7 +94,7 @@ useEffect(() => {
                 <View>
                   <Text style={styles.radioTitle}>নতুন পণ্য তৈরি করুন</Text>
 
-                  <Text style={styles.radioSubtitle}>Lorem Ipsum</Text>
+                  <Text style={styles.radioSubtitle}> নতুন পণ্য ম্যানুয়ালি যোগ করতে পারেন</Text>
                 </View>
               </View>
             </TouchableNativeFeedback>
@@ -111,7 +111,7 @@ useEffect(() => {
                 <View>
                   <Text style={styles.radioTitle}>দ্রুত পণ্য যোগ করুন</Text>
 
-                  <Text style={styles.radioSubtitle}>Lorem Ipsum</Text>
+                  <Text style={styles.radioSubtitle}>যেসব পণ্য ইতিমধ্যে রয়েছে নির্বাচন করুন</Text>
                 </View>
               </View>
             </TouchableNativeFeedback>

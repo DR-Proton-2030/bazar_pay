@@ -41,14 +41,18 @@ const QuickProductList: React.FC = () => {
   const handleNavigate = (
     productId: string,
     productImage: string,
-    profit_percentage: number
+    profit_percentage: number,
+    product_name:string,
+    product_description:string
   ) => {
     navigation.navigate("QuickAddProduct", {
       productId: productId,
       productImage: productImage,
       productPercent: profit_percentage,
+      productName:product_name,
+      product_description: product_description
     });
-    console.log("Navigating to QuickAddProduct with productId:", productImage);
+    console.log("Navigating to QuickAddProduct with productId:", product_name);
   };
 
   useEffect(() => {
@@ -70,7 +74,9 @@ const QuickProductList: React.FC = () => {
             handleNavigate(
               product._id,
               product.product_image,
-              product?.profit_percentage
+              product?.profit_percentage,
+              product?.product_name,
+              product?.product_description
             )
           }
         />

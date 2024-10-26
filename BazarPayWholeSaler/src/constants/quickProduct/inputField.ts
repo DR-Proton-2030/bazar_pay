@@ -1,13 +1,13 @@
 import { IForm } from "../../@types/types/FormField.type";
 
 export const inputFields: IForm[] = [
-  { label: "Quantity", field: "quantity", keyboardType: "numeric" },
+  { label: "পরিমাণ", field: "quantity", keyboardType: "numeric" },
   {
-    label: "Buying Price (BDT)",
+    label: "ক্রয় মূল্য (BDT)",
     field: "buyingPrice",
     keyboardType: "numeric",
   },
-  { label: "MRP (BDT)", field: "markedPrice", keyboardType: "numeric" },
-  { label: "Discount (%)", field: "discount", keyboardType: "numeric" },
+  { label: "এমআরপি (BDT)", field: "markedPrice", keyboardType: "numeric" },
+  { label: "ছাড় (%)", field: "discount", keyboardType: "numeric" },
   // { label: 'Selling Status', key: 'sellingStatus', keyboardType: 'default' },
 ];

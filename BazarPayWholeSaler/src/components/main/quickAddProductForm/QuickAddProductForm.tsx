@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, StyleSheet, ScrollView, Image, Text, Alert } from "react-native";
+import { View, StyleSheet, ScrollView, Image, Text, Alert, TouchableOpacity } from "react-native";
 import { TextInput, Button, Provider } from "react-native-paper";
 import { api } from "../../../utils/api";
 import { styles } from "./quickProductFormStyle";
@@ -82,13 +82,13 @@ const QuickAddProductForm = ({ productId, productImage ,productPercent}: any) =>
   return (
     <SafeAreaView>
       <ScrollView contentContainerStyle={styles.container}>
-        <Image
+        {/* <Image
           style={styles.logo}
           source={{
             uri: productImage,
           }}
         />
-        <Text style={{ fontSize: 20, marginBottom: 20 }}>Product Selling Details</Text>
+        <Text style={{ fontSize: 20, marginBottom: 20 }}>Product Selling Details</Text> */}
 
         <View style={styles.inputContainer}>
           {inputFields.map((option, index) => (
@@ -121,6 +121,18 @@ const QuickAddProductForm = ({ productId, productImage ,productPercent}: any) =>
           Add to Stock
         </Button>
       </ScrollView>
+
+      {/* <View style={styles.overlay}>
+        <TouchableOpacity
+          onPress={() => {
+            // handle onPress
+          }}
+          style={{ flex: 1, paddingHorizontal: 24 }}>
+          <View style={styles.btn}>
+            <Text style={styles.btnText}>Add to order ($15.95)</Text>
+          </View>
+        </TouchableOpacity>
+      </View> */}
     </SafeAreaView>
   );
 };

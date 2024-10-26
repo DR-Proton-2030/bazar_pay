@@ -15,19 +15,8 @@ import { useNavigation } from 'expo-router';
 import Colors from '../../../../constants/Colors';
 import { api } from '../../../../utils/api';
 
-const ProductDetailstwo = ({ form, setForm, setPage }: any) => {
+const ProductDetailstwo = ({ form, setForm, setPage ,handleCreateProduct}: {form:IProduct, setForm:any, setPage:any,handleCreateProduct:any}) => {
 
-  const navigation: any = useNavigation<any>();
-
-
-  const HandleNavigate = () => {
-    navigation.navigate("QuickAddProduct", {
-      productId: "productId",
-      productImage: "https://threedio-prod-var-cdn.icons8.com/av/preview_sets/previews/Pt5BM4m7Cpzc8ii7.webp",
-      productPercent: 99,
-    });
-  };
-  
   
   const [categoryModalVisible, setCategoryModalVisible] = useState(false);
   const [subcategoryModalVisible, setSubcategoryModalVisible] = useState(false);
@@ -85,6 +74,7 @@ const [brandImage, setBrandImage] = useState<string[]>([]);
       const result = await api.category.createCategory(formDataToSend);
       console.log("======> Response:", result);
       setNewCategoryId(result?._id);
+      setForm({ ...form, category_object_id:result?._id })
   
     } catch (error) {
       console.log("Error creating Category:", error);
@@ -119,6 +109,7 @@ const [brandImage, setBrandImage] = useState<string[]>([]);
   
       const result = await api.subcategory.createSubCategory(formDataToSend);
       console.log("======> Response:", result);
+      setForm({ ...form, subcategory_object_id:result?._id });
   
     } catch (error) {
       console.log("Error creating Category:", error);
@@ -153,7 +144,7 @@ const [brandImage, setBrandImage] = useState<string[]>([]);
       console.log("===> Form Data:", details);
       const result = await api.brands.createBrand(formDataToSend);
       console.log("======> Response:", result);
-  
+      setForm({ ...form, brand_object_id:result?._id });
     } catch (error) {
       console.log("Error creating Brand:", error);
     } finally {
@@ -161,21 +152,24 @@ const [brandImage, setBrandImage] = useState<string[]>([]);
     }
   }, [newBrand, brandDescription, brandImage]);
   
-  const handleCategorySelect = (category: string) => {
+  const handleCategorySelect = (category: any) => {
     setSelectedCategory(category);
-    setForm({ ...form, category });
+    console.log("=====> api category",category?._id )
+    setForm({ ...form, category_object_id:category?._id })
     setCategoryModalVisible(false);
   };
 
-  const handleSubcategorySelect = (subcategory: string) => {
+  const handleSubcategorySelect = (subcategory: any) => {
     setSelectedSubcategory(subcategory);
-    setForm({ ...form, subcategory });
+    console.log("=====> api subcategory",subcategory?._id )
+    setForm({ ...form, subcategory_object_id:subcategory?._id });
     setSubcategoryModalVisible(false);
   };
 
-  const handleBrandSelect = (brand: string) => {
+  const handleBrandSelect = (brand: any) => {
     setSelectedBrand(brand);
-    setForm({ ...form, brand });
+    console.log("=====> api brand",brand?._id )
+    setForm({ ...form, brand_object_id:brand?._id });
     setBrandModalVisible(false);
   };
 
@@ -183,10 +177,9 @@ const [brandImage, setBrandImage] = useState<string[]>([]);
     if (newCategory) {
       createCategory()
       setSelectedCategory(newCategory);
-      setForm({ ...form, category: newCategory });
-      // setNewCategory('');
-      // setCategoryDescription('');
-      setCreateCategoryModalVisible(false); // Close the modal after submission
+    
+    
+      setCreateCategoryModalVisible(false); 
     }
   };
 
@@ -194,10 +187,8 @@ const [brandImage, setBrandImage] = useState<string[]>([]);
     if (newSubcategory) {
       createSubCategory()
       setSelectedSubcategory(newSubcategory);
-      setForm({ ...form, subcategory: newSubcategory });
-      // setNewSubcategory('');
-      // setSubcategoryDescription('');
-      setCreateSubcategoryModalVisible(false); // Close the modal after submission
+      
+      setCreateSubcategoryModalVisible(false);
     }
   };
 
@@ -205,10 +196,8 @@ const [brandImage, setBrandImage] = useState<string[]>([]);
     if (newBrand) {
       createBrand()
       setSelectedBrand(newBrand);
-      setForm({ ...form, brand: newBrand });
-      // setNewBrand('');
-      // setBrandDescription('');
-      setCreateBrandModalVisible(false); // Close the modal after submission
+      
+      setCreateBrandModalVisible(false); 
     }
   };
 
@@ -246,18 +235,31 @@ const [brandImage, setBrandImage] = useState<string[]>([]);
         <View style={styles.input}>
           <Text style={styles.inputLabel}>পণ্যের সাবক্যাটেগরি</Text>
           {
-            newCategory ?
-            null 
-            :
+            !newCategory || newSubcategory ?
+            
             <TouchableOpacity
-            onPress={() => setSubcategoryModalVisible(true)}
+            onPress={() => {
+              if(newSubcategory ){
+                null
+                
+              }else{
+                setSubcategoryModalVisible(true) 
+              }
+
+            } }
             style={styles.unitField}
           >
             <Text style={styles.unitText}>
               {selectedSubcategory ? selectedSubcategory?.name || selectedSubcategory: 'পণ্যের সাবক্যাটেগরি নির্বাচন করুন'}
             </Text>
+            {
+            newSubcategory ?
+            null:
             <FeatherIcon name="chevron-down" size={20} color="#1D2A32" />
+            }
           </TouchableOpacity>
+          :
+          null
           }
          
           <TouchableOpacity onPress={() => setCreateSubcategoryModalVisible(true)}>
@@ -284,7 +286,7 @@ const [brandImage, setBrandImage] = useState<string[]>([]);
 
         <View style={[styles.formAction,{marginTop:45}]}>
           <TouchableOpacity
-            onPress={HandleNavigate}
+            onPress={handleCreateProduct}
           >
             <View style={styles.btn}>
               <Text style={styles.btnText}>পরবর্তী পদক্ষেপে যান</Text>
