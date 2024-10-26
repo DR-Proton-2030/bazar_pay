@@ -13,7 +13,7 @@ const ProductList = () => {
     const getStockProducts =async()=>{
         try {
             const filter ={
-                id : user?._id ||  "66f056a50bad482510cde4bb"
+              wholesalerId : user?._id 
             }
             const response = await api.wholesalerListedProducts.getWholesalerStockListedProducts(filter)
             setProducts(response)

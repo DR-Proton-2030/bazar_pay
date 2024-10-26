@@ -79,6 +79,14 @@ function RootLayoutNav() {
           statusBarStyle: "dark",
         }}
       />
+       <Stack.Screen
+        name="productAddOption"
+        options={{
+          headerShown: false,
+          statusBarTranslucent: true,
+          statusBarStyle: "dark",
+        }}
+      />
       <Stack.Screen
         name="passwordSet"
         options={{ headerShown: false, statusBarTranslucent: true }}
@@ -139,21 +147,20 @@ function RootLayoutNav() {
         options={{ headerShown: false, statusBarTranslucent: true }}
       />
       <Stack.Screen
+        name="newProductCreate"
+        options={{ headerShown: false, statusBarTranslucent: true ,statusBarStyle:"dark"}}
+      />
+      <Stack.Screen
         name="ManualAddProduct"
         options={{ headerShown: false, statusBarTranslucent: true }}
       />
       <Stack.Screen
         name="QuickAddProduct"
         options={{
-          headerShown: true,
+          headerShown: false,
           statusBarTranslucent: true,
           statusBarStyle: "dark",
-          headerTitle: () => (
-            <Text style={{ textAlign: "center", fontSize: 20 }}>
-              
-              Upload Product
-            </Text>
-          ),
+        
         }}
       />
       <Stack.Screen

@@ -31,7 +31,7 @@ const SecondBoxList = () => {
             icon: <AntDesign name="shoppingcart" size={24} color="white" />,
             backgroundColor: Colors.light.secondary,
             textColor: "white",
-            handleNavigate: () => handleNavigate("categoryPage"),
+            handleNavigate: () => handleNavigate("productAddOption"),
           },
           {
             title: "নতুন অর্ডার",

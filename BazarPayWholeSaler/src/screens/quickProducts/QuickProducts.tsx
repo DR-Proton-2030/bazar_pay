@@ -31,7 +31,7 @@ const QuickProductList: React.FC = () => {
     try {
       console.log("filter===>", filter);
       const { result } = await api.product.getProductList(filter);
-      console.log("=====>products", result);
+      // console.log("=====>products", result);
       setProductList(result);
     } catch (error) {
       console.log("error in getAllProducts", error);
@@ -41,14 +41,18 @@ const QuickProductList: React.FC = () => {
   const handleNavigate = (
     productId: string,
     productImage: string,
-    profit_percentage: number
+    profit_percentage: number,
+    product_name:string,
+    product_description:string
   ) => {
     navigation.navigate("QuickAddProduct", {
       productId: productId,
       productImage: productImage,
       productPercent: profit_percentage,
+      productName:product_name,
+      product_description: product_description
     });
-    console.log("Navigating to QuickAddProduct with productId:", productId);
+    console.log("Navigating to QuickAddProduct with productId:", product_name);
   };
 
   useEffect(() => {
@@ -61,21 +65,21 @@ const QuickProductList: React.FC = () => {
       contentContainerStyle={styles.scrollViewContainer}
     >
       {productList.map((product) => (
-        // <View key={product._id} style={styles.productItem}>
         <SmallBox
           title={product?.product_name}
           logo={product?.product_image}
-          icon={undefined}
+          icon={""}
           textColor={""}
           handleNavigate={() =>
             handleNavigate(
               product._id,
               product.product_image,
-              product?.profit_percentage
+              product?.profit_percentage,
+              product?.product_name,
+              product?.product_description
             )
           }
         />
-        // </View>
       ))}
     </ScrollView>
   );

@@ -48,6 +48,7 @@ const AddProductsForm = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const categoryId = queryParams.get("cid");
   const subcategoryId = queryParams.get("scid");
+  const brandId = queryParams.get("bid");
 
   const [productDetails, setProductDetails] = useState<IProducts>({
     product_name: "",
@@ -58,7 +59,7 @@ const AddProductsForm = () => {
     profit_percentage: 0,
     category_object_id: categoryId as string,
     subcategory_object_id: subcategoryId as string,
-    brand_object_id: "",
+    brand_object_id: brandId as string,
   });
 
   const { setDashboardHeader } = useContext(UIContext);
@@ -91,6 +92,8 @@ const AddProductsForm = () => {
       console.log(uploadedFile[0])
       const response = await api.productbyId.createProductById(formData);
       if (response) {
+        console.log("response:", response)
+
         alert("Product created successfully");
       } else {
         throw new Error(`API request failed with status ${response.status}`);
@@ -203,10 +206,11 @@ page== 0?
           </div>
         ) : null}
 
-<div className="flex-input">
+{brandId === "null" ? <div className="flex-input">
             <label>Select Brand:</label>
             <BrandAutoComplete setBrandId={handleBrandSelect} />
-          </div>
+          </div> : null}
+
 
         <div className="flex-input">
           {/* <label>Product Image:</label>
