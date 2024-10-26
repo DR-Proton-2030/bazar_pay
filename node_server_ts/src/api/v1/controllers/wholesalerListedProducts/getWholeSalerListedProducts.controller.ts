@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { MESSAGE } from "../../../../constants/message";
 import { StatusCodes } from "http-status-codes";
 import WholesalerListedProductModel from "../../../../models/wholesalerListedproduct.model";
+import mongoose from "mongoose";
 
 export const getEachWholesalerListedProducts = async (req: Request, res: Response) => {
 	try {
@@ -97,7 +98,7 @@ export const getLowestStockProductsByWholesaler = async (req: Request, res: Resp
 		}
 
 		// Create a filter object based on wholesalerId
-		const filter = { wholesaler_object_id: wholesalerId }; // Adjust this if the field name differs
+		const filter = { wholesaler_object_id: wholesalerId }; // Convert wholesalerId to ObjectId
 
 		// Log the filter to verify its structure
 		console.log("Filter:", filter);

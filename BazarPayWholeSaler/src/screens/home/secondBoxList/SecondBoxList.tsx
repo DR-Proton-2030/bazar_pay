@@ -36,7 +36,7 @@ const SecondBoxList = () => {
           {
             title: "নতুন অর্ডার",
             icon: <Feather name="box" size={24} color="black" />,
-            backgroundColor: Colors.light.cardColor,
+            // backgroundColor: Colors.light.cardColor,
             textColor: "black",
             handleNavigate: () => handleNavigate("(orders)"),
           },
