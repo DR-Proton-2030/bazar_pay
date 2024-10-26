@@ -122,7 +122,7 @@ export const QuickAddProductDetails = ({ logoSource, productName, product_descri
         setLoading(true);
         const productToUpload = {
             product_object_id: productId,
-            wholesaler_object_id: user?._id || "66866383cf6daa0537ad4d8d",
+            wholesaler_object_id: user?._id ,
             buying_price: parseFloat(formValues.buyingPrice),
             marked_price: parseFloat(formValues.markedPrice),
             discount: parseFloat(formValues.discount),

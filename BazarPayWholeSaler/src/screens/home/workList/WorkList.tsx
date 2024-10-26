@@ -11,15 +11,13 @@ const WorkList = () => {
       <SmallBoxList heading="আপনার কাজসমূহ" smallBoxList={[
         {
           title: "DSR/মার্কেটশপ কে পণ্য বুঝিয়ে দিন",
-          icon: <AntDesign name="book" size={24} color="white" />,
-          backgroundColor: Colors.light.secondary,
-          textColor: "white",
+          icon: <AntDesign name="book" size={24} color="black" />,
+          textColor: "black",
         },
         {
           title: "পেমেন্ট ও রিটার্ন পণ্য নিন",
-          icon: <MaterialCommunityIcons name="cash-refund" size={24} color="white" />,
-          backgroundColor: Colors.light.secondary,
-          textColor: "white",
+          icon: <MaterialCommunityIcons name="cash-refund" size={24} color="black" />,
+          textColor: "black",
         },
         {
           title: "পণ্য কিনুন",
