@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -16,13 +16,9 @@ const SubcategoryAutoComplete: React.FC<SubcategoryAutoCompleteProps> = ({ setSu
     name: string;
   }
 
-  interface Category {
-    _id: string;
-    name: string;
-  }
   
   const [options, setOptions] = useState<Subcategory[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<Category | null>(null);
+  
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [hasMore, setHasMore] = useState(true);
@@ -40,7 +36,7 @@ const SubcategoryAutoComplete: React.FC<SubcategoryAutoCompleteProps> = ({ setSu
     setSubcategoryId(data?._id ?? null);
   };
 
-  const getSubcategoryList = async (search = "", page = 1) => {
+  const getSubcategoryList = useCallback(async (search = "", page = 1) => {
     setLoading(true);
     const filter = {
       page,
@@ -49,6 +45,8 @@ const SubcategoryAutoComplete: React.FC<SubcategoryAutoCompleteProps> = ({ setSu
     };
     try {
       const response = await api.subcategory.getSubcategory(filter);
+      console.log("options", options)
+      console.log('API response:', response)
       setOptions((prevOptions) => [...prevOptions, ...response.result]);
       setHasMore(response.result.length === PAGE_SIZE); // Check if more data is available
     } catch (error) {
@@ -56,7 +54,7 @@ const SubcategoryAutoComplete: React.FC<SubcategoryAutoCompleteProps> = ({ setSu
     } finally {
       setLoading(false);
     }
-  };
+  },[])
 
   const handleScroll = (event: React.UIEvent<HTMLElement>) => {
     const target = event.target as HTMLElement;
@@ -78,6 +76,7 @@ const SubcategoryAutoComplete: React.FC<SubcategoryAutoCompleteProps> = ({ setSu
     <Autocomplete
       sx={{ width: "500px" }}
       {...defProps}
+     
       onChange={(event, value) => getData(value)}
       onInputChange={(event, value) => setSearchQuery(value)}
       renderInput={(params) => (
