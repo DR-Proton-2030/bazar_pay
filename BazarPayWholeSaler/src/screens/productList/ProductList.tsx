@@ -27,7 +27,7 @@ const ProductList = ({ loading, products }: any) => {
               buyingPrice={item.buying_price}
               sellingPrice={item.selling_price}
               stock={item.current_stock}
-              uri={item.product.product_image[0]}
+              uri={item.product.product_image}
               product={item}
             />
           )}

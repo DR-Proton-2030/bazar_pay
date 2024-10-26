@@ -1,143 +1,150 @@
 import React, { useCallback, useEffect, useState } from "react";
-import {
-  View,
-  StyleSheet,
-  FlatList,
-  TextInput,
-  Button,
-  Text,
-} from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { View, StyleSheet, Text, FlatList, Button, TextInput } from "react-native";
+import { useRoute, RouteProp } from "@react-navigation/native";
 import { api } from "../../utils/api";
 import SmallBox from "../../components/shared/smallBox/SmallBox";
-import { ICategory } from "../../@types/props/ICategory";
+import { useNavigation } from "expo-router";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { ISubcategory } from "../../@types/props/ISubcategory";
 import { IPagination } from "../../@types/types/pagination";
 import Colors from "../../constants/Colors";
-import { TouchableOpacity } from "react-native-gesture-handler";
 import { ActivityIndicator } from "react-native-paper";
 
-const AllCategoryList: React.FC = () => {
-  const [categoryList, setCategoryList] = useState<ICategory[]>([]);
+type ParamList = {
+  subcategoryPage: {
+    categoryId: string;
+  };
+};
+
+const AllSubcategory: React.FC = () => {
+  const route = useRoute<RouteProp<ParamList, "subcategoryPage">>();
+  const { categoryId } = route.params;
   const navigation = useNavigation<any>();
+  const [subcategoryList, setSubcategoryList] = useState<ISubcategory[]>([]);
   const [pagination, setPagination] = useState<IPagination>({
     currentPage: 1,
     pageCount: 1,
   });
-  const [searchText, setSearchText] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
+  const [searchText, setSearchText] = useState<any>(null);
 
   const handleLoadMore = () => {
     setPagination((prevPagination) => ({
       ...prevPagination,
-      currentPage: pagination.currentPage + 1,
+      currentPage: pagination.currentPage+1,
     }));
-    console.log(pagination.currentPage);
-  };
+    console.log(pagination.currentPage)
+};
 
-  const getAllCategory = useCallback(
+  const getAllSubCategory = useCallback(
     async (reset = false) => {
-      if (loading) return;
       setLoading(true);
-      console.log(pagination.currentPage);
       const filter = {
         page: reset ? 1 : pagination.currentPage,
         limit: 10,
+        category_object_id: categoryId,
         name: searchText,
       };
+    try {  
+      const result = await api.subcategory.getSubategoryList(filter);
+      if (reset) {
+        setSubcategoryList(result.result);
 
-      try {
-        const result = await api.category.getCategoryList(filter);
-        if (reset) {
-          setCategoryList(result.result);
-        } else {
-          setCategoryList((prevCategoryList) => [
-            ...prevCategoryList,
-            ...result.result,
-          ]);
-        }
-      } catch (error) {
-        console.log("Error in getAllCategory:", error);
-      } finally {
-        setLoading(false);
+      } else {
+        setSubcategoryList((prevSubCategoryList) => [
+          ...prevSubCategoryList,
+          ...result.result,
+        ]);
       }
-    },
-    [pagination.currentPage, searchText, loading]
-  );
+      setLoading(false);
+    } catch (error) {
+      console.log("error in getAllCategory", error);
+       setLoading(true);
+    }
+  }, [pagination.currentPage]);
 
-  const handleSearchButtonPress = () => {
-    getAllCategory(true);
-  };
+
+  const handleSearchButtonPress =() => {
+    setSubcategoryList([])
+    setPagination({currentPage: 1,
+      pageCount: 1});
+    
+   getAllSubCategory(true); 
+ };
+
 
   const handleNavigate = (id: string) => {
-    navigation.navigate("subcategoryPage", { categoryId: id });
+    navigation.navigate("brandPage", {
+      subcategoryId: id,
+      categoryId: categoryId,
+    });
+    console.log("first");
   };
 
   useEffect(() => {
-    getAllCategory();
+    getAllSubCategory();
   }, [pagination.currentPage]);
+
   return (
     <>
-      <View style={styles.searchContainer}>
+    <View style={styles.searchContainer}>
         <TextInput
           style={styles.searchInput}
-          placeholder="Search categories..."
+          placeholder="Search Subcategories..."
           value={searchText}
           onChangeText={(text) => setSearchText(text)}
         />
         <Button title="Search" onPress={handleSearchButtonPress} />
       </View>
-      {searchText && (
-        <View
-          style={{
-            justifyContent: "space-between",
-            flexDirection: "row",
-            paddingHorizontal: 20,
-            paddingBottom: 20,
-            zIndex: 50,
-          }}
-        >
+
+      {
+        searchText &&
+        <View style={{
+          justifyContent: "space-between",
+          flexDirection: "row", paddingHorizontal: 20, paddingBottom: 10
+        }}>
           <Text style={{ fontWeight: "600" }}>
-            Search Results for{" "}
-            <Text style={{ color: Colors.light.blue }}>{searchText}</Text>
+            Search Results for <Text style={{ color: Colors.light.blue }}>{searchText}</Text>
           </Text>
-          {/* <TouchableOpacity  onPress={() => {
+          {/* <TouchableOpacity onPress={() => {
             setSearchText(null)
-            setCategoryList([])
-            getAllCategory(true);
+            setSubcategoryList([])
+            getAllSubCategory(true);
           }}>
             <Text style={{ fontWeight: "600" }}>
               X clear search
             </Text>
           </TouchableOpacity> */}
+
+        </View>
+      }
+
+{
+ pagination?.currentPage===1 &&  loading?
+  <ActivityIndicator></ActivityIndicator>
+  :
+    <FlatList
+      data={subcategoryList}
+      keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
+      renderItem={({ item }) => (
+        <View style={styles.subcategoryItem}>
+          <SmallBox
+            title={item.name}
+            logo={item.sub_category_image}
+            icon={undefined}
+            textColor={""}
+            handleNavigate={() => handleNavigate(item._id)}
+          />
         </View>
       )}
-
-      {pagination?.currentPage === 1 && loading ? (
-        <ActivityIndicator></ActivityIndicator>
-      ) : (
-        <FlatList
-          data={categoryList}
-          keyExtractor={(item, index) =>
-            item._id ? `${item._id}-${index}` : index.toString()
-          }
-          onEndReached={searchText ? null : handleLoadMore}
-          onEndReachedThreshold={0.2}
-          renderItem={({ item }) => (
-            <View style={styles.categoryItem}>
-              <SmallBox
-                title={item.name}
-                logo={item.logo}
-                icon={undefined}
-                textColor={""}
-                handleNavigate={() => handleNavigate(item._id)}
-              />
-            </View>
-          )}
-          contentContainerStyle={styles.container}
-          ListFooterComponent={loading ? <ActivityIndicator /> : null}
-        />
-      )}
-    </>
+      contentContainerStyle={styles.container}
+      onEndReached={handleLoadMore}
+      onEndReachedThreshold={0.5}
+      ListFooterComponent={loading ? <ActivityIndicator/>: null}
+      />
+    }
+      </>
   );
 };
 
@@ -149,9 +156,9 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
   },
   searchContainer: {
-    flexDirection: "row",
+    flexDirection: 'row',
     marginBottom: 10,
-    alignItems: "center",
+    alignItems: 'center',
     paddingHorizontal: 20,
     marginTop: 20,
     shadowColor: "#000",
@@ -162,18 +169,22 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: '#ccc',
     padding: 8,
     marginRight: 10,
     borderRadius: 5,
-    backgroundColor: "#fff",
+    backgroundColor:"#fff"
   },
-  categoryItem: {
+  subcategoryItem: {
     padding: 10,
     marginBottom: 10,
+    backgroundColor: "#f0f0f0",
     borderRadius: 5,
-    flex: 1,
+  },
+  subcategoryText: {
+    fontSize: 16,
+    color: "black",
   },
 });
 
-export default AllCategoryList;
+export default AllSubcategory;

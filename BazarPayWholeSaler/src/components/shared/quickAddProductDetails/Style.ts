@@ -68,9 +68,8 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   hero: {
-    width: '80%',
+    width: '100%',
     height: 200,
-    marginTop:10
   },
   title: {
     fontSize: 27,
