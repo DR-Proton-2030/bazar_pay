@@ -28,9 +28,8 @@ const SecondBoxList = () => {
         smallBoxList={[
           {
             title: "পণ্য যোগ করুন",
-            icon: <AntDesign name="shoppingcart" size={24} color="white" />,
-            backgroundColor: Colors.light.secondary,
-            textColor: "white",
+            icon: <AntDesign name="shoppingcart" size={24} color="black" />,
+            textColor: "black",
             handleNavigate: () => handleNavigate("productAddOption"),
           },
           {
