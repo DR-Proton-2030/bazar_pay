@@ -30,12 +30,14 @@ const ProductCard: React.FC<ProductCardProps> = ({
   const hideModal = () => setVisible(false);
 
   const handleNavigate = () => {
-    navigation.navigate("ManualAddProduct", product);
+    // navigation.navigate("ManualAddProduct", product);
   };
 
   const handleNavigateProductDetails = () => {
     navigation.navigate("productDetailsPage", product);
   };
+
+  console.log("uri==>",uri[0])
   return (
     <PaperProvider>
       <StockModal
@@ -53,7 +55,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
           onPress={handleNavigate}
           style={productCardStyles.container}
         >
-          <Image source={{ uri: uri }} style={productCardStyles.image} />
+          <Image source={{ uri: uri[0] }} style={productCardStyles.image} />
           <View style={productCardStyles.infoContainer}>
             <Text style={productCardStyles.title}>{title}</Text>
             <View style={productCardStyles.priceContainer}>
@@ -66,24 +68,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
               <Text style={productCardStyles.stock}>Stock: {stock}</Text>
             </View>
           </View>
-          {/* <View style={productCardStyles.separator} /> */}
-          {/* <View style={productCardStyles.gridContainer}>
-            <TouchableOpacity onPress={() => showModal("STOCK")}>
-              <Text style={productCardStyles.gridText}>Edit Stock</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => showModal("PRICE")}>
-              <Text style={productCardStyles.gridText}>Edit Price</Text>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={handleNavigate}>
-              <Feather name="edit" size={20} color="blue" />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Entypo name="share" size={20} color="blue" />
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Feather name="more-vertical" size={20} color="blue" />
-            </TouchableOpacity>
-          </View> */}
+      
         </TouchableOpacity>
       </View>
     </PaperProvider>

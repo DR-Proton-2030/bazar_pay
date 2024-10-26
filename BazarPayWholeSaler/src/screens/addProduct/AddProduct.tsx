@@ -140,7 +140,7 @@ const AddProduct = () => {
   return (
     <SafeAreaView>
       <CommonHeader text="নতুন পণ্য যোগ করুন" />
-      <ScrollView showsVerticalScrollIndicator={false}>
+      {/* <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.form}>
           <TouchableOpacity style={globalStyle.quickAddButton}>
             <Text style={globalStyle.quickAddText}>দ্রুত পণ্য যোগ করুন</Text>
@@ -174,7 +174,7 @@ const AddProduct = () => {
               
           </Button>
         </View>
-      </ScrollView>
+      </ScrollView> */}
 
       <Portal>
         <Modal visible={loading} dismissable={false}>

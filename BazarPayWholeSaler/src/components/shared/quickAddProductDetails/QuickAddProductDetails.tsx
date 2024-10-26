@@ -31,7 +31,7 @@ export const QuickAddProductDetails = ({ logoSource, productName, product_descri
 
     const { user } = useContext(AuthContext);
     const navigation: any = useNavigation<any>();
-  
+    const [expanded, setExpanded] = useState(false);
     
     const [formValues, setFormValues] = useState<any>({
         quantity: 0,
@@ -42,7 +42,7 @@ export const QuickAddProductDetails = ({ logoSource, productName, product_descri
         currentStock: 0,
         sellingStatus: "",
     });
-
+    const isLongText = product_description.length > 30;
 
     const [loading, setLoading] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
@@ -219,9 +219,21 @@ export const QuickAddProductDetails = ({ logoSource, productName, product_descri
                         <View style={styles.section}>
                             <Text style={styles.title}>{productName}</Text>
 
-                            <Text style={styles.subtitle}>
-                                {product_description}
-                            </Text>
+                            <View>
+      <Text
+        style={styles.text}
+        numberOfLines={expanded ? undefined : 2} // Show limited lines when not expanded
+        ellipsizeMode="tail"
+      >
+        {product_description}
+      </Text>
+      {
+        isLongText &&  <TouchableOpacity onPress={() => setExpanded(!expanded)}>
+        <Text style={styles.readMoreText}>{expanded ? 'Read less' : 'Read more'}</Text>
+      </TouchableOpacity>
+      }
+       
+    </View>
                         </View>
 
                         <View style={styles.section}>

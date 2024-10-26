@@ -15,6 +15,15 @@ export const styles = StyleSheet.create({
     width: 200,
     borderRadius:40
   },
+  text: {
+    fontSize: 14,
+    lineHeight: 20,
+    overflow: 'hidden', // Hides overflow when limited height
+  },
+  readMoreText: {
+    color: 'blue',
+    marginTop: 5,
+  },
   inputContainer: {
     flexDirection: "row",
     flexWrap: "wrap",
@@ -59,8 +68,9 @@ export const styles = StyleSheet.create({
     width: "100%",
   },
   hero: {
-    width: '100%',
-    height: 220,
+    width: '80%',
+    height: 200,
+    marginTop:10
   },
   title: {
     fontSize: 27,

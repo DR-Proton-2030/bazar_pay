@@ -6,7 +6,7 @@ import { api } from '../../../../utils/api';
 import { IPagination } from '../../../../@types/types/pagination';
 import Colors from '../../../../constants/Colors';
 
-export const SelectModal = ({ type, data, handleSelect ,catId }: any) => {
+export const SelectModal = ({ type, data, handleSelect, catId }: any) => {
 
 
   const [dataList, setDataList] = useState<any[]>([]);
@@ -36,7 +36,7 @@ export const SelectModal = ({ type, data, handleSelect ,catId }: any) => {
 
 
   const getAllCategory = useCallback(async (reset = false) => {
-    setDataList([]);
+
     if (loading) return;
     setLoading(true);
     console.log(pagination.currentPage)
@@ -44,25 +44,25 @@ export const SelectModal = ({ type, data, handleSelect ,catId }: any) => {
       page: reset ? 1 : pagination.currentPage,
       limit: 10,
       name: searchText,
-      category_object_id: type === "SUBCATEGORY"  ? catId : null
+      category_object_id: type === "SUBCATEGORY" ? catId : null
     };
 
     type === "SUBCATEGORY" && console.log("=====>selected ategory ", catId)
     try {
-      let result:any ;
+      let result: any;
       {
         type === "BRAND" ?
-        result = await api.brands.getBrandList(filter)
+          result = await api.brands.getBrandList(filter)
           :
           type === "CATEGORY" ?
-          result = await api.category.getCategoryList(filter)
-          
+            result = await api.category.getCategoryList(filter)
+
             :
             type === "SUBCATEGORY" ?
-            result = await api.subcategory.getSubategoryList(filter)
+              result = await api.subcategory.getSubategoryList(filter)
               : null
       }
-     
+
       if (reset) {
         setDataList(result.result);
       } else {
@@ -81,53 +81,50 @@ export const SelectModal = ({ type, data, handleSelect ,catId }: any) => {
 
   const handleSearchButtonPress = () => {
     setDataList([]);
-    setPagination({currentPage: 1,
-      pageCount: 1});
+    setPagination({
+      currentPage: 1,
+      pageCount: 1
+    });
     getAllCategory(true);
   };
 
 
   useEffect(() => {
-    getAllCategory();
+    getAllCategory(false);
   }, [pagination.currentPage]);
 
   return (
     <>
       <View style={styles.modalOverlay}>
         <View style={styles.modalContent}>
+        <View style={{ position: 'relative' }}>
+  <View style={{
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: 4,
+    backgroundColor: '#000',
+    opacity: 0.2,
+    borderRadius: 2
+  }} />
+  <View style={{ backgroundColor: "#fff" }}>
+
           {
             type === "BRAND" ?
-              <Text style={styles.modalTitle}>পণ্যের ব্র্যান্ড নির্বাচন করুন</Text>
-              :
-              type === "CATEGORY" ?
-                <Text style={styles.modalTitle}>পণ্যের ক্যাটেগরি নির্বাচন করুন</Text>
-                :
-                type === "SUBCATEGORY" ?
-                  <Text style={styles.modalTitle}>পণ্যের সাবক্যাটেগরি নির্বাচন করুন</Text>
-                  : null
+            <Text style={styles.modalTitle}>পণ্যের ব্র্যান্ড নির্বাচন করুন</Text>
+            :
+            type === "CATEGORY" ?
+            <Text style={styles.modalTitle}>পণ্যের ক্যাটেগরি নির্বাচন করুন</Text>
+            :
+            type === "SUBCATEGORY" ?
+            <Text style={styles.modalTitle}>পণ্যের সাবক্যাটেগরি নির্বাচন করুন</Text>
+            : null
           }
 
-
-          <View style={{ flexDirection: "row", gap: 5,marginBottom:5 }}>
-
-
-            <TextInput
-              style={[styles.searchBox,{width: "80%",}]}
-              placeholder={`Search ${type.toLowerCase()}...`}
-              value={searchText}
-              onChangeText={(text) => setSearchText(text)}
-            />
-            
-            <TouchableOpacity style={{backgroundColor:Colors.light.blue,width:"20%",borderRadius:10,alignItems:"center",justifyContent:"center"}}
-             onPress={handleSearchButtonPress}>
-              <AntDesign name="search1" size={28} color="white" />
-            </TouchableOpacity>
           </View>
-
-          {/* </View> */}
-
-          <View style={{ borderBottomWidth: 2, marginVertical: 5, borderColor: "gray" }} />
-          {/* List of Items */}
+    </View>
+          
           <FlatList
             data={dataList}
             keyExtractor={(item, index) => item._id ? `${item._id}-${index}` : index.toString()}
@@ -140,15 +137,31 @@ export const SelectModal = ({ type, data, handleSelect ,catId }: any) => {
                 style={styles.modalItem}
                 key={item._id}
               >
-                <Image source={{uri: item?.logo || item?.sub_category_image}}
-                style={{height:40,width:40,marginRight:15,borderRadius:5}}
+                <Image source={{ uri: item?.logo || item?.sub_category_image }}
+                  style={{ height: 40, width: 40, marginRight: 15, borderRadius: 5 }}
                 />
                 <Text style={styles.modalItemText}>{item?.name}</Text>
               </TouchableOpacity>
             )}
             ListFooterComponent={loading ? <ActivityIndicator /> : null}
           />
+          <View style={{ flexDirection: "row", gap: 5, paddingVertical:15,borderTopWidth:0.4 ,borderColor:Colors.light.grayBtn,
+             paddingHorizontal: 22, }}>
+            <TextInput
+              style={[styles.searchBox, { width: "80%", }]}
+              placeholder={`Search ${type.toLowerCase()}...`}
+              value={searchText}
+              onChangeText={(text) => setSearchText(text)}
+            />
+            <TouchableOpacity style={{ backgroundColor: Colors.light.blue, width: "20%",
+             borderRadius: 10, alignItems: "center", justifyContent: "center" }}
+              onPress={handleSearchButtonPress}>
+              <AntDesign name="search1" size={28} color="white" />
+            </TouchableOpacity>
+          </View>
         </View>
+
+
       </View>
     </>
   );

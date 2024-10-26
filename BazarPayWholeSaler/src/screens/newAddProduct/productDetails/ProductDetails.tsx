@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
   ActivityIndicator,
+  Alert,
 } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import FeatherIcon from '@expo/vector-icons/Feather';
@@ -37,7 +38,7 @@ const ProductDetails = () => {
     subcategory_object_id: '',
     category_object_id: '',
     profit_percentage: 0,
-    product_status: "Active"
+    product_status: "PENDING"
 
   });
 
@@ -73,7 +74,8 @@ const ProductDetails = () => {
         product_description: result?.product_description
       });
     } catch (error) {
-      console.log("Error creating Category:", error);
+      console.log("Error creating Product:", error);
+      Alert.alert("Error","Error Creating Product")
     } finally {
       setLoading(false)
     }

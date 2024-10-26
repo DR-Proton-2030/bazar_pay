@@ -5,7 +5,6 @@ import FavGroup from "../../../components/shared/favGroup/FavGroup";
 import ProductList from "../ProductList";
 import Colors from "../../../constants/Colors";
 import { PaperProvider, Portal } from "react-native-paper";
-import { IFavGroupAction } from "../../../@types/props/FavGroup.props";
 import { useNavigation } from "expo-router";
 import { api } from "../../../utils/api";
 import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerContext";
@@ -26,7 +25,7 @@ const ActiveProducts = () => {
     navigation.navigate("categoryPage");
   };
 
-  const action_list: IFavGroupAction[] = [
+  const action_list: any[] = [
     {
       icon: "star",
       label: "দ্রুত পণ্য যোগ করুন",

@@ -7,7 +7,6 @@ import ProductHeader from "../../components/main/productDetails/productHeader/Pr
 import ProductBlock from "../../components/main/productDetails/productBlock/ProductBlock";
 import ProductDesc from "../../components/main/productDetails/productDesc/ProductDesc";
 import BuyerOptions from "../../components/main/buyerOptions/BuyerOptions";
-import { ExpoRouter } from "expo-router/types/expo-router";
 import CommonHeader from "../../components/shared/commonHeader/CommonHeader";
 import { IProduct } from "../../@types/types/product.interface";
 import { useRoute } from "@react-navigation/native";

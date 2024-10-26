@@ -61,23 +61,23 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        paddingHorizontal: 20,
         maxHeight: '50%',
-        paddingBottom:20,
         paddingTop:25,
-        minHeight:350
+        minHeight:600
       },
       modalTitle: {
         fontSize: 25,
         fontWeight: '600',
         marginBottom: 10,
-        color: Colors.light.blue
+        color: Colors.light.blue,
+        paddingHorizontal: 20,
+
       },
       modalItem: {
         paddingVertical: 8,
         flexDirection:"row",
         alignItems: 'center',
-        
+        paddingHorizontal: 22, 
       },
       modalItemText: {
         fontSize: 20,
