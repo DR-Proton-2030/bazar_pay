@@ -25,8 +25,7 @@
         <action android:name="android.intent.action.VIEW"/>
         <category android:name="android.intent.category.DEFAULT"/>
         <category android:name="android.intent.category.BROWSABLE"/>
-        <data android:scheme="bazar-pay-wholesaler"/>
-        <data android:scheme="com.tuhin08123.bazar_pay_app"/>
+        <data android:scheme="bazarpay-wholesaler"/>
         <data android:scheme="com.bazar_pay_wholesaler_app"/>
       </intent-filter>
     </activity>

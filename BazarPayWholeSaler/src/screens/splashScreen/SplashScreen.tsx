@@ -9,7 +9,7 @@ import * as Notifications from "expo-notifications";
 import Constants from "expo-constants";
 
 function handleRegistrationError(errorMessage: string) {
-  alert(errorMessage);
+  // alert(errorMessage);
   throw new Error(errorMessage);
 }
 
@@ -49,7 +49,7 @@ async function registerForPushNotificationsAsync() {
           projectId,
         })
       ).data;
-      console.log("token",pushTokenString);
+      // console.log("token",pushTokenString);
       return pushTokenString;
     } catch (e: unknown) {
       handleRegistrationError(`${e}`);

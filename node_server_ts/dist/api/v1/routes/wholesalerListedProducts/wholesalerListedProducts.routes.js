@@ -8,4 +8,5 @@ const getWholeSalerListedProducts_controller_1 = require("../../controllers/whol
 const router = express_1.default.Router();
 router.route("/get-each-wholesaler-listed-product").get(getWholeSalerListedProducts_controller_1.getEachWholesalerListedProducts);
 router.route("/get-all-wholesaler-listed-product").get(getWholeSalerListedProducts_controller_1.getAllListedProducts);
+router.route("/get-wholesaler-low-stock-product").get(getWholeSalerListedProducts_controller_1.getLowestStockProductsByWholesaler);
 exports.default = router;

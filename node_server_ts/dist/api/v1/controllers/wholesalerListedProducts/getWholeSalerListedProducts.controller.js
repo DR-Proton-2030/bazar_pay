@@ -12,15 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAllListedProducts = exports.getEachWholesalerListedProducts = void 0;
+exports.getLowestStockProductsByWholesaler = exports.getAllListedProducts = exports.getEachWholesalerListedProducts = void 0;
 const message_1 = require("../../../../constants/message");
 const http_status_codes_1 = require("http-status-codes");
 const wholesalerListedproduct_model_1 = __importDefault(require("../../../../models/wholesalerListedproduct.model"));
 const getEachWholesalerListedProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const filter = req.query;
+        const { filter } = req.query;
         let wholesalerListedProductInstance = yield wholesalerListedproduct_model_1.default
-            .findOne(filter)
+            .findOne({ filter })
             .populate("wholesaler")
             .populate({
             path: 'product',
@@ -86,3 +86,50 @@ const getAllListedProducts = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.getAllListedProducts = getAllListedProducts;
+const getLowestStockProductsByWholesaler = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        // Extract wholesalerId from query parameters
+        const { wholesalerId } = req.query;
+        // Ensure wholesalerId is provided
+        if (!wholesalerId) {
+            return res.status(400).json({
+                message: "Wholesaler ID is required."
+            });
+        }
+        // Create a filter object based on wholesalerId
+        const filter = { wholesaler_object_id: wholesalerId }; // Convert wholesalerId to ObjectId
+        // Log the filter to verify its structure
+        console.log("Filter:", filter);
+        const ProductList = yield wholesalerListedproduct_model_1.default.aggregate([
+            { $match: filter },
+            { $sort: { current_stock: 1 } },
+            { $limit: 10 },
+            {
+                $lookup: {
+                    from: 'products',
+                    localField: 'product',
+                    foreignField: '_id',
+                    as: 'productDetails', // Changed to productDetails
+                }
+            },
+            {
+                $project: {
+                    current_stock: 1,
+                    productDetails: 1 // Include the necessary fields
+                }
+            }
+        ]);
+        return res.status(200).json({
+            message: message_1.MESSAGE.get.succ,
+            result: ProductList,
+        });
+    }
+    catch (error) {
+        console.error("Error:", error); // Log error for debugging
+        return res.status(400).json({
+            message: message_1.MESSAGE.get.fail,
+            error,
+        });
+    }
+});
+exports.getLowestStockProductsByWholesaler = getLowestStockProductsByWholesaler;

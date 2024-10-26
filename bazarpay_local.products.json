@@ -1,0 +1,1359 @@
+[{
+  "_id": {
+    "$oid": "67001c56305b8a1a38dbeb66"
+  },
+  "product_name": "samsung galaxy",
+  "unit": "1",
+  "product_description": "test",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728060501901photo.png",
+  "brand_object_id": {
+    "$oid": "66f18e0c187767f802cf5b8d"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fd7e354e901f565158bd12"
+  },
+  "category_object_id": {
+    "$oid": "66fcfe09e0dc549bcdf73167"
+  },
+  "profit_percentage": 10,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-04T16:48:22.601Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-04T16:48:22.601Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67002b67fcf42e6a0a5a742f"
+  },
+  "product_name": "Test electricy",
+  "unit": "1pcs",
+  "product_description": "Thdjjrjd",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728064357778photo.png",
+  "brand_object_id": {
+    "$oid": "66f18c9cb453c5a8c35bb8a5"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fd7e354e901f565158bd12"
+  },
+  "category_object_id": {
+    "$oid": "66fcfe09e0dc549bcdf73167"
+  },
+  "profit_percentage": 3,
+  "product_status": "Pending",
+  "createdAt": {
+    "$date": "2024-10-04T17:52:39.557Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-04T17:52:39.557Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6700eecc5c43e7b3e04e5851"
+  },
+  "product_name": "Ismail test",
+  "unit": "1pcs",
+  "product_description": "This is for test",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728114379670photo.png",
+  "brand_object_id": {
+    "$oid": "66f3035a08bfc576d5d2a78a"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fd7e354e901f565158bd12"
+  },
+  "category_object_id": {
+    "$oid": "66fcfe09e0dc549bcdf73167"
+  },
+  "profit_percentage": 3,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T07:46:20.972Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T07:46:20.972Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822728a9c2349a3bace4"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152103045photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:03.135Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:03.135Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822828a9c2349a3bace8"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152104045photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:04.106Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:04.106Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822828a9c2349a3bacec"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152104365photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:04.467Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:04.467Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822828a9c2349a3bacf0"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152104705photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:04.835Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:04.835Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822928a9c2349a3bacf4"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152105065photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:05.143Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:05.143Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822928a9c2349a3bacf8"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152105425photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:05.486Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:05.486Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67018229fba4f5832a8cba31"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152105248photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:05.551Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:05.551Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822928a9c2349a3bacfc"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152105745photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:05.858Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:05.858Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670182298230d8ca0fc47552"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152105633photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:05.874Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:05.874Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67018229628ea4aadc526a0f"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152105663photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:05.903Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:05.903Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67018229fba4f5832a8cba35"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152105886photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:05.987Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:05.987Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822cfba4f5832a8cba39"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152108066photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:08.149Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:08.149Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822c8230d8ca0fc47556"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152108073photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:08.174Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:08.174Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822c628ea4aadc526a13"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152108083photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:08.183Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:08.183Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822c28a9c2349a3bad00"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152108125photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:08.206Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:08.206Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822c628ea4aadc526a17"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152108363photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:08.443Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:08.443Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822cfba4f5832a8cba3d"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152108366photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:08.447Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:08.447Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822c8230d8ca0fc4755a"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152108374photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:08.452Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:08.452Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701822c28a9c2349a3bad04"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152108425photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:08.549Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:08.549Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701823028a9c2349a3bad08"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152111945photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:12.045Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:12.045Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701823023f911c3b7269818"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152111552photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:12.453Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:12.453Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701823423f911c3b726981c"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152116872photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:16.953Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:16.953Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701823523f911c3b7269820"
+  },
+  "product_name": "Freezers",
+  "unit": "1",
+  "product_description": "Freezers are essential for preserving raw meats. Although most refrigerators have an attached freezer section, they are not capable enough for extensive requirements. For commercial purposes, it is recommended to go with heavy-duty freezers like Voltas CF HT 320 DD P Double Door Deep Freezer.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152117672photo.png",
+  "brand_object_id": {
+    "$oid": "66ee398b03547b23dd55f8a7"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:15:17.764Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:15:17.764Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701836128a9c2349a3bad20"
+  },
+  "product_name": "Refrigerators",
+  "unit": "1",
+  "product_description": "There are hardly any households that don't know about the utilities of refrigerators. However, most people get confused between single-door, double-door and other types of refrigerators. It all depends on each household’s requirements and space availability.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728152416861photo.png",
+  "brand_object_id": {
+    "$oid": "66edc89e794dcdb1b6c68d9f"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:20:17.079Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:20:17.079Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6701894df1bb97ab03a96541"
+  },
+  "product_name": "Water Coolers",
+  "unit": "1 ",
+  "product_description": "When the mercury goes up, nothing can be more soothing than sipping from a glass of cold water. You can store water bottles inside a fridge to cool them, but having a water cooler is more convenient as they directly dispense cooled water. Therefore, it is always on the home appliance list of offices.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728153932688photo.png",
+  "brand_object_id": {
+    "$oid": "6701872dfba4f5832a8cba44"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fbf72eca27571eb2077aa4"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-05T18:45:33.408Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-05T18:45:33.408Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6702c8a4c46e11e0460c6cea"
+  },
+  "product_name": "Rechargeable Floor Fan",
+  "unit": "1",
+  "product_description": "18\" rechargeable Floor Fan. ",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728235684199photo.png",
+  "brand_object_id": {
+    "$oid": "66eefe82f71b77287390982a"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c4597a822bcdd17e4006"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-06T17:28:04.899Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T17:28:04.899Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6702c9589125203a73f238f7"
+  },
+  "product_name": "Rechargeable Table Fan",
+  "unit": "1",
+  "product_description": "A product of Defender Brand. AC/DC Operated.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728235863675photo.png",
+  "brand_object_id": {
+    "$oid": "66eefe51f71b772873909825"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c4597a822bcdd17e4006"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-06T17:31:04.536Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T17:31:04.536Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6702cbcfc46e11e0460c6d1a"
+  },
+  "product_name": "High Speedy Fan",
+  "unit": "1",
+  "product_description": "9\" High speedy table fan.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728236495238photo.png",
+  "brand_object_id": {
+    "$oid": "6702cb149125203a73f23942"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c4597a822bcdd17e4006"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-06T17:41:35.445Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T17:41:35.445Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6702d234a5eff1fd9e636b45"
+  },
+  "product_name": "tp-Link 300 Mbps Wireless N Router TL-WR841N",
+  "unit": "1",
+  "product_description": "300Mbps wireless speed ideal for interruption sensitive applications like HD video streaming. \nprovides separate access for guests while securing the home network.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728238131590photo.png",
+  "brand_object_id": {
+    "$oid": "6702d1b5c4c8a58df483e503"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f19df7701d42bedfed785b"
+  },
+  "category_object_id": {
+    "$oid": "66f19b79c4ab171a1293bc14"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-06T18:08:52.307Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T18:08:52.307Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6702d307c4c8a58df483e519"
+  },
+  "product_name": "tp-Link 300 Mbps Multi-Mode Wi-fi Router TL-WR820N",
+  "unit": "1",
+  "product_description": "300 Mbps Wi-Fi speed is ideal for daily tasks including browsing, emailing, and video streaming.IPTV supports IGMP Proxy/Snooping, Bridge and Tag VLAN to optimize IPTV streaming.Guest Network provides separate access for guests while securing the host network.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728238343471photo.png",
+  "brand_object_id": {
+    "$oid": "6702d1b5c4c8a58df483e503"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f19df7701d42bedfed785b"
+  },
+  "category_object_id": {
+    "$oid": "66f19b79c4ab171a1293bc14"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-06T18:12:23.677Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T18:12:23.677Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6702d6ec1827c2f73f7a9785"
+  },
+  "product_name": "LAVA 12\" DC Table Fan Model- KM-5012DP",
+  "unit": "1",
+  "product_description": "12\" LAVA DC FAN \n12v-18 v (dc) , 5W\nLCD Display\n1600 R/M HIGH\n1300 R/M LOW",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728239340410photo.png",
+  "brand_object_id": {
+    "$oid": "6702d400c4c8a58df483e520"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c4597a822bcdd17e4006"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-06T18:29:01.070Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T18:29:01.070Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6702d99497fba38385e42cdb"
+  },
+  "product_name": "12' Table Solar Fan Model- NH PLD 12A",
+  "unit": "1",
+  "product_description": "3 Speed Selection\nDC 12V Table Fan",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728240020554photo.png",
+  "brand_object_id": {
+    "$oid": "6702d94097fba38385e42cd3"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c4597a822bcdd17e4006"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-06T18:40:20.796Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T18:40:20.796Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6702e10378a1a6a1f5563cb3"
+  },
+  "product_name": "ABC Ceiling Fan, 56 Inch",
+  "unit": "1",
+  "product_description": "Power (W): 85\nVoltage (V): 220\nColor: Ivory",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728241923159photo.png",
+  "brand_object_id": {
+    "$oid": "6702e0bb78a1a6a1f5563c99"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c4597a822bcdd17e4006"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-06T19:12:03.419Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T19:12:03.419Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6702e29c78a1a6a1f5563cd5"
+  },
+  "product_name": "Electric Rice Cooker ASL-3P-300YLD 3Ltr",
+  "unit": "1",
+  "product_description": "\n    3 in 1 Electric Rice Cooker (Keep Warm, Rice Cooking, Steam Function)\n    3 pots and 1 steamer included for convenient use.\n    3L Capacity\n Rice Cooker ASL-3P-300YLD 3Ltr",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728242332739photo.png",
+  "brand_object_id": {
+    "$oid": "6702e1ad9f7f93ef15c17f55"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fc2bc5df3dc090d4f8d121"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-06T19:18:52.954Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-06T19:18:52.954Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67034b58d33080d005205868"
+  },
+  "product_name": "CleanCool Inverter HSU-24CleanCool:(INV)(3DF)(QA) ",
+  "unit": "1",
+  "product_description": "\n    Frost self-clean\n    Frost self-clean\n    iFeel\n    iFeel\n    Dry Function\n    Dry Function\n\n\n    Type:\n    Inverter\n    TR (Ton Range):\n    2 Ton\n    (Btu/h):\n    24000\n    Rated Cooling Capacity (W):\n    6500 (800~7200)\n    EER (W/W):\n    3.05\n    Power Supply (Volt/Phase/Hz):\n    1/230/50HZ\n    Rated Power Input (W):\n    2130 (300~2700)\n    Rated Current (A):\n    9.5 (1.3~12.0)\n    Max. Current (A):\n    10.2\n    Indoor air flow (Hi/Mi/Lo) m3/h:\n    1100\n    Compressor Type:\n    Rotary\n    Refrigerant Type:\n    R32\n    Refrigerant Standard (Kg):\n    1.05\n    Refrigerant Pipe Dia (mm) Liquid Side/Gas Side:\n    6/12\n    Evaporator/Condenser:\n    100% 7mm Grooved Copper\n    Heat Exchangers:\n    Golden Fin\n    Indoor Noise Level (Hi/Mi/Lo) [dB(A)]:\n    47/43/40\n    Outdoor Noise Level [dB(A)]:\n    58\n",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728269143780photo.png",
+  "brand_object_id": {
+    "$oid": "670349c1543957ff6968e652"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c0227ffcbbe997c9fdfc"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-07T02:45:44.500Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-07T02:45:44.500Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670355e72893e6cea66f00e4"
+  },
+  "product_name": "Safe SD32CZ AOSP LED Television TV - 32 Inch - Black",
+  "unit": "1 pcs",
+  "product_description": "Brand : Safe\nProduct Type : LED Television\nModel : SD32CZ\nDisplay : 32 Inch\nWarranty : 2 Years",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728271846280photo.png",
+  "brand_object_id": {
+    "$oid": "6703509027190a497429e38c"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c20e7ffcbbe997c9fe19"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Pending",
+  "createdAt": {
+    "$date": "2024-10-07T03:30:47.680Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-07T03:30:47.680Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703585aec348e61fdb17cf9"
+  },
+  "product_name": "Nima AF-8300 2in1 Electric Grinder and Blender - 300W - Silver",
+  "unit": "1",
+  "product_description": "Brand Name : Nima\nProduct Type : Grinder and Blender\nCapacity : 100g\nJar : 500ml of Juice Jar\nPower : 300 Watt",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728272472849photo.png",
+  "brand_object_id": {
+    "$oid": "670357b8da652e00c5e79163"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fc2e52df3dc090d4f8d130"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-07T03:41:14.288Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-07T03:41:14.288Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b711a003d30e654d45c2"
+  },
+  "product_name": "Jamuna Super Deluxe Ceiling Fan 56” Off-White",
+  "unit": "1",
+  "product_description": "Brand: Jamuna\nModel: Super Deluxe Ceiling Fan.\nSize: 1400mm/56\"\nPower: 63.5 Watts.\nRuns on 220-230 Volts.\nUses 80 Watts of power.\nWorks at 50Hz.\nSpeed: 310 rotations per minute.\nAir Delivery: 265 cubic meters per minute.\nSuper Cooling Performance.\nLow Voltage Operation.\nHigh-quality capacitor.\n100% SEC wire motor winding.\nAuto motor Cooling system.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728296720571photo.png",
+  "brand_object_id": {
+    "$oid": "6703b2d86f06f9a695226027"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c4597a822bcdd17e4006"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-07T10:25:21.212Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-07T10:25:21.212Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703b9ba9582ae01438159a6"
+  },
+  "product_name": "Xiaomi TV A Pro 32 Smart life, limitless vision",
+  "unit": "1",
+  "product_description": "Full-screen design\nHigh-resolution display\nThe ultra-narrow bezel design provides a high screen-to-body ratio far beyond that of standard TVs. \nFrom the instant you turn on the TV, high-resolution images in stunning colors blanket the screen for an immersive \nexperience.",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728297401990photo.png",
+  "brand_object_id": {
+    "$oid": "6703b98e9582ae0143815994"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c20e7ffcbbe997c9fe19"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-07T10:36:42.291Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-07T10:36:42.291Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703bb7ea003d30e654d45f2"
+  },
+  "product_name": "NOHA Solar Fan 16 Inch Model- 1026  7W 12V",
+  "unit": "1",
+  "product_description": "    Brand: NOHA\n    Fan Features : Variable Speed Settings\n    Fan Type : DC Solar Fan\n    Blade Side: 16Inch\n    Power: DC 12V\n    4 LED Light\n    7 Watt",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728297853896photo.png",
+  "brand_object_id": {
+    "$oid": "6702d94097fba38385e42cd3"
+  },
+  "subcategory_object_id": {
+    "$oid": "66f1c4597a822bcdd17e4006"
+  },
+  "category_object_id": {
+    "$oid": "66f1bdef7ffcbbe997c9fdeb"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-07T10:44:14.078Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-07T10:44:14.078Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6703be5ba003d30e654d4631"
+  },
+  "product_name": "Gazi TJSW-10M 1HP Self Priming Jet Pump",
+  "unit": "1",
+  "product_description": "This Gazi TJSW-10M is a surface pump that is created for a wide range of applications. It is self-priming, meaning it can automatically draw water from a well or reservoir, making it ideal for use in locations where water needs to be moved or circulated efficiently. The pump comes with a 1HP energy output, which indicates that the pump is capable of moving a significant amount of water. ",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1728298587460photo.png",
+  "brand_object_id": {
+    "$oid": "6703bc16a003d30e654d45f9"
+  },
+  "subcategory_object_id": {
+    "$oid": "66faf6a4d2d182948e456ffb"
+  },
+  "category_object_id": {
+    "$oid": "66fad47f3b11395e546bb52f"
+  },
+  "profit_percentage": 1,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-07T10:56:27.595Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-07T10:56:27.595Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670ffe2e0be107f62e280954"
+  },
+  "product_name": "Galaxy S24 5g",
+  "unit": "Unit",
+  "product_description": "valo mal",
+  "product_image": null,
+  "brand_object_id": {
+    "$oid": "66e9c4ed19b9fff9d8b3ede8"
+  },
+  "subcategory_object_id": {
+    "$oid": "66e96e09829272294de930fe"
+  },
+  "category_object_id": {
+    "$oid": "66e96cc8829272294de930de"
+  },
+  "profit_percentage": null,
+  "product_status": "ACTIVE",
+  "createdAt": {
+    "$date": "2024-10-16T17:55:58.621Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-16T17:55:58.621Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670ffe74b59236246899c716"
+  },
+  "product_name": "Galaxy S24 5g",
+  "unit": "Unit",
+  "product_description": "valo mal",
+  "product_image": "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1729101391984photo.png",
+  "brand_object_id": {
+    "$oid": "66e9c4ed19b9fff9d8b3ede8"
+  },
+  "subcategory_object_id": {
+    "$oid": "66e96e09829272294de930fe"
+  },
+  "category_object_id": {
+    "$oid": "66e96cc8829272294de930de"
+  },
+  "profit_percentage": null,
+  "product_status": "ACTIVE",
+  "createdAt": {
+    "$date": "2024-10-16T17:57:08.524Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-16T17:57:08.524Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "670fff0da70508bd9830c6a5"
+  },
+  "product_name": "Galaxy S24 5g",
+  "unit": "Unit",
+  "product_description": "valo mal",
+  "product_image": null,
+  "brand_object_id": {
+    "$oid": "66e9c4ed19b9fff9d8b3ede8"
+  },
+  "subcategory_object_id": {
+    "$oid": "66e96e09829272294de930fe"
+  },
+  "category_object_id": {
+    "$oid": "66e96cc8829272294de930de"
+  },
+  "profit_percentage": null,
+  "product_status": "ACTIVE",
+  "createdAt": {
+    "$date": "2024-10-16T17:59:41.411Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-16T17:59:41.411Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67100127ba74be19517952ab"
+  },
+  "product_name": "Galaxy S24 5g",
+  "unit": "Unit",
+  "product_description": "valo mal",
+  "product_image": [
+    "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1729102091148photo.png",
+    "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1729102091156photo.png"
+  ],
+  "brand_object_id": {
+    "$oid": "66e9c4ed19b9fff9d8b3ede8"
+  },
+  "subcategory_object_id": {
+    "$oid": "66e96e09829272294de930fe"
+  },
+  "category_object_id": {
+    "$oid": "66e96cc8829272294de930de"
+  },
+  "profit_percentage": null,
+  "product_status": "ACTIVE",
+  "createdAt": {
+    "$date": "2024-10-16T18:08:39.422Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-16T18:08:39.422Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "671005fca077e7be13a5c7d1"
+  },
+  "product_name": "fff",
+  "unit": "ff",
+  "product_description": "ff",
+  "product_image": [
+    "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1729103353889photo.png",
+    "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1729103353896photo.png"
+  ],
+  "brand_object_id": {
+    "$oid": "66e9c4ed19b9fff9d8b3ede8"
+  },
+  "subcategory_object_id": {
+    "$oid": "66fc362b440210cec92582f7"
+  },
+  "category_object_id": {
+    "$oid": "66fbf2b0f17dc5705b513221"
+  },
+  "profit_percentage": 3330,
+  "product_status": "Active",
+  "createdAt": {
+    "$date": "2024-10-16T18:29:16.197Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-16T18:29:16.197Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6710070ccbd6b9fc156c79dc"
+  },
+  "product_name": "Galaxy S24 5g",
+  "unit": "Unit",
+  "product_description": "valo mal",
+  "product_image": [
+    "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1729103625100photo.png",
+    "https://bazarpay.s3.ap-south-1.amazonaws.com/productImage/1729103625108photo.png"
+  ],
+  "brand_object_id": {
+    "$oid": "66e9c4ed19b9fff9d8b3ede8"
+  },
+  "subcategory_object_id": {
+    "$oid": "66e96e09829272294de930fe"
+  },
+  "category_object_id": {
+    "$oid": "66e96cc8829272294de930de"
+  },
+  "profit_percentage": null,
+  "product_status": "ACTIVE",
+  "createdAt": {
+    "$date": "2024-10-16T18:33:48.403Z"
+  },
+  "updatedAt": {
+    "$date": "2024-10-16T18:33:48.403Z"
+  },
+  "__v": 0
+}]

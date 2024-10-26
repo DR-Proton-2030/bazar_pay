@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "bazarpaywholesaler.app"
-               BlueprintName = "bazarpaywholesaler"
-               ReferencedContainer = "container:bazarpaywholesaler.xcodeproj">
+               BuildableName = "BazarpayWholesaler.app"
+               BlueprintName = "BazarpayWholesaler"
+               ReferencedContainer = "container:BazarpayWholesaler.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "bazarpaywholesalerTests.xctest"
-               BlueprintName = "bazarpaywholesalerTests"
-               ReferencedContainer = "container:bazarpaywholesaler.xcodeproj">
+               BuildableName = "BazarpayWholesalerTests.xctest"
+               BlueprintName = "BazarpayWholesalerTests"
+               ReferencedContainer = "container:BazarpayWholesaler.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -55,9 +55,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "bazarpaywholesaler.app"
-            BlueprintName = "bazarpaywholesaler"
-            ReferencedContainer = "container:bazarpaywholesaler.xcodeproj">
+            BuildableName = "BazarpayWholesaler.app"
+            BlueprintName = "BazarpayWholesaler"
+            ReferencedContainer = "container:BazarpayWholesaler.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -72,9 +72,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "bazarpaywholesaler.app"
-            BlueprintName = "bazarpaywholesaler"
-            ReferencedContainer = "container:bazarpaywholesaler.xcodeproj">
+            BuildableName = "BazarpayWholesaler.app"
+            BlueprintName = "BazarpayWholesaler"
+            ReferencedContainer = "container:BazarpayWholesaler.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
