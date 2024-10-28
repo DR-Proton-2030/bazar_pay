@@ -10,7 +10,7 @@ const Header = ({ isSignup }: any) => {
         flexDirection: "row",
         justifyContent: "space-between",
         paddingHorizontal: 20,
-        paddingTop: 20,
+       
       }}
     >
       {isSignup ? (

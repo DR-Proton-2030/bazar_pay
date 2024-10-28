@@ -30,6 +30,7 @@ import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerCon
 import AuthContext from "../../../contexts/authContext/authContext";
 import { OtpInput } from "react-native-otp-entry";
 import { ActivityIndicator, Button } from "react-native-paper";
+import LottieView from "lottie-react-native";
 
 const SignIn = () => {
   const { setUser } = useContext(AuthContext);
@@ -54,10 +55,10 @@ const SignIn = () => {
     if (step === "phone") {
 
       try {
-        if(phone.length===0 ){
+        if (phone.length === 0) {
           Alert.alert("Error", "Please enter your phone number");
-        }else{
-      setLoading(true)
+        } else {
+          setLoading(true)
 
           const payload = { phone };
           const response = await api.auth.getLoginOtp(payload);
@@ -66,11 +67,11 @@ const SignIn = () => {
           setLoading(false)
           setStep("otp")
         }
-        
+
       } catch (error: any) {
         console.log(error);
         setLoading(false)
-        Alert.alert("Wrong Credentials","Please enter your Phone number correctly");
+        Alert.alert("Wrong Credentials", "Please enter your Phone number correctly");
       }
     } else if (step === "otp") {
 
@@ -90,30 +91,56 @@ const SignIn = () => {
     }
   };
 
+  const [animationData2, setAnimationData2] = useState(null);
+  const animationUrl2 = 'https://lottie.host/ac337969-6465-44e9-8148-6d665e7d90b4/nijpb60stB.json';
+
+
+  useEffect(() => {
+    const fetchAnimation = async () => {
+      try {
+        const response = await fetch(animationUrl2);
+        const data = await response.json();
+        setAnimationData2(data);
+        console.log("first", data);
+      } catch (error) {
+        console.error('Error loading Lottie animation:', error);
+      }
+    };
+
+    fetchAnimation();
+  }, []);
+
   return (
     <KeyboardAvoidingView
-    behavior={Platform.OS === "ios" ? "padding" : "height"}
-    style={{ flex: 1,}}
-  >
-    <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }} keyboardShouldPersistTaps="handled"  contentContainerStyle={{ flexGrow: 1 }}>
-      <View style={{ flexDirection: "column" }}>
-        <Image
-          style={{ width: "100%", height: screenHeight / 1.9 }}
-          source={loginBg}
-        />
-        <View
-          style={[
-            globalStyle.modalContent,
-            { marginTop: -screenHeight / 15.9 },
-          ]}
-        >
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={{ flex: 1, }}
+    >
+      <ScrollView style={{ flex: 1, backgroundColor: Colors.light.background }} keyboardShouldPersistTaps="handled" contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={{ height: 500 }}>
+          {animationData2 ? (
+            <LottieView
+              source={animationData2}
+              autoPlay
+              loop
+              style={{ width: 400, height: 400,marginTop:50}} // Adjust size as needed
+            />
+          ) : (
+            <ActivityIndicator size="small" color="#0000ff" />
+          )}
+        </View>
+        <View style={{
+        
+          marginTop: -20,
+        }}>
+
           <Header isSignup={false} />
-          <View style={{ paddingHorizontal: 20, paddingVertical: 20,flex:1 }}>
+          <View style={{ paddingHorizontal: 20, paddingVertical: 20, flex: 1 }}>
             {step === "phone" ? (
+
               <>
 
-                <View style={[globalStyle.inputContainerView,{alignItems:"center",flexDirection:"row",justifyContent:"flex-start",gap:10}]} >
-                  <Text style={{fontSize:18,color:Colors.light.blue}}>
+                <View style={[globalStyle.inputContainerView, { alignItems: "center", flexDirection: "row", justifyContent: "flex-start", gap: 10 }]} >
+                  <Text style={{ fontSize: 18, color: Colors.light.blue }}>
                     +880
                   </Text>
 
@@ -127,7 +154,7 @@ const SignIn = () => {
                 </View>
                 <Button style={[globalStyle.blueButton, { marginTop: 10 }]} onPress={handleSignIn}>
                   {
-                  loading ?
+                    loading ?
                       <ActivityIndicator color="white" />
                       :
                       <Text style={globalStyle.signInButtonText}>
@@ -165,9 +192,8 @@ const SignIn = () => {
             )}
           </View>
         </View>
-      </View>
-      {/* <SignInCongratsModal isCongratsModalVisible={isCongratsModalVisible} setIsCongratsModalVisible={setIsCongratsModalVisible} /> */}
-    </ScrollView>
+        {/* <SignInCongratsModal isCongratsModalVisible={isCongratsModalVisible} setIsCongratsModalVisible={setIsCongratsModalVisible} /> */}
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };

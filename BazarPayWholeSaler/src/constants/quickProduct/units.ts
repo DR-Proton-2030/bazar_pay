@@ -1,0 +1,28 @@
+export const Productunits = [
+    'Piece', 
+    'Kg', 
+    'Litre', 
+    'Box', 
+    'Gram', 
+    'Meter', 
+    'Dozen', 
+    'Pack', 
+    'Bundle', 
+    'Set', 
+    'Carton', 
+    'Pallet', 
+    'Bag', 
+    'Bottle', 
+    'Can', 
+    'Roll', 
+    'Tray', 
+    'Cup', 
+    'Gallon', 
+    'Milliliter', 
+    'Pint', 
+    'Quintal', 
+    'Sack', 
+    'Square Meter', 
+    'Yard'
+  ];
+  

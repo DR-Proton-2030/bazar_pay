@@ -80,7 +80,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 22, 
       },
       modalItemText: {
-        fontSize: 20,
+        fontSize: 18,
       },
       unitField: {
         flexDirection: 'row',

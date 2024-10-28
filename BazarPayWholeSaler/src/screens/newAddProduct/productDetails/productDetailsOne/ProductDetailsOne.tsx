@@ -14,6 +14,9 @@ import FeatherIcon from '@expo/vector-icons/Feather';
 import { styles } from '../../styles';
 import ImageUploader from '../../../../components/shared/ImageUploader/ImageUploader';
 import CustomImagePicker from '../../../../components/shared/imagePicker/ImagePicker';
+import { ScrollView } from 'react-native-gesture-handler';
+import Colors from '../../../../constants/Colors';
+import { Productunits } from '../../../../constants/quickProduct/units';
 
 const ProductDetailsOne = ({ form, setForm, page,setPage,images, setImages }:
     { images: string[], setImages: React.Dispatch<React.SetStateAction<string[]>>,
@@ -112,22 +115,23 @@ const ProductDetailsOne = ({ form, setForm, page,setPage,images, setImages }:
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <Text style={styles.modalTitle}>পণ্যের একক নির্বাচন করুন</Text>
-            <FlatList
-              data={units}
-              keyExtractor={(item) => item}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  onPress={() => 
-                    {
-                      handleUnitSelect(item)
-                      setForm({ ...form, unit:item })
-                    }}
-                  style={styles.modalItem}
-                >
-                  <Text style={styles.modalItemText}>{item}</Text>
-                </TouchableOpacity>
-              )}
-            />
+            <View style={{ flexDirection: "row", flexWrap: "wrap",paddingHorizontal:20 }}>
+  {Productunits.map((item) => (
+    <TouchableOpacity
+      key={item}
+      onPress={() => {
+        handleUnitSelect(item);
+        setForm({ ...form, unit: item });
+      }}
+      style={{ paddingHorizontal: 20, paddingVertical: 10, margin: 5,
+        backgroundColor:Colors.light.grayBg ,borderRadius:10,elevation:0}}
+    >
+      <Text style={styles.modalItemText}>{item}</Text>
+    </TouchableOpacity>
+  ))}
+</View>
+
+
           </View>
         </View>
       </Modal>
