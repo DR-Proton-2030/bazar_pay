@@ -6,6 +6,7 @@ import { IInventory } from "../../@types/types/inventory.interface";
 const InventorySchema: Schema<IInventory> = new Schema<IInventory>(
 	{
 		wholesaler_object_id: SCHEMA_DEFINITION_PROPERTY.requiredObjectId,
+		name: SCHEMA_DEFINITION_PROPERTY.requiredString,
 		location: {
 			type: SCHEMA_DEFINITION_PROPERTY.requiredString,
 			coordinates: SCHEMA_DEFINITION_PROPERTY.optionalNullArray

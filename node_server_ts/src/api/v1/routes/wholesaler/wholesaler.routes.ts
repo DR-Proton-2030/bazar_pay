@@ -9,6 +9,7 @@ import {
 import { getOtpForLogin, getOtpForSignup } from "../../controllers/wholesalers/wholeslaer.otp.controller";
 import { getProductsByProductId, uploadProduct } from "../../controllers/wholesalers/wholesalerUploadProduct.controller";
 import e from "express";
+import { createInventory, getInventory } from "../../controllers/inventory/inventory.controller";
 
 const router = express.Router();
 
@@ -31,6 +32,10 @@ router.route("/update-wholesaler-status").patch(updateWholesalerStatus);
 router.route("/upload-product").post(uploadProduct);
 router.route("/get-product").get(getProductsByProductId);
 router.route("/delete-wholesaler-by-id/:wholesalerId").delete(deleteWholesaler);
+
+
+router.route("/create-inventory").post(createInventory);
+router.route("/get-inventory").get(getInventory);
 
 // router.route("/get-builder-list").get(getBuilderNameWithID);
 
