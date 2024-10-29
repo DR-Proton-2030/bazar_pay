@@ -19,6 +19,7 @@ import WholesalerContext from "../../../contexts/wholesalerContext/wholesalerCon
 import { Ionicons } from "@expo/vector-icons";
 
 export const DrawerContent = ({ onClose }: any) => {
+
   const { wholesaler } = useContext(WholesalerContext);
   const { user, setUser } = useContext(AuthContext);
   const navigation: any = useNavigation();
@@ -88,7 +89,7 @@ export const DrawerContent = ({ onClose }: any) => {
       </View>
       <View style={{ marginTop: 30 }}>
         {drawerItems.map((item, index) => (
-          <DrawerCards key={index} {...item} />
+          <DrawerCards key={index} {...item} onClose={onClose} />
         ))}
       </View>
 

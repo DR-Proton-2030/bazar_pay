@@ -16,6 +16,7 @@ import { WholesalerUploadProduct } from "./wholesalerListedProducts/wholesalerLi
 import { getOrderList, updateOrderStatus } from "./order/order";
 import { getWholesalerListedProducts, getWholesalerStockListedProducts } from "./wholesalerListedProducts/getWholesaleListedProduct";
 import { getByAnyProduct } from "./product/searchByProduct";
+import { createInventory, getInventoryList } from "./inventory/inventory";
 
 export const api = {
   auth: {
@@ -30,6 +31,10 @@ export const api = {
     getProductList,
     updateProduct,
     getByAnyProduct
+  },
+  inventory:{
+    getInventoryList,
+    createInventory,
   },
   category: {
     getCategoryList,

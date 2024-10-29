@@ -14,7 +14,7 @@ export const createInventory = async (req: Request, res: Response) => {
 
 		const savedInventory = await newInventory.save();
 
-		return res.status(201).json({
+		return res.status(200).json({
 			message: MESSAGE.post.succ,
 			result: savedInventory,
 		});

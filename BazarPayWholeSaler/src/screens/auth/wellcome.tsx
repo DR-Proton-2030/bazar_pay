@@ -9,28 +9,7 @@ export default function WellcomeScreen({ navigation }: any) {
   const [location, setLocation] = useState<any>(null);
   const [errorMsg, setErrorMsg] = useState<any>(null);
 
-  useEffect(() => {
-    (async () => {
-      
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-        return;
-      }
-
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-      console.log(location)
-    })();
-  }, []);
-
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
-
+  
   
   return (
     <ScrollView style={styles.container} contentContainerStyle={{paddingBottom:40}}>

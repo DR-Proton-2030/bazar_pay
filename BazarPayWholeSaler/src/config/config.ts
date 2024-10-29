@@ -2,10 +2,10 @@
 //   "https://ikaf5l6ufysc65bsxbnhb6hxzi0ykubx.lambda-url.ap-south-1.on.aws";
 
 export const LAMBDA_URL =
-  "https://ikaf5l6ufysc65bsxbnhb6hxzi0ykubx.lambda-url.ap-south-1.on.aws";
+ "http://192.168.134.155:8989";
 
 export const API_GATEWAY_URL =
-  "https://0pwg9twyag.execute-api.ap-south-1.amazonaws.com";
+  "http://192.168.134.155:8989";
 
 export const url = LAMBDA_URL;
 

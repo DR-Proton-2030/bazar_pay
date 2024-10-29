@@ -1,4 +1,4 @@
-import { Feather } from "@expo/vector-icons";
+import { Feather, MaterialIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { NavigationProp } from "@react-navigation/native";
@@ -30,6 +30,14 @@ export const createDrawerItems = (navigation: NavigationProp<any>) => {
       iconColor: Colors.light.primary,
       text: "My QR",
       onPress: () => navigation.navigate("QrPage"),
+    },
+    {
+      Icon: MaterialIcons,
+      iconName: "inventory",
+      iconSize: 22,
+      iconColor: Colors.light.primary,
+      text: "My Inventories",
+      onPress: () => navigation.navigate("inventory"),
     },
     {
       Icon: AntDesign,

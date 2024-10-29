@@ -63,6 +63,14 @@ function RootLayoutNav() {
         name="signInPage"
         options={{ headerShown: false, statusBarTranslucent: true }}
       />
+       <Stack.Screen
+        name="inventory"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
+       <Stack.Screen
+        name="createInventory"
+        options={{ headerShown: false, statusBarTranslucent: true }}
+      />
       <Stack.Screen
         name="signUp"
         options={{
