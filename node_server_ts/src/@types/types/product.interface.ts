@@ -10,5 +10,5 @@ export interface IProduct {
 	category_object_id: SchemaDefinitionProperty<Types.ObjectId>;
 	subcategory_object_id: SchemaDefinitionProperty<Types.ObjectId>;
 	brand_object_id: SchemaDefinitionProperty<Types.ObjectId>;
-
+	deleivery_charge_per_km: number
 }
