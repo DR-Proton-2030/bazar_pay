@@ -62,6 +62,8 @@ const SignIn = () => {
 
           const payload = { phone };
           const response = await api.auth.getLoginOtp(payload);
+        console.log("=====>temp user", response)
+
           setServerOtp(response?.otp);
           setTempUser(response?.result)
           setLoading(false)
@@ -101,7 +103,7 @@ const SignIn = () => {
         const response = await fetch(animationUrl2);
         const data = await response.json();
         setAnimationData2(data);
-        console.log("first", data);
+       
       } catch (error) {
         console.error('Error loading Lottie animation:', error);
       }
@@ -109,6 +111,25 @@ const SignIn = () => {
 
     fetchAnimation();
   }, []);
+
+useEffect(() => {
+  if (step === "otp") {
+
+    if (otp === serverOtp) {
+      if (tempUser?.approval_status === "PENDING") {
+        navigation.navigate("conformationPage");
+      } else {
+        setUser(tempUser);
+        setWholesaler(tempUser);
+        setIsCongratsModalVisible(true);
+        navigation.navigate("homePage");
+        console.log("=====>temp user", tempUser)
+      }
+    } 
+  }
+}, [otp])
+
+  
 
   return (
     <KeyboardAvoidingView

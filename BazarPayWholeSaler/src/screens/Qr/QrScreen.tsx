@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { MaterialIcons } from "@expo/vector-icons";
 import ProductHeader from "../../components/main/productDetails/productHeader/ProductHeader";
 import Colors from "../../constants/Colors";
+import AuthContext from "../../contexts/authContext/authContext";
 
 const QrScreen = () => {
+  const {user}= useContext(AuthContext)
   return (
     <View style={{ flex: 1, backgroundColor: Colors.light.background }}>
       <ProductHeader text="My QR" />
@@ -17,10 +19,10 @@ const QrScreen = () => {
         }}
       >
         <Text style={{ fontSize: 24, fontWeight: "700", marginBottom: 20 }}>
-          Roni Electric
+{user?.owner_name}
         </Text>
         <Text style={{ fontSize: 19, marginBottom: 40 }}>
-          nomanroni@gmail.com
+        {user?.owner_email}
         </Text>
         <MaterialIcons
           name="qr-code-scanner"
