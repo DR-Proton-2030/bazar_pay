@@ -4,6 +4,7 @@ import { createProductByAdmin } from "../../controllers/product/createProductByA
 import { getProductById, getProducts } from "../../controllers/product/getProductsWithPagination.controller";
 import { getRegexProducts } from "../../controllers/product/getRegexProducts.controller";
 import { updateProduct } from "../../controllers/product/product.controller";
+import { requestProduct } from "../../controllers/product/requestedProduct.controller";
 
 const router = express.Router();
 
@@ -23,6 +24,12 @@ router.route("/update_product").patch(
 	]),
 	updateProduct
 );
+
+router
+	.route("/request_product")
+	.post(upload.fields([{ name: "product_image", maxCount: 10 }]), requestProduct);
+
+
 
 
 export default router;

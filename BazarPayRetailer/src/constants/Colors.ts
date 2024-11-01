@@ -13,6 +13,8 @@ export default {
     cardColor: "#F4F4F4",
     grayBtn: "#D9D9D9",
     border: "#f2f2f2",
+    grayBg:"#f2f2f2",
+    lightOrange:"#ffefe6"
   },
   dark: {
     text: "#fff",

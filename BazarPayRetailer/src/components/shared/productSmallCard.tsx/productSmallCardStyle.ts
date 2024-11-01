@@ -14,12 +14,12 @@ export const styles = StyleSheet.create({
     },
     image: {
         width: '100%',
-        height: 150,
+        height: 140,
         borderRadius: 10,
         marginBottom: 10,
         backgroundColor:Colors.light.grayBtn,
-        borderWidth:0.5,
-        borderColor:Colors.light.grayBtn
+        borderWidth:0.4,
+        borderColor:Colors.light.grayBtn,
     },
     name: {
         fontSize: 14,

@@ -11,10 +11,16 @@ const DrawerCards = ({
   iconColor,
   text,
   onPress,
+  onClose
 }: any) => {
+
+  const onclick =()=>{
+    onClose()
+    onPress()
+  }
   return (
     <TouchableOpacity
-      onPress={onPress}
+      onPress={onclick}
       style={{
         borderBottomWidth: 1,
         borderColor: Colors.light.border,

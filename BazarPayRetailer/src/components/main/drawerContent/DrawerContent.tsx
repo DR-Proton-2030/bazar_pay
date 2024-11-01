@@ -9,12 +9,13 @@ import { useNavigation } from "expo-router";
 import { createDrawerItems } from "../../../database/drawerItems/drawerItems";
 import AuthContext from "../../../contexts/authContext/authContext";
 
-export const DrawerContent = () => {
+export const DrawerContent = ({onClose}:any) => {
   const {user}=useContext(AuthContext)
   const navigation: any = useNavigation();
   const drawerItems = createDrawerItems(navigation);
   const handleNavigatetoProfile = ({ route }: any) => {
-    navigation.navigate("profilePage");
+    onClose()
+    // navigation.navigate("profilePage");
   };
 
   return (
@@ -60,7 +61,7 @@ export const DrawerContent = () => {
       </View>
       <View style={{ marginTop: 30,width:260 }}>
         {drawerItems.map((item, index) => (
-          <DrawerCards key={index} {...item} />
+          <DrawerCards key={index} {...item} onClose={onClose} />
         ))}
       </View>
     </View>

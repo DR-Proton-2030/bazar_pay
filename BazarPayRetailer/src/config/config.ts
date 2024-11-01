@@ -1,4 +1,4 @@
-export const url = "http://192.168.174.155:8989";
+export const url = "http://192.168.134.155:8989";
 
 export const port = "4009";
 

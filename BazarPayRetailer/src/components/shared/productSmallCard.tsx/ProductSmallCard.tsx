@@ -10,7 +10,6 @@ const ProductCard = ({ product,categoryName,product_image }: any) => {
     const handleNavigate = () => {
       navigation.navigate("wholesallersList",{productId:product?._id,categoryName});
     };
-    console.log("first", Array.isArray(product?.product_image) ? product.product_image[0] : product?.product_image);
 
     return (
         
